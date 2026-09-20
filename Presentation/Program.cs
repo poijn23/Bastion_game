@@ -1,4 +1,4 @@
 using Bastion.Presentation;
 
-using var juego = new JuegoBastion();
-juego.Run();
+using var game = new BastionGame();
+game.Run();

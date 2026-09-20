@@ -1,109 +1,163 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace Bastion.Presentation.Utils;
 
-/// <summary>
-/// Selector de una opcion entre pocas, dibujado como segmentos contiguos. El
-/// CU-02 lo usa dos veces y no son el mismo: uno elige el idioma de la
-/// interfaz (FA-02) y otro el <c>idioma_preferido</c> que se guardara en la
-/// cuenta. Las opciones admitidas son <c>es-MX</c> y <c>en</c> (D-21), y el
-/// esquema las restringe con CK_Usuario_idioma.
-/// </summary>
+// Picks one option among a few, drawn as adjacent segments.
 public sealed class Selector : Control
 {
-    public required IReadOnlyList<string> Opciones { get; set; }
+    private const int LabelOffset = 22;
+    private const int ActiveInset = 3;
+    private const int CompactCornerRadius = 8;
 
-    public string Etiqueta { get; set; } = string.Empty;
+    public required IReadOnlyList<string> Options { get; set; }
 
-    /// <summary>Version reducida, para el selector de idioma de la esquina.</summary>
-    public bool Compacto { get; init; }
+    public string Label { get; set; } = string.Empty;
 
-    /// <summary>Sobre fondo oscuro cambia los colores del segmento en reposo.</summary>
-    public bool SobreFondoOscuro { get; init; }
+    public bool IsCompact { get; init; }
 
-    public int Seleccion { get; set; }
+    public bool IsOnDarkBackground { get; init; }
 
-    public event Action<int>? Cambiado;
+    public int SelectedIndex { get; set; }
 
-    private Rectangle Segmento(int indice)
+    public event EventHandler<SelectionChangedEventArgs>? SelectionChanged;
+
+    public override void Update(InputState input)
     {
-        int ancho = Limites.Width / Opciones.Count;
-        int x = Limites.X + indice * ancho;
+        base.Update(input);
 
-        // El ultimo segmento absorbe el residuo de la division entera, para que
-        // el grupo termine justo donde termina el control.
-        int anchoReal = indice == Opciones.Count - 1 ? Limites.Right - x : ancho;
-        return new Rectangle(x, Limites.Y, anchoReal, Limites.Height);
-    }
-
-    public override void Actualizar(Entrada entrada)
-    {
-        base.Actualizar(entrada);
-
-        if (!Encima || !entrada.Click)
+        if (!IsHovered || !input.HasClicked)
         {
             return;
         }
 
-        for (int i = 0; i < Opciones.Count; i++)
+        for (int i = 0; i < Options.Count; i++)
         {
-            if (Segmento(i).Contains(entrada.Raton) && i != Seleccion)
+            if (GetSegment(i).Contains(input.MousePosition) && i != SelectedIndex)
             {
-                Seleccion = i;
-                Cambiado?.Invoke(i);
+                SelectedIndex = i;
+                OnSelectionChanged(i);
                 return;
             }
         }
     }
 
-    public override void Dibujar(Lienzo lienzo)
+    public override void Draw(Canvas canvas)
     {
-        if (!Visible)
+        ArgumentNullException.ThrowIfNull(canvas);
+
+        if (!IsVisible)
         {
             return;
         }
 
-        var lote = lienzo.Lote;
-        int radio = Compacto ? 8 : Tema.RadioCampo;
+        DrawLabel(canvas);
+        DrawBackground(canvas);
+        DrawSegments(canvas);
+    }
 
-        if (!string.IsNullOrEmpty(Etiqueta))
+    private void OnSelectionChanged(int selectedIndex)
+    {
+        SelectionChanged?.Invoke(this, new SelectionChangedEventArgs { SelectedIndex = selectedIndex });
+    }
+
+    private Rectangle GetSegment(int index)
+    {
+        int width = Bounds.Width / Options.Count;
+        int x = Bounds.X + (index * width);
+
+        // The last segment absorbs the integer division remainder so the group
+        // ends exactly where the control ends.
+        int actualWidth = index == Options.Count - 1 ? Bounds.Right - x : width;
+
+        return new Rectangle(x, Bounds.Y, actualWidth, Bounds.Height);
+    }
+
+    private int GetCornerRadius()
+    {
+        return IsCompact ? CompactCornerRadius : Theme.FieldCornerRadius;
+    }
+
+    private void DrawLabel(Canvas canvas)
+    {
+        if (string.IsNullOrEmpty(Label))
         {
-            DibujoTexto.Dibujar(
-                lote, lienzo.Negrita, Etiqueta, new Vector2(Limites.X, Limites.Y - 22),
-                TieneAviso ? Tema.Acento : Tema.Etiqueta, Tema.EscalaEtiqueta, Tema.EspaciadoEtiqueta);
+            return;
         }
 
-        var fondo = SobreFondoOscuro ? Tema.BotonSecundario : Tema.Campo;
-        lienzo.Formas.RectanguloRedondo(lote, Limites, radio, fondo);
+        Color color = HasWarning ? Theme.Accent : Theme.Label;
+        TextStyle style = TextStyleFactory.CreateLabel(canvas.Fonts, color);
+        canvas.Text.Draw(Label, new Vector2(Bounds.X, Bounds.Y - LabelOffset), style);
+    }
 
-        if (SobreFondoOscuro)
+    private void DrawBackground(Canvas canvas)
+    {
+        Color fill = IsOnDarkBackground ? Theme.SecondaryButton : Theme.Field;
+        canvas.Shapes.DrawRoundedRectangle(Bounds, GetCornerRadius(), fill);
+
+        if (!IsOnDarkBackground)
         {
-            lienzo.Formas.BordeRedondo(lote, Limites, radio, 1, Tema.BordeSecundario);
+            return;
         }
 
-        for (int i = 0; i < Opciones.Count; i++)
-        {
-            var area = Segmento(i);
-            bool activo = i == Seleccion;
+        canvas.Shapes.DrawRoundedBorder(
+            Bounds,
+            BorderStyleFactory.CreateHairline(GetCornerRadius(), Theme.SecondaryBorder));
+    }
 
-            if (activo)
+    private void DrawSegments(Canvas canvas)
+    {
+        for (int i = 0; i < Options.Count; i++)
+        {
+            Rectangle area = GetSegment(i);
+            bool isActive = i == SelectedIndex;
+
+            if (isActive)
             {
-                var interior = new Rectangle(area.X + 3, area.Y + 3, area.Width - 6, area.Height - 6);
-                lienzo.Formas.RectanguloRedondo(lote, interior, radio - 3, Tema.Acento);
+                DrawActiveSegment(canvas, area);
             }
 
-            var color = activo
-                ? Tema.TextoClaro
-                : SobreFondoOscuro ? Tema.TextoTenue : Tema.Etiqueta;
-
-            DibujoTexto.DibujarCentrado(
-                lote,
-                lienzo.Negrita,
-                Opciones[i],
-                area,
-                color,
-                Compacto ? Tema.EscalaMenuda : Tema.EscalaEtiqueta,
-                Tema.EspaciadoEtiqueta);
+            TextStyle style = CreateOptionStyle(canvas.Fonts, isActive);
+            canvas.Text.DrawCentered(Options[i], area, style);
         }
+    }
+
+    private static void DrawActiveSegment(Canvas canvas, Rectangle area)
+    {
+        var inner = new Rectangle(
+            area.X + ActiveInset,
+            area.Y + ActiveInset,
+            area.Width - (ActiveInset * 2),
+            area.Height - (ActiveInset * 2));
+
+        canvas.Shapes.DrawRoundedRectangle(inner, Theme.FieldCornerRadius - ActiveInset, Theme.Accent);
+    }
+
+    private TextStyle CreateOptionStyle(FontSet fonts, bool isActive)
+    {
+        Color color = GetOptionColor(isActive);
+
+        if (IsCompact)
+        {
+            return TextStyleFactory.CreateSmallBold(fonts, color);
+        }
+
+        return TextStyleFactory.CreateLabel(fonts, color);
+    }
+
+    private Color GetOptionColor(bool isActive)
+    {
+        if (isActive)
+        {
+            return Theme.TextLight;
+        }
+
+        if (IsOnDarkBackground)
+        {
+            return Theme.TextMuted;
+        }
+
+        return Theme.Label;
     }
 }

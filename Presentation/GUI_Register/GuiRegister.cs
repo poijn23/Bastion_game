@@ -1,349 +1,387 @@
-using Bastion.Presentation.Utils;
-using Bastion.Resources;
+using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Bastion.Presentation.Utils;
+using Bastion.Resources;
 
 namespace Bastion.Presentation.GUI_Register;
 
-/// <summary>
-/// GUI_Register: la pantalla del paso 1 del flujo normal del CU-02 "Registrar
-/// cuenta". Pide el <c>nickname</c>, el <c>correo</c>, la contrasena y su
-/// confirmacion, la <c>fecha_nacimiento</c> y el <c>idioma_preferido</c>, junto
-/// con la casilla de aceptacion de los terminos de uso, las opciones "Crear
-/// cuenta" y "Cancelar" y el selector de idioma de la interfaz.
-///
-/// Es solo la presentacion. No valida nada, no abre la conexion, no arma el
-/// REGISTER_REQUEST y no navega a ninguna otra pantalla: los pasos 3 al 27 del
-/// flujo normal, los flujos alternos y las excepciones quedan pendientes. Los
-/// controles guardan lo capturado y se dibujan; nada mas.
-/// </summary>
+// Step 1 of the CU-02 main flow. Presentation only: it does not validate, does
+// not open a connection and does not build the REGISTER_REQUEST.
 public sealed class GuiRegister
 {
-    // --- Reticula ------------------------------------------------------------
-    private const int AnchoTarjeta = 760;
-    private const int TarjetaX = (Tema.AnchoVentana - AnchoTarjeta) / 2;
-    private const int TarjetaY = 144;
-    private const int AltoTarjeta = 378;
+    private const int SpanishIndex = 0;
+    private const int EnglishIndex = 1;
 
-    private const int ContenidoX = TarjetaX + Tema.RellenoTarjeta;
-    private const int ContenidoAncho = AnchoTarjeta - (Tema.RellenoTarjeta * 2);
-    private const int Canal = 32;
-    private const int ColumnaAncho = (ContenidoAncho - Canal) / 2;
-    private const int ColumnaDerechaX = ContenidoX + ColumnaAncho + Canal;
+    private const int MaxNicknameLength = 30;
+    private const int MaxEmailLength = 254;
+    private const int MaxDayLength = 2;
+    private const int MaxMonthLength = 2;
+    private const int MaxYearLength = 4;
 
-    // La separacion entre filas deja sitio para la linea de aviso que el FA-03
-    // y el FA-07 piden escribir junto al campo rechazado; con menos, ese texto
-    // se encima con la etiqueta de la fila siguiente.
-    // Orden de las opciones en los dos selectores de idioma.
-    private const int IndiceEspanol = 0;
-    private const int IndiceIngles = 1;
+    private const int CardWidth = 760;
+    private const int CardX = (Theme.WindowWidth - CardWidth) / 2;
+    private const int CardY = 144;
+    private const int CardHeight = 378;
 
-    private const int DesplegableX = 24;
-    private const int DesplegableAncho = 210;
-    private const int DesplegableAlto = 40;
+    private const int ContentX = CardX + Theme.CardPadding;
+    private const int ContentWidth = CardWidth - (Theme.CardPadding * 2);
+    private const int Gutter = 32;
+    private const int ColumnWidth = (ContentWidth - Gutter) / 2;
+    private const int RightColumnX = ContentX + ColumnWidth + Gutter;
 
-    private const int SeparacionFilas = 98;
-    private const int Fila1 = TarjetaY + Tema.RellenoTarjeta + 22;
-    private const int Fila2 = Fila1 + SeparacionFilas;
-    private const int Fila3 = Fila2 + SeparacionFilas;
-    private const int FilaCasilla = Fila3 + Tema.AltoCampo + 28;
+    // Row spacing leaves room for the warning line that FA-03 and FA-07 require
+    // next to a rejected field; with less it overlaps the next label.
+    private const int RowSpacing = 98;
+    private const int FirstRowY = CardY + Theme.CardPadding + 22;
+    private const int SecondRowY = FirstRowY + RowSpacing;
+    private const int ThirdRowY = SecondRowY + RowSpacing;
+    private const int CheckBoxRowY = ThirdRowY + Theme.FieldHeight + 28;
+    private const int CheckBoxHeight = 24;
 
-    /// <summary>Cruces tenues del fondo, tomadas del prototipo.</summary>
-    private static readonly Point[] Adornos =
+    private const int DayWidth = 92;
+    private const int MonthWidth = 92;
+    private const int YearWidth = ColumnWidth - DayWidth - MonthWidth - 24;
+
+    private const int DropDownMargin = 24;
+    private const int DropDownWidth = 210;
+    private const int DropDownHeight = 40;
+
+    private const int PrimaryButtonY = CardY + CardHeight + 22;
+    private const int SecondaryButtonY = PrimaryButtonY + Theme.PrimaryButtonHeight + 12;
+
+    private const int TitleY = 52;
+    private const int SubtitleY = 112;
+    private const float SubtitleTracking = 4f;
+    private const int OrnamentArm = 15;
+
+    private static readonly Point[] _ornaments =
     [
         new(96, 108), new(1122, 88), new(72, 372), new(1180, 420),
         new(152, 516), new(1060, 664), new(620, 40)
     ];
 
-    private readonly List<Control> _controles = [];
-    private readonly List<CampoTexto> _ordenDeFoco = [];
-
-    private readonly CampoTexto _campoNickname;
-    private readonly CampoTexto _campoCorreo;
-    private readonly CampoTexto _campoContrasena;
-    private readonly CampoTexto _campoConfirmacion;
-    private readonly CampoTexto _campoDia;
-    private readonly CampoTexto _campoMes;
-    private readonly CampoTexto _campoAnio;
-    private readonly Selector _idiomaCuenta;
-    private readonly Desplegable _idiomaInterfaz;
-    private readonly Casilla _casillaTerminos;
-    private readonly Boton _botonCrear;
-    private readonly Boton _botonCancelar;
+    private readonly List<Control> _controls = [];
+    private readonly List<TextField> _focusableFields = [];
+    private readonly TextField _nicknameField;
+    private readonly TextField _emailField;
+    private readonly TextField _passwordField;
+    private readonly TextField _confirmationField;
+    private readonly TextField _dayField;
+    private readonly TextField _monthField;
+    private readonly TextField _yearField;
+    private readonly Selector _accountLanguageSelector;
+    private readonly DropDown _interfaceLanguageDropDown;
+    private readonly CheckBox _termsCheckBox;
+    private readonly Button _createButton;
+    private readonly Button _cancelButton;
 
     public GuiRegister()
     {
-        _campoNickname = new CampoTexto
-        {
-            LongitudMaxima = 30,
-            Limites = new Rectangle(ContenidoX, Fila1, ColumnaAncho, Tema.AltoCampo)
-        };
+        _nicknameField = CreateNicknameField();
+        _emailField = CreateEmailField();
+        _passwordField = CreatePasswordField();
+        _confirmationField = CreateConfirmationField();
+        _dayField = CreateDayField();
+        _monthField = CreateMonthField();
+        _yearField = CreateYearField();
+        _accountLanguageSelector = CreateAccountLanguageSelector();
+        _interfaceLanguageDropDown = CreateInterfaceLanguageDropDown();
+        _termsCheckBox = CreateTermsCheckBox();
+        _createButton = CreateCreateButton();
+        _cancelButton = CreateCancelButton();
 
-        _campoCorreo = new CampoTexto
-        {
-            LongitudMaxima = 254,
-            Limites = new Rectangle(ContenidoX, Fila2, ColumnaAncho, Tema.AltoCampo)
-        };
+        _createButton.Clicked += OnCreateAccountClicked;
+        _cancelButton.Clicked += OnCancelClicked;
+        _interfaceLanguageDropDown.SelectionChanged += OnInterfaceLanguageChanged;
 
-        _campoContrasena = new CampoTexto
-        {
-            EsContrasena = true,
-            Limites = new Rectangle(ColumnaDerechaX, Fila1, ColumnaAncho, Tema.AltoCampo)
-        };
-
-        _campoConfirmacion = new CampoTexto
-        {
-            EsContrasena = true,
-            Limites = new Rectangle(ColumnaDerechaX, Fila2, ColumnaAncho, Tema.AltoCampo)
-        };
-
-        // La fecha se captura en tres cajas en lugar de una sola: es mas claro
-        // para un jugador de ocho anos (CON-12) y no obliga a explicar ningun
-        // formato de escritura.
-        const int anchoDia = 92;
-        const int anchoMes = 92;
-        const int anchoAnio = ColumnaAncho - anchoDia - anchoMes - 24;
-
-        _campoDia = new CampoTexto
-        {
-            LongitudMaxima = 2,
-            Centrado = true,
-            Limites = new Rectangle(ContenidoX, Fila3, anchoDia, Tema.AltoCampo)
-        };
-
-        _campoMes = new CampoTexto
-        {
-            LongitudMaxima = 2,
-            Centrado = true,
-            Limites = new Rectangle(ContenidoX + anchoDia + 12, Fila3, anchoMes, Tema.AltoCampo)
-        };
-
-        _campoAnio = new CampoTexto
-        {
-            LongitudMaxima = 4,
-            Centrado = true,
-            Limites = new Rectangle(ContenidoX + anchoDia + anchoMes + 24, Fila3, anchoAnio, Tema.AltoCampo)
-        };
-
-        _idiomaCuenta = new Selector
-        {
-            Opciones = [Textos.IdiomaEspanolMexico, Textos.IdiomaIngles],
-            Seleccion = Idioma.EsIngles ? IndiceIngles : IndiceEspanol,
-            Limites = new Rectangle(ColumnaDerechaX, Fila3, ColumnaAncho, Tema.AltoCampo)
-        };
-
-        _casillaTerminos = new Casilla
-        {
-            Limites = new Rectangle(ContenidoX, FilaCasilla, ContenidoAncho, 24)
-        };
-
-        _idiomaInterfaz = new Desplegable
-        {
-            Opciones = [Textos.IdiomaEspanolMexico, Textos.IdiomaIngles],
-            Seleccion = Idioma.EsIngles ? IndiceIngles : IndiceEspanol,
-            Limites = new Rectangle(
-                DesplegableX,
-                Tema.AltoVentana - DesplegableX - DesplegableAlto,
-                DesplegableAncho,
-                DesplegableAlto)
-        };
-
-        _botonCrear = new Boton
-        {
-            Estilo = EstiloBoton.Primario,
-            ConFlecha = true,
-            Limites = new Rectangle(TarjetaX, TarjetaY + AltoTarjeta + 22, AnchoTarjeta, Tema.AltoBotonPrimario)
-        };
-
-        _botonCancelar = new Boton
-        {
-            Estilo = EstiloBoton.Secundario,
-            Limites = new Rectangle(
-                TarjetaX,
-                TarjetaY + AltoTarjeta + 22 + Tema.AltoBotonPrimario + 12,
-                AnchoTarjeta,
-                Tema.AltoBotonSecundario)
-        };
-
-        // Pendiente: el paso 2 del flujo normal y el FA-01. Hoy no hacen nada,
-        // porque no hay validacion, ni conexion, ni GUI_MessageConfirm.
-        _botonCrear.Pulsado += () => { };
-        _botonCancelar.Pulsado += () => { };
-
-        // FA-02, parcial: cambia el catalogo de recursos y vuelve a dibujar.
-        _idiomaInterfaz.Cambiado += AlCambiarIdiomaDeInterfaz;
-
-        _ordenDeFoco.AddRange([
-            _campoNickname, _campoContrasena, _campoCorreo, _campoConfirmacion,
-            _campoDia, _campoMes, _campoAnio
+        _focusableFields.AddRange([
+            _nicknameField, _passwordField, _emailField, _confirmationField,
+            _dayField, _monthField, _yearField
         ]);
 
-        _controles.AddRange([
-            _campoNickname, _campoCorreo, _campoContrasena, _campoConfirmacion,
-            _campoDia, _campoMes, _campoAnio,
-            _idiomaCuenta, _casillaTerminos,
-            _botonCrear, _botonCancelar,
-            _idiomaInterfaz
+        // The drawing order puts the drop down last so its open list stays on top.
+        _controls.AddRange([
+            _nicknameField, _emailField, _passwordField, _confirmationField,
+            _dayField, _monthField, _yearField,
+            _accountLanguageSelector, _termsCheckBox,
+            _createButton, _cancelButton,
+            _interfaceLanguageDropDown
         ]);
 
-        AplicarTextos();
-        _campoNickname.Enfocado = true;
+        ApplyTexts();
+        _nicknameField.IsFocused = true;
     }
 
-    /// <summary>
-    /// Toma del catalogo de la cultura vigente todos los textos visibles y los
-    /// reparte entre los controles. Se llama al construir la pantalla y cada
-    /// vez que se cambia de idioma; ningun control guarda una cadena escrita
-    /// dentro del codigo (RN-14).
-    /// </summary>
-    private void AplicarTextos()
+    public void Update(InputState input)
     {
-        _campoNickname.Etiqueta = Textos.RegistroEtiquetaNickname;
-        _campoNickname.Marcador = Textos.RegistroMarcadorNickname;
+        ArgumentNullException.ThrowIfNull(input);
 
-        _campoCorreo.Etiqueta = Textos.RegistroEtiquetaCorreo;
-        _campoCorreo.Marcador = Textos.RegistroMarcadorCorreo;
-
-        _campoContrasena.Etiqueta = Textos.RegistroEtiquetaContrasena;
-        _campoContrasena.Marcador = Textos.RegistroMarcadorContrasena;
-
-        _campoConfirmacion.Etiqueta = Textos.RegistroEtiquetaConfirmacion;
-        _campoConfirmacion.Marcador = Textos.RegistroMarcadorConfirmacion;
-
-        _campoDia.Etiqueta = Textos.RegistroEtiquetaFechaNacimiento;
-        _campoDia.Marcador = Textos.RegistroMarcadorDia;
-        _campoMes.Marcador = Textos.RegistroMarcadorMes;
-        _campoAnio.Marcador = Textos.RegistroMarcadorAnio;
-
-        _idiomaCuenta.Etiqueta = Textos.RegistroEtiquetaIdiomaCuenta;
-        _idiomaCuenta.Opciones = [Textos.IdiomaEspanolMexico, Textos.IdiomaIngles];
-        _idiomaInterfaz.Opciones = [Textos.IdiomaEspanolMexico, Textos.IdiomaIngles];
-
-        _casillaTerminos.Texto = Textos.RegistroCasillaTerminos;
-        _casillaTerminos.TextoEnlace = Textos.RegistroEnlaceTerminos;
-
-        _botonCrear.Titulo = Textos.RegistroBotonCrear;
-        _botonCrear.Subtitulo = Textos.RegistroBotonCrearDetalle;
-        _botonCancelar.Titulo = Textos.RegistroBotonCancelar;
-    }
-
-    /// <summary>
-    /// Responde al desplegable de idioma de la esquina. Recibe el indice de la
-    /// opcion elegida: <see cref="IndiceEspanol"/> o <see cref="IndiceIngles"/>.
-    ///
-    /// Cambia la cultura vigente y vuelve a repartir los textos del catalogo
-    /// entre los controles. Lo que el Jugador ya habia capturado se conserva,
-    /// porque aqui solo se tocan las etiquetas y los textos guia, nunca el
-    /// contenido de los campos (FA-02 pasos 1 y 2).
-    ///
-    /// El encabezado no aparece en esta lista: se lee del catalogo en cada
-    /// cuadro, al dibujarse, asi que se actualiza solo.
-    ///
-    /// Faltan los otros dos pasos del FA-02, que ya no son refrescar la
-    /// pantalla sino reglas del flujo: descartar las dos contrasenas, desmarcar
-    /// la casilla de terminos porque el texto aceptado deja de ser el que se
-    /// esta viendo, y proponer este idioma como idioma_preferido de la cuenta.
-    /// </summary>
-    private void AlCambiarIdiomaDeInterfaz(int indice)
-    {
-        Idioma.Aplicar(indice == IndiceIngles ? Idioma.Ingles : Idioma.EspanolMexico);
-        AplicarTextos();
-    }
-
-    public void Actualizar(Entrada entrada)
-    {
-        CampoTexto.EntradaSegundos = entrada.Segundos;
-
-        if (entrada.Click)
+        if (input.HasClicked)
         {
-            ResolverFoco(entrada);
+            ResolveFocus(input);
         }
 
-        if (entrada.TeclaNueva(Keys.Tab))
+        if (input.IsKeyNewlyPressed(Keys.Tab))
         {
-            AvanzarFoco(entrada.TeclaOprimida(Keys.LeftShift) || entrada.TeclaOprimida(Keys.RightShift));
+            MoveFocus(IsShiftPressed(input));
         }
 
-        foreach (var control in _controles)
+        foreach (Control control in _controls)
         {
-            control.Actualizar(entrada);
+            control.Update(input);
         }
     }
 
-    public void Dibujar(Lienzo lienzo)
+    public void Draw(Canvas canvas)
     {
-        var lote = lienzo.Lote;
+        ArgumentNullException.ThrowIfNull(canvas);
 
-        DibujarFondo(lienzo);
-        DibujarEncabezado(lienzo);
+        DrawBackground(canvas);
+        DrawHeader(canvas);
 
-        lienzo.Formas.RectanguloRedondo(
-            lote,
-            new Rectangle(TarjetaX, TarjetaY, AnchoTarjeta, AltoTarjeta),
-            Tema.RadioTarjeta,
-            Tema.Tarjeta);
+        var card = new Rectangle(CardX, CardY, CardWidth, CardHeight);
+        canvas.Shapes.DrawRoundedRectangle(card, Theme.CardCornerRadius, Theme.Card);
 
-        foreach (var control in _controles)
+        foreach (Control control in _controls)
         {
-            control.Dibujar(lienzo);
+            control.Draw(canvas);
         }
     }
 
-    private static void DibujarFondo(Lienzo lienzo)
+    // Reloads the catalog and redraws. What the player typed is kept, because
+    // only labels and hints are touched here (CU-02 FA-02 steps 1 and 2).
+    private void OnInterfaceLanguageChanged(object? sender, SelectionChangedEventArgs e)
     {
-        foreach (var adorno in Adornos)
+        Language.Apply(e.SelectedIndex == EnglishIndex ? Language.English : Language.SpanishMexico);
+        ApplyTexts();
+    }
+
+    // Left empty until validation and the connection exist.
+    private void OnCreateAccountClicked(object? sender, EventArgs e)
+    {
+    }
+
+    // Left empty until GUI_MessageConfirm exists (CU-02 FA-01).
+    private void OnCancelClicked(object? sender, EventArgs e)
+    {
+    }
+
+    private void ApplyTexts()
+    {
+        _nicknameField.Label = TextCatalog.RegisterNicknameLabel;
+        _nicknameField.Placeholder = TextCatalog.RegisterNicknamePlaceholder;
+
+        _emailField.Label = TextCatalog.RegisterEmailLabel;
+        _emailField.Placeholder = TextCatalog.RegisterEmailPlaceholder;
+
+        _passwordField.Label = TextCatalog.RegisterPasswordLabel;
+        _passwordField.Placeholder = TextCatalog.RegisterPasswordPlaceholder;
+
+        _confirmationField.Label = TextCatalog.RegisterConfirmationLabel;
+        _confirmationField.Placeholder = TextCatalog.RegisterConfirmationPlaceholder;
+
+        _dayField.Label = TextCatalog.RegisterBirthDateLabel;
+        _dayField.Placeholder = TextCatalog.RegisterDayPlaceholder;
+        _monthField.Placeholder = TextCatalog.RegisterMonthPlaceholder;
+        _yearField.Placeholder = TextCatalog.RegisterYearPlaceholder;
+
+        _accountLanguageSelector.Label = TextCatalog.RegisterAccountLanguageLabel;
+        _accountLanguageSelector.Options = GetLanguageNames();
+        _interfaceLanguageDropDown.Options = GetLanguageNames();
+
+        _termsCheckBox.Text = TextCatalog.RegisterTermsText;
+        _termsCheckBox.LinkText = TextCatalog.RegisterTermsLinkText;
+
+        _createButton.Title = TextCatalog.RegisterCreateButton;
+        _createButton.Subtitle = TextCatalog.RegisterCreateButtonDetail;
+        _cancelButton.Title = TextCatalog.RegisterCancelButton;
+    }
+
+    private void ResolveFocus(InputState input)
+    {
+        foreach (TextField field in _focusableFields)
         {
-            lienzo.Formas.Rectangulo(lienzo.Lote, new Rectangle(adorno.X - 7, adorno.Y - 1, 15, 2), Tema.FondoAdorno);
-            lienzo.Formas.Rectangulo(lienzo.Lote, new Rectangle(adorno.X - 1, adorno.Y - 7, 2, 15), Tema.FondoAdorno);
+            field.IsFocused = field.Bounds.Contains(input.MousePosition);
         }
     }
 
-    private static void DibujarEncabezado(Lienzo lienzo)
+    private void MoveFocus(bool isBackwards)
     {
-        var lote = lienzo.Lote;
+        int current = _focusableFields.FindIndex(IsFieldFocused);
+        int step = isBackwards ? -1 : 1;
+        int next = current < 0 ? 0 : (current + step + _focusableFields.Count) % _focusableFields.Count;
 
-        string titulo = Textos.TituloJuego;
-        float anchoTitulo = DibujoTexto.Ancho(lienzo.Titulo, titulo, Tema.EscalaTitulo, Tema.EspaciadoTitulo);
-        DibujoTexto.Dibujar(
-            lote,
-            lienzo.Titulo,
-            titulo,
-            new Vector2(MathF.Round((Tema.AnchoVentana - anchoTitulo) / 2f), 52),
-            Tema.TextoClaro,
-            Tema.EscalaTitulo,
-            Tema.EspaciadoTitulo);
-
-        string subtitulo = Textos.RegistroSubtitulo;
-        float anchoSubtitulo = DibujoTexto.Ancho(lienzo.Negrita, subtitulo, Tema.EscalaEtiqueta, 4f);
-        DibujoTexto.Dibujar(
-            lote,
-            lienzo.Negrita,
-            subtitulo,
-            new Vector2(MathF.Round((Tema.AnchoVentana - anchoSubtitulo) / 2f), 112),
-            Tema.TextoTenue,
-            Tema.EscalaEtiqueta,
-            4f);
-    }
-
-    /// <summary>Da el foco al campo donde se hizo click, o lo quita si fue fuera de todos.</summary>
-    private void ResolverFoco(Entrada entrada)
-    {
-        foreach (var campo in _ordenDeFoco)
+        for (int i = 0; i < _focusableFields.Count; i++)
         {
-            campo.Enfocado = campo.Limites.Contains(entrada.Raton);
+            _focusableFields[i].IsFocused = i == next;
         }
     }
 
-    private void AvanzarFoco(bool haciaAtras)
+    private static bool IsFieldFocused(TextField field)
     {
-        int actual = _ordenDeFoco.FindIndex(campo => campo.Enfocado);
-        int siguiente = actual < 0
-            ? 0
-            : (actual + (haciaAtras ? -1 : 1) + _ordenDeFoco.Count) % _ordenDeFoco.Count;
+        return field.IsFocused;
+    }
 
-        for (int i = 0; i < _ordenDeFoco.Count; i++)
+    private static bool IsShiftPressed(InputState input)
+    {
+        return input.IsKeyPressed(Keys.LeftShift) || input.IsKeyPressed(Keys.RightShift);
+    }
+
+    private static IReadOnlyList<string> GetLanguageNames()
+    {
+        return [TextCatalog.SpanishMexicoLanguageName, TextCatalog.EnglishLanguageName];
+    }
+
+    private static int GetStartingLanguageIndex()
+    {
+        return Language.IsEnglish ? EnglishIndex : SpanishIndex;
+    }
+
+    private static void DrawBackground(Canvas canvas)
+    {
+        foreach (Point ornament in _ornaments)
         {
-            _ordenDeFoco[i].Enfocado = i == siguiente;
+            var horizontal = new Rectangle(ornament.X - 7, ornament.Y - 1, OrnamentArm, 2);
+            var vertical = new Rectangle(ornament.X - 1, ornament.Y - 7, 2, OrnamentArm);
+            canvas.Shapes.DrawRectangle(horizontal, Theme.BackgroundOrnament);
+            canvas.Shapes.DrawRectangle(vertical, Theme.BackgroundOrnament);
         }
+    }
+
+    private static void DrawHeader(Canvas canvas)
+    {
+        TextStyle titleStyle = TextStyleFactory.CreateTitle(canvas.Fonts, Theme.TextLight);
+        string title = TextCatalog.GameTitle;
+        float titleWidth = canvas.Text.Measure(title, titleStyle);
+        float titleX = MathF.Round((Theme.WindowWidth - titleWidth) / 2f);
+        canvas.Text.Draw(title, new Vector2(titleX, TitleY), titleStyle);
+
+        TextStyle subtitleStyle = TextStyleFactory.CreateLabel(canvas.Fonts, Theme.TextMuted);
+        subtitleStyle = subtitleStyle with { Tracking = SubtitleTracking };
+        string subtitle = TextCatalog.RegisterSubtitle;
+        float subtitleWidth = canvas.Text.Measure(subtitle, subtitleStyle);
+        float subtitleX = MathF.Round((Theme.WindowWidth - subtitleWidth) / 2f);
+        canvas.Text.Draw(subtitle, new Vector2(subtitleX, SubtitleY), subtitleStyle);
+    }
+
+    private static TextField CreateNicknameField()
+    {
+        return new TextField
+        {
+            MaxLength = MaxNicknameLength,
+            Bounds = new Rectangle(ContentX, FirstRowY, ColumnWidth, Theme.FieldHeight)
+        };
+    }
+
+    private static TextField CreateEmailField()
+    {
+        return new TextField
+        {
+            MaxLength = MaxEmailLength,
+            Bounds = new Rectangle(ContentX, SecondRowY, ColumnWidth, Theme.FieldHeight)
+        };
+    }
+
+    private static TextField CreatePasswordField()
+    {
+        return new TextField
+        {
+            IsPassword = true,
+            Bounds = new Rectangle(RightColumnX, FirstRowY, ColumnWidth, Theme.FieldHeight)
+        };
+    }
+
+    private static TextField CreateConfirmationField()
+    {
+        return new TextField
+        {
+            IsPassword = true,
+            Bounds = new Rectangle(RightColumnX, SecondRowY, ColumnWidth, Theme.FieldHeight)
+        };
+    }
+
+    // Three boxes instead of one field: clearer for an eight year old player
+    // (CON-12) and it needs no format to be explained.
+    private static TextField CreateDayField()
+    {
+        return new TextField
+        {
+            MaxLength = MaxDayLength,
+            IsCentered = true,
+            Bounds = new Rectangle(ContentX, ThirdRowY, DayWidth, Theme.FieldHeight)
+        };
+    }
+
+    private static TextField CreateMonthField()
+    {
+        return new TextField
+        {
+            MaxLength = MaxMonthLength,
+            IsCentered = true,
+            Bounds = new Rectangle(ContentX + DayWidth + 12, ThirdRowY, MonthWidth, Theme.FieldHeight)
+        };
+    }
+
+    private static TextField CreateYearField()
+    {
+        return new TextField
+        {
+            MaxLength = MaxYearLength,
+            IsCentered = true,
+            Bounds = new Rectangle(ContentX + DayWidth + MonthWidth + 24, ThirdRowY, YearWidth, Theme.FieldHeight)
+        };
+    }
+
+    private static Selector CreateAccountLanguageSelector()
+    {
+        return new Selector
+        {
+            Options = GetLanguageNames(),
+            SelectedIndex = GetStartingLanguageIndex(),
+            Bounds = new Rectangle(RightColumnX, ThirdRowY, ColumnWidth, Theme.FieldHeight)
+        };
+    }
+
+    private static DropDown CreateInterfaceLanguageDropDown()
+    {
+        return new DropDown
+        {
+            Options = GetLanguageNames(),
+            SelectedIndex = GetStartingLanguageIndex(),
+            Bounds = new Rectangle(
+                DropDownMargin,
+                Theme.WindowHeight - DropDownMargin - DropDownHeight,
+                DropDownWidth,
+                DropDownHeight)
+        };
+    }
+
+    private static CheckBox CreateTermsCheckBox()
+    {
+        return new CheckBox
+        {
+            Bounds = new Rectangle(ContentX, CheckBoxRowY, ContentWidth, CheckBoxHeight)
+        };
+    }
+
+    private static Button CreateCreateButton()
+    {
+        return new Button
+        {
+            Style = ButtonStyle.Primary,
+            HasArrow = true,
+            Bounds = new Rectangle(CardX, PrimaryButtonY, CardWidth, Theme.PrimaryButtonHeight)
+        };
+    }
+
+    private static Button CreateCancelButton()
+    {
+        return new Button
+        {
+            Style = ButtonStyle.Secondary,
+            Bounds = new Rectangle(CardX, SecondaryButtonY, CardWidth, Theme.SecondaryButtonHeight)
+        };
     }
 }
