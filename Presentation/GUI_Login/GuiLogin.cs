@@ -9,9 +9,12 @@ namespace Bastion.Presentation.GUI_Login;
 // email, so it is one field and not two.
 public sealed class GuiLogin : FormScreen
 {
-    private const int CardHeight = 260;
+    private const int CardHeight = 272;
     private const int MaxIdentifierLength = 254;
-    private const int LinkGap = 14;
+
+    // The link sits under a field that validation can reject, so it clears the
+    // warning line instead of being drawn on top of it.
+    private const int LinkGap = Theme.WarningSpace + 6;
     private const int LinkHeight = 24;
     private const int GuestButtonGap = 26;
 
@@ -22,6 +25,7 @@ public sealed class GuiLogin : FormScreen
     private readonly Button _createAccountButton;
     private readonly Button _guestButton;
     private readonly DropDown _languageDropDown;
+    private bool _hasValidated;
 
     public GuiLogin(INavigator navigator)
         : base(navigator, NarrowCardWidth, CardHeight)
@@ -57,8 +61,38 @@ public sealed class GuiLogin : FormScreen
         return TextCatalog.LoginSubtitle;
     }
 
+    // The connection does not exist yet, so the one test account stands in for
+    // the LOGIN answer: a match opens the account hub, anything else is
+    // rejected as CU-01 does, with one message for both fields.
     private void OnSignInClicked(object? sender, EventArgs e)
     {
+        _hasValidated = true;
+
+        if (!Validate())
+        {
+            return;
+        }
+
+        if (TestAccount.Matches(_identifierField.Text.Trim(), _passwordField.Text))
+        {
+            Navigator.GoTo(ScreenId.AccountSettings);
+            return;
+        }
+
+        _passwordField.Warning = TextCatalog.LoginCredentialsRejected;
+    }
+
+    private bool Validate()
+    {
+        _identifierField.Warning = string.IsNullOrWhiteSpace(_identifierField.Text)
+            ? TextCatalog.LoginIdentifierRequired
+            : null;
+
+        _passwordField.Warning = string.IsNullOrEmpty(_passwordField.Text)
+            ? TextCatalog.LoginPasswordRequired
+            : null;
+
+        return !_identifierField.HasWarning && !_passwordField.HasWarning;
     }
 
     private void OnCreateAccountClicked(object? sender, EventArgs e)
@@ -79,6 +113,14 @@ public sealed class GuiLogin : FormScreen
     {
         LanguagePicker.Apply(e.SelectedIndex);
         ApplyTexts();
+
+        // The warnings are catalog strings too, so they follow the language.
+        // A rejected credential is not kept: it was a server answer, not a
+        // property of the text, and the next SIGN IN asks again.
+        if (_hasValidated)
+        {
+            Validate();
+        }
     }
 
     private void ApplyTexts()

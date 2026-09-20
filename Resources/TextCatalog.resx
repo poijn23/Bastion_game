@@ -101,6 +101,22 @@
     <value>CREATE YOUR ACCOUNT</value>
     <comment>CU-02 main flow step 1. Header subtitle.</comment>
   </data>
+  <data name="RegisterFirstNameLabel" xml:space="preserve">
+    <value>FIRST NAME</value>
+    <comment>Label of the given name field.</comment>
+  </data>
+  <data name="RegisterFirstNamePlaceholder" xml:space="preserve">
+    <value>up to 50 characters</value>
+    <comment>Hint text. Provisional bound: the schema does not fix Usuario.nombre yet.</comment>
+  </data>
+  <data name="RegisterLastNameLabel" xml:space="preserve">
+    <value>LAST NAME</value>
+    <comment>Label of the family name field. Plural in es-MX, where two surnames are the norm.</comment>
+  </data>
+  <data name="RegisterLastNamePlaceholder" xml:space="preserve">
+    <value>up to 50 characters</value>
+    <comment>Hint text. Provisional bound: the schema does not fix Usuario.apellidos yet.</comment>
+  </data>
   <data name="RegisterNicknameLabel" xml:space="preserve">
     <value>PLAYER NAME</value>
     <comment>Label of the nickname field.</comment>
@@ -148,10 +164,6 @@
   <data name="RegisterYearPlaceholder" xml:space="preserve">
     <value>yyyy</value>
     <comment>Year hint, in the convention of each language.</comment>
-  </data>
-  <data name="RegisterAccountLanguageLabel" xml:space="preserve">
-    <value>ACCOUNT LANGUAGE</value>
-    <comment>Label of the idioma_preferido picker.</comment>
   </data>
   <data name="RegisterTermsText" xml:space="preserve">
     <value>I accept the terms of use</value>
@@ -260,6 +272,18 @@
   <data name="LoginGuestButton" xml:space="preserve">
     <value>PLAY AS A GUEST</value>
     <comment>Leads to CU-06. As a guest no elo and no items are kept.</comment>
+  </data>
+  <data name="LoginIdentifierRequired" xml:space="preserve">
+    <value>type your player name or email</value>
+    <comment>Under the empty identifier field.</comment>
+  </data>
+  <data name="LoginPasswordRequired" xml:space="preserve">
+    <value>type your password</value>
+    <comment>Under the empty password field.</comment>
+  </data>
+  <data name="LoginCredentialsRejected" xml:space="preserve">
+    <value>that player name or password is wrong</value>
+    <comment>CU-01 alternate flow: one message for both, so the field that failed is not revealed.</comment>
   </data>
   <data name="ForgotPasswordSubtitle" xml:space="preserve">
     <value>RECOVER YOUR PASSWORD</value>
@@ -484,5 +508,53 @@
   <data name="RegisterKeepEditingButton" xml:space="preserve">
     <value>KEEP EDITING</value>
     <comment>CU-02 FA-01: stays on the form.</comment>
+  </data>
+  <data name="RegisterFirstNameRequired" xml:space="preserve">
+    <value>type your first name</value>
+    <comment>Under the empty given name field.</comment>
+  </data>
+  <data name="RegisterLastNameRequired" xml:space="preserve">
+    <value>type your last name</value>
+    <comment>Under the empty family name field.</comment>
+  </data>
+  <data name="RegisterNicknameLength" xml:space="preserve">
+    <value>use 3 to 30 characters</value>
+    <comment>CU-02 FA-03, RN-01.</comment>
+  </data>
+  <data name="RegisterNicknameTaken" xml:space="preserve">
+    <value>that player name is already taken</value>
+    <comment>CU-02 FA-05: the server reported a duplicate nickname.</comment>
+  </data>
+  <data name="RegisterEmailInvalid" xml:space="preserve">
+    <value>that does not look like an email address</value>
+    <comment>CU-02 FA-04.</comment>
+  </data>
+  <data name="RegisterEmailTaken" xml:space="preserve">
+    <value>there is already an account with that email</value>
+    <comment>CU-02 FA-05: the server reported a duplicate email.</comment>
+  </data>
+  <data name="RegisterPasswordTooShort" xml:space="preserve">
+    <value>use at least 8 characters</value>
+    <comment>CU-02 FA-03, RN-03.</comment>
+  </data>
+  <data name="RegisterConfirmationMismatch" xml:space="preserve">
+    <value>the passwords do not match</value>
+    <comment>CU-02 FA-03.</comment>
+  </data>
+  <data name="RegisterBirthDateInvalid" xml:space="preserve">
+    <value>that date does not exist</value>
+    <comment>Day, month and year do not form a calendar date.</comment>
+  </data>
+  <data name="RegisterBirthDateFuture" xml:space="preserve">
+    <value>that date has not happened yet</value>
+    <comment>The date of birth is later than today.</comment>
+  </data>
+  <data name="RegisterTermsRequired" xml:space="preserve">
+    <value>you have to accept the terms to continue</value>
+    <comment>CU-02 FA-07. Drawn under the checkbox.</comment>
+  </data>
+  <data name="RegisterSuccessBody" xml:space="preserve">
+    <value>Your account is ready. Check your email to activate it, then sign in.</value>
+    <comment>Success dialog body after CU-02 main flow step 20.</comment>
   </data>
 </root>

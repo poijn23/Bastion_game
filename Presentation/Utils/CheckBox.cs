@@ -101,7 +101,7 @@ public sealed class CheckBox : Control
         }
 
         TextStyle style = TextStyleFactory.CreateSmall(canvas.Fonts, Theme.Accent);
-        var position = new Vector2(box.Right + TextGap, Bounds.Bottom + 2);
+        var position = new Vector2(box.Right + TextGap, Bounds.Bottom + Theme.WarningOffset);
         canvas.Text.Draw(Warning ?? string.Empty, position, style);
     }
 

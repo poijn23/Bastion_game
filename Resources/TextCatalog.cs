@@ -26,6 +26,14 @@ public static class TextCatalog
 
     public static string RegisterSubtitle => GetText(nameof(RegisterSubtitle));
 
+    public static string RegisterFirstNameLabel => GetText(nameof(RegisterFirstNameLabel));
+
+    public static string RegisterFirstNamePlaceholder => GetText(nameof(RegisterFirstNamePlaceholder));
+
+    public static string RegisterLastNameLabel => GetText(nameof(RegisterLastNameLabel));
+
+    public static string RegisterLastNamePlaceholder => GetText(nameof(RegisterLastNamePlaceholder));
+
     public static string RegisterNicknameLabel => GetText(nameof(RegisterNicknameLabel));
 
     public static string RegisterNicknamePlaceholder => GetText(nameof(RegisterNicknamePlaceholder));
@@ -49,8 +57,6 @@ public static class TextCatalog
     public static string RegisterMonthPlaceholder => GetText(nameof(RegisterMonthPlaceholder));
 
     public static string RegisterYearPlaceholder => GetText(nameof(RegisterYearPlaceholder));
-
-    public static string RegisterAccountLanguageLabel => GetText(nameof(RegisterAccountLanguageLabel));
 
     public static string RegisterTermsText => GetText(nameof(RegisterTermsText));
 
@@ -105,6 +111,12 @@ public static class TextCatalog
     public static string LoginCreateAccountButton => GetText(nameof(LoginCreateAccountButton));
 
     public static string LoginGuestButton => GetText(nameof(LoginGuestButton));
+
+    public static string LoginIdentifierRequired => GetText(nameof(LoginIdentifierRequired));
+
+    public static string LoginPasswordRequired => GetText(nameof(LoginPasswordRequired));
+
+    public static string LoginCredentialsRejected => GetText(nameof(LoginCredentialsRejected));
 
     public static string ForgotPasswordSubtitle => GetText(nameof(ForgotPasswordSubtitle));
 
@@ -217,6 +229,30 @@ public static class TextCatalog
     public static string RegisterDiscardButton => GetText(nameof(RegisterDiscardButton));
 
     public static string RegisterKeepEditingButton => GetText(nameof(RegisterKeepEditingButton));
+
+    public static string RegisterFirstNameRequired => GetText(nameof(RegisterFirstNameRequired));
+
+    public static string RegisterLastNameRequired => GetText(nameof(RegisterLastNameRequired));
+
+    public static string RegisterNicknameLength => GetText(nameof(RegisterNicknameLength));
+
+    public static string RegisterNicknameTaken => GetText(nameof(RegisterNicknameTaken));
+
+    public static string RegisterEmailInvalid => GetText(nameof(RegisterEmailInvalid));
+
+    public static string RegisterEmailTaken => GetText(nameof(RegisterEmailTaken));
+
+    public static string RegisterPasswordTooShort => GetText(nameof(RegisterPasswordTooShort));
+
+    public static string RegisterConfirmationMismatch => GetText(nameof(RegisterConfirmationMismatch));
+
+    public static string RegisterBirthDateInvalid => GetText(nameof(RegisterBirthDateInvalid));
+
+    public static string RegisterBirthDateFuture => GetText(nameof(RegisterBirthDateFuture));
+
+    public static string RegisterTermsRequired => GetText(nameof(RegisterTermsRequired));
+
+    public static string RegisterSuccessBody => GetText(nameof(RegisterSuccessBody));
 
     // Returning the key when it is missing keeps a typo visible on screen
     // instead of throwing while drawing a frame.
