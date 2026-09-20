@@ -92,6 +92,18 @@
   <data name="RegisterSubtitle" xml:space="preserve">
     <value>CREA TU CUENTA</value>
   </data>
+  <data name="RegisterFirstNameLabel" xml:space="preserve">
+    <value>NOMBRE(S)</value>
+  </data>
+  <data name="RegisterFirstNamePlaceholder" xml:space="preserve">
+    <value>hasta 50 caracteres</value>
+  </data>
+  <data name="RegisterLastNameLabel" xml:space="preserve">
+    <value>APELLIDOS</value>
+  </data>
+  <data name="RegisterLastNamePlaceholder" xml:space="preserve">
+    <value>hasta 50 caracteres</value>
+  </data>
   <data name="RegisterNicknameLabel" xml:space="preserve">
     <value>NOMBRE DE JUGADOR</value>
   </data>
@@ -127,9 +139,6 @@
   </data>
   <data name="RegisterYearPlaceholder" xml:space="preserve">
     <value>aaaa</value>
-  </data>
-  <data name="RegisterAccountLanguageLabel" xml:space="preserve">
-    <value>IDIOMA DE LA CUENTA</value>
   </data>
   <data name="RegisterTermsText" xml:space="preserve">
     <value>acepto los términos de uso</value>
@@ -211,6 +220,15 @@
   </data>
   <data name="LoginGuestButton" xml:space="preserve">
     <value>JUGAR COMO INVITADO</value>
+  </data>
+  <data name="LoginIdentifierRequired" xml:space="preserve">
+    <value>escribe tu nombre de jugador o correo</value>
+  </data>
+  <data name="LoginPasswordRequired" xml:space="preserve">
+    <value>escribe tu contraseña</value>
+  </data>
+  <data name="LoginCredentialsRejected" xml:space="preserve">
+    <value>el nombre de jugador o la contraseña no son correctos</value>
   </data>
   <data name="ForgotPasswordSubtitle" xml:space="preserve">
     <value>RECUPERA TU CONTRASEÑA</value>
@@ -379,5 +397,41 @@
   </data>
   <data name="RegisterKeepEditingButton" xml:space="preserve">
     <value>SEGUIR EDITANDO</value>
+  </data>
+  <data name="RegisterFirstNameRequired" xml:space="preserve">
+    <value>escribe tu nombre</value>
+  </data>
+  <data name="RegisterLastNameRequired" xml:space="preserve">
+    <value>escribe tus apellidos</value>
+  </data>
+  <data name="RegisterNicknameLength" xml:space="preserve">
+    <value>usa de 3 a 30 caracteres</value>
+  </data>
+  <data name="RegisterNicknameTaken" xml:space="preserve">
+    <value>ese nombre de jugador ya está ocupado</value>
+  </data>
+  <data name="RegisterEmailInvalid" xml:space="preserve">
+    <value>eso no parece un correo electrónico</value>
+  </data>
+  <data name="RegisterEmailTaken" xml:space="preserve">
+    <value>ya hay una cuenta con ese correo</value>
+  </data>
+  <data name="RegisterPasswordTooShort" xml:space="preserve">
+    <value>usa mínimo 8 caracteres</value>
+  </data>
+  <data name="RegisterConfirmationMismatch" xml:space="preserve">
+    <value>las contraseñas no coinciden</value>
+  </data>
+  <data name="RegisterBirthDateInvalid" xml:space="preserve">
+    <value>esa fecha no existe</value>
+  </data>
+  <data name="RegisterBirthDateFuture" xml:space="preserve">
+    <value>esa fecha todavía no llega</value>
+  </data>
+  <data name="RegisterTermsRequired" xml:space="preserve">
+    <value>tienes que aceptar los términos para continuar</value>
+  </data>
+  <data name="RegisterSuccessBody" xml:space="preserve">
+    <value>Tu cuenta está lista. Revisa tu correo para activarla y luego inicia sesión.</value>
   </data>
 </root>
