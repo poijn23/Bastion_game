@@ -18,6 +18,9 @@ public static class Theme
     public const int PrimaryButtonHeight = 60;
     public const int SecondaryButtonHeight = 52;
     public const int CardPadding = 32;
+    public const int DialogWidth = 560;
+    public const int DialogButtonHeight = 46;
+    public const int DialogToneBarHeight = 6;
 
     public const float TitleScale = 1.0f;
     public const float BodyScale = 1.0f;
@@ -46,4 +49,9 @@ public static class Theme
     public static readonly Color SecondaryButtonHovered = new(0x26, 0x21, 0x1D);
     public static readonly Color SecondaryBorder = new(0x37, 0x31, 0x2A);
     public static readonly Color CheckBoxBorder = new(0xB9, 0xB2, 0xA5);
+
+    // The only color not sampled from the prototype, which has no green.
+    public static readonly Color Positive = new(0x3F, 0x9E, 0x63);
+
+    public static readonly Color Backdrop = new(0x00, 0x00, 0x00);
 }

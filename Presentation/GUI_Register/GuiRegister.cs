@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -9,61 +7,24 @@ namespace Bastion.Presentation.GUI_Register;
 
 // Step 1 of the CU-02 main flow. Presentation only: it does not validate, does
 // not open a connection and does not build the REGISTER_REQUEST.
-public sealed class GuiRegister
+public sealed class GuiRegister : FormScreen
 {
-    private const int SpanishIndex = 0;
-    private const int EnglishIndex = 1;
-
     private const int MaxNicknameLength = 30;
     private const int MaxEmailLength = 254;
     private const int MaxDayLength = 2;
     private const int MaxMonthLength = 2;
     private const int MaxYearLength = 4;
 
-    private const int CardWidth = 760;
-    private const int CardX = (Theme.WindowWidth - CardWidth) / 2;
-    private const int CardY = 144;
-    private const int CardHeight = 378;
-
-    private const int ContentX = CardX + Theme.CardPadding;
-    private const int ContentWidth = CardWidth - (Theme.CardPadding * 2);
+    private const int WideCardWidth = 760;
+    private const int WideCardHeight = 378;
     private const int Gutter = 32;
-    private const int ColumnWidth = (ContentWidth - Gutter) / 2;
-    private const int RightColumnX = ContentX + ColumnWidth + Gutter;
-
-    // Row spacing leaves room for the warning line that FA-03 and FA-07 require
-    // next to a rejected field; with less it overlaps the next label.
-    private const int RowSpacing = 98;
-    private const int FirstRowY = CardY + Theme.CardPadding + 22;
-    private const int SecondRowY = FirstRowY + RowSpacing;
-    private const int ThirdRowY = SecondRowY + RowSpacing;
-    private const int CheckBoxRowY = ThirdRowY + Theme.FieldHeight + 28;
     private const int CheckBoxHeight = 24;
+    private const int CheckBoxGap = 28;
 
     private const int DayWidth = 92;
     private const int MonthWidth = 92;
-    private const int YearWidth = ColumnWidth - DayWidth - MonthWidth - 24;
+    private const int DateGap = 12;
 
-    private const int DropDownMargin = 24;
-    private const int DropDownWidth = 210;
-    private const int DropDownHeight = 40;
-
-    private const int PrimaryButtonY = CardY + CardHeight + 22;
-    private const int SecondaryButtonY = PrimaryButtonY + Theme.PrimaryButtonHeight + 12;
-
-    private const int TitleY = 52;
-    private const int SubtitleY = 112;
-    private const float SubtitleTracking = 4f;
-    private const int OrnamentArm = 15;
-
-    private static readonly Point[] _ornaments =
-    [
-        new(96, 108), new(1122, 88), new(72, 372), new(1180, 420),
-        new(152, 516), new(1060, 664), new(620, 40)
-    ];
-
-    private readonly List<Control> _controls = [];
-    private readonly List<TextField> _focusableFields = [];
     private readonly TextField _nicknameField;
     private readonly TextField _emailField;
     private readonly TextField _passwordField;
@@ -77,84 +38,53 @@ public sealed class GuiRegister
     private readonly Button _createButton;
     private readonly Button _cancelButton;
 
-    public GuiRegister()
+    public GuiRegister(INavigator navigator)
+        : base(navigator, WideCardWidth, WideCardHeight)
     {
-        _nicknameField = CreateNicknameField();
-        _emailField = CreateEmailField();
-        _passwordField = CreatePasswordField();
-        _confirmationField = CreateConfirmationField();
-        _dayField = CreateDayField();
-        _monthField = CreateMonthField();
-        _yearField = CreateYearField();
+        _nicknameField = CreateLeftField(0, MaxNicknameLength);
+        _emailField = CreateLeftField(1, MaxEmailLength);
+        _passwordField = CreatePasswordField(0);
+        _confirmationField = CreatePasswordField(1);
+        _dayField = CreateDatePart(ContentX, DayWidth, MaxDayLength);
+        _monthField = CreateDatePart(ContentX + DayWidth + DateGap, MonthWidth, MaxMonthLength);
+        _yearField = CreateDatePart(ContentX + DayWidth + MonthWidth + (DateGap * 2), GetYearWidth(), MaxYearLength);
         _accountLanguageSelector = CreateAccountLanguageSelector();
-        _interfaceLanguageDropDown = CreateInterfaceLanguageDropDown();
+        _interfaceLanguageDropDown = LanguagePicker.Create();
         _termsCheckBox = CreateTermsCheckBox();
-        _createButton = CreateCreateButton();
-        _cancelButton = CreateCancelButton();
+        _createButton = CreatePrimaryButton(true);
+        _cancelButton = CreateSecondaryButton();
 
         _createButton.Clicked += OnCreateAccountClicked;
         _cancelButton.Clicked += OnCancelClicked;
         _interfaceLanguageDropDown.SelectionChanged += OnInterfaceLanguageChanged;
 
-        _focusableFields.AddRange([
-            _nicknameField, _passwordField, _emailField, _confirmationField,
-            _dayField, _monthField, _yearField
-        ]);
-
-        // The drawing order puts the drop down last so its open list stays on top.
-        _controls.AddRange([
-            _nicknameField, _emailField, _passwordField, _confirmationField,
-            _dayField, _monthField, _yearField,
-            _accountLanguageSelector, _termsCheckBox,
-            _createButton, _cancelButton,
-            _interfaceLanguageDropDown
-        ]);
+        RegisterField(_nicknameField);
+        RegisterField(_passwordField);
+        RegisterField(_emailField);
+        RegisterField(_confirmationField);
+        RegisterField(_dayField);
+        RegisterField(_monthField);
+        RegisterField(_yearField);
+        Register(_accountLanguageSelector);
+        Register(_termsCheckBox);
+        Register(_createButton);
+        Register(_cancelButton);
+        Register(_interfaceLanguageDropDown);
 
         ApplyTexts();
-        _nicknameField.IsFocused = true;
+        FocusFirstField();
     }
 
-    public void Update(InputState input)
+    protected override string GetSubtitle()
     {
-        ArgumentNullException.ThrowIfNull(input);
-
-        if (input.HasClicked)
-        {
-            ResolveFocus(input);
-        }
-
-        if (input.IsKeyNewlyPressed(Keys.Tab))
-        {
-            MoveFocus(IsShiftPressed(input));
-        }
-
-        foreach (Control control in _controls)
-        {
-            control.Update(input);
-        }
-    }
-
-    public void Draw(Canvas canvas)
-    {
-        ArgumentNullException.ThrowIfNull(canvas);
-
-        DrawBackground(canvas);
-        DrawHeader(canvas);
-
-        var card = new Rectangle(CardX, CardY, CardWidth, CardHeight);
-        canvas.Shapes.DrawRoundedRectangle(card, Theme.CardCornerRadius, Theme.Card);
-
-        foreach (Control control in _controls)
-        {
-            control.Draw(canvas);
-        }
+        return TextCatalog.RegisterSubtitle;
     }
 
     // Reloads the catalog and redraws. What the player typed is kept, because
     // only labels and hints are touched here (CU-02 FA-02 steps 1 and 2).
     private void OnInterfaceLanguageChanged(object? sender, SelectionChangedEventArgs e)
     {
-        Language.Apply(e.SelectedIndex == EnglishIndex ? Language.English : Language.SpanishMexico);
+        LanguagePicker.Apply(e.SelectedIndex);
         ApplyTexts();
     }
 
@@ -163,9 +93,22 @@ public sealed class GuiRegister
     {
     }
 
-    // Left empty until GUI_MessageConfirm exists (CU-02 FA-01).
+    // CU-02 FA-01. Discarding also has to clear the two passwords and uncheck
+    // the terms, which belongs to validation and is still pending.
     private void OnCancelClicked(object? sender, EventArgs e)
     {
+        Navigator.ShowConfirm(new ConfirmRequest
+        {
+            Body = TextCatalog.RegisterDiscardBody,
+            PrimaryLabel = TextCatalog.RegisterDiscardButton,
+            SecondaryLabel = TextCatalog.RegisterKeepEditingButton,
+            OnConfirm = GoBackToLogin
+        });
+    }
+
+    private void GoBackToLogin()
+    {
+        Navigator.GoTo(ScreenId.Login);
     }
 
     private void ApplyTexts()
@@ -188,8 +131,8 @@ public sealed class GuiRegister
         _yearField.Placeholder = TextCatalog.RegisterYearPlaceholder;
 
         _accountLanguageSelector.Label = TextCatalog.RegisterAccountLanguageLabel;
-        _accountLanguageSelector.Options = GetLanguageNames();
-        _interfaceLanguageDropDown.Options = GetLanguageNames();
+        _accountLanguageSelector.Options = LanguagePicker.GetNames();
+        _interfaceLanguageDropDown.Options = LanguagePicker.GetNames();
 
         _termsCheckBox.Text = TextCatalog.RegisterTermsText;
         _termsCheckBox.LinkText = TextCatalog.RegisterTermsLinkText;
@@ -199,189 +142,76 @@ public sealed class GuiRegister
         _cancelButton.Title = TextCatalog.RegisterCancelButton;
     }
 
-    private void ResolveFocus(InputState input)
+    private int GetColumnWidth()
     {
-        foreach (TextField field in _focusableFields)
-        {
-            field.IsFocused = field.Bounds.Contains(input.MousePosition);
-        }
+        return (ContentWidth - Gutter) / 2;
     }
 
-    private void MoveFocus(bool isBackwards)
+    private int GetYearWidth()
     {
-        int current = _focusableFields.FindIndex(IsFieldFocused);
-        int step = isBackwards ? -1 : 1;
-        int next = current < 0 ? 0 : (current + step + _focusableFields.Count) % _focusableFields.Count;
-
-        for (int i = 0; i < _focusableFields.Count; i++)
-        {
-            _focusableFields[i].IsFocused = i == next;
-        }
+        return GetColumnWidth() - DayWidth - MonthWidth - (DateGap * 2);
     }
 
-    private static bool IsFieldFocused(TextField field)
+    private Rectangle GetCell(int row, bool isRightColumn)
     {
-        return field.IsFocused;
+        int columnWidth = GetColumnWidth();
+        int x = isRightColumn ? ContentX + columnWidth + Gutter : ContentX;
+
+        return new Rectangle(x, FirstRowTop + (row * RowSpacing), columnWidth, Theme.FieldHeight);
     }
 
-    private static bool IsShiftPressed(InputState input)
-    {
-        return input.IsKeyPressed(Keys.LeftShift) || input.IsKeyPressed(Keys.RightShift);
-    }
-
-    private static IReadOnlyList<string> GetLanguageNames()
-    {
-        return [TextCatalog.SpanishMexicoLanguageName, TextCatalog.EnglishLanguageName];
-    }
-
-    private static int GetStartingLanguageIndex()
-    {
-        return Language.IsEnglish ? EnglishIndex : SpanishIndex;
-    }
-
-    private static void DrawBackground(Canvas canvas)
-    {
-        foreach (Point ornament in _ornaments)
-        {
-            var horizontal = new Rectangle(ornament.X - 7, ornament.Y - 1, OrnamentArm, 2);
-            var vertical = new Rectangle(ornament.X - 1, ornament.Y - 7, 2, OrnamentArm);
-            canvas.Shapes.DrawRectangle(horizontal, Theme.BackgroundOrnament);
-            canvas.Shapes.DrawRectangle(vertical, Theme.BackgroundOrnament);
-        }
-    }
-
-    private static void DrawHeader(Canvas canvas)
-    {
-        TextStyle titleStyle = TextStyleFactory.CreateTitle(canvas.Fonts, Theme.TextLight);
-        string title = TextCatalog.GameTitle;
-        float titleWidth = canvas.Text.Measure(title, titleStyle);
-        float titleX = MathF.Round((Theme.WindowWidth - titleWidth) / 2f);
-        canvas.Text.Draw(title, new Vector2(titleX, TitleY), titleStyle);
-
-        TextStyle subtitleStyle = TextStyleFactory.CreateLabel(canvas.Fonts, Theme.TextMuted);
-        subtitleStyle = subtitleStyle with { Tracking = SubtitleTracking };
-        string subtitle = TextCatalog.RegisterSubtitle;
-        float subtitleWidth = canvas.Text.Measure(subtitle, subtitleStyle);
-        float subtitleX = MathF.Round((Theme.WindowWidth - subtitleWidth) / 2f);
-        canvas.Text.Draw(subtitle, new Vector2(subtitleX, SubtitleY), subtitleStyle);
-    }
-
-    private static TextField CreateNicknameField()
+    private TextField CreateLeftField(int row, int maxLength)
     {
         return new TextField
         {
-            MaxLength = MaxNicknameLength,
-            Bounds = new Rectangle(ContentX, FirstRowY, ColumnWidth, Theme.FieldHeight)
+            MaxLength = maxLength,
+            Bounds = GetCell(row, false)
         };
     }
 
-    private static TextField CreateEmailField()
-    {
-        return new TextField
-        {
-            MaxLength = MaxEmailLength,
-            Bounds = new Rectangle(ContentX, SecondRowY, ColumnWidth, Theme.FieldHeight)
-        };
-    }
-
-    private static TextField CreatePasswordField()
+    private TextField CreatePasswordField(int row)
     {
         return new TextField
         {
             IsPassword = true,
-            Bounds = new Rectangle(RightColumnX, FirstRowY, ColumnWidth, Theme.FieldHeight)
-        };
-    }
-
-    private static TextField CreateConfirmationField()
-    {
-        return new TextField
-        {
-            IsPassword = true,
-            Bounds = new Rectangle(RightColumnX, SecondRowY, ColumnWidth, Theme.FieldHeight)
+            Bounds = GetCell(row, true)
         };
     }
 
     // Three boxes instead of one field: clearer for an eight year old player
     // (CON-12) and it needs no format to be explained.
-    private static TextField CreateDayField()
+    private TextField CreateDatePart(int x, int width, int maxLength)
     {
         return new TextField
         {
-            MaxLength = MaxDayLength,
+            MaxLength = maxLength,
             IsCentered = true,
-            Bounds = new Rectangle(ContentX, ThirdRowY, DayWidth, Theme.FieldHeight)
+            Bounds = new Rectangle(x, FirstRowTop + (2 * RowSpacing), width, Theme.FieldHeight)
         };
     }
 
-    private static TextField CreateMonthField()
-    {
-        return new TextField
-        {
-            MaxLength = MaxMonthLength,
-            IsCentered = true,
-            Bounds = new Rectangle(ContentX + DayWidth + 12, ThirdRowY, MonthWidth, Theme.FieldHeight)
-        };
-    }
-
-    private static TextField CreateYearField()
-    {
-        return new TextField
-        {
-            MaxLength = MaxYearLength,
-            IsCentered = true,
-            Bounds = new Rectangle(ContentX + DayWidth + MonthWidth + 24, ThirdRowY, YearWidth, Theme.FieldHeight)
-        };
-    }
-
-    private static Selector CreateAccountLanguageSelector()
+    private Selector CreateAccountLanguageSelector()
     {
         return new Selector
         {
-            Options = GetLanguageNames(),
+            Options = LanguagePicker.GetNames(),
             SelectedIndex = GetStartingLanguageIndex(),
-            Bounds = new Rectangle(RightColumnX, ThirdRowY, ColumnWidth, Theme.FieldHeight)
+            Bounds = GetCell(2, true)
         };
     }
 
-    private static DropDown CreateInterfaceLanguageDropDown()
+    private CheckBox CreateTermsCheckBox()
     {
-        return new DropDown
-        {
-            Options = GetLanguageNames(),
-            SelectedIndex = GetStartingLanguageIndex(),
-            Bounds = new Rectangle(
-                DropDownMargin,
-                Theme.WindowHeight - DropDownMargin - DropDownHeight,
-                DropDownWidth,
-                DropDownHeight)
-        };
-    }
+        int top = FirstRowTop + (2 * RowSpacing) + Theme.FieldHeight + CheckBoxGap;
 
-    private static CheckBox CreateTermsCheckBox()
-    {
         return new CheckBox
         {
-            Bounds = new Rectangle(ContentX, CheckBoxRowY, ContentWidth, CheckBoxHeight)
+            Bounds = new Rectangle(ContentX, top, ContentWidth, CheckBoxHeight)
         };
     }
 
-    private static Button CreateCreateButton()
+    private static int GetStartingLanguageIndex()
     {
-        return new Button
-        {
-            Style = ButtonStyle.Primary,
-            HasArrow = true,
-            Bounds = new Rectangle(CardX, PrimaryButtonY, CardWidth, Theme.PrimaryButtonHeight)
-        };
-    }
-
-    private static Button CreateCancelButton()
-    {
-        return new Button
-        {
-            Style = ButtonStyle.Secondary,
-            Bounds = new Rectangle(CardX, SecondaryButtonY, CardWidth, Theme.SecondaryButtonHeight)
-        };
+        return Language.IsEnglish ? LanguagePicker.EnglishIndex : LanguagePicker.SpanishIndex;
     }
 }

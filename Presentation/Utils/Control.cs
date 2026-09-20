@@ -5,11 +5,26 @@ namespace Bastion.Presentation.Utils;
 
 public abstract class Control
 {
-    public Rectangle Bounds { get; init; }
+    private Rectangle _bounds;
+
+    // Init for the usual case; screens that reposition a control use MoveTo.
+    public Rectangle Bounds
+    {
+        get { return _bounds; }
+        init { _bounds = value; }
+    }
 
     public bool IsEnabled { get; init; } = true;
 
-    public bool IsVisible { get; init; } = true;
+    private bool _isVisible = true;
+
+    // Init for the usual case, plus named operations for the screens that do
+    // swap a control in and out, such as the two steps of GUI_DeleteAccount.
+    public bool IsVisible
+    {
+        get { return _isVisible; }
+        init { _isVisible = value; }
+    }
 
     public bool IsHovered { get; protected set; }
 
@@ -20,6 +35,21 @@ public abstract class Control
     public string? Warning { get; set; }
 
     public bool HasWarning => !string.IsNullOrEmpty(Warning);
+
+    public void Show()
+    {
+        _isVisible = true;
+    }
+
+    public void Hide()
+    {
+        _isVisible = false;
+    }
+
+    public void MoveTo(Rectangle bounds)
+    {
+        _bounds = bounds;
+    }
 
     public virtual void Update(InputState input)
     {

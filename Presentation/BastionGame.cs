@@ -1,7 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Bastion.Presentation.GUI_Register;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -15,7 +14,7 @@ public sealed class BastionGame : Game
     private SpriteBatch? _batch;
     private ShapeRenderer? _shapes;
     private Canvas? _canvas;
-    private GuiRegister? _screen;
+    private Navigator? _navigator;
 
     public BastionGame()
     {
@@ -26,9 +25,8 @@ public sealed class BastionGame : Game
             SynchronizeWithVerticalRetrace = true
         };
 
-        // Set before the first catalog lookup, otherwise the interface would
-        // start in the operating system language, which may be neither of the
-        // two supported ones.
+        // Set before the first catalog lookup, or the interface starts in the
+        // operating system language, which may be neither supported one.
         Language.Apply(Language.Default);
 
         Content.RootDirectory = "Content";
@@ -60,13 +58,14 @@ public sealed class BastionGame : Game
             }
         };
 
-        _screen = new GuiRegister();
+        _navigator = new Navigator();
+        _navigator.Start(ScreenId.Login);
     }
 
     protected override void Update(GameTime gameTime)
     {
         _input.Update(gameTime);
-        _screen?.Update(_input);
+        _navigator?.Update(_input);
         _input.ClearText();
 
         base.Update(gameTime);
@@ -76,10 +75,10 @@ public sealed class BastionGame : Game
     {
         GraphicsDevice.Clear(Theme.Background);
 
-        if (_batch is not null && _canvas is not null && _screen is not null)
+        if (_batch is not null && _canvas is not null && _navigator is not null)
         {
             _batch.Begin(samplerState: SamplerState.LinearClamp);
-            _screen.Draw(_canvas);
+            _navigator.Draw(_canvas);
             _batch.End();
         }
 
