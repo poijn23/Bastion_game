@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Catalogos de texto de la aplicacion. Va aparte de Presentation porque no
+    solo la interfaz los necesita: el CU-02 manda el correo de verificacion en
+    el idioma_preferido del usuario (FN paso 22), asi que Service tendra que
+    leer los mismos diccionarios. Dos copias se desincronizarian.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Bastion.Resources</RootNamespace>
+    <AssemblyName>Bastion.Resources</AssemblyName>
+  </PropertyGroup>
+
+</Project>

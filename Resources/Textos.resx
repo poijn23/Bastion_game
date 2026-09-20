@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    NEUTRAL (respaldo). Contiene el texto en ingles, que es el idioma
+    predeterminado del cliente. Si algun dia falta un ensamblado satelite,
+    la interfaz cae aqui y sigue siendo la misma que la de arranque.
+
+    Catalogo de textos visibles de la GUI_Register (CU-02). La RN-14 exige que
+    todo texto visible salga de un catalogo de recursos y se guarde en Unicode.
+    Los idiomas admitidos son es-MX e ingles, y solo esos dos (D-21); el
+    esquema los restringe con CK_Usuario_idioma.
+
+    Las tres variantes deben tener exactamente las mismas claves.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TituloVentana" xml:space="preserve">
+    <value>Bastión</value>
+    <comment>Titulo de la ventana. Es el nombre del juego: no se traduce.</comment>
+  </data>
+  <data name="TituloJuego" xml:space="preserve">
+    <value>BASTIÓN</value>
+    <comment>Rotulo del encabezado. Es el nombre del juego: no se traduce.</comment>
+  </data>
+  <data name="RegistroSubtitulo" xml:space="preserve">
+    <value>CREATE YOUR ACCOUNT</value>
+    <comment>CU-02 FN paso 1. Subtitulo del encabezado.</comment>
+  </data>
+  <data name="RegistroEtiquetaNickname" xml:space="preserve">
+    <value>PLAYER NAME</value>
+    <comment>Etiqueta del campo nickname.</comment>
+  </data>
+  <data name="RegistroMarcadorNickname" xml:space="preserve">
+    <value>3 to 30 characters</value>
+    <comment>Texto guia. El limite sale de CU-02 RN-01 y de Usuario.nickname NVARCHAR(30).</comment>
+  </data>
+  <data name="RegistroEtiquetaCorreo" xml:space="preserve">
+    <value>EMAIL ADDRESS</value>
+    <comment>Etiqueta del campo correo.</comment>
+  </data>
+  <data name="RegistroMarcadorCorreo" xml:space="preserve">
+    <value>you@email.com</value>
+    <comment>Texto guia del correo. Es un ejemplo, se adapta al idioma.</comment>
+  </data>
+  <data name="RegistroEtiquetaContrasena" xml:space="preserve">
+    <value>PASSWORD</value>
+    <comment>Etiqueta del campo contrasena.</comment>
+  </data>
+  <data name="RegistroMarcadorContrasena" xml:space="preserve">
+    <value>at least 8 characters</value>
+    <comment>Texto guia. El minimo sale de CU-02 RN-03.</comment>
+  </data>
+  <data name="RegistroEtiquetaConfirmacion" xml:space="preserve">
+    <value>CONFIRM PASSWORD</value>
+    <comment>Etiqueta de la confirmacion de contrasena.</comment>
+  </data>
+  <data name="RegistroMarcadorConfirmacion" xml:space="preserve">
+    <value>type it again</value>
+    <comment>Texto guia de la confirmacion.</comment>
+  </data>
+  <data name="RegistroEtiquetaFechaNacimiento" xml:space="preserve">
+    <value>DATE OF BIRTH</value>
+    <comment>Etiqueta de los tres campos de la fecha.</comment>
+  </data>
+  <data name="RegistroMarcadorDia" xml:space="preserve">
+    <value>dd</value>
+    <comment>Texto guia del dia. Dos letras, el campo es angosto.</comment>
+  </data>
+  <data name="RegistroMarcadorMes" xml:space="preserve">
+    <value>mm</value>
+    <comment>Texto guia del mes. Dos letras, el campo es angosto.</comment>
+  </data>
+  <data name="RegistroMarcadorAnio" xml:space="preserve">
+    <value>yyyy</value>
+    <comment>Texto guia del anio, en la convencion de cada idioma.</comment>
+  </data>
+  <data name="RegistroEtiquetaIdiomaCuenta" xml:space="preserve">
+    <value>ACCOUNT LANGUAGE</value>
+    <comment>Etiqueta del selector de idioma_preferido.</comment>
+  </data>
+  <data name="IdiomaEspanolMexico" xml:space="preserve">
+    <value>ESPAÑOL (MX)</value>
+    <comment>Nombre del idioma en su propio idioma (D-21: es-MX). No se traduce.</comment>
+  </data>
+  <data name="IdiomaIngles" xml:space="preserve">
+    <value>ENGLISH</value>
+    <comment>Nombre del idioma en su propio idioma (D-21: en). No se traduce.</comment>
+  </data>
+  <data name="EtiquetaIdiomaInterfaz" xml:space="preserve">
+    <value>LANGUAGE</value>
+    <comment>Rotulo del selector de idioma de la interfaz (CU-02 FA-02).</comment>
+  </data>
+  <data name="CodigoIdiomaEspanol" xml:space="preserve">
+    <value>ES</value>
+    <comment>Codigo corto en el selector de la esquina. No se traduce.</comment>
+  </data>
+  <data name="CodigoIdiomaIngles" xml:space="preserve">
+    <value>EN</value>
+    <comment>Codigo corto en el selector de la esquina. No se traduce.</comment>
+  </data>
+  <data name="RegistroCasillaTerminos" xml:space="preserve">
+    <value>I accept the terms of use</value>
+    <comment>CU-02 FN paso 2. IMPORTANTE: debe terminar exactamente con RegistroEnlaceTerminos, que se pinta en naranja como enlace.</comment>
+  </data>
+  <data name="RegistroEnlaceTerminos" xml:space="preserve">
+    <value>terms of use</value>
+    <comment>Parte final de RegistroCasillaTerminos que se pinta como enlace. Si se cambia una, se cambia la otra.</comment>
+  </data>
+  <data name="RegistroBotonCrear" xml:space="preserve">
+    <value>CREATE ACCOUNT</value>
+    <comment>CU-02 FN paso 2, opcion principal.</comment>
+  </data>
+  <data name="RegistroBotonCrearDetalle" xml:space="preserve">
+    <value>we will send you an email to activate it</value>
+    <comment>Segunda linea del boton principal. Anuncia el TokenVerificacionCorreo del FN paso 20.</comment>
+  </data>
+  <data name="RegistroBotonCancelar" xml:space="preserve">
+    <value>CANCEL</value>
+    <comment>CU-02 FA-01.</comment>
+  </data>
+</root>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Espanol de Mexico (es-MX).
+
+    Catalogo de textos visibles de la GUI_Register (CU-02). La RN-14 exige que
+    todo texto visible salga de un catalogo de recursos y se guarde en Unicode.
+    Los idiomas admitidos son es-MX e ingles, y solo esos dos (D-21); el
+    esquema los restringe con CK_Usuario_idioma.
+
+    Las tres variantes deben tener exactamente las mismas claves.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TituloVentana" xml:space="preserve">
+    <value>Bastión</value>
+  </data>
+  <data name="TituloJuego" xml:space="preserve">
+    <value>BASTIÓN</value>
+  </data>
+  <data name="RegistroSubtitulo" xml:space="preserve">
+    <value>CREA TU CUENTA</value>
+  </data>
+  <data name="RegistroEtiquetaNickname" xml:space="preserve">
+    <value>NOMBRE DE JUGADOR</value>
+  </data>
+  <data name="RegistroMarcadorNickname" xml:space="preserve">
+    <value>de 3 a 30 caracteres</value>
+  </data>
+  <data name="RegistroEtiquetaCorreo" xml:space="preserve">
+    <value>CORREO ELECTRÓNICO</value>
+  </data>
+  <data name="RegistroMarcadorCorreo" xml:space="preserve">
+    <value>tu@correo.com</value>
+  </data>
+  <data name="RegistroEtiquetaContrasena" xml:space="preserve">
+    <value>CONTRASEÑA</value>
+  </data>
+  <data name="RegistroMarcadorContrasena" xml:space="preserve">
+    <value>mínimo 8 caracteres</value>
+  </data>
+  <data name="RegistroEtiquetaConfirmacion" xml:space="preserve">
+    <value>CONFIRMAR CONTRASEÑA</value>
+  </data>
+  <data name="RegistroMarcadorConfirmacion" xml:space="preserve">
+    <value>escríbela otra vez</value>
+  </data>
+  <data name="RegistroEtiquetaFechaNacimiento" xml:space="preserve">
+    <value>FECHA DE NACIMIENTO</value>
+  </data>
+  <data name="RegistroMarcadorDia" xml:space="preserve">
+    <value>dd</value>
+  </data>
+  <data name="RegistroMarcadorMes" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="RegistroMarcadorAnio" xml:space="preserve">
+    <value>aaaa</value>
+  </data>
+  <data name="RegistroEtiquetaIdiomaCuenta" xml:space="preserve">
+    <value>IDIOMA DE LA CUENTA</value>
+  </data>
+  <data name="IdiomaEspanolMexico" xml:space="preserve">
+    <value>ESPAÑOL (MX)</value>
+  </data>
+  <data name="IdiomaIngles" xml:space="preserve">
+    <value>ENGLISH</value>
+  </data>
+  <data name="EtiquetaIdiomaInterfaz" xml:space="preserve">
+    <value>IDIOMA</value>
+  </data>
+  <data name="CodigoIdiomaEspanol" xml:space="preserve">
+    <value>ES</value>
+  </data>
+  <data name="CodigoIdiomaIngles" xml:space="preserve">
+    <value>EN</value>
+  </data>
+  <data name="RegistroCasillaTerminos" xml:space="preserve">
+    <value>acepto los términos de uso</value>
+  </data>
+  <data name="RegistroEnlaceTerminos" xml:space="preserve">
+    <value>términos de uso</value>
+  </data>
+  <data name="RegistroBotonCrear" xml:space="preserve">
+    <value>CREAR CUENTA</value>
+  </data>
+  <data name="RegistroBotonCrearDetalle" xml:space="preserve">
+    <value>te enviaremos un correo para activarla</value>
+  </data>
+  <data name="RegistroBotonCancelar" xml:space="preserve">
+    <value>CANCELAR</value>
+  </data>
+</root>

@@ -1,0 +1,22 @@
+# --- Salida de compilacion de .NET ------------------------------------------
+# Se regenera entera con "dotnet build". Nunca se versiona.
+[Bb]in/
+[Oo]bj/
+
+# --- Contenido compilado por MGCB -------------------------------------------
+# Los .xnb salen de los .spritefont de Content/ en cada compilacion. Lo que se
+# versiona son los descriptores, no el resultado.
+*.xnb
+*.mgcontent
+
+# --- Editores ----------------------------------------------------------------
+.vs/
+.idea/
+*.user
+*.suo
+*.DotSettings.user
+
+# --- Sistema operativo --------------------------------------------------------
+# El equipo trabaja en macOS, Linux y Windows: cada uno deja su basura.
+.DS_Store
+Thumbs.db

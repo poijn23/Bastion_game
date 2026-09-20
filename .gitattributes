@@ -1,0 +1,10 @@
+# Finales de linea. El equipo trabaja en macOS, Linux y Windows: sin esto, cada
+# quien guarda con los suyos y los diffs salen con el archivo entero cambiado
+# aunque solo se haya tocado una linea.
+* text=auto eol=lf
+
+# Binarios: que git no intente normalizarlos.
+*.png binary
+*.jpg binary
+*.ttf binary
+*.xnb binary

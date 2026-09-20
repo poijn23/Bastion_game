@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Fuente de la interfaz. FontName usa una familia instalada en el sistema.
+  Si MGCB no la encuentra (comun en Linux), cambia FontName por una local
+  o deja un .ttf junto a este archivo y pon aqui su nombre de archivo.
+-->
+<XnaContent xmlns:Graphics="Microsoft.Xna.Framework.Content.Pipeline.Graphics">
+  <Asset Type="Graphics:FontDescription">
+    <FontName>Arial</FontName>
+    <Size>15</Size>
+    <Spacing>0</Spacing>
+    <UseKerning>true</UseKerning>
+    <Style>Regular</Style>
+    <DefaultCharacter>?</DefaultCharacter>
+    <CharacterRegions>
+      <CharacterRegion>
+        <Start>&#32;</Start>
+        <End>&#255;</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>&#8226;</Start>
+        <End>&#8226;</End>
+      </CharacterRegion>
+    </CharacterRegions>
+  </Asset>
+</XnaContent>
