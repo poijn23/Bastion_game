@@ -146,4 +146,238 @@
   <data name="RegisterCancelButton" xml:space="preserve">
     <value>CANCELAR</value>
   </data>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>ALGO SALIÓ MAL</value>
+  </data>
+  <data name="DialogWarningTitle" xml:space="preserve">
+    <value>REVISA ESTO</value>
+  </data>
+  <data name="DialogConfirmTitle" xml:space="preserve">
+    <value>¿SEGURO?</value>
+  </data>
+  <data name="DialogSuccessTitle" xml:space="preserve">
+    <value>LISTO</value>
+  </data>
+  <data name="DialogAcceptButton" xml:space="preserve">
+    <value>ENTENDIDO</value>
+  </data>
+  <data name="DialogRetryButton" xml:space="preserve">
+    <value>REINTENTAR</value>
+  </data>
+  <data name="DialogConfirmButton" xml:space="preserve">
+    <value>CONFIRMAR</value>
+  </data>
+  <data name="DialogCancelButton" xml:space="preserve">
+    <value>CANCELAR</value>
+  </data>
+  <data name="DialogSignInButton" xml:space="preserve">
+    <value>INICIAR SESIÓN</value>
+  </data>
+  <data name="CommonSaveButton" xml:space="preserve">
+    <value>GUARDAR</value>
+  </data>
+  <data name="CommonCancelButton" xml:space="preserve">
+    <value>CANCELAR</value>
+  </data>
+  <data name="CommonBackButton" xml:space="preserve">
+    <value>VOLVER</value>
+  </data>
+  <data name="LoginSubtitle" xml:space="preserve">
+    <value>ACCEDE A TU CUENTA</value>
+  </data>
+  <data name="LoginIdentifierLabel" xml:space="preserve">
+    <value>NOMBRE DE JUGADOR O CORREO</value>
+  </data>
+  <data name="LoginIdentifierPlaceholder" xml:space="preserve">
+    <value>cómo te conocemos</value>
+  </data>
+  <data name="LoginPasswordLabel" xml:space="preserve">
+    <value>CONTRASEÑA</value>
+  </data>
+  <data name="LoginPasswordPlaceholder" xml:space="preserve">
+    <value>tu contraseña</value>
+  </data>
+  <data name="LoginForgotLink" xml:space="preserve">
+    <value>OLVIDÉ MI CONTRASEÑA</value>
+  </data>
+  <data name="LoginSignInButton" xml:space="preserve">
+    <value>INICIAR SESIÓN</value>
+  </data>
+  <data name="LoginSignInDetail" xml:space="preserve">
+    <value>con tu nombre de jugador o tu correo</value>
+  </data>
+  <data name="LoginCreateAccountButton" xml:space="preserve">
+    <value>CREAR CUENTA</value>
+  </data>
+  <data name="LoginGuestButton" xml:space="preserve">
+    <value>JUGAR COMO INVITADO</value>
+  </data>
+  <data name="ForgotPasswordSubtitle" xml:space="preserve">
+    <value>RECUPERA TU CONTRASEÑA</value>
+  </data>
+  <data name="ForgotPasswordNotice" xml:space="preserve">
+    <value>Si esa dirección tiene una cuenta te enviaremos un código. Caduca en una hora.</value>
+  </data>
+  <data name="ForgotPasswordEmailLabel" xml:space="preserve">
+    <value>CORREO ELECTRÓNICO</value>
+  </data>
+  <data name="ForgotPasswordEmailPlaceholder" xml:space="preserve">
+    <value>el que usaste al registrarte</value>
+  </data>
+  <data name="ForgotPasswordSendButton" xml:space="preserve">
+    <value>ENVIAR EL CÓDIGO</value>
+  </data>
+  <data name="ResetPasswordSubtitle" xml:space="preserve">
+    <value>ELIGE UNA CONTRASEÑA NUEVA</value>
+  </data>
+  <data name="ResetPasswordCodeLabel" xml:space="preserve">
+    <value>CÓDIGO DEL CORREO</value>
+  </data>
+  <data name="ResetPasswordCodePlaceholder" xml:space="preserve">
+    <value>6 caracteres</value>
+  </data>
+  <data name="ResetPasswordNewLabel" xml:space="preserve">
+    <value>CONTRASEÑA NUEVA</value>
+  </data>
+  <data name="ResetPasswordNewPlaceholder" xml:space="preserve">
+    <value>mínimo 8 caracteres</value>
+  </data>
+  <data name="ResetPasswordConfirmLabel" xml:space="preserve">
+    <value>CONFIRMAR CONTRASEÑA</value>
+  </data>
+  <data name="ResetPasswordConfirmPlaceholder" xml:space="preserve">
+    <value>escríbela otra vez</value>
+  </data>
+  <data name="ChangePasswordSubtitle" xml:space="preserve">
+    <value>CAMBIA TU CONTRASEÑA</value>
+  </data>
+  <data name="ChangePasswordCurrentLabel" xml:space="preserve">
+    <value>CONTRASEÑA ACTUAL</value>
+  </data>
+  <data name="ChangePasswordCurrentPlaceholder" xml:space="preserve">
+    <value>la que usas ahora</value>
+  </data>
+  <data name="ChangePasswordNewLabel" xml:space="preserve">
+    <value>CONTRASEÑA NUEVA</value>
+  </data>
+  <data name="ChangePasswordNewPlaceholder" xml:space="preserve">
+    <value>mínimo 8 caracteres</value>
+  </data>
+  <data name="ChangePasswordConfirmLabel" xml:space="preserve">
+    <value>CONFIRMAR CONTRASEÑA</value>
+  </data>
+  <data name="ChangePasswordConfirmPlaceholder" xml:space="preserve">
+    <value>escríbela otra vez</value>
+  </data>
+  <data name="ChangeEmailSubtitle" xml:space="preserve">
+    <value>CAMBIA TU CORREO</value>
+  </data>
+  <data name="ChangeEmailNewLabel" xml:space="preserve">
+    <value>CORREO NUEVO</value>
+  </data>
+  <data name="ChangeEmailNewPlaceholder" xml:space="preserve">
+    <value>tu@correo.com</value>
+  </data>
+  <data name="ChangeEmailPasswordLabel" xml:space="preserve">
+    <value>CONTRASEÑA ACTUAL</value>
+  </data>
+  <data name="ChangeEmailPasswordPlaceholder" xml:space="preserve">
+    <value>la que usas ahora</value>
+  </data>
+  <data name="ChangeEmailNotice" xml:space="preserve">
+    <value>Tu cuenta vuelve a estar pendiente hasta que abras el enlace que enviemos al correo nuevo.</value>
+  </data>
+  <data name="ChangeNicknameSubtitle" xml:space="preserve">
+    <value>CAMBIA TU NOMBRE DE JUGADOR</value>
+  </data>
+  <data name="ChangeNicknameNotice" xml:space="preserve">
+    <value>Solo puedes hacerlo una vez, y no se puede deshacer. Tus amigos verán el nombre nuevo.</value>
+  </data>
+  <data name="ChangeNicknameCurrentLabel" xml:space="preserve">
+    <value>TU NOMBRE AHORA</value>
+  </data>
+  <data name="ChangeNicknameNewLabel" xml:space="preserve">
+    <value>NOMBRE NUEVO</value>
+  </data>
+  <data name="ChangeNicknameNewPlaceholder" xml:space="preserve">
+    <value>de 3 a 30 caracteres</value>
+  </data>
+  <data name="ChangeNicknameSaveButton" xml:space="preserve">
+    <value>CAMBIARLO</value>
+  </data>
+  <data name="DeleteAccountSubtitle" xml:space="preserve">
+    <value>BORRA TU CUENTA</value>
+  </data>
+  <data name="DeleteAccountNotice" xml:space="preserve">
+    <value>Perderás tu elo, tus monedas, tus objetos, tus amigos y tu lugar en el ranking. Esto es definitivo y no se puede deshacer.</value>
+  </data>
+  <data name="DeleteAccountPasswordLabel" xml:space="preserve">
+    <value>CONTRASEÑA ACTUAL</value>
+  </data>
+  <data name="DeleteAccountPasswordPlaceholder" xml:space="preserve">
+    <value>la que usas ahora</value>
+  </data>
+  <data name="DeleteAccountContinueButton" xml:space="preserve">
+    <value>CONTINUAR</value>
+  </data>
+  <data name="DeleteAccountConfirmSubtitle" xml:space="preserve">
+    <value>¿DE VERDAD ESTÁS SEGURO?</value>
+  </data>
+  <data name="DeleteAccountConfirmNotice" xml:space="preserve">
+    <value>Escribe la palabra que aparece en pantalla para confirmar que quieres borrarlo todo.</value>
+  </data>
+  <data name="DeleteAccountWordLabel" xml:space="preserve">
+    <value>PALABRA DE CONFIRMACIÓN</value>
+  </data>
+  <data name="DeleteAccountWordPlaceholder" xml:space="preserve">
+    <value>escríbela exactamente</value>
+  </data>
+  <data name="DeleteAccountDeleteButton" xml:space="preserve">
+    <value>BORRAR MI CUENTA</value>
+  </data>
+  <data name="ActiveSessionsSubtitle" xml:space="preserve">
+    <value>DÓNDE TIENES SESIÓN</value>
+  </data>
+  <data name="ActiveSessionsCurrentBadge" xml:space="preserve">
+    <value>ESTE DISPOSITIVO</value>
+  </data>
+  <data name="ActiveSessionsCloseButton" xml:space="preserve">
+    <value>CERRAR</value>
+  </data>
+  <data name="ActiveSessionsCloseAllButton" xml:space="preserve">
+    <value>CERRAR TODAS LAS DEMÁS</value>
+  </data>
+  <data name="ActiveSessionsDeviceSample" xml:space="preserve">
+    <value>Dispositivo</value>
+  </data>
+  <data name="ActiveSessionsLastUseSample" xml:space="preserve">
+    <value>usado hace un momento</value>
+  </data>
+  <data name="AccountSettingsSubtitle" xml:space="preserve">
+    <value>TU CUENTA</value>
+  </data>
+  <data name="AccountSettingsNicknameEntry" xml:space="preserve">
+    <value>CAMBIAR MI NOMBRE DE JUGADOR</value>
+  </data>
+  <data name="AccountSettingsPasswordEntry" xml:space="preserve">
+    <value>CAMBIAR MI CONTRASEÑA</value>
+  </data>
+  <data name="AccountSettingsEmailEntry" xml:space="preserve">
+    <value>CAMBIAR MI CORREO</value>
+  </data>
+  <data name="AccountSettingsSessionsEntry" xml:space="preserve">
+    <value>DÓNDE TENGO SESIÓN</value>
+  </data>
+  <data name="AccountSettingsDeleteEntry" xml:space="preserve">
+    <value>BORRAR MI CUENTA</value>
+  </data>
+  <data name="RegisterDiscardBody" xml:space="preserve">
+    <value>Si sales ahora pierdes lo que escribiste en el formulario.</value>
+  </data>
+  <data name="RegisterDiscardButton" xml:space="preserve">
+    <value>DESCARTAR</value>
+  </data>
+  <data name="RegisterKeepEditingButton" xml:space="preserve">
+    <value>SEGUIR EDITANDO</value>
+  </data>
 </root>

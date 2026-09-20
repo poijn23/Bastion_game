@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    NEUTRAL fallback. Holds the English text, the default language.
+    English (en). It is the neutral catalog too, declared with NeutralLanguage
+    in the project, so English needs no satellite assembly.
 
     Visible text catalog for GUI_Register (CU-02). Rule RN-14 requires every
     visible string to come from a resource catalog and to be stored in Unicode.
@@ -171,5 +172,317 @@
   <data name="RegisterCancelButton" xml:space="preserve">
     <value>CANCEL</value>
     <comment>CU-02 FA-01.</comment>
+  </data>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>SOMETHING WENT WRONG</value>
+    <comment>Title of GUI_MessageError. Plain wording: CON-12 asks for text an eight year old understands.</comment>
+  </data>
+  <data name="DialogWarningTitle" xml:space="preserve">
+    <value>CHECK THIS</value>
+    <comment>Title of GUI_MessageWarning.</comment>
+  </data>
+  <data name="DialogConfirmTitle" xml:space="preserve">
+    <value>ARE YOU SURE?</value>
+    <comment>Title of GUI_MessageConfirm.</comment>
+  </data>
+  <data name="DialogSuccessTitle" xml:space="preserve">
+    <value>ALL SET</value>
+    <comment>Title of GUI_MessageSuccess.</comment>
+  </data>
+  <data name="DialogAcceptButton" xml:space="preserve">
+    <value>OK</value>
+    <comment>Dismisses a dialog without taking any other action.</comment>
+  </data>
+  <data name="DialogRetryButton" xml:space="preserve">
+    <value>RETRY</value>
+    <comment>Second option of GUI_MessageError (CU-02 EX-01).</comment>
+  </data>
+  <data name="DialogConfirmButton" xml:space="preserve">
+    <value>CONFIRM</value>
+    <comment>Default primary option of GUI_MessageConfirm. Callers override it with the concrete verb.</comment>
+  </data>
+  <data name="DialogCancelButton" xml:space="preserve">
+    <value>CANCEL</value>
+    <comment>Default secondary option of GUI_MessageConfirm: the one that keeps the current state.</comment>
+  </data>
+  <data name="DialogSignInButton" xml:space="preserve">
+    <value>SIGN IN</value>
+    <comment>Second option of GUI_MessageWarning when the email is already registered (CU-02 FA-10).</comment>
+  </data>
+  <data name="CommonSaveButton" xml:space="preserve">
+    <value>SAVE</value>
+    <comment>Primary action of a form that edits something that already exists.</comment>
+  </data>
+  <data name="CommonCancelButton" xml:space="preserve">
+    <value>CANCEL</value>
+    <comment>Leaves a form without applying anything.</comment>
+  </data>
+  <data name="CommonBackButton" xml:space="preserve">
+    <value>BACK</value>
+    <comment>Returns to the previous screen from a read only one.</comment>
+  </data>
+  <data name="LoginSubtitle" xml:space="preserve">
+    <value>SIGN IN TO YOUR ACCOUNT</value>
+    <comment>CU-01 main flow step 1.</comment>
+  </data>
+  <data name="LoginIdentifierLabel" xml:space="preserve">
+    <value>PLAYER NAME OR EMAIL</value>
+    <comment>One field for both: CU-01 accepts either identifier.</comment>
+  </data>
+  <data name="LoginIdentifierPlaceholder" xml:space="preserve">
+    <value>how we know you</value>
+    <comment>Hint of the identifier field.</comment>
+  </data>
+  <data name="LoginPasswordLabel" xml:space="preserve">
+    <value>PASSWORD</value>
+    <comment>Label of the password field.</comment>
+  </data>
+  <data name="LoginPasswordPlaceholder" xml:space="preserve">
+    <value>your password</value>
+    <comment>Hint of the password field.</comment>
+  </data>
+  <data name="LoginForgotLink" xml:space="preserve">
+    <value>I FORGOT MY PASSWORD</value>
+    <comment>Leads to CU-03.</comment>
+  </data>
+  <data name="LoginSignInButton" xml:space="preserve">
+    <value>SIGN IN</value>
+    <comment>Primary action of CU-01.</comment>
+  </data>
+  <data name="LoginSignInDetail" xml:space="preserve">
+    <value>with your player name or your email</value>
+    <comment>Second line of the primary button.</comment>
+  </data>
+  <data name="LoginCreateAccountButton" xml:space="preserve">
+    <value>CREATE ACCOUNT</value>
+    <comment>Leads to CU-02.</comment>
+  </data>
+  <data name="LoginGuestButton" xml:space="preserve">
+    <value>PLAY AS A GUEST</value>
+    <comment>Leads to CU-06. As a guest no elo and no items are kept.</comment>
+  </data>
+  <data name="ForgotPasswordSubtitle" xml:space="preserve">
+    <value>RECOVER YOUR PASSWORD</value>
+    <comment>CU-03 main flow step 1.</comment>
+  </data>
+  <data name="ForgotPasswordNotice" xml:space="preserve">
+    <value>If that address has an account we will send you a code. It expires in one hour.</value>
+    <comment>Worded so it does not reveal whether the address exists (CU-03 RN-01).</comment>
+  </data>
+  <data name="ForgotPasswordEmailLabel" xml:space="preserve">
+    <value>EMAIL ADDRESS</value>
+    <comment>Label of the email field.</comment>
+  </data>
+  <data name="ForgotPasswordEmailPlaceholder" xml:space="preserve">
+    <value>the one you signed up with</value>
+    <comment>Hint.</comment>
+  </data>
+  <data name="ForgotPasswordSendButton" xml:space="preserve">
+    <value>SEND THE CODE</value>
+    <comment>Primary action.</comment>
+  </data>
+  <data name="ResetPasswordSubtitle" xml:space="preserve">
+    <value>SET A NEW PASSWORD</value>
+    <comment>CU-03 main flow step 8.</comment>
+  </data>
+  <data name="ResetPasswordCodeLabel" xml:space="preserve">
+    <value>CODE FROM THE EMAIL</value>
+    <comment>Label of the code field.</comment>
+  </data>
+  <data name="ResetPasswordCodePlaceholder" xml:space="preserve">
+    <value>6 characters</value>
+    <comment>Hint of the code field.</comment>
+  </data>
+  <data name="ResetPasswordNewLabel" xml:space="preserve">
+    <value>NEW PASSWORD</value>
+    <comment>Label of the new password.</comment>
+  </data>
+  <data name="ResetPasswordNewPlaceholder" xml:space="preserve">
+    <value>at least 8 characters</value>
+    <comment>Hint. CU-02 RN-03.</comment>
+  </data>
+  <data name="ResetPasswordConfirmLabel" xml:space="preserve">
+    <value>CONFIRM PASSWORD</value>
+    <comment>Label of the confirmation.</comment>
+  </data>
+  <data name="ResetPasswordConfirmPlaceholder" xml:space="preserve">
+    <value>type it again</value>
+    <comment>Hint of the confirmation.</comment>
+  </data>
+  <data name="ChangePasswordSubtitle" xml:space="preserve">
+    <value>CHANGE YOUR PASSWORD</value>
+    <comment>CU-09 main flow step 1.</comment>
+  </data>
+  <data name="ChangePasswordCurrentLabel" xml:space="preserve">
+    <value>CURRENT PASSWORD</value>
+    <comment>Label of the current password.</comment>
+  </data>
+  <data name="ChangePasswordCurrentPlaceholder" xml:space="preserve">
+    <value>the one you use now</value>
+    <comment>Hint.</comment>
+  </data>
+  <data name="ChangePasswordNewLabel" xml:space="preserve">
+    <value>NEW PASSWORD</value>
+    <comment>Label of the new password.</comment>
+  </data>
+  <data name="ChangePasswordNewPlaceholder" xml:space="preserve">
+    <value>at least 8 characters</value>
+    <comment>Hint. CU-02 RN-03.</comment>
+  </data>
+  <data name="ChangePasswordConfirmLabel" xml:space="preserve">
+    <value>CONFIRM PASSWORD</value>
+    <comment>Label of the confirmation.</comment>
+  </data>
+  <data name="ChangePasswordConfirmPlaceholder" xml:space="preserve">
+    <value>type it again</value>
+    <comment>Hint of the confirmation.</comment>
+  </data>
+  <data name="ChangeEmailSubtitle" xml:space="preserve">
+    <value>CHANGE YOUR EMAIL</value>
+    <comment>CU-09 alternate flow FA-01.</comment>
+  </data>
+  <data name="ChangeEmailNewLabel" xml:space="preserve">
+    <value>NEW EMAIL ADDRESS</value>
+    <comment>Label of the new address.</comment>
+  </data>
+  <data name="ChangeEmailNewPlaceholder" xml:space="preserve">
+    <value>you@email.com</value>
+    <comment>Hint of the new address.</comment>
+  </data>
+  <data name="ChangeEmailPasswordLabel" xml:space="preserve">
+    <value>CURRENT PASSWORD</value>
+    <comment>Asked again to confirm it is you.</comment>
+  </data>
+  <data name="ChangeEmailPasswordPlaceholder" xml:space="preserve">
+    <value>the one you use now</value>
+    <comment>Hint.</comment>
+  </data>
+  <data name="ChangeEmailNotice" xml:space="preserve">
+    <value>Your account goes back to pending until you open the link we send to the new address.</value>
+    <comment>States the consequence before the player commits.</comment>
+  </data>
+  <data name="ChangeNicknameSubtitle" xml:space="preserve">
+    <value>CHANGE YOUR PLAYER NAME</value>
+    <comment>CU-13 main flow step 1.</comment>
+  </data>
+  <data name="ChangeNicknameNotice" xml:space="preserve">
+    <value>You can only do this once, and it cannot be undone. Your friends will see the new name.</value>
+    <comment>CU-13 RN-01: the change is unique and irreversible.</comment>
+  </data>
+  <data name="ChangeNicknameCurrentLabel" xml:space="preserve">
+    <value>YOUR NAME NOW</value>
+    <comment>Label of the read only current value.</comment>
+  </data>
+  <data name="ChangeNicknameNewLabel" xml:space="preserve">
+    <value>NEW NAME</value>
+    <comment>Label of the new nickname.</comment>
+  </data>
+  <data name="ChangeNicknameNewPlaceholder" xml:space="preserve">
+    <value>3 to 30 characters</value>
+    <comment>Hint. CU-02 RN-01.</comment>
+  </data>
+  <data name="ChangeNicknameSaveButton" xml:space="preserve">
+    <value>CHANGE IT</value>
+    <comment>Primary action of CU-13.</comment>
+  </data>
+  <data name="DeleteAccountSubtitle" xml:space="preserve">
+    <value>DELETE YOUR ACCOUNT</value>
+    <comment>CU-11 main flow step 1.</comment>
+  </data>
+  <data name="DeleteAccountNotice" xml:space="preserve">
+    <value>You will lose your elo, your coins, your items, your friends and your place in the ranking. This is final and cannot be undone.</value>
+    <comment>The list of what is lost, required by CU-11 main flow step 1.</comment>
+  </data>
+  <data name="DeleteAccountPasswordLabel" xml:space="preserve">
+    <value>CURRENT PASSWORD</value>
+    <comment>Confirms it is really you.</comment>
+  </data>
+  <data name="DeleteAccountPasswordPlaceholder" xml:space="preserve">
+    <value>the one you use now</value>
+    <comment>Hint.</comment>
+  </data>
+  <data name="DeleteAccountContinueButton" xml:space="preserve">
+    <value>CONTINUE</value>
+    <comment>Moves to the second step.</comment>
+  </data>
+  <data name="DeleteAccountConfirmSubtitle" xml:space="preserve">
+    <value>ARE YOU REALLY SURE?</value>
+    <comment>CU-11 main flow step 2.</comment>
+  </data>
+  <data name="DeleteAccountConfirmNotice" xml:space="preserve">
+    <value>Type the word shown on screen to confirm that you want to delete everything.</value>
+    <comment>CU-11 RN-01: the second step asks for a typed word.</comment>
+  </data>
+  <data name="DeleteAccountWordLabel" xml:space="preserve">
+    <value>CONFIRMATION WORD</value>
+    <comment>Label of the word field.</comment>
+  </data>
+  <data name="DeleteAccountWordPlaceholder" xml:space="preserve">
+    <value>type it exactly</value>
+    <comment>Hint of the word field.</comment>
+  </data>
+  <data name="DeleteAccountDeleteButton" xml:space="preserve">
+    <value>DELETE MY ACCOUNT</value>
+    <comment>Final action of CU-11.</comment>
+  </data>
+  <data name="ActiveSessionsSubtitle" xml:space="preserve">
+    <value>WHERE YOU ARE SIGNED IN</value>
+    <comment>CU-10 main flow step 4.</comment>
+  </data>
+  <data name="ActiveSessionsCurrentBadge" xml:space="preserve">
+    <value>THIS DEVICE</value>
+    <comment>Marks the current session, which CU-10 forbids closing from here.</comment>
+  </data>
+  <data name="ActiveSessionsCloseButton" xml:space="preserve">
+    <value>CLOSE</value>
+    <comment>Closes one session.</comment>
+  </data>
+  <data name="ActiveSessionsCloseAllButton" xml:space="preserve">
+    <value>CLOSE ALL THE OTHERS</value>
+    <comment>Keeps the current one.</comment>
+  </data>
+  <data name="ActiveSessionsDeviceSample" xml:space="preserve">
+    <value>Device</value>
+    <comment>Placeholder until the list comes from the server.</comment>
+  </data>
+  <data name="ActiveSessionsLastUseSample" xml:space="preserve">
+    <value>last used a moment ago</value>
+    <comment>Placeholder until the list comes from the server.</comment>
+  </data>
+  <data name="AccountSettingsSubtitle" xml:space="preserve">
+    <value>YOUR ACCOUNT</value>
+    <comment>Hub the account use cases return to.</comment>
+  </data>
+  <data name="AccountSettingsNicknameEntry" xml:space="preserve">
+    <value>CHANGE MY PLAYER NAME</value>
+    <comment>Leads to CU-13.</comment>
+  </data>
+  <data name="AccountSettingsPasswordEntry" xml:space="preserve">
+    <value>CHANGE MY PASSWORD</value>
+    <comment>Leads to CU-09.</comment>
+  </data>
+  <data name="AccountSettingsEmailEntry" xml:space="preserve">
+    <value>CHANGE MY EMAIL</value>
+    <comment>Leads to CU-09 FA-01.</comment>
+  </data>
+  <data name="AccountSettingsSessionsEntry" xml:space="preserve">
+    <value>WHERE I AM SIGNED IN</value>
+    <comment>Leads to CU-10.</comment>
+  </data>
+  <data name="AccountSettingsDeleteEntry" xml:space="preserve">
+    <value>DELETE MY ACCOUNT</value>
+    <comment>Leads to CU-11.</comment>
+  </data>
+  <data name="RegisterDiscardBody" xml:space="preserve">
+    <value>If you leave now you lose what you typed in the form.</value>
+    <comment>CU-02 FA-01 step 2.</comment>
+  </data>
+  <data name="RegisterDiscardButton" xml:space="preserve">
+    <value>DISCARD</value>
+    <comment>CU-02 FA-01: leaves and clears the form.</comment>
+  </data>
+  <data name="RegisterKeepEditingButton" xml:space="preserve">
+    <value>KEEP EDITING</value>
+    <comment>CU-02 FA-01: stays on the form.</comment>
   </data>
 </root>

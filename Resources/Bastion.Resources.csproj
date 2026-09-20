@@ -12,6 +12,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Bastion.Resources</RootNamespace>
     <AssemblyName>Bastion.Resources</AssemblyName>
+
+    <!-- TextCatalog.resx is the English catalog, not a copy of it. Declaring the
+         neutral language lets the runtime serve English from this assembly and
+         keeps es-MX as the only satellite. -->
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
 </Project>

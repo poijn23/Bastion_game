@@ -10,6 +10,7 @@ public sealed class Button : Control
     private const int ArrowHalfWidth = 9;
     private const int ArrowHalfHeight = 7;
     private const int SubtitleGap = 2;
+    private const float HoverLift = 0.12f;
 
     private static readonly Color PrimarySubtitle = new(0xFF, 0xD8, 0xCC);
 
@@ -20,6 +21,10 @@ public sealed class Button : Control
     public ButtonStyle Style { get; init; } = ButtonStyle.Primary;
 
     public bool HasArrow { get; init; }
+
+    // Lets a dialog give its primary button the tone color instead of always
+    // the orange accent.
+    public Color Accent { get; init; } = Theme.Accent;
 
     public event EventHandler? Clicked;
 
@@ -66,7 +71,7 @@ public sealed class Button : Control
 
     private void DrawPrimary(Canvas canvas)
     {
-        Color fill = IsHovered ? Theme.AccentLight : Theme.Accent;
+        Color fill = IsHovered ? Color.Lerp(Accent, Color.White, HoverLift) : Accent;
         canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, fill);
         DrawContent(canvas, Theme.TextLight, PrimarySubtitle);
     }
