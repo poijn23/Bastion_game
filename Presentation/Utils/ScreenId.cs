@@ -16,5 +16,22 @@ public enum ScreenId
     ActiveSessions,
     RegistrationSuccess,
     Profile,
-    EditProfile
+    EditProfile,
+    PlayerCard,
+    Friends,
+    AddFriend,
+    MatchHistory,
+    CoinHistory,
+    Ranking,
+    Report,
+    ModerationQueue,
+    ReportReview,
+    ApplySanction,
+    Appeal,
+    AdminPanel,
+    Logs,
+    Shop,
+    PurchaseConfirm,
+    BoxPurchaseConfirm,
+    Customize
 }

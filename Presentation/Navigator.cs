@@ -1,21 +1,39 @@
 using System;
+using System.Collections.Generic;
 using Bastion.Presentation.GUI_AccountSettings;
 using Bastion.Presentation.GUI_ActiveSessions;
+using Bastion.Presentation.GUI_AddFriend;
+using Bastion.Presentation.GUI_AdminPanel;
+using Bastion.Presentation.GUI_Appeal;
+using Bastion.Presentation.GUI_ApplySanction;
+using Bastion.Presentation.GUI_BoxPurchaseConfirm;
 using Bastion.Presentation.GUI_ChangeEmail;
 using Bastion.Presentation.GUI_ChangeNickname;
 using Bastion.Presentation.GUI_ChangePassword;
+using Bastion.Presentation.GUI_CoinHistory;
+using Bastion.Presentation.GUI_Customize;
 using Bastion.Presentation.GUI_DeleteAccount;
 using Bastion.Presentation.GUI_EditProfile;
 using Bastion.Presentation.GUI_ForgotPassword;
+using Bastion.Presentation.GUI_Friends;
 using Bastion.Presentation.GUI_Login;
+using Bastion.Presentation.GUI_Logs;
+using Bastion.Presentation.GUI_MatchHistory;
 using Bastion.Presentation.GUI_MessageConfirm;
 using Bastion.Presentation.GUI_MessageError;
 using Bastion.Presentation.GUI_MessageSuccess;
 using Bastion.Presentation.GUI_MessageWarning;
+using Bastion.Presentation.GUI_ModerationQueue;
+using Bastion.Presentation.GUI_PlayerCard;
 using Bastion.Presentation.GUI_Profile;
+using Bastion.Presentation.GUI_PurchaseConfirm;
+using Bastion.Presentation.GUI_Ranking;
 using Bastion.Presentation.GUI_Register;
 using Bastion.Presentation.GUI_RegistrationSuccess;
+using Bastion.Presentation.GUI_Report;
+using Bastion.Presentation.GUI_ReportReview;
 using Bastion.Presentation.GUI_ResetPassword;
+using Bastion.Presentation.GUI_Shop;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -25,6 +43,70 @@ namespace Bastion.Presentation;
 // concrete screen, so Utils never depends on the GUI packages.
 public sealed class Navigator : INavigator
 {
+    // A lookup instead of a switch: CA1502 counts every case label, and
+    // thirty of them put Build far over the limit of ten.
+    private static readonly Dictionary<ScreenId, Func<INavigator, IScreen>> _factories = new()
+    {
+        [ScreenId.Login] =
+            navigator => new GuiLogin(navigator),
+        [ScreenId.Register] =
+            navigator => new GuiRegister(navigator),
+        [ScreenId.ForgotPassword] =
+            navigator => new GuiForgotPassword(navigator),
+        [ScreenId.ResetPassword] =
+            navigator => new GuiResetPassword(navigator),
+        [ScreenId.AccountSettings] =
+            navigator => new GuiAccountSettings(navigator),
+        [ScreenId.ChangePassword] =
+            navigator => new GuiChangePassword(navigator),
+        [ScreenId.ChangeEmail] =
+            navigator => new GuiChangeEmail(navigator),
+        [ScreenId.ChangeNickname] =
+            navigator => new GuiChangeNickname(navigator),
+        [ScreenId.DeleteAccount] =
+            navigator => new GuiDeleteAccount(navigator),
+        [ScreenId.ActiveSessions] =
+            navigator => new GuiActiveSessions(navigator),
+        [ScreenId.Profile] =
+            navigator => new GuiProfile(navigator),
+        [ScreenId.EditProfile] =
+            navigator => new GuiEditProfile(navigator),
+        [ScreenId.PlayerCard] =
+            navigator => new GuiPlayerCard(navigator),
+        [ScreenId.Friends] =
+            navigator => new GuiFriends(navigator),
+        [ScreenId.AddFriend] =
+            navigator => new GuiAddFriend(navigator),
+        [ScreenId.MatchHistory] =
+            navigator => new GuiMatchHistory(navigator),
+        [ScreenId.CoinHistory] =
+            navigator => new GuiCoinHistory(navigator),
+        [ScreenId.Ranking] =
+            navigator => new GuiRanking(navigator),
+        [ScreenId.Report] =
+            navigator => new GuiReport(navigator),
+        [ScreenId.ModerationQueue] =
+            navigator => new GuiModerationQueue(navigator),
+        [ScreenId.ReportReview] =
+            navigator => new GuiReportReview(navigator),
+        [ScreenId.ApplySanction] =
+            navigator => new GuiApplySanction(navigator),
+        [ScreenId.Appeal] =
+            navigator => new GuiAppeal(navigator),
+        [ScreenId.AdminPanel] =
+            navigator => new GuiAdminPanel(navigator),
+        [ScreenId.Logs] =
+            navigator => new GuiLogs(navigator),
+        [ScreenId.Shop] =
+            navigator => new GuiShop(navigator),
+        [ScreenId.PurchaseConfirm] =
+            navigator => new GuiPurchaseConfirm(navigator),
+        [ScreenId.BoxPurchaseConfirm] =
+            navigator => new GuiBoxPurchaseConfirm(navigator),
+        [ScreenId.Customize] =
+            navigator => new GuiCustomize(navigator),
+    };
+
     private IScreen? _current;
     private IScreen? _dialog;
     private ScreenId _currentId;
@@ -122,23 +204,15 @@ public sealed class Navigator : INavigator
 
     private IScreen Build(ScreenId screen, string? argument)
     {
-        return screen switch
+        // The only screen that needs what the previous one produced.
+        if (screen == ScreenId.RegistrationSuccess)
         {
-            ScreenId.Register => new GuiRegister(this),
-            ScreenId.RegistrationSuccess => new GuiRegistrationSuccess(this, argument ?? string.Empty),
-            ScreenId.Profile => new GuiProfile(this),
-            ScreenId.EditProfile => new GuiEditProfile(this),
-            ScreenId.ForgotPassword => new GuiForgotPassword(this),
-            ScreenId.ResetPassword => new GuiResetPassword(this),
-            ScreenId.AccountSettings => new GuiAccountSettings(this),
-            ScreenId.ChangePassword => new GuiChangePassword(this),
-            ScreenId.ChangeEmail => new GuiChangeEmail(this),
-            ScreenId.ChangeNickname => new GuiChangeNickname(this),
-            ScreenId.DeleteAccount => new GuiDeleteAccount(this),
-            ScreenId.ActiveSessions => new GuiActiveSessions(this),
-            ScreenId.Login => new GuiLogin(this),
-            _ => new GuiLogin(this)
-        };
+            return new GuiRegistrationSuccess(this, argument ?? string.Empty);
+        }
+
+        return _factories.TryGetValue(screen, out Func<INavigator, IScreen>? factory)
+            ? factory(this)
+            : new GuiLogin(this);
     }
 
     private static MessageScreen BuildMessage(DialogTone tone)

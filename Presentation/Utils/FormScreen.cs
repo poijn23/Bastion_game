@@ -14,6 +14,9 @@ public abstract class FormScreen : IScreen
     protected const int LabelSpace = 22;
     protected const int Gutter = 32;
 
+    protected const int ActionGap = 12;
+
+    private const int AlternateEvery = 2;
     private const int ButtonGap = 22;
     private const int ButtonSpacing = 12;
 
@@ -141,12 +144,47 @@ public abstract class FormScreen : IScreen
         };
     }
 
+    // Stacked buttons fall outside the window on the taller cards, so those
+    // screens lay their actions out in one row.
+    protected void LayOutActionsInRow(IReadOnlyList<Button> actions)
+    {
+        ArgumentNullException.ThrowIfNull(actions);
+
+        int gaps = ActionGap * (actions.Count - 1);
+        int width = (PrimaryButtonBounds.Width - gaps) / actions.Count;
+
+        for (int i = 0; i < actions.Count; i++)
+        {
+            int x = PrimaryButtonBounds.X + (i * (width + ActionGap));
+            actions[i].MoveTo(new Rectangle(x, PrimaryButtonBounds.Y, width, Theme.PrimaryButtonHeight));
+        }
+    }
+
+    // The height of a card filled with a list of rows. Four screens work it
+    // out the same way, and two of them add their own header on top.
+    protected static int ComputeListCardHeight(int visibleRows, int rowHeight, int rowGap)
+    {
+        return (Theme.CardPadding * 2) + (visibleRows * rowHeight) + ((visibleRows - 1) * rowGap);
+    }
+
+    protected static ValueBox CreateValueBox(Rectangle bounds)
+    {
+        return new ValueBox { Bounds = bounds };
+    }
+
     protected void FocusFirstField()
     {
         if (_focusableFields.Count > 0)
         {
             _focusableFields[0].IsFocused = true;
         }
+    }
+
+    // Placeholder lists alternate their sample rows; naming it keeps the
+    // modulus out of three different screens.
+    protected static bool IsEvenRow(int index)
+    {
+        return index % AlternateEvery == 0;
     }
 
     protected Rectangle GetRow(int index)
