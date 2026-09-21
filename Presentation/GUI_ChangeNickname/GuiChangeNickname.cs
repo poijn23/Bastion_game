@@ -71,7 +71,7 @@ public sealed class GuiChangeNickname : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _notice.Text = TextCatalog.ChangeNicknameNotice;
         _currentBox.Label = TextCatalog.ChangeNicknameCurrentLabel;

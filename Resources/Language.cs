@@ -25,5 +25,7 @@ public static class Language
     {
         CultureInfo.CurrentUICulture = culture;
         CultureInfo.DefaultThreadCurrentUICulture = culture;
+        CultureInfo.CurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentCulture = culture;
     }
 }

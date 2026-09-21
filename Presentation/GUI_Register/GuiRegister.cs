@@ -17,9 +17,6 @@ public sealed class GuiRegister : FormScreen
     private const int MaxMonthLength = 2;
     private const int MaxYearLength = 4;
 
-    private const int WideCardWidth = 900;
-    private const int Gutter = 32;
-
     // A row is its label, its field and the line validation may print under
     // it, plus a little air. Four of them at the shared FormScreen.RowSpacing
     // would push the two buttons past the bottom of a 720 pixel window, so
@@ -51,7 +48,6 @@ public sealed class GuiRegister : FormScreen
     private readonly TextField _dayField;
     private readonly TextField _monthField;
     private readonly TextField _yearField;
-    private readonly DropDown _interfaceLanguageDropDown;
     private readonly CheckBox _termsCheckBox;
     private readonly Button _createButton;
     private readonly Button _cancelButton;
@@ -69,14 +65,12 @@ public sealed class GuiRegister : FormScreen
         _dayField = CreateDatePart(ContentX, DayWidth, MaxDayLength);
         _monthField = CreateDatePart(ContentX + DayWidth + DateGap, MonthWidth, MaxMonthLength);
         _yearField = CreateDatePart(ContentX + DayWidth + MonthWidth + (DateGap * 2), GetYearWidth(), MaxYearLength);
-        _interfaceLanguageDropDown = LanguagePicker.Create();
         _termsCheckBox = CreateTermsCheckBox();
         _createButton = CreatePrimaryButton(true);
         _cancelButton = CreateSecondaryButton();
 
         _createButton.Clicked += OnCreateAccountClicked;
         _cancelButton.Clicked += OnCancelClicked;
-        _interfaceLanguageDropDown.SelectionChanged += OnInterfaceLanguageChanged;
 
         RegisterField(_firstNameField);
         RegisterField(_lastNameField);
@@ -90,36 +84,18 @@ public sealed class GuiRegister : FormScreen
         Register(_termsCheckBox);
         Register(_createButton);
         Register(_cancelButton);
-        Register(_interfaceLanguageDropDown);
 
         ApplyTexts();
         FocusFirstField();
     }
+
+    protected override int RowPitch => RegisterRowSpacing;
 
     protected override string GetSubtitle()
     {
         return TextCatalog.RegisterSubtitle;
     }
 
-    // Reloads the catalog and redraws. What the player typed is kept, because
-    // only labels and hints are touched here (CU-02 FA-02 steps 1 and 2).
-    private void OnInterfaceLanguageChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        LanguagePicker.Apply(e.SelectedIndex);
-        ApplyTexts();
-
-        // The warnings are catalog strings too, so they follow the language.
-        if (_hasValidated)
-        {
-            Validate();
-        }
-    }
-
-    // The connection does not exist yet, so a valid form behaves as if the
-    // server had answered REGISTER_OK (main flow step 20). The account
-    // idioma_preferido of step 22 travels as the interface language in force
-    // on this screen, which is why the form no longer asks for it: choosing it
-    // twice in the same window only invited the two to disagree.
     private void OnCreateAccountClicked(object? sender, EventArgs e)
     {
         _hasValidated = true;
@@ -129,8 +105,7 @@ public sealed class GuiRegister : FormScreen
             return;
         }
 
-        Navigator.GoTo(ScreenId.Login);
-        Navigator.ShowMessage(DialogTone.Success, TextCatalog.RegisterSuccessBody);
+        Navigator.GoTo(ScreenId.RegistrationSuccess, _emailField.Text.Trim());
     }
 
     // Every field is checked, not only the first bad one, so the player fixes
@@ -222,7 +197,7 @@ public sealed class GuiRegister : FormScreen
         Navigator.GoTo(ScreenId.Login);
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _firstNameField.Label = TextCatalog.RegisterFirstNameLabel;
         _firstNameField.Placeholder = TextCatalog.RegisterFirstNamePlaceholder;
@@ -247,32 +222,22 @@ public sealed class GuiRegister : FormScreen
         _monthField.Placeholder = TextCatalog.RegisterMonthPlaceholder;
         _yearField.Placeholder = TextCatalog.RegisterYearPlaceholder;
 
-        _interfaceLanguageDropDown.Options = LanguagePicker.GetNames();
-
         _termsCheckBox.Text = TextCatalog.RegisterTermsText;
         _termsCheckBox.LinkText = TextCatalog.RegisterTermsLinkText;
 
         _createButton.Title = TextCatalog.RegisterCreateButton;
         _createButton.Subtitle = TextCatalog.RegisterCreateButtonDetail;
         _cancelButton.Title = TextCatalog.RegisterCancelButton;
-    }
 
-    private int GetColumnWidth()
-    {
-        return (ContentWidth - Gutter) / 2;
+        if (_hasValidated)
+        {
+            Validate();
+        }
     }
 
     private int GetYearWidth()
     {
-        return GetColumnWidth() - DayWidth - MonthWidth - (DateGap * 2);
-    }
-
-    private Rectangle GetCell(int row, bool isRightColumn)
-    {
-        int columnWidth = GetColumnWidth();
-        int x = isRightColumn ? ContentX + columnWidth + Gutter : ContentX;
-
-        return new Rectangle(x, FirstRowTop + (row * RegisterRowSpacing), columnWidth, Theme.FieldHeight);
+        return ColumnWidth - DayWidth - MonthWidth - (DateGap * 2);
     }
 
     private TextField CreateField(int row, bool isRightColumn, int maxLength)
@@ -301,7 +266,7 @@ public sealed class GuiRegister : FormScreen
         {
             MaxLength = maxLength,
             IsCentered = true,
-            Bounds = new Rectangle(x, FirstRowTop + (BirthDateRow * RegisterRowSpacing), width, Theme.FieldHeight)
+            Bounds = new Rectangle(x, FirstRowTop + (BirthDateRow * RowPitch), width, Theme.FieldHeight)
         };
     }
 

@@ -31,6 +31,14 @@ public sealed class TextField : Control
 
     public string Text => _text.ToString();
 
+    public void SetText(string value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+
+        _text.Clear();
+        _text.Append(value.Length <= MaxLength ? value : value[..MaxLength]);
+    }
+
     public override void Update(InputState input)
     {
         base.Update(input);

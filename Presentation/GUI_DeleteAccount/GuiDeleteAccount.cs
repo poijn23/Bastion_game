@@ -86,7 +86,7 @@ public sealed class GuiDeleteAccount : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _lossNotice.Text = TextCatalog.DeleteAccountNotice;
         _passwordField.Label = TextCatalog.DeleteAccountPasswordLabel;

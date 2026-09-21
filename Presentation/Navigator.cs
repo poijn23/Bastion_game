@@ -5,13 +5,16 @@ using Bastion.Presentation.GUI_ChangeEmail;
 using Bastion.Presentation.GUI_ChangeNickname;
 using Bastion.Presentation.GUI_ChangePassword;
 using Bastion.Presentation.GUI_DeleteAccount;
+using Bastion.Presentation.GUI_EditProfile;
 using Bastion.Presentation.GUI_ForgotPassword;
 using Bastion.Presentation.GUI_Login;
 using Bastion.Presentation.GUI_MessageConfirm;
 using Bastion.Presentation.GUI_MessageError;
 using Bastion.Presentation.GUI_MessageSuccess;
 using Bastion.Presentation.GUI_MessageWarning;
+using Bastion.Presentation.GUI_Profile;
 using Bastion.Presentation.GUI_Register;
+using Bastion.Presentation.GUI_RegistrationSuccess;
 using Bastion.Presentation.GUI_ResetPassword;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
@@ -26,27 +29,31 @@ public sealed class Navigator : INavigator
     private IScreen? _dialog;
     private ScreenId _currentId;
     private ScreenId _previousId;
+    private string? _currentArgument;
+    private string? _previousArgument;
     private Action? _pendingConfirm;
 
     public void Start(ScreenId screen)
     {
         _currentId = screen;
         _previousId = screen;
-        _current = Build(screen);
+        _current = Build(screen, null);
         _dialog = null;
     }
 
-    public void GoTo(ScreenId screen)
+    public void GoTo(ScreenId screen, string? argument = null)
     {
         _previousId = _currentId;
+        _previousArgument = _currentArgument;
         _currentId = screen;
-        _current = Build(screen);
+        _currentArgument = argument;
+        _current = Build(screen, argument);
         _dialog = null;
     }
 
     public void GoBack()
     {
-        GoTo(_previousId);
+        GoTo(_previousId, _previousArgument);
     }
 
     public void ShowConfirm(ConfirmRequest request)
@@ -113,11 +120,14 @@ public sealed class Navigator : INavigator
         confirmed?.Invoke();
     }
 
-    private IScreen Build(ScreenId screen)
+    private IScreen Build(ScreenId screen, string? argument)
     {
         return screen switch
         {
             ScreenId.Register => new GuiRegister(this),
+            ScreenId.RegistrationSuccess => new GuiRegistrationSuccess(this, argument ?? string.Empty),
+            ScreenId.Profile => new GuiProfile(this),
+            ScreenId.EditProfile => new GuiEditProfile(this),
             ScreenId.ForgotPassword => new GuiForgotPassword(this),
             ScreenId.ResetPassword => new GuiResetPassword(this),
             ScreenId.AccountSettings => new GuiAccountSettings(this),

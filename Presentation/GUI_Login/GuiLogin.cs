@@ -24,7 +24,6 @@ public sealed class GuiLogin : FormScreen
     private readonly Button _signInButton;
     private readonly Button _createAccountButton;
     private readonly Button _guestButton;
-    private readonly DropDown _languageDropDown;
     private bool _hasValidated;
 
     public GuiLogin(INavigator navigator)
@@ -36,13 +35,11 @@ public sealed class GuiLogin : FormScreen
         _signInButton = CreatePrimaryButton(true);
         _createAccountButton = CreateSecondaryButton();
         _guestButton = new Button { Style = ButtonStyle.Link, Bounds = GetGuestBounds() };
-        _languageDropDown = LanguagePicker.Create();
 
         _signInButton.Clicked += OnSignInClicked;
         _createAccountButton.Clicked += OnCreateAccountClicked;
         _forgotButton.Clicked += OnForgotClicked;
         _guestButton.Clicked += OnGuestClicked;
-        _languageDropDown.SelectionChanged += OnLanguageChanged;
 
         RegisterField(_identifierField);
         RegisterField(_passwordField);
@@ -50,7 +47,6 @@ public sealed class GuiLogin : FormScreen
         Register(_signInButton);
         Register(_createAccountButton);
         Register(_guestButton);
-        Register(_languageDropDown);
 
         ApplyTexts();
         FocusFirstField();
@@ -109,21 +105,7 @@ public sealed class GuiLogin : FormScreen
     {
     }
 
-    private void OnLanguageChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        LanguagePicker.Apply(e.SelectedIndex);
-        ApplyTexts();
-
-        // The warnings are catalog strings too, so they follow the language.
-        // A rejected credential is not kept: it was a server answer, not a
-        // property of the text, and the next SIGN IN asks again.
-        if (_hasValidated)
-        {
-            Validate();
-        }
-    }
-
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _identifierField.Label = TextCatalog.LoginIdentifierLabel;
         _identifierField.Placeholder = TextCatalog.LoginIdentifierPlaceholder;
@@ -134,7 +116,11 @@ public sealed class GuiLogin : FormScreen
         _signInButton.Subtitle = TextCatalog.LoginSignInDetail;
         _createAccountButton.Title = TextCatalog.LoginCreateAccountButton;
         _guestButton.Title = TextCatalog.LoginGuestButton;
-        _languageDropDown.Options = LanguagePicker.GetNames();
+
+        if (_hasValidated)
+        {
+            Validate();
+        }
     }
 
     private Rectangle GetForgotBounds()
