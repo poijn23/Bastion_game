@@ -13,5 +13,8 @@ public enum ScreenId
     ChangeEmail,
     ChangeNickname,
     DeleteAccount,
-    ActiveSessions
+    ActiveSessions,
+    RegistrationSuccess,
+    Profile,
+    EditProfile
 }

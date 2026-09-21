@@ -252,7 +252,67 @@ public static class TextCatalog
 
     public static string RegisterTermsRequired => GetText(nameof(RegisterTermsRequired));
 
-    public static string RegisterSuccessBody => GetText(nameof(RegisterSuccessBody));
+    public static string RegistrationSuccessSubtitle => GetText(nameof(RegistrationSuccessSubtitle));
+
+    public static string RegistrationSuccessNotice => GetText(nameof(RegistrationSuccessNotice));
+
+    public static string RegistrationSuccessEmailLabel => GetText(nameof(RegistrationSuccessEmailLabel));
+
+    public static string RegistrationSuccessSignInButton => GetText(nameof(RegistrationSuccessSignInButton));
+
+    public static string RegistrationSuccessDetail => GetText(nameof(RegistrationSuccessDetail));
+
+    public static string ProfileSubtitle => GetText(nameof(ProfileSubtitle));
+
+    public static string ProfileHeaderFormat => GetText(nameof(ProfileHeaderFormat));
+
+    public static string ProfileMatchesTile => GetText(nameof(ProfileMatchesTile));
+
+    public static string ProfileWinsTile => GetText(nameof(ProfileWinsTile));
+
+    public static string ProfileStreakTile => GetText(nameof(ProfileStreakTile));
+
+    public static string ProfileTopEloTile => GetText(nameof(ProfileTopEloTile));
+
+    public static string ProfileModeStatFormat => GetText(nameof(ProfileModeStatFormat));
+
+    public static string ProfileEditButton => GetText(nameof(ProfileEditButton));
+
+    public static string EditProfileSubtitle => GetText(nameof(EditProfileSubtitle));
+
+    public static string EditProfileNicknameLabel => GetText(nameof(EditProfileNicknameLabel));
+
+    public static string EditProfileTitleLabel => GetText(nameof(EditProfileTitleLabel));
+
+    public static string EditProfileLanguageLabel => GetText(nameof(EditProfileLanguageLabel));
+
+    public static string EditProfileFirstLinkLabel => GetText(nameof(EditProfileFirstLinkLabel));
+
+    public static string EditProfileSecondLinkLabel => GetText(nameof(EditProfileSecondLinkLabel));
+
+    public static string EditProfileLinkPlaceholder => GetText(nameof(EditProfileLinkPlaceholder));
+
+    public static string EditProfileSpectatorsText => GetText(nameof(EditProfileSpectatorsText));
+
+    public static string EditProfileLinkInvalid => GetText(nameof(EditProfileLinkInvalid));
+
+    public static string EditProfileLinkShortener => GetText(nameof(EditProfileLinkShortener));
+
+    public static string EditProfileSavedBody => GetText(nameof(EditProfileSavedBody));
+
+    public static string AccountSettingsProfileEntry => GetText(nameof(AccountSettingsProfileEntry));
+
+    public static string ModoClasico => GetText("Modo.CLASICO");
+
+    public static string ModoCuatroJugadores => GetText("Modo.CUATRO_JUGADORES");
+
+    public static string ModoRapida => GetText("Modo.RAPIDA");
+
+    public static string TituloNovato => GetText("ObjetoCosmetico.TITULO_NOVATO");
+
+    public static string TituloEstratega => GetText("ObjetoCosmetico.TITULO_ESTRATEGA");
+
+    public static string TituloConstructor => GetText("ObjetoCosmetico.TITULO_CONSTRUCTOR");
 
     // Returning the key when it is missing keeps a typo visible on screen
     // instead of throwing while drawing a frame.

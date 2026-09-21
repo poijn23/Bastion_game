@@ -431,7 +431,97 @@
   <data name="RegisterTermsRequired" xml:space="preserve">
     <value>tienes que aceptar los términos para continuar</value>
   </data>
-  <data name="RegisterSuccessBody" xml:space="preserve">
-    <value>Tu cuenta está lista. Revisa tu correo para activarla y luego inicia sesión.</value>
+  <data name="RegistrationSuccessSubtitle" xml:space="preserve">
+    <value>CUENTA CREADA</value>
+  </data>
+  <data name="RegistrationSuccessNotice" xml:space="preserve">
+    <value>Te enviamos un correo de verificación. Ábrelo y sigue el enlace para activar tu cuenta; después inicia sesión.</value>
+  </data>
+  <data name="RegistrationSuccessEmailLabel" xml:space="preserve">
+    <value>ENVIADO A</value>
+  </data>
+  <data name="RegistrationSuccessSignInButton" xml:space="preserve">
+    <value>IR A INICIAR SESIÓN</value>
+  </data>
+  <data name="RegistrationSuccessDetail" xml:space="preserve">
+    <value>puedes cerrar el juego mientras lo revisas</value>
+  </data>
+  <data name="ProfileSubtitle" xml:space="preserve">
+    <value>TU PERFIL</value>
+  </data>
+  <data name="ProfileHeaderFormat" xml:space="preserve">
+    <value>{0} · Nivel {1} · desde {2}</value>
+  </data>
+  <data name="ProfileMatchesTile" xml:space="preserve">
+    <value>partidas</value>
+  </data>
+  <data name="ProfileWinsTile" xml:space="preserve">
+    <value>victorias</value>
+  </data>
+  <data name="ProfileStreakTile" xml:space="preserve">
+    <value>mejor racha</value>
+  </data>
+  <data name="ProfileTopEloTile" xml:space="preserve">
+    <value>elo máximo</value>
+  </data>
+  <data name="ProfileModeStatFormat" xml:space="preserve">
+    <value>{0} partidas · {1} ganadas</value>
+  </data>
+  <data name="ProfileEditButton" xml:space="preserve">
+    <value>EDITAR PERFIL</value>
+  </data>
+  <data name="EditProfileSubtitle" xml:space="preserve">
+    <value>EDITAR PERFIL</value>
+  </data>
+  <data name="EditProfileNicknameLabel" xml:space="preserve">
+    <value>NOMBRE DE JUGADOR</value>
+  </data>
+  <data name="EditProfileTitleLabel" xml:space="preserve">
+    <value>TÍTULO EQUIPADO</value>
+  </data>
+  <data name="EditProfileLanguageLabel" xml:space="preserve">
+    <value>IDIOMA DE LA CUENTA</value>
+  </data>
+  <data name="EditProfileFirstLinkLabel" xml:space="preserve">
+    <value>ENLACE A TUS REDES</value>
+  </data>
+  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
+    <value>SEGUNDO ENLACE</value>
+  </data>
+  <data name="EditProfileLinkPlaceholder" xml:space="preserve">
+    <value>https://</value>
+  </data>
+  <data name="EditProfileSpectatorsText" xml:space="preserve">
+    <value>permitir que otros vean mis partidas</value>
+  </data>
+  <data name="EditProfileLinkInvalid" xml:space="preserve">
+    <value>debe empezar por https://</value>
+  </data>
+  <data name="EditProfileLinkShortener" xml:space="preserve">
+    <value>no admitimos acortadores: pega la dirección completa</value>
+  </data>
+  <data name="EditProfileSavedBody" xml:space="preserve">
+    <value>Perfil guardado.</value>
+  </data>
+  <data name="AccountSettingsProfileEntry" xml:space="preserve">
+    <value>PERFIL</value>
+  </data>
+  <data name="Modo.CLASICO" xml:space="preserve">
+    <value>Clásico 9×9</value>
+  </data>
+  <data name="Modo.CUATRO_JUGADORES" xml:space="preserve">
+    <value>Cuatro jugadores</value>
+  </data>
+  <data name="Modo.RAPIDA" xml:space="preserve">
+    <value>Rápida 7×7</value>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_NOVATO" xml:space="preserve">
+    <value>Novato</value>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_ESTRATEGA" xml:space="preserve">
+    <value>Estratega</value>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_CONSTRUCTOR" xml:space="preserve">
+    <value>Constructor</value>
   </data>
 </root>

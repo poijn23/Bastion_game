@@ -65,7 +65,7 @@ public sealed class GuiActiveSessions : FormScreen
     }
 
     // The rows are placeholders until the session list arrives from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         foreach (SessionRow row in _rows)
         {

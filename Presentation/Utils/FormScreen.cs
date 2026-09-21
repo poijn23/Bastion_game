@@ -9,14 +9,17 @@ namespace Bastion.Presentation.Utils;
 public abstract class FormScreen : IScreen
 {
     protected const int NarrowCardWidth = 560;
+    protected const int WideCardWidth = 900;
     protected const int RowSpacing = 98;
     protected const int LabelSpace = 22;
+    protected const int Gutter = 32;
 
     private const int ButtonGap = 22;
     private const int ButtonSpacing = 12;
 
     private readonly List<Control> _controls = [];
     private readonly List<TextField> _focusableFields = [];
+    private readonly DropDown _languagePicker;
 
     protected FormScreen(INavigator navigator, int cardWidth, int cardHeight)
     {
@@ -32,6 +35,9 @@ public abstract class FormScreen : IScreen
 
         int secondaryTop = primaryTop + Theme.PrimaryButtonHeight + ButtonSpacing;
         SecondaryButtonBounds = new Rectangle(x, secondaryTop, cardWidth, Theme.SecondaryButtonHeight);
+
+        _languagePicker = LanguagePicker.Create();
+        _languagePicker.SelectionChanged += OnLanguageSelected;
     }
 
     protected INavigator Navigator { get; }
@@ -48,9 +54,21 @@ public abstract class FormScreen : IScreen
 
     protected int FirstRowTop => Card.Y + Theme.CardPadding + LabelSpace;
 
+    protected int ColumnWidth => (ContentWidth - Gutter) / 2;
+
+    protected virtual int RowPitch => RowSpacing;
+
     public void Update(InputState input)
     {
         ArgumentNullException.ThrowIfNull(input);
+
+        bool pickerWasOpen = _languagePicker.IsOpen;
+        _languagePicker.Update(input);
+
+        if (pickerWasOpen && input.HasClicked)
+        {
+            return;
+        }
 
         if (input.HasClicked)
         {
@@ -79,9 +97,13 @@ public abstract class FormScreen : IScreen
         {
             control.Draw(canvas);
         }
+
+        _languagePicker.Draw(canvas);
     }
 
     protected abstract string GetSubtitle();
+
+    protected abstract void ApplyTexts();
 
     // Draw order is registration order, so anything that can overlap the rest
     // is registered last.
@@ -129,7 +151,21 @@ public abstract class FormScreen : IScreen
 
     protected Rectangle GetRow(int index)
     {
-        return new Rectangle(ContentX, FirstRowTop + (index * RowSpacing), ContentWidth, Theme.FieldHeight);
+        return new Rectangle(ContentX, FirstRowTop + (index * RowPitch), ContentWidth, Theme.FieldHeight);
+    }
+
+    protected Rectangle GetCell(int row, bool isRightColumn)
+    {
+        int x = isRightColumn ? ContentX + ColumnWidth + Gutter : ContentX;
+
+        return new Rectangle(x, FirstRowTop + (row * RowPitch), ColumnWidth, Theme.FieldHeight);
+    }
+
+    private void OnLanguageSelected(object? sender, SelectionChangedEventArgs e)
+    {
+        LanguagePicker.Apply(e.SelectedIndex);
+        _languagePicker.Options = LanguagePicker.GetNames();
+        ApplyTexts();
     }
 
     private void ResolveFocus(InputState input)

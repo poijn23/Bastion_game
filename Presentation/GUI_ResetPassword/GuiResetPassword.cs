@@ -52,7 +52,7 @@ public sealed class GuiResetPassword : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _codeField.Label = TextCatalog.ResetPasswordCodeLabel;
         _codeField.Placeholder = TextCatalog.ResetPasswordCodePlaceholder;
