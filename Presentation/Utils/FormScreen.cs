@@ -131,7 +131,7 @@ public abstract class FormScreen : IScreen
         }
     }
 
-    public void Draw(Canvas canvas)
+    public virtual void Draw(Canvas canvas)
     {
         ArgumentNullException.ThrowIfNull(canvas);
 

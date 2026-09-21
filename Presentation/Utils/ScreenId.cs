@@ -16,5 +16,6 @@ public enum ScreenId
     ActiveSessions,
     RegistrationSuccess,
     Profile,
-    EditProfile
+    EditProfile,
+    SettingsLanguage
 }

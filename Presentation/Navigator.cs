@@ -1,5 +1,4 @@
 using System;
-using Bastion.Presentation.GUI_AccountSettings;
 using Bastion.Presentation.GUI_ActiveSessions;
 using Bastion.Presentation.GUI_ChangeEmail;
 using Bastion.Presentation.GUI_ChangeNickname;
@@ -16,6 +15,7 @@ using Bastion.Presentation.GUI_Profile;
 using Bastion.Presentation.GUI_Register;
 using Bastion.Presentation.GUI_RegistrationSuccess;
 using Bastion.Presentation.GUI_ResetPassword;
+using Bastion.Presentation.GUI_Settings;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -130,7 +130,8 @@ public sealed class Navigator : INavigator
             ScreenId.EditProfile => new GuiEditProfile(this),
             ScreenId.ForgotPassword => new GuiForgotPassword(this),
             ScreenId.ResetPassword => new GuiResetPassword(this),
-            ScreenId.AccountSettings => new GuiAccountSettings(this),
+            ScreenId.AccountSettings => new GuiSettings(this, false),
+            ScreenId.SettingsLanguage => new GuiSettings(this, true),
             ScreenId.ChangePassword => new GuiChangePassword(this),
             ScreenId.ChangeEmail => new GuiChangeEmail(this),
             ScreenId.ChangeNickname => new GuiChangeNickname(this),

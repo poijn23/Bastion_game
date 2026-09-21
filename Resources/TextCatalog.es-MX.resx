@@ -371,24 +371,6 @@
   <data name="ActiveSessionsLastUseSample" xml:space="preserve">
     <value>usado hace un momento</value>
   </data>
-  <data name="AccountSettingsSubtitle" xml:space="preserve">
-    <value>TU CUENTA</value>
-  </data>
-  <data name="AccountSettingsNicknameEntry" xml:space="preserve">
-    <value>CAMBIAR MI NOMBRE DE JUGADOR</value>
-  </data>
-  <data name="AccountSettingsPasswordEntry" xml:space="preserve">
-    <value>CAMBIAR MI CONTRASEÑA</value>
-  </data>
-  <data name="AccountSettingsEmailEntry" xml:space="preserve">
-    <value>CAMBIAR MI CORREO</value>
-  </data>
-  <data name="AccountSettingsSessionsEntry" xml:space="preserve">
-    <value>DÓNDE TENGO SESIÓN</value>
-  </data>
-  <data name="AccountSettingsDeleteEntry" xml:space="preserve">
-    <value>BORRAR MI CUENTA</value>
-  </data>
   <data name="RegisterDiscardBody" xml:space="preserve">
     <value>Si sales ahora pierdes lo que escribiste en el formulario.</value>
   </data>
@@ -490,9 +472,6 @@
   </data>
   <data name="EditProfileSavedBody" xml:space="preserve">
     <value>Perfil guardado.</value>
-  </data>
-  <data name="AccountSettingsProfileEntry" xml:space="preserve">
-    <value>PERFIL</value>
   </data>
   <data name="Modo.CLASICO" xml:space="preserve">
     <value>Clásico 9×9</value>
@@ -610,5 +589,71 @@
   </data>
   <data name="TipoEnlace.OTRO" xml:space="preserve">
     <value>otro</value>
+  </data>
+  <data name="SettingsHeading" xml:space="preserve">
+    <value>ajustes</value>
+  </data>
+  <data name="SettingsBoardEntry" xml:space="preserve">
+    <value>tablero 3D</value>
+  </data>
+  <data name="SettingsAudioEntry" xml:space="preserve">
+    <value>audio</value>
+  </data>
+  <data name="SettingsAccountEntry" xml:space="preserve">
+    <value>cuenta</value>
+  </data>
+  <data name="SettingsLanguageEntry" xml:space="preserve">
+    <value>idioma</value>
+  </data>
+  <data name="SettingsAccessibilityEntry" xml:space="preserve">
+    <value>accesibilidad</value>
+  </data>
+  <data name="SettingsPasswordRow" xml:space="preserve">
+    <value>contraseña</value>
+  </data>
+  <data name="SettingsPasswordChangedFormat" xml:space="preserve">
+    <value>cambiada hace {0} meses</value>
+  </data>
+  <data name="SettingsEmailRow" xml:space="preserve">
+    <value>correo</value>
+  </data>
+  <data name="SettingsEmailVerified" xml:space="preserve">
+    <value>verificado</value>
+  </data>
+  <data name="SettingsSessionsRow" xml:space="preserve">
+    <value>sesiones activas</value>
+  </data>
+  <data name="SettingsSessionsCountFormat" xml:space="preserve">
+    <value>{0} dispositivos</value>
+  </data>
+  <data name="SettingsFriendCodeRow" xml:space="preserve">
+    <value>código de amigo</value>
+  </data>
+  <data name="CommonCopyButton" xml:space="preserve">
+    <value>copiar</value>
+  </data>
+  <data name="CommonViewButton" xml:space="preserve">
+    <value>ver</value>
+  </data>
+  <data name="SettingsSignOutButton" xml:space="preserve">
+    <value>cerrar sesión</value>
+  </data>
+  <data name="SettingsSignOutBody" xml:space="preserve">
+    <value>¿Quieres cerrar la sesión en este dispositivo?</value>
+  </data>
+  <data name="SettingsDeleteTitle" xml:space="preserve">
+    <value>borrar cuenta</value>
+  </data>
+  <data name="SettingsDeleteHint" xml:space="preserve">
+    <value>se van elo, skins y monedas. no hay vuelta atrás.</value>
+  </data>
+  <data name="SettingsInterfaceLanguageLabel" xml:space="preserve">
+    <value>idioma de la interfaz</value>
+  </data>
+  <data name="SettingsCurrentTag" xml:space="preserve">
+    <value>actual</value>
+  </data>
+  <data name="SettingsChatNote" xml:space="preserve">
+    <value>el chat no se traduce</value>
   </data>
 </root>

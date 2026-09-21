@@ -473,30 +473,6 @@
     <value>last used a moment ago</value>
     <comment>Placeholder until the list comes from the server.</comment>
   </data>
-  <data name="AccountSettingsSubtitle" xml:space="preserve">
-    <value>YOUR ACCOUNT</value>
-    <comment>Hub the account use cases return to.</comment>
-  </data>
-  <data name="AccountSettingsNicknameEntry" xml:space="preserve">
-    <value>CHANGE MY PLAYER NAME</value>
-    <comment>Leads to CU-13.</comment>
-  </data>
-  <data name="AccountSettingsPasswordEntry" xml:space="preserve">
-    <value>CHANGE MY PASSWORD</value>
-    <comment>Leads to CU-09.</comment>
-  </data>
-  <data name="AccountSettingsEmailEntry" xml:space="preserve">
-    <value>CHANGE MY EMAIL</value>
-    <comment>Leads to CU-09 FA-01.</comment>
-  </data>
-  <data name="AccountSettingsSessionsEntry" xml:space="preserve">
-    <value>WHERE I AM SIGNED IN</value>
-    <comment>Leads to CU-10.</comment>
-  </data>
-  <data name="AccountSettingsDeleteEntry" xml:space="preserve">
-    <value>DELETE MY ACCOUNT</value>
-    <comment>Leads to CU-11.</comment>
-  </data>
   <data name="RegisterDiscardBody" xml:space="preserve">
     <value>If you leave now you lose what you typed in the form.</value>
     <comment>CU-02 FA-01 step 2.</comment>
@@ -632,10 +608,6 @@
   <data name="EditProfileSavedBody" xml:space="preserve">
     <value>Profile saved.</value>
     <comment>Success dialog after CU-12 main flow step 16.</comment>
-  </data>
-  <data name="AccountSettingsProfileEntry" xml:space="preserve">
-    <value>PROFILE</value>
-    <comment>Hub entry that opens GUI_Profile.</comment>
   </data>
   <data name="Modo.CLASICO" xml:space="preserve">
     <value>Classic 9×9</value>
@@ -792,5 +764,93 @@
   <data name="TipoEnlace.OTRO" xml:space="preserve">
     <value>other</value>
     <comment>Link type for any other site.</comment>
+  </data>
+  <data name="SettingsHeading" xml:space="preserve">
+    <value>settings</value>
+    <comment>Heading of the sidebar (prototypes 9f and 12c).</comment>
+  </data>
+  <data name="SettingsBoardEntry" xml:space="preserve">
+    <value>3D board</value>
+    <comment>Sidebar entry. Disabled: no use case yet.</comment>
+  </data>
+  <data name="SettingsAudioEntry" xml:space="preserve">
+    <value>audio</value>
+    <comment>Sidebar entry. Disabled: no use case yet.</comment>
+  </data>
+  <data name="SettingsAccountEntry" xml:space="preserve">
+    <value>account</value>
+    <comment>Sidebar entry that shows the account panel.</comment>
+  </data>
+  <data name="SettingsLanguageEntry" xml:space="preserve">
+    <value>language</value>
+    <comment>Sidebar entry that shows the interface language panel.</comment>
+  </data>
+  <data name="SettingsAccessibilityEntry" xml:space="preserve">
+    <value>accessibility</value>
+    <comment>Sidebar entry. Disabled: no use case yet.</comment>
+  </data>
+  <data name="SettingsPasswordRow" xml:space="preserve">
+    <value>password</value>
+    <comment>Row title.</comment>
+  </data>
+  <data name="SettingsPasswordChangedFormat" xml:space="preserve">
+    <value>changed {0} months ago</value>
+    <comment>Row subtitle. {0} months since the last change.</comment>
+  </data>
+  <data name="SettingsEmailRow" xml:space="preserve">
+    <value>email</value>
+    <comment>Row title.</comment>
+  </data>
+  <data name="SettingsEmailVerified" xml:space="preserve">
+    <value>verified</value>
+    <comment>Row subtitle when estado_cuenta is ACTIVA.</comment>
+  </data>
+  <data name="SettingsSessionsRow" xml:space="preserve">
+    <value>active sessions</value>
+    <comment>Row title. Opens GUI_ActiveSessions (CU-10).</comment>
+  </data>
+  <data name="SettingsSessionsCountFormat" xml:space="preserve">
+    <value>{0} devices</value>
+    <comment>Row subtitle.</comment>
+  </data>
+  <data name="SettingsFriendCodeRow" xml:space="preserve">
+    <value>friend code</value>
+    <comment>Row title (CU-30).</comment>
+  </data>
+  <data name="CommonCopyButton" xml:space="preserve">
+    <value>copy</value>
+    <comment>Disabled until the clipboard is available.</comment>
+  </data>
+  <data name="CommonViewButton" xml:space="preserve">
+    <value>view</value>
+    <comment>Small outline button that opens a list.</comment>
+  </data>
+  <data name="SettingsSignOutButton" xml:space="preserve">
+    <value>sign out</value>
+    <comment>Full width outline button and primary option of its confirm (CU-05).</comment>
+  </data>
+  <data name="SettingsSignOutBody" xml:space="preserve">
+    <value>Do you want to sign out on this device?</value>
+    <comment>CU-05 main flow step 2.</comment>
+  </data>
+  <data name="SettingsDeleteTitle" xml:space="preserve">
+    <value>delete account</value>
+    <comment>Title of the dashed box that opens GUI_DeleteAccount.</comment>
+  </data>
+  <data name="SettingsDeleteHint" xml:space="preserve">
+    <value>elo, skins and coins are gone. there is no way back.</value>
+    <comment>Hint of the dashed box (prototype 9f).</comment>
+  </data>
+  <data name="SettingsInterfaceLanguageLabel" xml:space="preserve">
+    <value>interface language</value>
+    <comment>Label over the language list (prototype 12c).</comment>
+  </data>
+  <data name="SettingsCurrentTag" xml:space="preserve">
+    <value>current</value>
+    <comment>Tag beside the language in use.</comment>
+  </data>
+  <data name="SettingsChatNote" xml:space="preserve">
+    <value>chat is not translated</value>
+    <comment>Note at the bottom of the language panel (D-21, CU-28 RN-12).</comment>
   </data>
 </root>

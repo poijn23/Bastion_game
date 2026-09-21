@@ -7,6 +7,18 @@ public sealed class Avatar : Control
 {
     public string Text { get; set; } = string.Empty;
 
+    public event EventHandler? Clicked;
+
+    public override void Update(InputState input)
+    {
+        base.Update(input);
+
+        if (IsEnabled && IsHovered && input.HasClicked)
+        {
+            Clicked?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
     public override void Draw(Canvas canvas)
     {
         ArgumentNullException.ThrowIfNull(canvas);

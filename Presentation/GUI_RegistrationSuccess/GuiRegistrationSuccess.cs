@@ -11,7 +11,6 @@ public sealed class GuiRegistrationSuccess : FormScreen
     private const int NoticeGap = 26;
     private const int CardHeight =
         Theme.CardPadding + NoticeHeight + NoticeGap + LabelSpace + Theme.FieldHeight + Theme.CardPadding;
-    private const int MaxMaskLength = 6;
 
     private readonly NoticeBox _notice;
     private readonly ValueBox _emailBox;
@@ -55,7 +54,7 @@ public sealed class GuiRegistrationSuccess : FormScreen
     {
         _notice.Text = TextCatalog.RegistrationSuccessNotice;
         _emailBox.Label = TextCatalog.RegistrationSuccessEmailLabel;
-        _emailBox.Value = Mask(_email);
+        _emailBox.Value = EmailMask.Apply(_email);
         _signInButton.Title = TextCatalog.RegistrationSuccessSignInButton;
         _signInButton.Subtitle = TextCatalog.RegistrationSuccessDetail;
     }
@@ -63,20 +62,5 @@ public sealed class GuiRegistrationSuccess : FormScreen
     private void OnSignInClicked(object? sender, EventArgs e)
     {
         Navigator.GoTo(ScreenId.Login);
-    }
-
-    private static string Mask(string email)
-    {
-        int at = email.IndexOf('@');
-
-        if (at < 2)
-        {
-            return email;
-        }
-
-        string local = email[..at];
-        int hidden = Math.Min(local.Length - 2, MaxMaskLength);
-
-        return local[0] + new string('*', hidden) + local[^1] + email[at..];
     }
 }

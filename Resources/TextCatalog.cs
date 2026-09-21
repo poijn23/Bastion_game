@@ -212,18 +212,6 @@ public static class TextCatalog
 
     public static string ActiveSessionsLastUseSample => GetText(nameof(ActiveSessionsLastUseSample));
 
-    public static string AccountSettingsSubtitle => GetText(nameof(AccountSettingsSubtitle));
-
-    public static string AccountSettingsNicknameEntry => GetText(nameof(AccountSettingsNicknameEntry));
-
-    public static string AccountSettingsPasswordEntry => GetText(nameof(AccountSettingsPasswordEntry));
-
-    public static string AccountSettingsEmailEntry => GetText(nameof(AccountSettingsEmailEntry));
-
-    public static string AccountSettingsSessionsEntry => GetText(nameof(AccountSettingsSessionsEntry));
-
-    public static string AccountSettingsDeleteEntry => GetText(nameof(AccountSettingsDeleteEntry));
-
     public static string RegisterDiscardBody => GetText(nameof(RegisterDiscardBody));
 
     public static string RegisterDiscardButton => GetText(nameof(RegisterDiscardButton));
@@ -291,8 +279,6 @@ public static class TextCatalog
     public static string EditProfileLinkShortener => GetText(nameof(EditProfileLinkShortener));
 
     public static string EditProfileSavedBody => GetText(nameof(EditProfileSavedBody));
-
-    public static string AccountSettingsProfileEntry => GetText(nameof(AccountSettingsProfileEntry));
 
     public static string ModoClasico => GetText("Modo.CLASICO");
 
@@ -373,6 +359,50 @@ public static class TextCatalog
     public static string TipoEnlaceDiscord => GetText("TipoEnlace.DISCORD");
 
     public static string TipoEnlaceOtro => GetText("TipoEnlace.OTRO");
+
+    public static string SettingsHeading => GetText(nameof(SettingsHeading));
+
+    public static string SettingsBoardEntry => GetText(nameof(SettingsBoardEntry));
+
+    public static string SettingsAudioEntry => GetText(nameof(SettingsAudioEntry));
+
+    public static string SettingsAccountEntry => GetText(nameof(SettingsAccountEntry));
+
+    public static string SettingsLanguageEntry => GetText(nameof(SettingsLanguageEntry));
+
+    public static string SettingsAccessibilityEntry => GetText(nameof(SettingsAccessibilityEntry));
+
+    public static string SettingsPasswordRow => GetText(nameof(SettingsPasswordRow));
+
+    public static string SettingsPasswordChangedFormat => GetText(nameof(SettingsPasswordChangedFormat));
+
+    public static string SettingsEmailRow => GetText(nameof(SettingsEmailRow));
+
+    public static string SettingsEmailVerified => GetText(nameof(SettingsEmailVerified));
+
+    public static string SettingsSessionsRow => GetText(nameof(SettingsSessionsRow));
+
+    public static string SettingsSessionsCountFormat => GetText(nameof(SettingsSessionsCountFormat));
+
+    public static string SettingsFriendCodeRow => GetText(nameof(SettingsFriendCodeRow));
+
+    public static string CommonCopyButton => GetText(nameof(CommonCopyButton));
+
+    public static string CommonViewButton => GetText(nameof(CommonViewButton));
+
+    public static string SettingsSignOutButton => GetText(nameof(SettingsSignOutButton));
+
+    public static string SettingsSignOutBody => GetText(nameof(SettingsSignOutBody));
+
+    public static string SettingsDeleteTitle => GetText(nameof(SettingsDeleteTitle));
+
+    public static string SettingsDeleteHint => GetText(nameof(SettingsDeleteHint));
+
+    public static string SettingsInterfaceLanguageLabel => GetText(nameof(SettingsInterfaceLanguageLabel));
+
+    public static string SettingsCurrentTag => GetText(nameof(SettingsCurrentTag));
+
+    public static string SettingsChatNote => GetText(nameof(SettingsChatNote));
 
     private static string GetText(string key)
     {
