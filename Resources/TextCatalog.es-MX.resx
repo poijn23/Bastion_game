@@ -74,15 +74,6 @@
   <data name="GameTitle" xml:space="preserve">
     <value>BASTIÓN</value>
   </data>
-  <data name="InterfaceLanguageLabel" xml:space="preserve">
-    <value>IDIOMA</value>
-  </data>
-  <data name="SpanishLanguageCode" xml:space="preserve">
-    <value>ES</value>
-  </data>
-  <data name="EnglishLanguageCode" xml:space="preserve">
-    <value>EN</value>
-  </data>
   <data name="SpanishMexicoLanguageName" xml:space="preserve">
     <value>ESPAÑOL (MX)</value>
   </data>
@@ -188,9 +179,6 @@
   <data name="CommonCancelButton" xml:space="preserve">
     <value>CANCELAR</value>
   </data>
-  <data name="CommonBackButton" xml:space="preserve">
-    <value>VOLVER</value>
-  </data>
   <data name="LoginSubtitle" xml:space="preserve">
     <value>ACCEDE A TU CUENTA</value>
   </data>
@@ -231,22 +219,22 @@
     <value>el nombre de jugador o la contraseña no son correctos</value>
   </data>
   <data name="ForgotPasswordSubtitle" xml:space="preserve">
-    <value>RECUPERA TU CONTRASEÑA</value>
+    <value>Recuperar contraseña</value>
   </data>
   <data name="ForgotPasswordNotice" xml:space="preserve">
     <value>Si esa dirección tiene una cuenta te enviaremos un código. Caduca en una hora.</value>
   </data>
   <data name="ForgotPasswordEmailLabel" xml:space="preserve">
-    <value>CORREO ELECTRÓNICO</value>
+    <value>correo</value>
   </data>
   <data name="ForgotPasswordEmailPlaceholder" xml:space="preserve">
-    <value>el que usaste al registrarte</value>
+    <value>tu@correo.com</value>
   </data>
   <data name="ForgotPasswordSendButton" xml:space="preserve">
     <value>ENVIAR EL CÓDIGO</value>
   </data>
   <data name="ResetPasswordSubtitle" xml:space="preserve">
-    <value>ELIGE UNA CONTRASEÑA NUEVA</value>
+    <value>Nueva contraseña</value>
   </data>
   <data name="ResetPasswordCodeLabel" xml:space="preserve">
     <value>CÓDIGO DEL CORREO</value>
@@ -688,5 +676,38 @@
   </data>
   <data name="ActiveSessionsChangePasswordBody" xml:space="preserve">
     <value>Si alguien las abrió sin permiso, las volverá a abrir con la misma contraseña. ¿La cambias ahora?</value>
+  </data>
+  <data name="ForgotPasswordBackLink" xml:space="preserve">
+    <value>&lt; volver a entrar</value>
+  </data>
+  <data name="ForgotPasswordGuestTitle" xml:space="preserve">
+    <value>¿entraste como invitado?</value>
+  </data>
+  <data name="ForgotPasswordGuestHint" xml:space="preserve">
+    <value>las cuentas de invitado no tienen correo. no se pueden recuperar.</value>
+  </data>
+  <data name="ResetPasswordSentTitle" xml:space="preserve">
+    <value>correo enviado</value>
+  </data>
+  <data name="ResetPasswordSentFormat" xml:space="preserve">
+    <value>revisa {0}. mira también el spam.</value>
+  </data>
+  <data name="ResetPasswordResendInFormat" xml:space="preserve">
+    <value>reenviar en {0}</value>
+  </data>
+  <data name="ResetPasswordResendButton" xml:space="preserve">
+    <value>reenviar</value>
+  </data>
+  <data name="ResetPasswordSessionsNote" xml:space="preserve">
+    <value>al guardar se cierran las demás sesiones</value>
+  </data>
+  <data name="ResetPasswordSaveButton" xml:space="preserve">
+    <value>cambiar contraseña</value>
+  </data>
+  <data name="ResetPasswordDoneBody" xml:space="preserve">
+    <value>Contraseña cambiada. Entra con la nueva.</value>
+  </data>
+  <data name="ResetPasswordCodeInvalid" xml:space="preserve">
+    <value>escribe el código de 6 caracteres del correo</value>
   </data>
 </root>

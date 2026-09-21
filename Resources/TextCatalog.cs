@@ -14,12 +14,6 @@ public static class TextCatalog
 
     public static string GameTitle => GetText(nameof(GameTitle));
 
-    public static string InterfaceLanguageLabel => GetText(nameof(InterfaceLanguageLabel));
-
-    public static string SpanishLanguageCode => GetText(nameof(SpanishLanguageCode));
-
-    public static string EnglishLanguageCode => GetText(nameof(EnglishLanguageCode));
-
     public static string SpanishMexicoLanguageName => GetText(nameof(SpanishMexicoLanguageName));
 
     public static string EnglishLanguageName => GetText(nameof(EnglishLanguageName));
@@ -89,8 +83,6 @@ public static class TextCatalog
     public static string CommonSaveButton => GetText(nameof(CommonSaveButton));
 
     public static string CommonCancelButton => GetText(nameof(CommonCancelButton));
-
-    public static string CommonBackButton => GetText(nameof(CommonBackButton));
 
     public static string LoginSubtitle => GetText(nameof(LoginSubtitle));
 
@@ -425,6 +417,28 @@ public static class TextCatalog
     public static string ActiveSessionsCloseAllBody => GetText(nameof(ActiveSessionsCloseAllBody));
 
     public static string ActiveSessionsChangePasswordBody => GetText(nameof(ActiveSessionsChangePasswordBody));
+
+    public static string ForgotPasswordBackLink => GetText(nameof(ForgotPasswordBackLink));
+
+    public static string ForgotPasswordGuestTitle => GetText(nameof(ForgotPasswordGuestTitle));
+
+    public static string ForgotPasswordGuestHint => GetText(nameof(ForgotPasswordGuestHint));
+
+    public static string ResetPasswordSentTitle => GetText(nameof(ResetPasswordSentTitle));
+
+    public static string ResetPasswordSentFormat => GetText(nameof(ResetPasswordSentFormat));
+
+    public static string ResetPasswordResendInFormat => GetText(nameof(ResetPasswordResendInFormat));
+
+    public static string ResetPasswordResendButton => GetText(nameof(ResetPasswordResendButton));
+
+    public static string ResetPasswordSessionsNote => GetText(nameof(ResetPasswordSessionsNote));
+
+    public static string ResetPasswordSaveButton => GetText(nameof(ResetPasswordSaveButton));
+
+    public static string ResetPasswordDoneBody => GetText(nameof(ResetPasswordDoneBody));
+
+    public static string ResetPasswordCodeInvalid => GetText(nameof(ResetPasswordCodeInvalid));
 
     private static string GetText(string key)
     {

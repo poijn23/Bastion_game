@@ -77,18 +77,6 @@
     <value>BASTIÓN</value>
     <comment>Header wordmark. Product name: not translated.</comment>
   </data>
-  <data name="InterfaceLanguageLabel" xml:space="preserve">
-    <value>LANGUAGE</value>
-    <comment>Caption for the interface language picker (CU-02 FA-02).</comment>
-  </data>
-  <data name="SpanishLanguageCode" xml:space="preserve">
-    <value>ES</value>
-    <comment>Short code. Not translated.</comment>
-  </data>
-  <data name="EnglishLanguageCode" xml:space="preserve">
-    <value>EN</value>
-    <comment>Short code. Not translated.</comment>
-  </data>
   <data name="SpanishMexicoLanguageName" xml:space="preserve">
     <value>ESPAÑOL (MX)</value>
     <comment>Language endonym (D-21: es-MX). Not translated.</comment>
@@ -229,10 +217,6 @@
     <value>CANCEL</value>
     <comment>Leaves a form without applying anything.</comment>
   </data>
-  <data name="CommonBackButton" xml:space="preserve">
-    <value>BACK</value>
-    <comment>Returns to the previous screen from a read only one.</comment>
-  </data>
   <data name="LoginSubtitle" xml:space="preserve">
     <value>SIGN IN TO YOUR ACCOUNT</value>
     <comment>CU-01 main flow step 1.</comment>
@@ -286,7 +270,7 @@
     <comment>CU-01 alternate flow: one message for both, so the field that failed is not revealed.</comment>
   </data>
   <data name="ForgotPasswordSubtitle" xml:space="preserve">
-    <value>RECOVER YOUR PASSWORD</value>
+    <value>Recover your password</value>
     <comment>CU-03 main flow step 1.</comment>
   </data>
   <data name="ForgotPasswordNotice" xml:space="preserve">
@@ -294,11 +278,11 @@
     <comment>Worded so it does not reveal whether the address exists (CU-03 RN-01).</comment>
   </data>
   <data name="ForgotPasswordEmailLabel" xml:space="preserve">
-    <value>EMAIL ADDRESS</value>
+    <value>email</value>
     <comment>Label of the email field.</comment>
   </data>
   <data name="ForgotPasswordEmailPlaceholder" xml:space="preserve">
-    <value>the one you signed up with</value>
+    <value>you@email.com</value>
     <comment>Hint.</comment>
   </data>
   <data name="ForgotPasswordSendButton" xml:space="preserve">
@@ -306,7 +290,7 @@
     <comment>Primary action.</comment>
   </data>
   <data name="ResetPasswordSubtitle" xml:space="preserve">
-    <value>SET A NEW PASSWORD</value>
+    <value>New password</value>
     <comment>CU-03 main flow step 8.</comment>
   </data>
   <data name="ResetPasswordCodeLabel" xml:space="preserve">
@@ -896,5 +880,49 @@
   <data name="ActiveSessionsChangePasswordBody" xml:space="preserve">
     <value>If someone opened them without permission, they will open them again with the same password. Change it now?</value>
     <comment>CU-10 RN-05: after closing all the others, propose a password change.</comment>
+  </data>
+  <data name="ForgotPasswordBackLink" xml:space="preserve">
+    <value>&lt; back to sign in</value>
+    <comment>Back link of prototype 9a.</comment>
+  </data>
+  <data name="ForgotPasswordGuestTitle" xml:space="preserve">
+    <value>did you enter as a guest?</value>
+    <comment>Dashed box title (prototype 9a).</comment>
+  </data>
+  <data name="ForgotPasswordGuestHint" xml:space="preserve">
+    <value>guest accounts have no email. they cannot be recovered.</value>
+    <comment>Dashed box hint. Guest accounts have no address (CU-06).</comment>
+  </data>
+  <data name="ResetPasswordSentTitle" xml:space="preserve">
+    <value>email sent</value>
+    <comment>Centered heading (prototype 9b).</comment>
+  </data>
+  <data name="ResetPasswordSentFormat" xml:space="preserve">
+    <value>check {0}. look in spam too.</value>
+    <comment>{0} is the masked address.</comment>
+  </data>
+  <data name="ResetPasswordResendInFormat" xml:space="preserve">
+    <value>resend in {0}</value>
+    <comment>Disabled button while CU-03 RN-06 forbids a resend. {0} is m:ss.</comment>
+  </data>
+  <data name="ResetPasswordResendButton" xml:space="preserve">
+    <value>resend</value>
+    <comment>Enabled after five minutes (CU-03 RN-06).</comment>
+  </data>
+  <data name="ResetPasswordSessionsNote" xml:space="preserve">
+    <value>when you save, your other sessions are closed</value>
+    <comment>CU-03 RN-07, under the strength meter.</comment>
+  </data>
+  <data name="ResetPasswordSaveButton" xml:space="preserve">
+    <value>change password</value>
+    <comment>Primary option, as CU-03 step 12 names it.</comment>
+  </data>
+  <data name="ResetPasswordDoneBody" xml:space="preserve">
+    <value>Password changed. Sign in with the new one.</value>
+    <comment>Success dialog over GUI_Login.</comment>
+  </data>
+  <data name="ResetPasswordCodeInvalid" xml:space="preserve">
+    <value>type the 6 character code from the email</value>
+    <comment>Under the code field.</comment>
   </data>
 </root>

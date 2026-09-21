@@ -11,6 +11,8 @@ public sealed class TextLine : Control
 
     public bool IsRightAligned { get; init; }
 
+    public bool IsCentered { get; init; }
+
     public override void Draw(Canvas canvas)
     {
         ArgumentNullException.ThrowIfNull(canvas);
@@ -29,7 +31,8 @@ public sealed class TextLine : Control
             _ => TextStyleFactory.CreateBody(canvas.Fonts, Theme.TextDark)
         };
 
-        float x = IsRightAligned ? Bounds.Right - canvas.Text.Measure(Text, style) : Bounds.X;
+        float width = canvas.Text.Measure(Text, style);
+        float x = IsRightAligned ? Bounds.Right - width : IsCentered ? Bounds.X + ((Bounds.Width - width) / 2f) : Bounds.X;
         canvas.Text.Draw(Text, new Vector2(MathF.Round(x), Bounds.Y), style);
     }
 }

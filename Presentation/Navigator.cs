@@ -136,7 +136,7 @@ public sealed class Navigator : INavigator
             ScreenId.Profile => new GuiProfile(this),
             ScreenId.EditProfile => new GuiEditProfile(this),
             ScreenId.ForgotPassword => new GuiForgotPassword(this),
-            ScreenId.ResetPassword => new GuiResetPassword(this),
+            ScreenId.ResetPassword => new GuiResetPassword(this, argument ?? string.Empty),
             ScreenId.AccountSettings => new GuiSettings(this, false),
             ScreenId.SettingsLanguage => new GuiSettings(this, true),
             ScreenId.ChangePassword => new GuiChangePassword(this),

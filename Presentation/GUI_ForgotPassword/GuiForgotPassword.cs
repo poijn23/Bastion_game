@@ -5,44 +5,49 @@ using Bastion.Resources;
 
 namespace Bastion.Presentation.GUI_ForgotPassword;
 
-// CU-03 main flow step 1. Asks only for the email. The answer is the same
-// whether or not the address exists, so the form cannot be used to find out.
 public sealed class GuiForgotPassword : FormScreen
 {
-    private const int CardHeight = 234;
-    private const int NoticeHeight = 64;
-    private const int NoticeGap = 26;
     private const int MaxEmailLength = 254;
+    private const int BodyHeight = 44;
+    private const int BlockGap = 24;
+    private const int ButtonGap = 40;
+    private const int GuestBoxHeight = 76;
+    private const int ContentHeight =
+        BodyHeight + BlockGap + LabelSpace + Theme.FieldHeight + BlockGap + Theme.PanelButtonHeight + ButtonGap + GuestBoxHeight;
+    private const int CardHeight =
+        Theme.CardPadding + Theme.PanelBackHeight + Theme.PanelGap + Theme.PanelTitleHeight + Theme.PanelGap
+        + ContentHeight + Theme.CardPadding;
 
-    private readonly NoticeBox _notice;
+    private readonly TextBlock _body;
     private readonly TextField _emailField;
     private readonly Button _sendButton;
-    private readonly Button _cancelButton;
+    private readonly DashedBox _guestBox;
+    private bool _hasValidated;
 
     public GuiForgotPassword(INavigator navigator)
-        : base(navigator, NarrowCardWidth, CardHeight)
+        : base(navigator, NarrowCardWidth, CardHeight, ScreenLayout.Panel)
     {
-        _notice = new NoticeBox
-        {
-            Bounds = new Rectangle(ContentX, Card.Y + Theme.CardPadding, ContentWidth, NoticeHeight)
-        };
+        int top = PanelContentTop;
+        _body = new TextBlock { Bounds = new Rectangle(ContentX, top, ContentWidth, BodyHeight) };
 
-        int fieldTop = _notice.Bounds.Bottom + NoticeGap + LabelSpace;
-        _emailField = new TextField
-        {
-            MaxLength = MaxEmailLength,
-            Bounds = new Rectangle(ContentX, fieldTop, ContentWidth, Theme.FieldHeight)
-        };
+        int fieldTop = top + BodyHeight + BlockGap + LabelSpace;
+        _emailField = new TextField { MaxLength = MaxEmailLength, Bounds = new Rectangle(ContentX, fieldTop, ContentWidth, Theme.FieldHeight) };
 
+        int buttonTop = fieldTop + Theme.FieldHeight + BlockGap;
         _sendButton = CreatePrimaryButton(true);
-        _cancelButton = CreateSecondaryButton();
+        _sendButton.MoveTo(new Rectangle(ContentX, buttonTop, ContentWidth, Theme.PanelButtonHeight));
         _sendButton.Clicked += OnSendClicked;
-        _cancelButton.Clicked += OnCancelClicked;
 
-        Register(_notice);
+        _guestBox = new DashedBox
+        {
+            IsEnabled = false,
+            Bounds = new Rectangle(ContentX, buttonTop + Theme.PanelButtonHeight + ButtonGap, ContentWidth, GuestBoxHeight)
+        };
+
+        Register(_body);
         RegisterField(_emailField);
         Register(_sendButton);
-        Register(_cancelButton);
+        Register(_guestBox);
 
         ApplyTexts();
         FocusFirstField();
@@ -53,21 +58,40 @@ public sealed class GuiForgotPassword : FormScreen
         return TextCatalog.ForgotPasswordSubtitle;
     }
 
-    private void OnSendClicked(object? sender, EventArgs e)
+    protected override string GetBackLabel()
     {
-    }
-
-    private void OnCancelClicked(object? sender, EventArgs e)
-    {
-        Navigator.GoBack();
+        return TextCatalog.ForgotPasswordBackLink;
     }
 
     protected override void ApplyTexts()
     {
-        _notice.Text = TextCatalog.ForgotPasswordNotice;
+        _body.Text = TextCatalog.ForgotPasswordNotice;
         _emailField.Label = TextCatalog.ForgotPasswordEmailLabel;
         _emailField.Placeholder = TextCatalog.ForgotPasswordEmailPlaceholder;
         _sendButton.Title = TextCatalog.ForgotPasswordSendButton;
-        _cancelButton.Title = TextCatalog.CommonCancelButton;
+        _guestBox.Title = TextCatalog.ForgotPasswordGuestTitle;
+        _guestBox.Hint = TextCatalog.ForgotPasswordGuestHint;
+
+        if (_hasValidated)
+        {
+            Validate();
+        }
+    }
+
+    private void OnSendClicked(object? sender, EventArgs e)
+    {
+        _hasValidated = true;
+
+        if (Validate())
+        {
+            Navigator.GoTo(ScreenId.ResetPassword, _emailField.Text.Trim());
+        }
+    }
+
+    private bool Validate()
+    {
+        _emailField.Warning = InputRules.IsEmail(_emailField.Text.Trim()) ? null : TextCatalog.RegisterEmailInvalid;
+
+        return !_emailField.HasWarning;
     }
 }
