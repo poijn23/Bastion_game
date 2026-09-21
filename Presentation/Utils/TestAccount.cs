@@ -8,9 +8,11 @@ namespace Bastion.Presentation.Utils;
 // this file is deleted. The ".test" domain is reserved and never resolves.
 public static class TestAccount
 {
-    public const string Nickname = "prueba";
     public const string Email = "prueba@bastion.test";
     public const string Password = "prueba123";
+    public const string FriendCode = "AV-4K92";
+
+    public static string Nickname { get; set; } = "prueba";
 
     public static bool IsNicknameTaken(string nickname)
     {

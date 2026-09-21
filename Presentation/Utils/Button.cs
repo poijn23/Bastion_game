@@ -32,7 +32,7 @@ public sealed class Button : Control
     {
         base.Update(input);
 
-        if (IsHovered && input.HasClicked)
+        if (IsEnabled && IsHovered && input.HasClicked)
         {
             OnClicked();
         }
@@ -57,6 +57,10 @@ public sealed class Button : Control
                 DrawLink(canvas);
                 break;
 
+            case ButtonStyle.Outline:
+                DrawOutline(canvas);
+                break;
+
             case ButtonStyle.Secondary:
             default:
                 DrawSecondary(canvas);
@@ -71,6 +75,12 @@ public sealed class Button : Control
 
     private void DrawPrimary(Canvas canvas)
     {
+        if (!IsEnabled)
+        {
+            DrawDisabled(canvas);
+            return;
+        }
+
         Color fill = IsHovered ? Color.Lerp(Accent, Color.White, HoverLift) : Accent;
         canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, fill);
         DrawContent(canvas, Theme.TextLight, PrimarySubtitle);
@@ -84,6 +94,29 @@ public sealed class Button : Control
             Bounds,
             BorderStyleFactory.CreateHairline(Theme.ButtonCornerRadius, Theme.SecondaryBorder));
         DrawContent(canvas, Theme.TextLight, Theme.TextMuted);
+    }
+
+    private void DrawOutline(Canvas canvas)
+    {
+        if (!IsEnabled)
+        {
+            DrawDisabled(canvas);
+            return;
+        }
+
+        Color fill = IsHovered ? Theme.FieldFocused : Theme.Card;
+        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, fill);
+        canvas.Shapes.DrawRoundedBorder(
+            Bounds,
+            BorderStyleFactory.CreateThick(Theme.ButtonCornerRadius, Theme.TextDark));
+        DrawContent(canvas, Theme.TextDark, Theme.Label);
+    }
+
+    private void DrawDisabled(Canvas canvas)
+    {
+        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, Theme.Card);
+        Dashes.DrawBorder(canvas, Bounds, Theme.ButtonCornerRadius, Theme.CheckBoxBorder);
+        DrawContent(canvas, Theme.Placeholder, Theme.Placeholder);
     }
 
     private void DrawLink(Canvas canvas)

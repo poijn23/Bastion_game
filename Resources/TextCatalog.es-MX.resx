@@ -446,11 +446,8 @@
   <data name="RegistrationSuccessDetail" xml:space="preserve">
     <value>puedes cerrar el juego mientras lo revisas</value>
   </data>
-  <data name="ProfileSubtitle" xml:space="preserve">
-    <value>TU PERFIL</value>
-  </data>
   <data name="ProfileHeaderFormat" xml:space="preserve">
-    <value>{0} · Nivel {1} · desde {2}</value>
+    <value>{0} · nivel {1} · desde {2}</value>
   </data>
   <data name="ProfileMatchesTile" xml:space="preserve">
     <value>partidas</value>
@@ -465,31 +462,22 @@
     <value>elo máximo</value>
   </data>
   <data name="ProfileModeStatFormat" xml:space="preserve">
-    <value>{0} partidas · {1} ganadas</value>
-  </data>
-  <data name="ProfileEditButton" xml:space="preserve">
-    <value>EDITAR PERFIL</value>
+    <value>{0} · {1}</value>
   </data>
   <data name="EditProfileSubtitle" xml:space="preserve">
-    <value>EDITAR PERFIL</value>
+    <value>Editar perfil</value>
   </data>
   <data name="EditProfileNicknameLabel" xml:space="preserve">
-    <value>NOMBRE DE JUGADOR</value>
+    <value>nombre</value>
   </data>
   <data name="EditProfileTitleLabel" xml:space="preserve">
-    <value>TÍTULO EQUIPADO</value>
+    <value>título equipado</value>
   </data>
   <data name="EditProfileLanguageLabel" xml:space="preserve">
-    <value>IDIOMA DE LA CUENTA</value>
-  </data>
-  <data name="EditProfileFirstLinkLabel" xml:space="preserve">
-    <value>ENLACE A TUS REDES</value>
-  </data>
-  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
-    <value>SEGUNDO ENLACE</value>
+    <value>idioma de la cuenta</value>
   </data>
   <data name="EditProfileLinkPlaceholder" xml:space="preserve">
-    <value>https://</value>
+    <value>pega una url...</value>
   </data>
   <data name="EditProfileSpectatorsText" xml:space="preserve">
     <value>permitir que otros vean mis partidas</value>
@@ -523,5 +511,104 @@
   </data>
   <data name="ObjetoCosmetico.TITULO_CONSTRUCTOR" xml:space="preserve">
     <value>Constructor</value>
+  </data>
+  <data name="CommonBackLink" xml:space="preserve">
+    <value>&lt; volver</value>
+  </data>
+  <data name="CommonEditButton" xml:space="preserve">
+    <value>editar</value>
+  </data>
+  <data name="CommonChangeButton" xml:space="preserve">
+    <value>cambiar</value>
+  </data>
+  <data name="CommonContinueButton" xml:space="preserve">
+    <value>continuar</value>
+  </data>
+  <data name="AvatarPlaceholder" xml:space="preserve">
+    <value>foto</value>
+  </data>
+  <data name="ProfileByModeTitle" xml:space="preserve">
+    <value>por modo</value>
+  </data>
+  <data name="ProfileAverageLengthFormat" xml:space="preserve">
+    <value>longitud media {0} jugadas</value>
+  </data>
+  <data name="ProfileTitlesTitle" xml:space="preserve">
+    <value>títulos</value>
+  </data>
+  <data name="ProfileSeeAllLink" xml:space="preserve">
+    <value>ver todos ></value>
+  </data>
+  <data name="ProfileNoTitle" xml:space="preserve">
+    <value>sin título</value>
+  </data>
+  <data name="ProfileLinksTitle" xml:space="preserve">
+    <value>enlaces</value>
+  </data>
+  <data name="ProfileAddLinkChip" xml:space="preserve">
+    <value>añadir +</value>
+  </data>
+  <data name="EditProfileUploadButton" xml:space="preserve">
+    <value>subir imagen</value>
+  </data>
+  <data name="EditProfileIconsButton" xml:space="preserve">
+    <value>iconos</value>
+  </data>
+  <data name="EditProfileIconsHint" xml:space="preserve">
+    <value>32 iconos (animales, objetos) o tu jpg/png de máx. 2 MB</value>
+  </data>
+  <data name="EditProfileMoreIconsChip" xml:space="preserve">
+    <value>></value>
+  </data>
+  <data name="EditProfileNicknameHint" xml:space="preserve">
+    <value>solo puedes cambiarlo una vez. después queda fijo.</value>
+  </data>
+  <data name="EditProfilePreviewFormat" xml:space="preserve">
+    <value>{0} · {1}</value>
+  </data>
+  <data name="EditProfilePreviewHint" xml:space="preserve">
+    <value>así te ven los demás</value>
+  </data>
+  <data name="EditProfileLinksLabel" xml:space="preserve">
+    <value>enlaces a tus redes · máx. 4</value>
+  </data>
+  <data name="EditProfileLinksHint" xml:space="preserve">
+    <value>se revisan antes de publicarse; nada de enlaces de pago ni invitaciones externas</value>
+  </data>
+  <data name="EditProfileRemoveLinkButton" xml:space="preserve">
+    <value>x</value>
+  </data>
+  <data name="Icono.ZORRO" xml:space="preserve">
+    <value>zorro</value>
+  </data>
+  <data name="Icono.BUHO" xml:space="preserve">
+    <value>búho</value>
+  </data>
+  <data name="Icono.OSO" xml:space="preserve">
+    <value>oso</value>
+  </data>
+  <data name="Icono.GATO" xml:space="preserve">
+    <value>gato</value>
+  </data>
+  <data name="Icono.MURO" xml:space="preserve">
+    <value>muro</value>
+  </data>
+  <data name="Icono.PEON" xml:space="preserve">
+    <value>peón</value>
+  </data>
+  <data name="Icono.FARO" xml:space="preserve">
+    <value>faro</value>
+  </data>
+  <data name="TipoEnlace.TWITCH" xml:space="preserve">
+    <value>twitch</value>
+  </data>
+  <data name="TipoEnlace.YOUTUBE" xml:space="preserve">
+    <value>youtube</value>
+  </data>
+  <data name="TipoEnlace.DISCORD" xml:space="preserve">
+    <value>discord</value>
+  </data>
+  <data name="TipoEnlace.OTRO" xml:space="preserve">
+    <value>otro</value>
   </data>
 </root>

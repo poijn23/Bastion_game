@@ -262,8 +262,6 @@ public static class TextCatalog
 
     public static string RegistrationSuccessDetail => GetText(nameof(RegistrationSuccessDetail));
 
-    public static string ProfileSubtitle => GetText(nameof(ProfileSubtitle));
-
     public static string ProfileHeaderFormat => GetText(nameof(ProfileHeaderFormat));
 
     public static string ProfileMatchesTile => GetText(nameof(ProfileMatchesTile));
@@ -276,8 +274,6 @@ public static class TextCatalog
 
     public static string ProfileModeStatFormat => GetText(nameof(ProfileModeStatFormat));
 
-    public static string ProfileEditButton => GetText(nameof(ProfileEditButton));
-
     public static string EditProfileSubtitle => GetText(nameof(EditProfileSubtitle));
 
     public static string EditProfileNicknameLabel => GetText(nameof(EditProfileNicknameLabel));
@@ -285,10 +281,6 @@ public static class TextCatalog
     public static string EditProfileTitleLabel => GetText(nameof(EditProfileTitleLabel));
 
     public static string EditProfileLanguageLabel => GetText(nameof(EditProfileLanguageLabel));
-
-    public static string EditProfileFirstLinkLabel => GetText(nameof(EditProfileFirstLinkLabel));
-
-    public static string EditProfileSecondLinkLabel => GetText(nameof(EditProfileSecondLinkLabel));
 
     public static string EditProfileLinkPlaceholder => GetText(nameof(EditProfileLinkPlaceholder));
 
@@ -316,6 +308,72 @@ public static class TextCatalog
 
     // Returning the key when it is missing keeps a typo visible on screen
     // instead of throwing while drawing a frame.
+    public static string CommonBackLink => GetText(nameof(CommonBackLink));
+
+    public static string CommonEditButton => GetText(nameof(CommonEditButton));
+
+    public static string CommonChangeButton => GetText(nameof(CommonChangeButton));
+
+    public static string CommonContinueButton => GetText(nameof(CommonContinueButton));
+
+    public static string AvatarPlaceholder => GetText(nameof(AvatarPlaceholder));
+
+    public static string ProfileByModeTitle => GetText(nameof(ProfileByModeTitle));
+
+    public static string ProfileAverageLengthFormat => GetText(nameof(ProfileAverageLengthFormat));
+
+    public static string ProfileTitlesTitle => GetText(nameof(ProfileTitlesTitle));
+
+    public static string ProfileSeeAllLink => GetText(nameof(ProfileSeeAllLink));
+
+    public static string ProfileNoTitle => GetText(nameof(ProfileNoTitle));
+
+    public static string ProfileLinksTitle => GetText(nameof(ProfileLinksTitle));
+
+    public static string ProfileAddLinkChip => GetText(nameof(ProfileAddLinkChip));
+
+    public static string EditProfileUploadButton => GetText(nameof(EditProfileUploadButton));
+
+    public static string EditProfileIconsButton => GetText(nameof(EditProfileIconsButton));
+
+    public static string EditProfileIconsHint => GetText(nameof(EditProfileIconsHint));
+
+    public static string EditProfileMoreIconsChip => GetText(nameof(EditProfileMoreIconsChip));
+
+    public static string EditProfileNicknameHint => GetText(nameof(EditProfileNicknameHint));
+
+    public static string EditProfilePreviewFormat => GetText(nameof(EditProfilePreviewFormat));
+
+    public static string EditProfilePreviewHint => GetText(nameof(EditProfilePreviewHint));
+
+    public static string EditProfileLinksLabel => GetText(nameof(EditProfileLinksLabel));
+
+    public static string EditProfileLinksHint => GetText(nameof(EditProfileLinksHint));
+
+    public static string EditProfileRemoveLinkButton => GetText(nameof(EditProfileRemoveLinkButton));
+
+    public static string IconoZorro => GetText("Icono.ZORRO");
+
+    public static string IconoBuho => GetText("Icono.BUHO");
+
+    public static string IconoOso => GetText("Icono.OSO");
+
+    public static string IconoGato => GetText("Icono.GATO");
+
+    public static string IconoMuro => GetText("Icono.MURO");
+
+    public static string IconoPeon => GetText("Icono.PEON");
+
+    public static string IconoFaro => GetText("Icono.FARO");
+
+    public static string TipoEnlaceTwitch => GetText("TipoEnlace.TWITCH");
+
+    public static string TipoEnlaceYoutube => GetText("TipoEnlace.YOUTUBE");
+
+    public static string TipoEnlaceDiscord => GetText("TipoEnlace.DISCORD");
+
+    public static string TipoEnlaceOtro => GetText("TipoEnlace.OTRO");
+
     private static string GetText(string key)
     {
         return _manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;

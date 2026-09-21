@@ -18,6 +18,15 @@ public static class Theme
     public const int PrimaryButtonHeight = 60;
     public const int SecondaryButtonHeight = 52;
     public const int CardPadding = 32;
+    public const int PanelTop = 24;
+    public const int PanelCardWidth = 1000;
+    public const int PanelButtonWidth = 220;
+    public const int PanelButtonHeight = 52;
+    public const int PanelBackHeight = 22;
+    public const int PanelTitleHeight = 34;
+    public const int PanelGap = 14;
+    public const int ChipHeight = 36;
+    public const int SmallButtonHeight = 40;
 
     // Validation prints at most one line under a field. The space is reserved
     // whether or not it is used, so showing a warning never pushes the rest of
@@ -36,6 +45,7 @@ public static class Theme
     public const float BodyScale = 1.0f;
     public const float LabelScale = 0.8f;
     public const float SmallScale = 0.75f;
+    public const float HeadingScale = 1.4f;
 
     public const float TitleTracking = 6f;
     public const float LabelTracking = 1.4f;
