@@ -710,4 +710,433 @@
   <data name="ResetPasswordCodeInvalid" xml:space="preserve">
     <value>escribe el código de 6 caracteres del correo</value>
   </data>
+  <data name="RegisterAccountLanguageLabel" xml:space="preserve">
+    <value>IDIOMA DE LA CUENTA</value>
+  </data>
+  <data name="ProfileAvatarPlaceholder" xml:space="preserve">
+    <value>ICONO</value>
+  </data>
+  <data name="ProfileMatchesCaption" xml:space="preserve">
+    <value>PARTIDAS</value>
+  </data>
+  <data name="ProfileWinRateCaption" xml:space="preserve">
+    <value>VICTORIAS</value>
+  </data>
+  <data name="ProfileStreakCaption" xml:space="preserve">
+    <value>MEJOR RACHA</value>
+  </data>
+  <data name="ProfileEloCaption" xml:space="preserve">
+    <value>ELO</value>
+  </data>
+  <data name="EditProfileLinkLabel" xml:space="preserve">
+    <value>ENLACE</value>
+  </data>
+  <data name="EditProfileSpectatorsLabel" xml:space="preserve">
+    <value>dejar que vean mis partidas</value>
+  </data>
+  <data name="EditProfileDiscardBody" xml:space="preserve">
+    <value>Si sales ahora pierdes los cambios que no guardaste.</value>
+  </data>
+  <data name="PlayerCardSubtitle" xml:space="preserve">
+    <value>OTRO JUGADOR</value>
+  </data>
+  <data name="PlayerCardHeadToHeadCaption" xml:space="preserve">
+    <value>ENTRE USTEDES DOS</value>
+  </data>
+  <data name="PlayerCardHeadToHeadSample" xml:space="preserve">
+    <value>3 - 2</value>
+  </data>
+  <data name="PlayerCardMatchSample" xml:space="preserve">
+    <value>Partida juntos</value>
+  </data>
+  <data name="PlayerCardAddFriendButton" xml:space="preserve">
+    <value>AGREGAR COMO AMIGO</value>
+  </data>
+  <data name="AddFriendSubtitle" xml:space="preserve">
+    <value>AGREGA UN AMIGO</value>
+  </data>
+  <data name="AddFriendSearchLabel" xml:space="preserve">
+    <value>NOMBRE DE JUGADOR O CÓDIGO DE AMIGO</value>
+  </data>
+  <data name="AddFriendSearchPlaceholder" xml:space="preserve">
+    <value>a quién buscas</value>
+  </data>
+  <data name="AddFriendSearchButton" xml:space="preserve">
+    <value>BUSCAR</value>
+  </data>
+  <data name="AddFriendSuggestionSample" xml:space="preserve">
+    <value>Jugador</value>
+  </data>
+  <data name="AddFriendSuggestionReason" xml:space="preserve">
+    <value>jugaron juntos hace poco</value>
+  </data>
+  <data name="FriendsSubtitle" xml:space="preserve">
+    <value>TUS AMIGOS</value>
+  </data>
+  <data name="FriendsNameSample" xml:space="preserve">
+    <value>Amigo</value>
+  </data>
+  <data name="FriendsOnlineLabel" xml:space="preserve">
+    <value>en línea ahora</value>
+  </data>
+  <data name="FriendsOfflineLabel" xml:space="preserve">
+    <value>sin conexión</value>
+  </data>
+  <data name="FriendsAddButton" xml:space="preserve">
+    <value>AGREGAR UN AMIGO</value>
+  </data>
+  <data name="MatchHistorySubtitle" xml:space="preserve">
+    <value>TUS PARTIDAS</value>
+  </data>
+  <data name="MatchHistoryWin" xml:space="preserve">
+    <value>Ganaste</value>
+  </data>
+  <data name="MatchHistoryLoss" xml:space="preserve">
+    <value>Perdiste</value>
+  </data>
+  <data name="MatchHistoryRowSample" xml:space="preserve">
+    <value>clásico 9x9 - 12 min - hoy</value>
+  </data>
+  <data name="MatchHistoryGainSample" xml:space="preserve">
+    <value>+18</value>
+  </data>
+  <data name="MatchHistoryLossSample" xml:space="preserve">
+    <value>-14</value>
+  </data>
+  <data name="CoinHistorySubtitle" xml:space="preserve">
+    <value>TUS MONEDAS</value>
+  </data>
+  <data name="CoinHistoryBalanceCaption" xml:space="preserve">
+    <value>SALDO</value>
+  </data>
+  <data name="CoinHistoryBalanceSample" xml:space="preserve">
+    <value>350</value>
+  </data>
+  <data name="CoinHistoryGainSample" xml:space="preserve">
+    <value>Partida ganada</value>
+  </data>
+  <data name="CoinHistorySpendSample" xml:space="preserve">
+    <value>Peón comprado</value>
+  </data>
+  <data name="CoinHistoryDateSample" xml:space="preserve">
+    <value>hoy</value>
+  </data>
+  <data name="CoinHistoryGainAmountSample" xml:space="preserve">
+    <value>+25</value>
+  </data>
+  <data name="CoinHistorySpendAmountSample" xml:space="preserve">
+    <value>-600</value>
+  </data>
+  <data name="RankingSubtitle" xml:space="preserve">
+    <value>EL RANKING</value>
+  </data>
+  <data name="RankingPlayerSample" xml:space="preserve">
+    <value>Jugador</value>
+  </data>
+  <data name="RankingDivisionSample" xml:space="preserve">
+    <value>división oro</value>
+  </data>
+  <data name="RankingEloSample" xml:space="preserve">
+    <value>1240</value>
+  </data>
+  <data name="RankingOwnPositionSample" xml:space="preserve">
+    <value>48</value>
+  </data>
+  <data name="RankingYouLabel" xml:space="preserve">
+    <value>Tú</value>
+  </data>
+  <data name="ProfileNicknameSample" xml:space="preserve">
+    <value>Jugador</value>
+  </data>
+  <data name="ProfileTitleSample" xml:space="preserve">
+    <value>constructor de muros</value>
+  </data>
+  <data name="ProfileLevelSample" xml:space="preserve">
+    <value>nivel 14</value>
+  </data>
+  <data name="ProfileMatchesSample" xml:space="preserve">
+    <value>128</value>
+  </data>
+  <data name="ProfileWinRateSample" xml:space="preserve">
+    <value>61%</value>
+  </data>
+  <data name="ProfileStreakSample" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="ReportSubtitle" xml:space="preserve">
+    <value>REPORTA A UN JUGADOR</value>
+  </data>
+  <data name="ReportReasonCheating" xml:space="preserve">
+    <value>Hace trampa</value>
+  </data>
+  <data name="ReportReasonAbuse" xml:space="preserve">
+    <value>Mensajes ofensivos</value>
+  </data>
+  <data name="ReportReasonName" xml:space="preserve">
+    <value>Nombre inapropiado</value>
+  </data>
+  <data name="ReportReasonLeaving" xml:space="preserve">
+    <value>Abandona partidas</value>
+  </data>
+  <data name="ReportReasonOther" xml:space="preserve">
+    <value>Otra cosa</value>
+  </data>
+  <data name="ReportDescriptionLabel" xml:space="preserve">
+    <value>CUÉNTANOS MÁS</value>
+  </data>
+  <data name="ReportDescriptionPlaceholder" xml:space="preserve">
+    <value>opcional</value>
+  </data>
+  <data name="ReportEvidenceNotice" xml:space="preserve">
+    <value>Adjuntaremos la partida y el chat para que un moderador pueda revisar qué pasó.</value>
+  </data>
+  <data name="ReportSendButton" xml:space="preserve">
+    <value>ENVIAR EL REPORTE</value>
+  </data>
+  <data name="ModerationQueueSubtitle" xml:space="preserve">
+    <value>PENDIENTES DE REVISAR</value>
+  </data>
+  <data name="ModerationQueueReasonSample" xml:space="preserve">
+    <value>Mensajes ofensivos</value>
+  </data>
+  <data name="ModerationQueueAgeSample" xml:space="preserve">
+    <value>hace 2 horas</value>
+  </data>
+  <data name="ModerationQueueCountSample" xml:space="preserve">
+    <value>3 reportes</value>
+  </data>
+  <data name="ModerationQueueReviewButton" xml:space="preserve">
+    <value>REVISARLO</value>
+  </data>
+  <data name="ReportReviewSubtitle" xml:space="preserve">
+    <value>REVISA EL REPORTE</value>
+  </data>
+  <data name="ReportReviewReasonLabel" xml:space="preserve">
+    <value>MOTIVO</value>
+  </data>
+  <data name="ReportReviewDescriptionSample" xml:space="preserve">
+    <value>El jugador estuvo mandando mensajes ofensivos durante toda la partida.</value>
+  </data>
+  <data name="ReportReviewMessageSample" xml:space="preserve">
+    <value>un mensaje del chat</value>
+  </data>
+  <data name="ReportReviewAuthorSample" xml:space="preserve">
+    <value>jugador reportado</value>
+  </data>
+  <data name="ReportReviewSanctionButton" xml:space="preserve">
+    <value>SANCIÓNAR</value>
+  </data>
+  <data name="ReportReviewDismissButton" xml:space="preserve">
+    <value>SIN SANCIÓN</value>
+  </data>
+  <data name="ApplySanctionSubtitle" xml:space="preserve">
+    <value>APLICA UNA SANCIÓN</value>
+  </data>
+  <data name="ApplySanctionPlayerLabel" xml:space="preserve">
+    <value>JUGADOR</value>
+  </data>
+  <data name="ApplySanctionScopeLabel" xml:space="preserve">
+    <value>ALCANCE</value>
+  </data>
+  <data name="ApplySanctionScopeChat" xml:space="preserve">
+    <value>CHAT</value>
+  </data>
+  <data name="ApplySanctionScopeAccount" xml:space="preserve">
+    <value>CUENTA</value>
+  </data>
+  <data name="ApplySanctionTypeLabel" xml:space="preserve">
+    <value>TIPO</value>
+  </data>
+  <data name="ApplySanctionTypeTemporary" xml:space="preserve">
+    <value>TEMPORAL</value>
+  </data>
+  <data name="ApplySanctionTypePermanent" xml:space="preserve">
+    <value>PERMANENTE</value>
+  </data>
+  <data name="ApplySanctionDurationLabel" xml:space="preserve">
+    <value>CUÁNTO TIEMPO</value>
+  </data>
+  <data name="ApplySanctionDurationDay" xml:space="preserve">
+    <value>UN DÍA</value>
+  </data>
+  <data name="ApplySanctionDurationWeek" xml:space="preserve">
+    <value>UNA SEMANA</value>
+  </data>
+  <data name="ApplySanctionHistorySample" xml:space="preserve">
+    <value>Sanción de chat</value>
+  </data>
+  <data name="ApplySanctionHistoryDateSample" xml:space="preserve">
+    <value>el mes pasado</value>
+  </data>
+  <data name="ApplySanctionConfirmBody" xml:space="preserve">
+    <value>El jugador no podrá usar el chat durante un día.</value>
+  </data>
+  <data name="ApplySanctionApplyButton" xml:space="preserve">
+    <value>APLICAR</value>
+  </data>
+  <data name="AppealSubtitle" xml:space="preserve">
+    <value>APELA TU SANCIÓN</value>
+  </data>
+  <data name="AppealDetailSample" xml:space="preserve">
+    <value>Sanción de chat, temporal, por mensajes ofensivos. Termina en tres días.</value>
+  </data>
+  <data name="AppealTextLabel" xml:space="preserve">
+    <value>POR QUÉ CREES QUE ESTÁ MAL</value>
+  </data>
+  <data name="AppealTextPlaceholder" xml:space="preserve">
+    <value>explica qué pasó</value>
+  </data>
+  <data name="AppealStillActiveNotice" xml:space="preserve">
+    <value>Tu sanción sigue vigente mientras un moderador revisa la apelación.</value>
+  </data>
+  <data name="AppealSendButton" xml:space="preserve">
+    <value>ENVIAR LA APELACIÓN</value>
+  </data>
+  <data name="AdminPanelSubtitle" xml:space="preserve">
+    <value>CANDIDATO A MODERADOR</value>
+  </data>
+  <data name="AdminPanelNicknameLabel" xml:space="preserve">
+    <value>NOMBRE DE JUGADOR</value>
+  </data>
+  <data name="AdminPanelRegisteredLabel" xml:space="preserve">
+    <value>MIEMBRO DESDE</value>
+  </data>
+  <data name="AdminPanelRegisteredSample" xml:space="preserve">
+    <value>marzo de 2024</value>
+  </data>
+  <data name="AdminPanelStateLabel" xml:space="preserve">
+    <value>ESTADO DE LA CUENTA</value>
+  </data>
+  <data name="AdminPanelStateSample" xml:space="preserve">
+    <value>activa</value>
+  </data>
+  <data name="AdminPanelTypeLabel" xml:space="preserve">
+    <value>TIPO DE CUENTA</value>
+  </data>
+  <data name="AdminPanelTypeSample" xml:space="preserve">
+    <value>registrada</value>
+  </data>
+  <data name="AdminPanelHistorySample" xml:space="preserve">
+    <value>Sin sanciones</value>
+  </data>
+  <data name="AdminPanelGrantConfirmBody" xml:space="preserve">
+    <value>Este jugador podrá revisar reportes y aplicar sanciones.</value>
+  </data>
+  <data name="AdminPanelGrantButton" xml:space="preserve">
+    <value>OTORGAR EL ROL</value>
+  </data>
+  <data name="LogsSubtitle" xml:space="preserve">
+    <value>LAS BITÁCORAS</value>
+  </data>
+  <data name="LogsWhichLabel" xml:space="preserve">
+    <value>CUÁL BITÁCORA</value>
+  </data>
+  <data name="LogsAccessOption" xml:space="preserve">
+    <value>ACCESO</value>
+  </data>
+  <data name="LogsModerationOption" xml:space="preserve">
+    <value>MODERACIÓN</value>
+  </data>
+  <data name="LogsFromLabel" xml:space="preserve">
+    <value>DESDE</value>
+  </data>
+  <data name="LogsToLabel" xml:space="preserve">
+    <value>HASTA</value>
+  </data>
+  <data name="LogsDatePlaceholder" xml:space="preserve">
+    <value>dd/mm/aaaa</value>
+  </data>
+  <data name="LogsRecordSample" xml:space="preserve">
+    <value>Inicio de sesión</value>
+  </data>
+  <data name="LogsRecordDetailSample" xml:space="preserve">
+    <value>jugador - 10.50.5.14 - hoy</value>
+  </data>
+  <data name="LogsResultSample" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="LogsSearchButton" xml:space="preserve">
+    <value>BUSCAR</value>
+  </data>
+  <data name="ShopSubtitle" xml:space="preserve">
+    <value>LA TIENDA</value>
+  </data>
+  <data name="ShopItemSample" xml:space="preserve">
+    <value>Objeto</value>
+  </data>
+  <data name="ShopBuyButton" xml:space="preserve">
+    <value>COMPRARLO</value>
+  </data>
+  <data name="PurchaseConfirmSubtitle" xml:space="preserve">
+    <value>CONFIRMA TU COMPRA</value>
+  </data>
+  <data name="PurchaseConfirmItemLabel" xml:space="preserve">
+    <value>LO QUE VAS A COMPRAR</value>
+  </data>
+  <data name="PurchaseConfirmPriceLabel" xml:space="preserve">
+    <value>PRECIO</value>
+  </data>
+  <data name="PurchaseConfirmPriceSample" xml:space="preserve">
+    <value>600</value>
+  </data>
+  <data name="PurchaseConfirmBalanceLabel" xml:space="preserve">
+    <value>TIENES</value>
+  </data>
+  <data name="PurchaseConfirmRemainingLabel" xml:space="preserve">
+    <value>TE QUEDARÁN</value>
+  </data>
+  <data name="PurchaseConfirmRemainingSample" xml:space="preserve">
+    <value>-250</value>
+  </data>
+  <data name="PurchaseConfirmButton" xml:space="preserve">
+    <value>COMPRAR</value>
+  </data>
+  <data name="BoxPurchaseSubtitle" xml:space="preserve">
+    <value>CONFIRMA LA CAJA</value>
+  </data>
+  <data name="BoxPurchasePriceSample" xml:space="preserve">
+    <value>150</value>
+  </data>
+  <data name="BoxPurchaseRemainingSample" xml:space="preserve">
+    <value>200</value>
+  </data>
+  <data name="BoxPurchaseGuaranteeNotice" xml:space="preserve">
+    <value>Llevas 7 cajas sin objeto raro. La décima lo garantiza.</value>
+  </data>
+  <data name="BoxPurchaseConfirmButton" xml:space="preserve">
+    <value>ABRIRLA</value>
+  </data>
+  <data name="CustomizeSubtitle" xml:space="preserve">
+    <value>PERSONALIZA</value>
+  </data>
+  <data name="CustomizeSlotPawn" xml:space="preserve">
+    <value>PEÓN</value>
+  </data>
+  <data name="CustomizeSlotWalls" xml:space="preserve">
+    <value>MUROS</value>
+  </data>
+  <data name="CustomizeSlotBoard" xml:space="preserve">
+    <value>TABLERO</value>
+  </data>
+  <data name="CustomizeSlotFrame" xml:space="preserve">
+    <value>MARCO</value>
+  </data>
+  <data name="CustomizeSlotEmotes" xml:space="preserve">
+    <value>EMOTES</value>
+  </data>
+  <data name="CustomizeSlotTitle" xml:space="preserve">
+    <value>TÍTULO</value>
+  </data>
+  <data name="CustomizePreviewPlaceholder" xml:space="preserve">
+    <value>VISTA PREVIA</value>
+  </data>
+  <data name="CustomizeEquipButton" xml:space="preserve">
+    <value>EQUIPARLO</value>
+  </data>
+  <data name="ReportReviewOtherAuthorSample" xml:space="preserve">
+    <value>el otro jugador</value>
+  </data>
+  <data name="CommonBackButton" xml:space="preserve">
+    <value>VOLVER</value>
+  </data>
 </root>
