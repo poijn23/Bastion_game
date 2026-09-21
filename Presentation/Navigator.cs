@@ -62,6 +62,13 @@ public sealed class Navigator : INavigator
 
         var confirm = new GuiMessageConfirm();
         confirm.ShowWithLabels(request.Body, GetPrimaryLabel(request), GetSecondaryLabel(request));
+
+        if (request.Title.Length > 0)
+        {
+            confirm.Dialog.Title = request.Title;
+        }
+
+        confirm.Dialog.Detail = request.Detail;
         confirm.Dialog.PrimaryChosen += OnConfirmAccepted;
         confirm.Dialog.SecondaryChosen += OnDialogDismissed;
 

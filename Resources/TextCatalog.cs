@@ -178,8 +178,6 @@ public static class TextCatalog
 
     public static string ChangeNicknameNewPlaceholder => GetText(nameof(ChangeNicknameNewPlaceholder));
 
-    public static string ChangeNicknameSaveButton => GetText(nameof(ChangeNicknameSaveButton));
-
     public static string DeleteAccountSubtitle => GetText(nameof(DeleteAccountSubtitle));
 
     public static string DeleteAccountNotice => GetText(nameof(DeleteAccountNotice));
@@ -187,16 +185,6 @@ public static class TextCatalog
     public static string DeleteAccountPasswordLabel => GetText(nameof(DeleteAccountPasswordLabel));
 
     public static string DeleteAccountPasswordPlaceholder => GetText(nameof(DeleteAccountPasswordPlaceholder));
-
-    public static string DeleteAccountContinueButton => GetText(nameof(DeleteAccountContinueButton));
-
-    public static string DeleteAccountConfirmSubtitle => GetText(nameof(DeleteAccountConfirmSubtitle));
-
-    public static string DeleteAccountConfirmNotice => GetText(nameof(DeleteAccountConfirmNotice));
-
-    public static string DeleteAccountWordLabel => GetText(nameof(DeleteAccountWordLabel));
-
-    public static string DeleteAccountWordPlaceholder => GetText(nameof(DeleteAccountWordPlaceholder));
 
     public static string DeleteAccountDeleteButton => GetText(nameof(DeleteAccountDeleteButton));
 
@@ -403,6 +391,40 @@ public static class TextCatalog
     public static string SettingsCurrentTag => GetText(nameof(SettingsCurrentTag));
 
     public static string SettingsChatNote => GetText(nameof(SettingsChatNote));
+
+    public static string ChangeNicknameConfirmTitle => GetText(nameof(ChangeNicknameConfirmTitle));
+
+    public static string ChangeNicknameConfirmFormat => GetText(nameof(ChangeNicknameConfirmFormat));
+
+    public static string ChangeNicknameConfirmDetail => GetText(nameof(ChangeNicknameConfirmDetail));
+
+    public static string ChangeNicknameConfirmButton => GetText(nameof(ChangeNicknameConfirmButton));
+
+    public static string ChangeNicknameDoneBody => GetText(nameof(ChangeNicknameDoneBody));
+
+    public static string DeleteAccountLossTitle => GetText(nameof(DeleteAccountLossTitle));
+
+    public static string DeleteAccountLossFormat => GetText(nameof(DeleteAccountLossFormat));
+
+    public static string DeleteAccountWord => GetText(nameof(DeleteAccountWord));
+
+    public static string DeleteAccountWordLabelFormat => GetText(nameof(DeleteAccountWordLabelFormat));
+
+    public static string DeleteAccountWrongPassword => GetText(nameof(DeleteAccountWrongPassword));
+
+    public static string DeleteAccountDoneBody => GetText(nameof(DeleteAccountDoneBody));
+
+    public static string ChangePasswordDoneBody => GetText(nameof(ChangePasswordDoneBody));
+
+    public static string PasswordPolicyWarning => GetText(nameof(PasswordPolicyWarning));
+
+    public static string ChangeEmailDoneBody => GetText(nameof(ChangeEmailDoneBody));
+
+    public static string ActiveSessionsCloseBody => GetText(nameof(ActiveSessionsCloseBody));
+
+    public static string ActiveSessionsCloseAllBody => GetText(nameof(ActiveSessionsCloseAllBody));
+
+    public static string ActiveSessionsChangePasswordBody => GetText(nameof(ActiveSessionsChangePasswordBody));
 
     private static string GetText(string key)
     {

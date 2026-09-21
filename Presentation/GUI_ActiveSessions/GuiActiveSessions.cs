@@ -6,42 +6,38 @@ using Bastion.Resources;
 
 namespace Bastion.Presentation.GUI_ActiveSessions;
 
-// CU-10 main flow step 4. The current session is marked and has no close
-// button: it cannot be closed from here.
 public sealed class GuiActiveSessions : FormScreen
 {
-    private const int CardHeight = 356;
     private const int RowHeight = 64;
     private const int RowGap = 12;
-    private const int VisibleRows = 4;
+    private const int VisibleRows = 3;
+    private const int ButtonsGap = 24;
+    private const int CardHeight =
+        Theme.CardPadding + Theme.PanelBackHeight + Theme.PanelGap + Theme.PanelTitleHeight + Theme.PanelGap
+        + (VisibleRows * RowHeight) + ((VisibleRows - 1) * RowGap)
+        + ButtonsGap + Theme.PanelButtonHeight + Theme.CardPadding;
 
     private readonly List<SessionRow> _rows = [];
     private readonly Button _closeAllButton;
-    private readonly Button _backButton;
 
     public GuiActiveSessions(INavigator navigator)
-        : base(navigator, NarrowCardWidth, CardHeight)
+        : base(navigator, NarrowCardWidth, CardHeight, ScreenLayout.Panel)
     {
         for (int i = 0; i < VisibleRows; i++)
         {
             var row = new SessionRow
             {
                 IsCurrent = i == 0,
-                Bounds = GetRowBounds(i)
+                Bounds = new Rectangle(ContentX, PanelContentTop + (i * (RowHeight + RowGap)), ContentWidth, RowHeight)
             };
-
             row.CloseRequested += OnCloseRequested;
             _rows.Add(row);
             Register(row);
         }
 
         _closeAllButton = CreatePrimaryButton(false);
-        _backButton = CreateSecondaryButton();
         _closeAllButton.Clicked += OnCloseAllClicked;
-        _backButton.Clicked += OnBackClicked;
-
         Register(_closeAllButton);
-        Register(_backButton);
 
         ApplyTexts();
     }
@@ -51,20 +47,6 @@ public sealed class GuiActiveSessions : FormScreen
         return TextCatalog.ActiveSessionsSubtitle;
     }
 
-    private void OnCloseRequested(object? sender, EventArgs e)
-    {
-    }
-
-    private void OnCloseAllClicked(object? sender, EventArgs e)
-    {
-    }
-
-    private void OnBackClicked(object? sender, EventArgs e)
-    {
-        Navigator.GoBack();
-    }
-
-    // The rows are placeholders until the session list arrives from the server.
     protected override void ApplyTexts()
     {
         foreach (SessionRow row in _rows)
@@ -76,13 +58,49 @@ public sealed class GuiActiveSessions : FormScreen
         }
 
         _closeAllButton.Title = TextCatalog.ActiveSessionsCloseAllButton;
-        _backButton.Title = TextCatalog.CommonBackButton;
     }
 
-    private Rectangle GetRowBounds(int index)
+    private void OnCloseRequested(object? sender, EventArgs e)
     {
-        int top = Card.Y + Theme.CardPadding + (index * (RowHeight + RowGap));
+        if (sender is SessionRow row)
+        {
+            Navigator.ShowConfirm(new ConfirmRequest
+            {
+                Body = string.Format(TextCatalog.ActiveSessionsCloseBody, row.Device, row.LastUse),
+                PrimaryLabel = TextCatalog.SettingsSignOutButton,
+                SecondaryLabel = TextCatalog.CommonCancelButton,
+                OnConfirm = row.Hide
+            });
+        }
+    }
 
-        return new Rectangle(ContentX, top, ContentWidth, RowHeight);
+    private void OnCloseAllClicked(object? sender, EventArgs e)
+    {
+        Navigator.ShowConfirm(new ConfirmRequest
+        {
+            Body = TextCatalog.ActiveSessionsCloseAllBody,
+            PrimaryLabel = TextCatalog.ActiveSessionsCloseAllButton,
+            SecondaryLabel = TextCatalog.CommonCancelButton,
+            OnConfirm = CloseOthers
+        });
+    }
+
+    private void CloseOthers()
+    {
+        foreach (SessionRow row in _rows)
+        {
+            if (!row.IsCurrent)
+            {
+                row.Hide();
+            }
+        }
+
+        Navigator.ShowConfirm(new ConfirmRequest
+        {
+            Body = TextCatalog.ActiveSessionsChangePasswordBody,
+            PrimaryLabel = TextCatalog.CommonChangeButton,
+            SecondaryLabel = TextCatalog.CommonCancelButton,
+            OnConfirm = () => Navigator.GoTo(ScreenId.ChangePassword)
+        });
     }
 }

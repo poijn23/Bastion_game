@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net.Mail;
 
 namespace Bastion.Presentation.Utils;
@@ -57,6 +58,41 @@ public static class InputRules
 
         date = new DateOnly(y, m, d);
         return true;
+    }
+
+    public static int CountPasswordGroups(string password)
+    {
+        ArgumentNullException.ThrowIfNull(password);
+
+        int groups = 0;
+        groups += password.Any(char.IsLower) ? 1 : 0;
+        groups += password.Any(char.IsUpper) ? 1 : 0;
+        groups += password.Any(char.IsDigit) ? 1 : 0;
+        groups += password.Any(c => !char.IsLetterOrDigit(c)) ? 1 : 0;
+
+        return groups;
+    }
+
+    public static bool MeetsPasswordPolicy(string password)
+    {
+        return HasPasswordLength(password) && CountPasswordGroups(password) >= 3;
+    }
+
+    public static int PasswordStrength(string password)
+    {
+        ArgumentNullException.ThrowIfNull(password);
+
+        if (password.Length == 0)
+        {
+            return 0;
+        }
+
+        if (!HasPasswordLength(password))
+        {
+            return 1;
+        }
+
+        return CountPasswordGroups(password) >= 3 ? 3 : 2;
     }
 
     public static bool IsWebAddress(string url)

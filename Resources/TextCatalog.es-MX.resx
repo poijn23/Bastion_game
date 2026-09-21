@@ -267,7 +267,7 @@
     <value>escríbela otra vez</value>
   </data>
   <data name="ChangePasswordSubtitle" xml:space="preserve">
-    <value>CAMBIA TU CONTRASEÑA</value>
+    <value>Cambiar tu contraseña</value>
   </data>
   <data name="ChangePasswordCurrentLabel" xml:space="preserve">
     <value>CONTRASEÑA ACTUAL</value>
@@ -288,7 +288,7 @@
     <value>escríbela otra vez</value>
   </data>
   <data name="ChangeEmailSubtitle" xml:space="preserve">
-    <value>CAMBIA TU CORREO</value>
+    <value>Cambiar tu correo</value>
   </data>
   <data name="ChangeEmailNewLabel" xml:space="preserve">
     <value>CORREO NUEVO</value>
@@ -306,7 +306,7 @@
     <value>Tu cuenta vuelve a estar pendiente hasta que abras el enlace que enviemos al correo nuevo.</value>
   </data>
   <data name="ChangeNicknameSubtitle" xml:space="preserve">
-    <value>CAMBIA TU NOMBRE DE JUGADOR</value>
+    <value>Cambiar tu nombre</value>
   </data>
   <data name="ChangeNicknameNotice" xml:space="preserve">
     <value>Solo puedes hacerlo una vez, y no se puede deshacer. Tus amigos verán el nombre nuevo.</value>
@@ -320,14 +320,11 @@
   <data name="ChangeNicknameNewPlaceholder" xml:space="preserve">
     <value>de 3 a 30 caracteres</value>
   </data>
-  <data name="ChangeNicknameSaveButton" xml:space="preserve">
-    <value>CAMBIARLO</value>
-  </data>
   <data name="DeleteAccountSubtitle" xml:space="preserve">
-    <value>BORRA TU CUENTA</value>
+    <value>Borrar tu cuenta</value>
   </data>
   <data name="DeleteAccountNotice" xml:space="preserve">
-    <value>Perderás tu elo, tus monedas, tus objetos, tus amigos y tu lugar en el ranking. Esto es definitivo y no se puede deshacer.</value>
+    <value>esto es definitivo y no se puede deshacer.</value>
   </data>
   <data name="DeleteAccountPasswordLabel" xml:space="preserve">
     <value>CONTRASEÑA ACTUAL</value>
@@ -335,26 +332,11 @@
   <data name="DeleteAccountPasswordPlaceholder" xml:space="preserve">
     <value>la que usas ahora</value>
   </data>
-  <data name="DeleteAccountContinueButton" xml:space="preserve">
-    <value>CONTINUAR</value>
-  </data>
-  <data name="DeleteAccountConfirmSubtitle" xml:space="preserve">
-    <value>¿DE VERDAD ESTÁS SEGURO?</value>
-  </data>
-  <data name="DeleteAccountConfirmNotice" xml:space="preserve">
-    <value>Escribe la palabra que aparece en pantalla para confirmar que quieres borrarlo todo.</value>
-  </data>
-  <data name="DeleteAccountWordLabel" xml:space="preserve">
-    <value>PALABRA DE CONFIRMACIÓN</value>
-  </data>
-  <data name="DeleteAccountWordPlaceholder" xml:space="preserve">
-    <value>escríbela exactamente</value>
-  </data>
   <data name="DeleteAccountDeleteButton" xml:space="preserve">
     <value>BORRAR MI CUENTA</value>
   </data>
   <data name="ActiveSessionsSubtitle" xml:space="preserve">
-    <value>DÓNDE TIENES SESIÓN</value>
+    <value>Sesiones activas</value>
   </data>
   <data name="ActiveSessionsCurrentBadge" xml:space="preserve">
     <value>ESTE DISPOSITIVO</value>
@@ -655,5 +637,56 @@
   </data>
   <data name="SettingsChatNote" xml:space="preserve">
     <value>el chat no se traduce</value>
+  </data>
+  <data name="ChangeNicknameConfirmTitle" xml:space="preserve">
+    <value>¿cambiar tu nombre?</value>
+  </data>
+  <data name="ChangeNicknameConfirmFormat" xml:space="preserve">
+    <value>{0} -> {1}</value>
+  </data>
+  <data name="ChangeNicknameConfirmDetail" xml:space="preserve">
+    <value>es tu único cambio disponible. tus partidas y tu elo se mantienen; el nombre antiguo queda libre.</value>
+  </data>
+  <data name="ChangeNicknameConfirmButton" xml:space="preserve">
+    <value>cambiar</value>
+  </data>
+  <data name="ChangeNicknameDoneBody" xml:space="preserve">
+    <value>Nombre cambiado.</value>
+  </data>
+  <data name="DeleteAccountLossTitle" xml:space="preserve">
+    <value>se borra</value>
+  </data>
+  <data name="DeleteAccountLossFormat" xml:space="preserve">
+    <value>elo {0}, {1} partidas, {2} skins y {3} monedas, tus amigos y tu lugar en el ranking. tu nombre queda libre para otros.</value>
+  </data>
+  <data name="DeleteAccountWord" xml:space="preserve">
+    <value>BORRAR</value>
+  </data>
+  <data name="DeleteAccountWordLabelFormat" xml:space="preserve">
+    <value>escribe {0} para confirmar</value>
+  </data>
+  <data name="DeleteAccountWrongPassword" xml:space="preserve">
+    <value>esa no es tu contraseña</value>
+  </data>
+  <data name="DeleteAccountDoneBody" xml:space="preserve">
+    <value>Tu cuenta se eliminó.</value>
+  </data>
+  <data name="ChangePasswordDoneBody" xml:space="preserve">
+    <value>Contraseña cambiada. Se cerraron tus demás sesiones.</value>
+  </data>
+  <data name="PasswordPolicyWarning" xml:space="preserve">
+    <value>mínimo 8 caracteres y tres de: minúsculas, mayúsculas, dígitos, signos</value>
+  </data>
+  <data name="ChangeEmailDoneBody" xml:space="preserve">
+    <value>Enviamos un enlace al correo nuevo. Queda pendiente hasta que lo confirmes.</value>
+  </data>
+  <data name="ActiveSessionsCloseBody" xml:space="preserve">
+    <value>¿Cerrar la sesión de {0}, usada por última vez {1}?</value>
+  </data>
+  <data name="ActiveSessionsCloseAllBody" xml:space="preserve">
+    <value>¿Cerrar todas las demás sesiones?</value>
+  </data>
+  <data name="ActiveSessionsChangePasswordBody" xml:space="preserve">
+    <value>Si alguien las abrió sin permiso, las volverá a abrir con la misma contraseña. ¿La cambias ahora?</value>
   </data>
 </root>

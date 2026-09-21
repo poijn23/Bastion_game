@@ -79,7 +79,9 @@ public abstract class FormScreen : IScreen
 
     protected int ContentWidth => Card.Width - (Theme.CardPadding * 2);
 
-    protected int FirstRowTop => Card.Y + Theme.CardPadding + LabelSpace;
+    protected int ContentTop => _layout == ScreenLayout.Chrome ? Card.Y + Theme.CardPadding : PanelContentTop;
+
+    protected int FirstRowTop => ContentTop + LabelSpace;
 
     protected int PanelTitleTop => Card.Y + Theme.CardPadding + Theme.PanelBackHeight + Theme.PanelGap;
 

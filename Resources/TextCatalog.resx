@@ -334,7 +334,7 @@
     <comment>Hint of the confirmation.</comment>
   </data>
   <data name="ChangePasswordSubtitle" xml:space="preserve">
-    <value>CHANGE YOUR PASSWORD</value>
+    <value>Change your password</value>
     <comment>CU-09 main flow step 1.</comment>
   </data>
   <data name="ChangePasswordCurrentLabel" xml:space="preserve">
@@ -362,7 +362,7 @@
     <comment>Hint of the confirmation.</comment>
   </data>
   <data name="ChangeEmailSubtitle" xml:space="preserve">
-    <value>CHANGE YOUR EMAIL</value>
+    <value>Change your email</value>
     <comment>CU-09 alternate flow FA-01.</comment>
   </data>
   <data name="ChangeEmailNewLabel" xml:space="preserve">
@@ -386,7 +386,7 @@
     <comment>States the consequence before the player commits.</comment>
   </data>
   <data name="ChangeNicknameSubtitle" xml:space="preserve">
-    <value>CHANGE YOUR PLAYER NAME</value>
+    <value>Change your name</value>
     <comment>CU-13 main flow step 1.</comment>
   </data>
   <data name="ChangeNicknameNotice" xml:space="preserve">
@@ -405,16 +405,12 @@
     <value>3 to 30 characters</value>
     <comment>Hint. CU-02 RN-01.</comment>
   </data>
-  <data name="ChangeNicknameSaveButton" xml:space="preserve">
-    <value>CHANGE IT</value>
-    <comment>Primary action of CU-13.</comment>
-  </data>
   <data name="DeleteAccountSubtitle" xml:space="preserve">
-    <value>DELETE YOUR ACCOUNT</value>
+    <value>Delete your account</value>
     <comment>CU-11 main flow step 1.</comment>
   </data>
   <data name="DeleteAccountNotice" xml:space="preserve">
-    <value>You will lose your elo, your coins, your items, your friends and your place in the ranking. This is final and cannot be undone.</value>
+    <value>this is final and cannot be undone.</value>
     <comment>The list of what is lost, required by CU-11 main flow step 1.</comment>
   </data>
   <data name="DeleteAccountPasswordLabel" xml:space="preserve">
@@ -425,32 +421,12 @@
     <value>the one you use now</value>
     <comment>Hint.</comment>
   </data>
-  <data name="DeleteAccountContinueButton" xml:space="preserve">
-    <value>CONTINUE</value>
-    <comment>Moves to the second step.</comment>
-  </data>
-  <data name="DeleteAccountConfirmSubtitle" xml:space="preserve">
-    <value>ARE YOU REALLY SURE?</value>
-    <comment>CU-11 main flow step 2.</comment>
-  </data>
-  <data name="DeleteAccountConfirmNotice" xml:space="preserve">
-    <value>Type the word shown on screen to confirm that you want to delete everything.</value>
-    <comment>CU-11 RN-01: the second step asks for a typed word.</comment>
-  </data>
-  <data name="DeleteAccountWordLabel" xml:space="preserve">
-    <value>CONFIRMATION WORD</value>
-    <comment>Label of the word field.</comment>
-  </data>
-  <data name="DeleteAccountWordPlaceholder" xml:space="preserve">
-    <value>type it exactly</value>
-    <comment>Hint of the word field.</comment>
-  </data>
   <data name="DeleteAccountDeleteButton" xml:space="preserve">
     <value>DELETE MY ACCOUNT</value>
     <comment>Final action of CU-11.</comment>
   </data>
   <data name="ActiveSessionsSubtitle" xml:space="preserve">
-    <value>WHERE YOU ARE SIGNED IN</value>
+    <value>Active sessions</value>
     <comment>CU-10 main flow step 4.</comment>
   </data>
   <data name="ActiveSessionsCurrentBadge" xml:space="preserve">
@@ -852,5 +828,73 @@
   <data name="SettingsChatNote" xml:space="preserve">
     <value>chat is not translated</value>
     <comment>Note at the bottom of the language panel (D-21, CU-28 RN-12).</comment>
+  </data>
+  <data name="ChangeNicknameConfirmTitle" xml:space="preserve">
+    <value>change your name?</value>
+    <comment>Title of the confirm dialog (CU-13 step 3, prototype 9d).</comment>
+  </data>
+  <data name="ChangeNicknameConfirmFormat" xml:space="preserve">
+    <value>{0} -> {1}</value>
+    <comment>Body of the confirm dialog: old and new nickname. Not translated.</comment>
+  </data>
+  <data name="ChangeNicknameConfirmDetail" xml:space="preserve">
+    <value>it is your only change. your matches and your elo stay; the old name becomes free.</value>
+    <comment>Detail line of the confirm dialog (CU-13 RN-01 and RN-03).</comment>
+  </data>
+  <data name="ChangeNicknameConfirmButton" xml:space="preserve">
+    <value>change</value>
+    <comment>Primary option of the confirm dialog, as CU-13 names it.</comment>
+  </data>
+  <data name="ChangeNicknameDoneBody" xml:space="preserve">
+    <value>Name changed.</value>
+    <comment>Success dialog after CU-13 step 12.</comment>
+  </data>
+  <data name="DeleteAccountLossTitle" xml:space="preserve">
+    <value>what is lost</value>
+    <comment>Title of the loss box (prototype 9g).</comment>
+  </data>
+  <data name="DeleteAccountLossFormat" xml:space="preserve">
+    <value>elo {0}, {1} matches, {2} skins and {3} coins, your friends and your ranking spot. your name becomes free for others.</value>
+    <comment>Loss box body: the CU-11 list with the real figures, as prototype 9g shows them.</comment>
+  </data>
+  <data name="DeleteAccountWord" xml:space="preserve">
+    <value>DELETE</value>
+    <comment>The word the player must type (CU-11 RN-01). Compared without case.</comment>
+  </data>
+  <data name="DeleteAccountWordLabelFormat" xml:space="preserve">
+    <value>type {0} to confirm</value>
+    <comment>Label of the word field. {0} is DeleteAccountWord.</comment>
+  </data>
+  <data name="DeleteAccountWrongPassword" xml:space="preserve">
+    <value>that is not your password</value>
+    <comment>Under the password field when it does not match.</comment>
+  </data>
+  <data name="DeleteAccountDoneBody" xml:space="preserve">
+    <value>Your account was deleted.</value>
+    <comment>Notice over GUI_Login after CU-11 step 12.</comment>
+  </data>
+  <data name="ChangePasswordDoneBody" xml:space="preserve">
+    <value>Password changed. Your other sessions were closed.</value>
+    <comment>Success dialog. The second sentence is CU-03 RN-07.</comment>
+  </data>
+  <data name="PasswordPolicyWarning" xml:space="preserve">
+    <value>at least 8 characters and three of: lowercase, uppercase, digits, symbols</value>
+    <comment>CU-03 RN-03 policy. One line under the field.</comment>
+  </data>
+  <data name="ChangeEmailDoneBody" xml:space="preserve">
+    <value>We sent a link to the new address. It stays pending until you confirm it.</value>
+    <comment>Success dialog (D-20: the old address stays until the new one is confirmed).</comment>
+  </data>
+  <data name="ActiveSessionsCloseBody" xml:space="preserve">
+    <value>Close the session on {0}, last used {1}?</value>
+    <comment>Confirm body (CU-10 step 6). {0} device, {1} last use.</comment>
+  </data>
+  <data name="ActiveSessionsCloseAllBody" xml:space="preserve">
+    <value>Close all the other sessions?</value>
+    <comment>Confirm body for the close all option.</comment>
+  </data>
+  <data name="ActiveSessionsChangePasswordBody" xml:space="preserve">
+    <value>If someone opened them without permission, they will open them again with the same password. Change it now?</value>
+    <comment>CU-10 RN-05: after closing all the others, propose a password change.</comment>
   </data>
 </root>
