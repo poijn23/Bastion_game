@@ -160,6 +160,13 @@ public abstract class FormScreen : IScreen
         }
     }
 
+    // The height of a card filled with a list of rows. Four screens work it
+    // out the same way, and two of them add their own header on top.
+    protected static int ComputeListCardHeight(int visibleRows, int rowHeight, int rowGap)
+    {
+        return (Theme.CardPadding * 2) + (visibleRows * rowHeight) + ((visibleRows - 1) * rowGap);
+    }
+
     protected static ValueBox CreateValueBox(Rectangle bounds)
     {
         return new ValueBox { Bounds = bounds };

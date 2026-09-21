@@ -14,16 +14,14 @@ public sealed class GuiModerationQueue : FormScreen
     private const int RowGap = 10;
     private const int VisibleRows = 4;
 
-    // Derived, so the last row keeps fitting when the card or the rows change.
-    private const int CardHeight =
-        (Theme.CardPadding * 2) + (VisibleRows * RowHeight) + ((VisibleRows - 1) * RowGap);
+    private static readonly int _cardHeight = ComputeListCardHeight(VisibleRows, RowHeight, RowGap);
 
     private readonly List<DataRow> _rows = [];
     private readonly Button _reviewButton;
     private readonly Button _backButton;
 
     public GuiModerationQueue(INavigator navigator)
-        : base(navigator, WideCardWidth, CardHeight)
+        : base(navigator, WideCardWidth, _cardHeight)
     {
         for (int i = 0; i < VisibleRows; i++)
         {

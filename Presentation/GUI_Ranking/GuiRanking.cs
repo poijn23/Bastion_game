@@ -14,18 +14,18 @@ public sealed class GuiRanking : FormScreen
     private const int RowGap = 8;
     private const int VisibleRows = 4;
     private const int PinnedGap = 18;
-
-    // Derived, so the pinned row keeps fitting inside the card.
-    private const int CardHeight = (Theme.CardPadding * 2) + (VisibleRows * RowHeight)
-        + ((VisibleRows - 1) * RowGap) + PinnedGap + RowHeight;
     private const int PodiumSize = 3;
+
+    // The pinned row of the player sits below the list, with a gap of its own.
+    private static readonly int _cardHeight =
+        ComputeListCardHeight(VisibleRows, RowHeight, RowGap) + PinnedGap + RowHeight;
 
     private readonly List<DataRow> _rows = [];
     private readonly DataRow _ownRow;
     private readonly Button _backButton;
 
     public GuiRanking(INavigator navigator)
-        : base(navigator, WideCardWidth, CardHeight)
+        : base(navigator, WideCardWidth, _cardHeight)
     {
         for (int i = 0; i < VisibleRows; i++)
         {

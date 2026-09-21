@@ -15,10 +15,10 @@ public sealed class GuiLogs : FormScreen
     private const int RowGap = 8;
     private const int VisibleRows = 3;
 
-    // Derived from the filter row plus the result rows, so the card ends where
-    // the list ends instead of leaving the bottom half empty.
-    private const int CardHeight = (Theme.CardPadding * 2) + (LabelSpace * 2) + Theme.FieldHeight
-        + SectionGap + (VisibleRows * RowHeight) + ((VisibleRows - 1) * RowGap);
+    // The filter row and its label sit above the list, inside the same card.
+    private static readonly int _cardHeight =
+        ComputeListCardHeight(VisibleRows, RowHeight, RowGap)
+        + (LabelSpace * 2) + Theme.FieldHeight + SectionGap;
 
     private readonly Selector _logSelector;
     private readonly TextField _fromField;
@@ -28,7 +28,7 @@ public sealed class GuiLogs : FormScreen
     private readonly Button _backButton;
 
     public GuiLogs(INavigator navigator)
-        : base(navigator, WideCardWidth, CardHeight)
+        : base(navigator, WideCardWidth, _cardHeight)
     {
         int column = (ContentWidth - (SectionGap * 2)) / 3;
 
