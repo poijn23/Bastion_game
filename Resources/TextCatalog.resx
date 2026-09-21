@@ -485,4 +485,592 @@
     <value>KEEP EDITING</value>
     <comment>CU-02 FA-01: stays on the form.</comment>
   </data>
+  <data name="ProfileSubtitle" xml:space="preserve">
+    <value>YOUR PROFILE</value>
+    <comment>CU-15 main flow step 4.</comment>
+  </data>
+  <data name="ProfileAvatarPlaceholder" xml:space="preserve">
+    <value>ICON</value>
+    <comment>Placeholder until the icon catalogue exists.</comment>
+  </data>
+  <data name="ProfileMatchesCaption" xml:space="preserve">
+    <value>MATCHES</value>
+    <comment>Caption of the matches played tile.</comment>
+  </data>
+  <data name="ProfileWinRateCaption" xml:space="preserve">
+    <value>WIN RATE</value>
+    <comment>Caption of the win percentage tile.</comment>
+  </data>
+  <data name="ProfileStreakCaption" xml:space="preserve">
+    <value>BEST STREAK</value>
+    <comment>Caption of the best streak tile.</comment>
+  </data>
+  <data name="ProfileEloCaption" xml:space="preserve">
+    <value>ELO</value>
+    <comment>Caption of the current elo tile. Not translated.</comment>
+  </data>
+  <data name="ProfileEditButton" xml:space="preserve">
+    <value>EDIT MY PROFILE</value>
+    <comment>Leads to CU-12.</comment>
+  </data>
+  <data name="EditProfileSubtitle" xml:space="preserve">
+    <value>EDIT YOUR PROFILE</value>
+    <comment>CU-12 main flow step 1.</comment>
+  </data>
+  <data name="EditProfileNicknameLabel" xml:space="preserve">
+    <value>YOUR PLAYER NAME</value>
+    <comment>Shown but not editable here: CU-12 RN-01 sends it to its own use case.</comment>
+  </data>
+  <data name="EditProfileLinkLabel" xml:space="preserve">
+    <value>LINK</value>
+    <comment>First of the profile links.</comment>
+  </data>
+  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
+    <value>ANOTHER LINK</value>
+    <comment>Second of the profile links.</comment>
+  </data>
+  <data name="EditProfileLinkPlaceholder" xml:space="preserve">
+    <value>an address people can open</value>
+    <comment>Hint.</comment>
+  </data>
+  <data name="EditProfileSpectatorsLabel" xml:space="preserve">
+    <value>let people watch my matches</value>
+    <comment>The permite_espectadores switch (CU-34 RN-02).</comment>
+  </data>
+  <data name="EditProfileDiscardBody" xml:space="preserve">
+    <value>If you leave now you lose the changes you have not saved.</value>
+    <comment>CU-12 alternate flow.</comment>
+  </data>
+  <data name="PlayerCardSubtitle" xml:space="preserve">
+    <value>ANOTHER PLAYER</value>
+    <comment>CU-16 main flow step 4.</comment>
+  </data>
+  <data name="PlayerCardHeadToHeadCaption" xml:space="preserve">
+    <value>BETWEEN YOU TWO</value>
+    <comment>Caption of the head to head score.</comment>
+  </data>
+  <data name="PlayerCardHeadToHeadSample" xml:space="preserve">
+    <value>3 - 2</value>
+    <comment>Placeholder score. Not translated.</comment>
+  </data>
+  <data name="PlayerCardMatchSample" xml:space="preserve">
+    <value>Match together</value>
+    <comment>Placeholder row.</comment>
+  </data>
+  <data name="PlayerCardAddFriendButton" xml:space="preserve">
+    <value>ADD AS A FRIEND</value>
+    <comment>Leads to CU-30.</comment>
+  </data>
+  <data name="AddFriendSubtitle" xml:space="preserve">
+    <value>ADD A FRIEND</value>
+    <comment>CU-30 main flow step 1.</comment>
+  </data>
+  <data name="AddFriendSearchLabel" xml:space="preserve">
+    <value>PLAYER NAME OR FRIEND CODE</value>
+    <comment>One field for both, as CU-30 asks.</comment>
+  </data>
+  <data name="AddFriendSearchPlaceholder" xml:space="preserve">
+    <value>who are you looking for</value>
+    <comment>Hint of the search field.</comment>
+  </data>
+  <data name="AddFriendSearchButton" xml:space="preserve">
+    <value>SEARCH</value>
+    <comment>Primary action of CU-30.</comment>
+  </data>
+  <data name="AddFriendSuggestionSample" xml:space="preserve">
+    <value>Player</value>
+    <comment>Placeholder suggestion.</comment>
+  </data>
+  <data name="AddFriendSuggestionReason" xml:space="preserve">
+    <value>you played together recently</value>
+    <comment>Why the suggestion appears (CU-30 RN-07).</comment>
+  </data>
+  <data name="FriendsSubtitle" xml:space="preserve">
+    <value>YOUR FRIENDS</value>
+    <comment>The list the social use cases return to.</comment>
+  </data>
+  <data name="FriendsNameSample" xml:space="preserve">
+    <value>Friend</value>
+    <comment>Placeholder row.</comment>
+  </data>
+  <data name="FriendsOnlineLabel" xml:space="preserve">
+    <value>online now</value>
+    <comment>State shown under the name.</comment>
+  </data>
+  <data name="FriendsOfflineLabel" xml:space="preserve">
+    <value>not connected</value>
+    <comment>State shown under the name.</comment>
+  </data>
+  <data name="FriendsAddButton" xml:space="preserve">
+    <value>ADD A FRIEND</value>
+    <comment>Leads to CU-30.</comment>
+  </data>
+  <data name="MatchHistorySubtitle" xml:space="preserve">
+    <value>YOUR MATCHES</value>
+    <comment>CU-36 main flow step 4.</comment>
+  </data>
+  <data name="MatchHistoryWin" xml:space="preserve">
+    <value>You won</value>
+    <comment>Result of the row.</comment>
+  </data>
+  <data name="MatchHistoryLoss" xml:space="preserve">
+    <value>You lost</value>
+    <comment>Result of the row.</comment>
+  </data>
+  <data name="MatchHistoryRowSample" xml:space="preserve">
+    <value>classic 9x9 - 12 min - today</value>
+    <comment>Mode, duration and date of the row.</comment>
+  </data>
+  <data name="MatchHistoryGainSample" xml:space="preserve">
+    <value>+18</value>
+    <comment>Placeholder elo change. Not translated.</comment>
+  </data>
+  <data name="MatchHistoryLossSample" xml:space="preserve">
+    <value>-14</value>
+    <comment>Placeholder elo change. Not translated.</comment>
+  </data>
+  <data name="CoinHistorySubtitle" xml:space="preserve">
+    <value>YOUR COINS</value>
+    <comment>CU-40 main flow step 4.</comment>
+  </data>
+  <data name="CoinHistoryBalanceCaption" xml:space="preserve">
+    <value>BALANCE</value>
+    <comment>Caption of the balance on top.</comment>
+  </data>
+  <data name="CoinHistoryBalanceSample" xml:space="preserve">
+    <value>350</value>
+    <comment>Placeholder balance. Not translated.</comment>
+  </data>
+  <data name="CoinHistoryGainSample" xml:space="preserve">
+    <value>Match won</value>
+    <comment>Placeholder movement.</comment>
+  </data>
+  <data name="CoinHistorySpendSample" xml:space="preserve">
+    <value>Pawn bought</value>
+    <comment>Placeholder movement.</comment>
+  </data>
+  <data name="CoinHistoryDateSample" xml:space="preserve">
+    <value>today</value>
+    <comment>Date of the movement.</comment>
+  </data>
+  <data name="CoinHistoryGainAmountSample" xml:space="preserve">
+    <value>+25</value>
+    <comment>Placeholder amount. Not translated.</comment>
+  </data>
+  <data name="CoinHistorySpendAmountSample" xml:space="preserve">
+    <value>-600</value>
+    <comment>Placeholder amount. Not translated.</comment>
+  </data>
+  <data name="RankingSubtitle" xml:space="preserve">
+    <value>THE RANKING</value>
+    <comment>CU-35 main flow step 4.</comment>
+  </data>
+  <data name="RankingPlayerSample" xml:space="preserve">
+    <value>Player</value>
+    <comment>Placeholder row.</comment>
+  </data>
+  <data name="RankingDivisionSample" xml:space="preserve">
+    <value>gold division</value>
+    <comment>Division of the row.</comment>
+  </data>
+  <data name="RankingEloSample" xml:space="preserve">
+    <value>1240</value>
+    <comment>Placeholder elo. Not translated.</comment>
+  </data>
+  <data name="RankingOwnPositionSample" xml:space="preserve">
+    <value>48</value>
+    <comment>Placeholder position. Not translated.</comment>
+  </data>
+  <data name="RankingYouLabel" xml:space="preserve">
+    <value>You</value>
+    <comment>Marks the player own pinned row.</comment>
+  </data>
+  <data name="ProfileNicknameSample" xml:space="preserve">
+    <value>Player</value>
+    <comment>Placeholder nickname.</comment>
+  </data>
+  <data name="ProfileTitleSample" xml:space="preserve">
+    <value>wall builder</value>
+    <comment>Placeholder equipped title.</comment>
+  </data>
+  <data name="ProfileLevelSample" xml:space="preserve">
+    <value>level 14</value>
+    <comment>Caption of the experience bar.</comment>
+  </data>
+  <data name="ProfileMatchesSample" xml:space="preserve">
+    <value>128</value>
+    <comment>Placeholder count. Not translated.</comment>
+  </data>
+  <data name="ProfileWinRateSample" xml:space="preserve">
+    <value>61%</value>
+    <comment>Placeholder percentage. Not translated.</comment>
+  </data>
+  <data name="ProfileStreakSample" xml:space="preserve">
+    <value>7</value>
+    <comment>Placeholder streak. Not translated.</comment>
+  </data>
+  <data name="ReportSubtitle" xml:space="preserve">
+    <value>REPORT A PLAYER</value>
+    <comment>CU-42 main flow step 1.</comment>
+  </data>
+  <data name="ReportReasonCheating" xml:space="preserve">
+    <value>Cheating</value>
+    <comment>One of the five reasons of CU-42.</comment>
+  </data>
+  <data name="ReportReasonAbuse" xml:space="preserve">
+    <value>Offensive messages</value>
+    <comment>One of the five reasons of CU-42.</comment>
+  </data>
+  <data name="ReportReasonName" xml:space="preserve">
+    <value>Inappropriate name</value>
+    <comment>One of the five reasons of CU-42.</comment>
+  </data>
+  <data name="ReportReasonLeaving" xml:space="preserve">
+    <value>Leaves matches</value>
+    <comment>One of the five reasons of CU-42.</comment>
+  </data>
+  <data name="ReportReasonOther" xml:space="preserve">
+    <value>Something else</value>
+    <comment>One of the five reasons of CU-42.</comment>
+  </data>
+  <data name="ReportDescriptionLabel" xml:space="preserve">
+    <value>TELL US MORE</value>
+    <comment>Optional description field.</comment>
+  </data>
+  <data name="ReportDescriptionPlaceholder" xml:space="preserve">
+    <value>optional</value>
+    <comment>Hint of the description.</comment>
+  </data>
+  <data name="ReportEvidenceNotice" xml:space="preserve">
+    <value>We will attach the match and the chat so a moderator can check what happened.</value>
+    <comment>CU-42 RN-02: the player is told what evidence travels with the report.</comment>
+  </data>
+  <data name="ReportSendButton" xml:space="preserve">
+    <value>SEND THE REPORT</value>
+    <comment>Primary action of CU-42.</comment>
+  </data>
+  <data name="ModerationQueueSubtitle" xml:space="preserve">
+    <value>WAITING FOR REVIEW</value>
+    <comment>CU-43 main flow step 3.</comment>
+  </data>
+  <data name="ModerationQueueReasonSample" xml:space="preserve">
+    <value>Offensive messages</value>
+    <comment>Placeholder reason.</comment>
+  </data>
+  <data name="ModerationQueueAgeSample" xml:space="preserve">
+    <value>2 hours ago</value>
+    <comment>Age of the report.</comment>
+  </data>
+  <data name="ModerationQueueCountSample" xml:space="preserve">
+    <value>3 reports</value>
+    <comment>How many reports the player carries.</comment>
+  </data>
+  <data name="ModerationQueueReviewButton" xml:space="preserve">
+    <value>REVIEW IT</value>
+    <comment>Opens CU-43 step 5.</comment>
+  </data>
+  <data name="ReportReviewSubtitle" xml:space="preserve">
+    <value>REVIEW THE REPORT</value>
+    <comment>CU-43 main flow step 5.</comment>
+  </data>
+  <data name="ReportReviewReasonLabel" xml:space="preserve">
+    <value>REASON</value>
+    <comment>Label of the reported reason.</comment>
+  </data>
+  <data name="ReportReviewDescriptionSample" xml:space="preserve">
+    <value>The player kept sending offensive messages during the whole match.</value>
+    <comment>Placeholder description.</comment>
+  </data>
+  <data name="ReportReviewMessageSample" xml:space="preserve">
+    <value>a chat message</value>
+    <comment>Placeholder chat line.</comment>
+  </data>
+  <data name="ReportReviewAuthorSample" xml:space="preserve">
+    <value>reported player</value>
+    <comment>Who wrote the highlighted line.</comment>
+  </data>
+  <data name="ReportReviewSanctionButton" xml:space="preserve">
+    <value>SANCTION</value>
+    <comment>Leads to CU-44.</comment>
+  </data>
+  <data name="ReportReviewDismissButton" xml:space="preserve">
+    <value>NO SANCTION</value>
+    <comment>Closes the report without sanction.</comment>
+  </data>
+  <data name="ApplySanctionSubtitle" xml:space="preserve">
+    <value>APPLY A SANCTION</value>
+    <comment>CU-44 main flow step 1.</comment>
+  </data>
+  <data name="ApplySanctionPlayerLabel" xml:space="preserve">
+    <value>PLAYER</value>
+    <comment>Who is being sanctioned.</comment>
+  </data>
+  <data name="ApplySanctionScopeLabel" xml:space="preserve">
+    <value>SCOPE</value>
+    <comment>Chat only or the whole account.</comment>
+  </data>
+  <data name="ApplySanctionScopeChat" xml:space="preserve">
+    <value>CHAT</value>
+    <comment>Scope option. Not translated.</comment>
+  </data>
+  <data name="ApplySanctionScopeAccount" xml:space="preserve">
+    <value>ACCOUNT</value>
+    <comment>Scope option.</comment>
+  </data>
+  <data name="ApplySanctionTypeLabel" xml:space="preserve">
+    <value>TYPE</value>
+    <comment>Temporary or permanent.</comment>
+  </data>
+  <data name="ApplySanctionTypeTemporary" xml:space="preserve">
+    <value>TEMPORARY</value>
+    <comment>Type option.</comment>
+  </data>
+  <data name="ApplySanctionTypePermanent" xml:space="preserve">
+    <value>PERMANENT</value>
+    <comment>Type option.</comment>
+  </data>
+  <data name="ApplySanctionDurationLabel" xml:space="preserve">
+    <value>HOW LONG</value>
+    <comment>Duration of a temporary sanction.</comment>
+  </data>
+  <data name="ApplySanctionDurationDay" xml:space="preserve">
+    <value>ONE DAY</value>
+    <comment>Duration option.</comment>
+  </data>
+  <data name="ApplySanctionDurationWeek" xml:space="preserve">
+    <value>ONE WEEK</value>
+    <comment>Duration option.</comment>
+  </data>
+  <data name="ApplySanctionHistorySample" xml:space="preserve">
+    <value>Chat sanction</value>
+    <comment>Placeholder previous sanction.</comment>
+  </data>
+  <data name="ApplySanctionHistoryDateSample" xml:space="preserve">
+    <value>last month</value>
+    <comment>When the previous sanction was applied.</comment>
+  </data>
+  <data name="ApplySanctionConfirmBody" xml:space="preserve">
+    <value>The player will not be able to use the chat for one day.</value>
+    <comment>CU-44 RN-08: the confirmation sums the sanction up in one sentence.</comment>
+  </data>
+  <data name="ApplySanctionApplyButton" xml:space="preserve">
+    <value>APPLY</value>
+    <comment>Primary action of CU-44.</comment>
+  </data>
+  <data name="AppealSubtitle" xml:space="preserve">
+    <value>APPEAL YOUR SANCTION</value>
+    <comment>CU-45 main flow step 1.</comment>
+  </data>
+  <data name="AppealDetailSample" xml:space="preserve">
+    <value>Chat sanction, temporary, for offensive messages. It ends in three days.</value>
+    <comment>Placeholder detail.</comment>
+  </data>
+  <data name="AppealTextLabel" xml:space="preserve">
+    <value>WHY DO YOU THINK IT IS WRONG</value>
+    <comment>The appeal text.</comment>
+  </data>
+  <data name="AppealTextPlaceholder" xml:space="preserve">
+    <value>explain what happened</value>
+    <comment>Hint of the appeal.</comment>
+  </data>
+  <data name="AppealStillActiveNotice" xml:space="preserve">
+    <value>Your sanction stays in force while a moderator reviews the appeal.</value>
+    <comment>CU-45 states this so the player does not expect it to lift.</comment>
+  </data>
+  <data name="AppealSendButton" xml:space="preserve">
+    <value>SEND THE APPEAL</value>
+    <comment>Primary action of CU-45.</comment>
+  </data>
+  <data name="AdminPanelSubtitle" xml:space="preserve">
+    <value>MODERATOR CANDIDATE</value>
+    <comment>CU-46 main flow step 3.</comment>
+  </data>
+  <data name="AdminPanelNicknameLabel" xml:space="preserve">
+    <value>PLAYER NAME</value>
+    <comment>Candidate nickname.</comment>
+  </data>
+  <data name="AdminPanelRegisteredLabel" xml:space="preserve">
+    <value>MEMBER SINCE</value>
+    <comment>The fecha_registro of the account.</comment>
+  </data>
+  <data name="AdminPanelRegisteredSample" xml:space="preserve">
+    <value>March 2024</value>
+    <comment>Placeholder date.</comment>
+  </data>
+  <data name="AdminPanelStateLabel" xml:space="preserve">
+    <value>ACCOUNT STATE</value>
+    <comment>The estado_cuenta.</comment>
+  </data>
+  <data name="AdminPanelStateSample" xml:space="preserve">
+    <value>active</value>
+    <comment>Placeholder state.</comment>
+  </data>
+  <data name="AdminPanelTypeLabel" xml:space="preserve">
+    <value>ACCOUNT TYPE</value>
+    <comment>The tipo_cuenta.</comment>
+  </data>
+  <data name="AdminPanelTypeSample" xml:space="preserve">
+    <value>registered</value>
+    <comment>Placeholder type.</comment>
+  </data>
+  <data name="AdminPanelHistorySample" xml:space="preserve">
+    <value>No sanctions</value>
+    <comment>Placeholder history row.</comment>
+  </data>
+  <data name="AdminPanelGrantConfirmBody" xml:space="preserve">
+    <value>This player will be able to review reports and apply sanctions.</value>
+    <comment>What granting the role means.</comment>
+  </data>
+  <data name="AdminPanelGrantButton" xml:space="preserve">
+    <value>GRANT THE ROLE</value>
+    <comment>Primary action of CU-46.</comment>
+  </data>
+  <data name="LogsSubtitle" xml:space="preserve">
+    <value>THE LOGS</value>
+    <comment>CU-48 main flow step 1.</comment>
+  </data>
+  <data name="LogsWhichLabel" xml:space="preserve">
+    <value>WHICH LOG</value>
+    <comment>Access log or moderation log.</comment>
+  </data>
+  <data name="LogsAccessOption" xml:space="preserve">
+    <value>ACCESS</value>
+    <comment>The BitacoraAcceso.</comment>
+  </data>
+  <data name="LogsModerationOption" xml:space="preserve">
+    <value>MODERATION</value>
+    <comment>The moderation log.</comment>
+  </data>
+  <data name="LogsFromLabel" xml:space="preserve">
+    <value>FROM</value>
+    <comment>Start of the date range.</comment>
+  </data>
+  <data name="LogsToLabel" xml:space="preserve">
+    <value>TO</value>
+    <comment>End of the date range.</comment>
+  </data>
+  <data name="LogsDatePlaceholder" xml:space="preserve">
+    <value>dd/mm/yyyy</value>
+    <comment>Hint of the date fields.</comment>
+  </data>
+  <data name="LogsRecordSample" xml:space="preserve">
+    <value>Sign in</value>
+    <comment>Placeholder record.</comment>
+  </data>
+  <data name="LogsRecordDetailSample" xml:space="preserve">
+    <value>player - 10.50.5.14 - today</value>
+    <comment>Detail of the record.</comment>
+  </data>
+  <data name="LogsResultSample" xml:space="preserve">
+    <value>ok</value>
+    <comment>Placeholder result. Not translated.</comment>
+  </data>
+  <data name="LogsSearchButton" xml:space="preserve">
+    <value>SEARCH</value>
+    <comment>Primary action of CU-48.</comment>
+  </data>
+  <data name="ShopSubtitle" xml:space="preserve">
+    <value>THE SHOP</value>
+    <comment>CU-38 main flow step 1.</comment>
+  </data>
+  <data name="ShopItemSample" xml:space="preserve">
+    <value>Item</value>
+    <comment>Placeholder item.</comment>
+  </data>
+  <data name="ShopBuyButton" xml:space="preserve">
+    <value>BUY IT</value>
+    <comment>Leads to CU-38 step 4.</comment>
+  </data>
+  <data name="PurchaseConfirmSubtitle" xml:space="preserve">
+    <value>CONFIRM YOUR PURCHASE</value>
+    <comment>CU-38 main flow step 4.</comment>
+  </data>
+  <data name="PurchaseConfirmItemLabel" xml:space="preserve">
+    <value>WHAT YOU ARE BUYING</value>
+    <comment>The item.</comment>
+  </data>
+  <data name="PurchaseConfirmPriceLabel" xml:space="preserve">
+    <value>PRICE</value>
+    <comment>The price in coins.</comment>
+  </data>
+  <data name="PurchaseConfirmPriceSample" xml:space="preserve">
+    <value>600</value>
+    <comment>Placeholder price. Not translated.</comment>
+  </data>
+  <data name="PurchaseConfirmBalanceLabel" xml:space="preserve">
+    <value>YOU HAVE</value>
+    <comment>The balance before the purchase.</comment>
+  </data>
+  <data name="PurchaseConfirmRemainingLabel" xml:space="preserve">
+    <value>YOU WILL HAVE</value>
+    <comment>CU-38 RN-07 asks for the resulting balance.</comment>
+  </data>
+  <data name="PurchaseConfirmRemainingSample" xml:space="preserve">
+    <value>-250</value>
+    <comment>Placeholder remaining. Not translated.</comment>
+  </data>
+  <data name="PurchaseConfirmButton" xml:space="preserve">
+    <value>BUY</value>
+    <comment>Primary action of CU-38.</comment>
+  </data>
+  <data name="BoxPurchaseSubtitle" xml:space="preserve">
+    <value>CONFIRM THE BOX</value>
+    <comment>CU-39 main flow step 4.</comment>
+  </data>
+  <data name="BoxPurchasePriceSample" xml:space="preserve">
+    <value>150</value>
+    <comment>Placeholder price. Not translated.</comment>
+  </data>
+  <data name="BoxPurchaseRemainingSample" xml:space="preserve">
+    <value>200</value>
+    <comment>Placeholder remaining. Not translated.</comment>
+  </data>
+  <data name="BoxPurchaseGuaranteeNotice" xml:space="preserve">
+    <value>You have opened 7 boxes without a rare item. The tenth one guarantees it.</value>
+    <comment>CU-39 RN-05 asks for the streak and the guarantee to be visible.</comment>
+  </data>
+  <data name="BoxPurchaseConfirmButton" xml:space="preserve">
+    <value>OPEN IT</value>
+    <comment>Primary action of CU-39.</comment>
+  </data>
+  <data name="CustomizeSubtitle" xml:space="preserve">
+    <value>CUSTOMIZE</value>
+    <comment>CU-14 main flow step 1.</comment>
+  </data>
+  <data name="CustomizeSlotPawn" xml:space="preserve">
+    <value>PAWN</value>
+    <comment>One of the six slots.</comment>
+  </data>
+  <data name="CustomizeSlotWalls" xml:space="preserve">
+    <value>WALLS</value>
+    <comment>One of the six slots.</comment>
+  </data>
+  <data name="CustomizeSlotBoard" xml:space="preserve">
+    <value>BOARD</value>
+    <comment>One of the six slots.</comment>
+  </data>
+  <data name="CustomizeSlotFrame" xml:space="preserve">
+    <value>FRAME</value>
+    <comment>One of the six slots.</comment>
+  </data>
+  <data name="CustomizeSlotEmotes" xml:space="preserve">
+    <value>EMOTES</value>
+    <comment>One of the six slots. Not translated.</comment>
+  </data>
+  <data name="CustomizeSlotTitle" xml:space="preserve">
+    <value>TITLE</value>
+    <comment>One of the six slots.</comment>
+  </data>
+  <data name="CustomizePreviewPlaceholder" xml:space="preserve">
+    <value>PREVIEW</value>
+    <comment>The rotating board preview belongs to the game renderer.</comment>
+  </data>
+  <data name="CustomizeEquipButton" xml:space="preserve">
+    <value>EQUIP IT</value>
+    <comment>Primary action of CU-14.</comment>
+  </data>
+  <data name="ReportReviewOtherAuthorSample" xml:space="preserve">
+    <value>the other player</value>
+    <comment>Author of a chat line that is not highlighted.</comment>
+  </data>
 </root>

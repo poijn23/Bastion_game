@@ -7,6 +7,8 @@ namespace Bastion.Presentation.Utils;
 
 public sealed class ShapeRenderer : IDisposable
 {
+    private const float LineThickness = 2f;
+
     private readonly GraphicsDevice _device;
     private readonly SpriteBatch _batch;
     private readonly Dictionary<RoundedRectangleShape, Texture2D> _textures = new();
@@ -28,6 +30,25 @@ public sealed class ShapeRenderer : IDisposable
     public void DrawRectangle(Rectangle bounds, Color color)
     {
         _batch.Draw(Pixel, bounds, color);
+    }
+
+    // A rotated one pixel sprite. The elo chart needs segments between two
+    // arbitrary points, which rectangles cannot draw.
+    public void DrawLine(Point from, Point to, Color color)
+    {
+        var delta = new Vector2(to.X - from.X, to.Y - from.Y);
+        float length = delta.Length();
+
+        if (length < 1f)
+        {
+            return;
+        }
+
+        float angle = MathF.Atan2(delta.Y, delta.X);
+        var scale = new Vector2(length, LineThickness);
+        var origin = new Vector2(0f, 0.5f);
+
+        _batch.Draw(Pixel, new Vector2(from.X, from.Y), null, color, angle, origin, scale, SpriteEffects.None, 0f);
     }
 
     public void DrawRoundedRectangle(Rectangle bounds, int cornerRadius, Color color)

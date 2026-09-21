@@ -218,6 +218,300 @@ public static class TextCatalog
 
     public static string RegisterKeepEditingButton => GetText(nameof(RegisterKeepEditingButton));
 
+    public static string ProfileSubtitle => GetText(nameof(ProfileSubtitle));
+
+    public static string ProfileAvatarPlaceholder => GetText(nameof(ProfileAvatarPlaceholder));
+
+    public static string ProfileMatchesCaption => GetText(nameof(ProfileMatchesCaption));
+
+    public static string ProfileWinRateCaption => GetText(nameof(ProfileWinRateCaption));
+
+    public static string ProfileStreakCaption => GetText(nameof(ProfileStreakCaption));
+
+    public static string ProfileEloCaption => GetText(nameof(ProfileEloCaption));
+
+    public static string ProfileEditButton => GetText(nameof(ProfileEditButton));
+
+    public static string EditProfileSubtitle => GetText(nameof(EditProfileSubtitle));
+
+    public static string EditProfileNicknameLabel => GetText(nameof(EditProfileNicknameLabel));
+
+    public static string EditProfileLinkLabel => GetText(nameof(EditProfileLinkLabel));
+
+    public static string EditProfileSecondLinkLabel => GetText(nameof(EditProfileSecondLinkLabel));
+
+    public static string EditProfileLinkPlaceholder => GetText(nameof(EditProfileLinkPlaceholder));
+
+    public static string EditProfileSpectatorsLabel => GetText(nameof(EditProfileSpectatorsLabel));
+
+    public static string EditProfileDiscardBody => GetText(nameof(EditProfileDiscardBody));
+
+    public static string PlayerCardSubtitle => GetText(nameof(PlayerCardSubtitle));
+
+    public static string PlayerCardHeadToHeadCaption => GetText(nameof(PlayerCardHeadToHeadCaption));
+
+    public static string PlayerCardHeadToHeadSample => GetText(nameof(PlayerCardHeadToHeadSample));
+
+    public static string PlayerCardMatchSample => GetText(nameof(PlayerCardMatchSample));
+
+    public static string PlayerCardAddFriendButton => GetText(nameof(PlayerCardAddFriendButton));
+
+    public static string AddFriendSubtitle => GetText(nameof(AddFriendSubtitle));
+
+    public static string AddFriendSearchLabel => GetText(nameof(AddFriendSearchLabel));
+
+    public static string AddFriendSearchPlaceholder => GetText(nameof(AddFriendSearchPlaceholder));
+
+    public static string AddFriendSearchButton => GetText(nameof(AddFriendSearchButton));
+
+    public static string AddFriendSuggestionSample => GetText(nameof(AddFriendSuggestionSample));
+
+    public static string AddFriendSuggestionReason => GetText(nameof(AddFriendSuggestionReason));
+
+    public static string FriendsSubtitle => GetText(nameof(FriendsSubtitle));
+
+    public static string FriendsNameSample => GetText(nameof(FriendsNameSample));
+
+    public static string FriendsOnlineLabel => GetText(nameof(FriendsOnlineLabel));
+
+    public static string FriendsOfflineLabel => GetText(nameof(FriendsOfflineLabel));
+
+    public static string FriendsAddButton => GetText(nameof(FriendsAddButton));
+
+    public static string MatchHistorySubtitle => GetText(nameof(MatchHistorySubtitle));
+
+    public static string MatchHistoryWin => GetText(nameof(MatchHistoryWin));
+
+    public static string MatchHistoryLoss => GetText(nameof(MatchHistoryLoss));
+
+    public static string MatchHistoryRowSample => GetText(nameof(MatchHistoryRowSample));
+
+    public static string MatchHistoryGainSample => GetText(nameof(MatchHistoryGainSample));
+
+    public static string MatchHistoryLossSample => GetText(nameof(MatchHistoryLossSample));
+
+    public static string CoinHistorySubtitle => GetText(nameof(CoinHistorySubtitle));
+
+    public static string CoinHistoryBalanceCaption => GetText(nameof(CoinHistoryBalanceCaption));
+
+    public static string CoinHistoryBalanceSample => GetText(nameof(CoinHistoryBalanceSample));
+
+    public static string CoinHistoryGainSample => GetText(nameof(CoinHistoryGainSample));
+
+    public static string CoinHistorySpendSample => GetText(nameof(CoinHistorySpendSample));
+
+    public static string CoinHistoryDateSample => GetText(nameof(CoinHistoryDateSample));
+
+    public static string CoinHistoryGainAmountSample => GetText(nameof(CoinHistoryGainAmountSample));
+
+    public static string CoinHistorySpendAmountSample => GetText(nameof(CoinHistorySpendAmountSample));
+
+    public static string RankingSubtitle => GetText(nameof(RankingSubtitle));
+
+    public static string RankingPlayerSample => GetText(nameof(RankingPlayerSample));
+
+    public static string RankingDivisionSample => GetText(nameof(RankingDivisionSample));
+
+    public static string RankingEloSample => GetText(nameof(RankingEloSample));
+
+    public static string RankingOwnPositionSample => GetText(nameof(RankingOwnPositionSample));
+
+    public static string RankingYouLabel => GetText(nameof(RankingYouLabel));
+
+    public static string ProfileNicknameSample => GetText(nameof(ProfileNicknameSample));
+
+    public static string ProfileTitleSample => GetText(nameof(ProfileTitleSample));
+
+    public static string ProfileLevelSample => GetText(nameof(ProfileLevelSample));
+
+    public static string ProfileMatchesSample => GetText(nameof(ProfileMatchesSample));
+
+    public static string ProfileWinRateSample => GetText(nameof(ProfileWinRateSample));
+
+    public static string ProfileStreakSample => GetText(nameof(ProfileStreakSample));
+
+    public static string ReportSubtitle => GetText(nameof(ReportSubtitle));
+
+    public static string ReportReasonCheating => GetText(nameof(ReportReasonCheating));
+
+    public static string ReportReasonAbuse => GetText(nameof(ReportReasonAbuse));
+
+    public static string ReportReasonName => GetText(nameof(ReportReasonName));
+
+    public static string ReportReasonLeaving => GetText(nameof(ReportReasonLeaving));
+
+    public static string ReportReasonOther => GetText(nameof(ReportReasonOther));
+
+    public static string ReportDescriptionLabel => GetText(nameof(ReportDescriptionLabel));
+
+    public static string ReportDescriptionPlaceholder => GetText(nameof(ReportDescriptionPlaceholder));
+
+    public static string ReportEvidenceNotice => GetText(nameof(ReportEvidenceNotice));
+
+    public static string ReportSendButton => GetText(nameof(ReportSendButton));
+
+    public static string ModerationQueueSubtitle => GetText(nameof(ModerationQueueSubtitle));
+
+    public static string ModerationQueueReasonSample => GetText(nameof(ModerationQueueReasonSample));
+
+    public static string ModerationQueueAgeSample => GetText(nameof(ModerationQueueAgeSample));
+
+    public static string ModerationQueueCountSample => GetText(nameof(ModerationQueueCountSample));
+
+    public static string ModerationQueueReviewButton => GetText(nameof(ModerationQueueReviewButton));
+
+    public static string ReportReviewSubtitle => GetText(nameof(ReportReviewSubtitle));
+
+    public static string ReportReviewReasonLabel => GetText(nameof(ReportReviewReasonLabel));
+
+    public static string ReportReviewDescriptionSample => GetText(nameof(ReportReviewDescriptionSample));
+
+    public static string ReportReviewMessageSample => GetText(nameof(ReportReviewMessageSample));
+
+    public static string ReportReviewAuthorSample => GetText(nameof(ReportReviewAuthorSample));
+
+    public static string ReportReviewSanctionButton => GetText(nameof(ReportReviewSanctionButton));
+
+    public static string ReportReviewDismissButton => GetText(nameof(ReportReviewDismissButton));
+
+    public static string ApplySanctionSubtitle => GetText(nameof(ApplySanctionSubtitle));
+
+    public static string ApplySanctionPlayerLabel => GetText(nameof(ApplySanctionPlayerLabel));
+
+    public static string ApplySanctionScopeLabel => GetText(nameof(ApplySanctionScopeLabel));
+
+    public static string ApplySanctionScopeChat => GetText(nameof(ApplySanctionScopeChat));
+
+    public static string ApplySanctionScopeAccount => GetText(nameof(ApplySanctionScopeAccount));
+
+    public static string ApplySanctionTypeLabel => GetText(nameof(ApplySanctionTypeLabel));
+
+    public static string ApplySanctionTypeTemporary => GetText(nameof(ApplySanctionTypeTemporary));
+
+    public static string ApplySanctionTypePermanent => GetText(nameof(ApplySanctionTypePermanent));
+
+    public static string ApplySanctionDurationLabel => GetText(nameof(ApplySanctionDurationLabel));
+
+    public static string ApplySanctionDurationDay => GetText(nameof(ApplySanctionDurationDay));
+
+    public static string ApplySanctionDurationWeek => GetText(nameof(ApplySanctionDurationWeek));
+
+    public static string ApplySanctionHistorySample => GetText(nameof(ApplySanctionHistorySample));
+
+    public static string ApplySanctionHistoryDateSample => GetText(nameof(ApplySanctionHistoryDateSample));
+
+    public static string ApplySanctionConfirmBody => GetText(nameof(ApplySanctionConfirmBody));
+
+    public static string ApplySanctionApplyButton => GetText(nameof(ApplySanctionApplyButton));
+
+    public static string AppealSubtitle => GetText(nameof(AppealSubtitle));
+
+    public static string AppealDetailSample => GetText(nameof(AppealDetailSample));
+
+    public static string AppealTextLabel => GetText(nameof(AppealTextLabel));
+
+    public static string AppealTextPlaceholder => GetText(nameof(AppealTextPlaceholder));
+
+    public static string AppealStillActiveNotice => GetText(nameof(AppealStillActiveNotice));
+
+    public static string AppealSendButton => GetText(nameof(AppealSendButton));
+
+    public static string AdminPanelSubtitle => GetText(nameof(AdminPanelSubtitle));
+
+    public static string AdminPanelNicknameLabel => GetText(nameof(AdminPanelNicknameLabel));
+
+    public static string AdminPanelRegisteredLabel => GetText(nameof(AdminPanelRegisteredLabel));
+
+    public static string AdminPanelRegisteredSample => GetText(nameof(AdminPanelRegisteredSample));
+
+    public static string AdminPanelStateLabel => GetText(nameof(AdminPanelStateLabel));
+
+    public static string AdminPanelStateSample => GetText(nameof(AdminPanelStateSample));
+
+    public static string AdminPanelTypeLabel => GetText(nameof(AdminPanelTypeLabel));
+
+    public static string AdminPanelTypeSample => GetText(nameof(AdminPanelTypeSample));
+
+    public static string AdminPanelHistorySample => GetText(nameof(AdminPanelHistorySample));
+
+    public static string AdminPanelGrantConfirmBody => GetText(nameof(AdminPanelGrantConfirmBody));
+
+    public static string AdminPanelGrantButton => GetText(nameof(AdminPanelGrantButton));
+
+    public static string LogsSubtitle => GetText(nameof(LogsSubtitle));
+
+    public static string LogsWhichLabel => GetText(nameof(LogsWhichLabel));
+
+    public static string LogsAccessOption => GetText(nameof(LogsAccessOption));
+
+    public static string LogsModerationOption => GetText(nameof(LogsModerationOption));
+
+    public static string LogsFromLabel => GetText(nameof(LogsFromLabel));
+
+    public static string LogsToLabel => GetText(nameof(LogsToLabel));
+
+    public static string LogsDatePlaceholder => GetText(nameof(LogsDatePlaceholder));
+
+    public static string LogsRecordSample => GetText(nameof(LogsRecordSample));
+
+    public static string LogsRecordDetailSample => GetText(nameof(LogsRecordDetailSample));
+
+    public static string LogsResultSample => GetText(nameof(LogsResultSample));
+
+    public static string LogsSearchButton => GetText(nameof(LogsSearchButton));
+
+    public static string ShopSubtitle => GetText(nameof(ShopSubtitle));
+
+    public static string ShopItemSample => GetText(nameof(ShopItemSample));
+
+    public static string ShopBuyButton => GetText(nameof(ShopBuyButton));
+
+    public static string PurchaseConfirmSubtitle => GetText(nameof(PurchaseConfirmSubtitle));
+
+    public static string PurchaseConfirmItemLabel => GetText(nameof(PurchaseConfirmItemLabel));
+
+    public static string PurchaseConfirmPriceLabel => GetText(nameof(PurchaseConfirmPriceLabel));
+
+    public static string PurchaseConfirmPriceSample => GetText(nameof(PurchaseConfirmPriceSample));
+
+    public static string PurchaseConfirmBalanceLabel => GetText(nameof(PurchaseConfirmBalanceLabel));
+
+    public static string PurchaseConfirmRemainingLabel => GetText(nameof(PurchaseConfirmRemainingLabel));
+
+    public static string PurchaseConfirmRemainingSample => GetText(nameof(PurchaseConfirmRemainingSample));
+
+    public static string PurchaseConfirmButton => GetText(nameof(PurchaseConfirmButton));
+
+    public static string BoxPurchaseSubtitle => GetText(nameof(BoxPurchaseSubtitle));
+
+    public static string BoxPurchasePriceSample => GetText(nameof(BoxPurchasePriceSample));
+
+    public static string BoxPurchaseRemainingSample => GetText(nameof(BoxPurchaseRemainingSample));
+
+    public static string BoxPurchaseGuaranteeNotice => GetText(nameof(BoxPurchaseGuaranteeNotice));
+
+    public static string BoxPurchaseConfirmButton => GetText(nameof(BoxPurchaseConfirmButton));
+
+    public static string CustomizeSubtitle => GetText(nameof(CustomizeSubtitle));
+
+    public static string CustomizeSlotPawn => GetText(nameof(CustomizeSlotPawn));
+
+    public static string CustomizeSlotWalls => GetText(nameof(CustomizeSlotWalls));
+
+    public static string CustomizeSlotBoard => GetText(nameof(CustomizeSlotBoard));
+
+    public static string CustomizeSlotFrame => GetText(nameof(CustomizeSlotFrame));
+
+    public static string CustomizeSlotEmotes => GetText(nameof(CustomizeSlotEmotes));
+
+    public static string CustomizeSlotTitle => GetText(nameof(CustomizeSlotTitle));
+
+    public static string CustomizePreviewPlaceholder => GetText(nameof(CustomizePreviewPlaceholder));
+
+    public static string CustomizeEquipButton => GetText(nameof(CustomizeEquipButton));
+
+    public static string ReportReviewOtherAuthorSample => GetText(nameof(ReportReviewOtherAuthorSample));
+
     // Returning the key when it is missing keeps a typo visible on screen
     // instead of throwing while drawing a frame.
     private static string GetText(string key)
