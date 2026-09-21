@@ -46,7 +46,7 @@ public sealed class GuiResetPassword : FormScreen
     private bool _hasValidated;
 
     public GuiResetPassword(INavigator navigator, string email)
-        : base(navigator, NarrowCardWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
     {
         ArgumentNullException.ThrowIfNull(email);
 
@@ -142,7 +142,7 @@ public sealed class GuiResetPassword : FormScreen
             return;
         }
 
-        Navigator.GoTo(ScreenId.Login);
+        Navigator.Restart(ScreenId.Login);
         Navigator.ShowMessage(DialogTone.Success, TextCatalog.ResetPasswordDoneBody);
     }
 

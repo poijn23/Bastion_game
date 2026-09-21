@@ -10,7 +10,7 @@ public sealed class Rule : Control
 
         if (IsVisible)
         {
-            Dashes.DrawHorizontal(canvas, Bounds.X, Bounds.Y, Bounds.Width, Theme.CheckBoxBorder);
+            Hairline.DrawHorizontal(canvas, Bounds.X, Bounds.Y, Bounds.Width, Theme.CheckBoxBorder);
         }
     }
 }

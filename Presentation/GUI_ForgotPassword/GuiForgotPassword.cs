@@ -25,7 +25,7 @@ public sealed class GuiForgotPassword : FormScreen
     private bool _hasValidated;
 
     public GuiForgotPassword(INavigator navigator)
-        : base(navigator, NarrowCardWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
     {
         int top = PanelContentTop;
         _body = new TextBlock { Bounds = new Rectangle(ContentX, top, ContentWidth, BodyHeight) };

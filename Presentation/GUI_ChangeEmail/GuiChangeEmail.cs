@@ -24,7 +24,7 @@ public sealed class GuiChangeEmail : FormScreen
     private bool _hasValidated;
 
     public GuiChangeEmail(INavigator navigator)
-        : base(navigator, NarrowCardWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
     {
         _newEmailField = new TextField { MaxLength = MaxEmailLength, Bounds = GetRow(0) };
         _passwordField = new TextField { IsPassword = true, Bounds = GetRow(1) };
@@ -74,7 +74,7 @@ public sealed class GuiChangeEmail : FormScreen
             return;
         }
 
-        Navigator.GoTo(ScreenId.AccountSettings);
+        Navigator.ReturnTo(ScreenId.AccountSettings);
         Navigator.ShowMessage(DialogTone.Success, TextCatalog.ChangeEmailDoneBody);
     }
 

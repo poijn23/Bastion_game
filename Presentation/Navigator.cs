@@ -109,33 +109,72 @@ public sealed class Navigator : INavigator
 
     private IScreen? _current;
     private IScreen? _dialog;
+    private readonly List<(ScreenId Id, string? Argument)> _history = [];
     private ScreenId _currentId;
-    private ScreenId _previousId;
     private string? _currentArgument;
-    private string? _previousArgument;
     private Action? _pendingConfirm;
 
     public void Start(ScreenId screen)
     {
-        _currentId = screen;
-        _previousId = screen;
-        _current = Build(screen, null);
-        _dialog = null;
+        Restart(screen);
     }
 
     public void GoTo(ScreenId screen, string? argument = null)
     {
-        _previousId = _currentId;
-        _previousArgument = _currentArgument;
-        _currentId = screen;
-        _currentArgument = argument;
-        _current = Build(screen, argument);
-        _dialog = null;
+        if (_current is not null)
+        {
+            _history.Add((_currentId, _currentArgument));
+        }
+
+        Show(screen, argument);
     }
 
     public void GoBack()
     {
-        GoTo(_previousId, _previousArgument);
+        if (_history.Count == 0)
+        {
+            Show(_currentId, _currentArgument);
+            return;
+        }
+
+        (ScreenId id, string? argument) = _history[^1];
+        _history.RemoveAt(_history.Count - 1);
+        Show(id, argument);
+    }
+
+    public void ReturnTo(ScreenId screen)
+    {
+        int index = _history.FindLastIndex(entry => entry.Id == screen);
+
+        if (index < 0)
+        {
+            if (_currentId != screen)
+            {
+                GoTo(screen);
+                return;
+            }
+
+            Show(screen, _currentArgument);
+            return;
+        }
+
+        (ScreenId id, string? argument) = _history[index];
+        _history.RemoveRange(index, _history.Count - index);
+        Show(id, argument);
+    }
+
+    public void Restart(ScreenId screen)
+    {
+        _history.Clear();
+        Show(screen, null);
+    }
+
+    private void Show(ScreenId screen, string? argument)
+    {
+        _currentId = screen;
+        _currentArgument = argument;
+        _current = Build(screen, argument);
+        _dialog = null;
     }
 
     public void ShowConfirm(ConfirmRequest request)

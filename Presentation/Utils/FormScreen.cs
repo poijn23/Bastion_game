@@ -11,6 +11,7 @@ public abstract class FormScreen : IScreen
 {
     protected const int NarrowCardWidth = 560;
     protected const int WideCardWidth = 900;
+    protected const int PanelNarrowWidth = 640;
     protected const int RowSpacing = 98;
     protected const int LabelSpace = 22;
     protected const int Gutter = 32;

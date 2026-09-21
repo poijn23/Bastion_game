@@ -27,7 +27,7 @@ public sealed class GuiDeleteAccount : FormScreen
     private bool _hasValidated;
 
     public GuiDeleteAccount(INavigator navigator)
-        : base(navigator, NarrowCardWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
     {
         int top = PanelContentTop;
         var lossArea = new Rectangle(ContentX, top, ContentWidth, LossBoxHeight);
@@ -122,7 +122,7 @@ public sealed class GuiDeleteAccount : FormScreen
             return;
         }
 
-        Navigator.GoTo(ScreenId.Login);
+        Navigator.Restart(ScreenId.Login);
         Navigator.ShowMessage(DialogTone.Warning, TextCatalog.DeleteAccountDoneBody);
     }
 

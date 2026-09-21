@@ -56,7 +56,7 @@ public sealed class SettingRow : Control
             Bounds.Right - ButtonWidth, Bounds.Y + ((Bounds.Height - Theme.SmallButtonHeight) / 2), ButtonWidth, Theme.SmallButtonHeight));
         _button.Draw(canvas);
 
-        Dashes.DrawHorizontal(canvas, Bounds.X, Bounds.Bottom - 2, Bounds.Width, Theme.CheckBoxBorder);
+        Hairline.DrawHorizontal(canvas, Bounds.X, Bounds.Bottom - 2, Bounds.Width, Theme.CheckBoxBorder);
     }
 
     private void OnButtonClicked(object? sender, EventArgs e)

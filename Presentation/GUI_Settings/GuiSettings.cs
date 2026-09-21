@@ -194,7 +194,7 @@ public sealed class GuiSettings : FormScreen
             Body = TextCatalog.SettingsSignOutBody,
             PrimaryLabel = TextCatalog.SettingsSignOutButton,
             SecondaryLabel = TextCatalog.CommonCancelButton,
-            OnConfirm = () => Navigator.GoTo(ScreenId.Login)
+            OnConfirm = () => Navigator.Restart(ScreenId.Login)
         });
     }
 

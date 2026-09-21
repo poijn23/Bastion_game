@@ -61,6 +61,6 @@ public sealed class GuiRegistrationSuccess : FormScreen
 
     private void OnSignInClicked(object? sender, EventArgs e)
     {
-        Navigator.GoTo(ScreenId.Login);
+        Navigator.Restart(ScreenId.Login);
     }
 }

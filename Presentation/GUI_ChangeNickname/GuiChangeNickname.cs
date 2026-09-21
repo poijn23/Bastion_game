@@ -24,7 +24,7 @@ public sealed class GuiChangeNickname : FormScreen
     private bool _hasValidated;
 
     public GuiChangeNickname(INavigator navigator)
-        : base(navigator, NarrowCardWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
     {
         int top = PanelContentTop + LabelSpace;
         _currentBox = new ValueBox { Bounds = new Rectangle(ContentX, top, ContentWidth, Theme.FieldHeight) };
@@ -101,7 +101,7 @@ public sealed class GuiChangeNickname : FormScreen
     {
         TestAccount.Nickname = newNickname;
         TestProfile.HasChangedNickname = true;
-        Navigator.GoTo(ScreenId.Profile);
+        Navigator.ReturnTo(ScreenId.Profile);
         Navigator.ShowMessage(DialogTone.Success, TextCatalog.ChangeNicknameDoneBody);
     }
 

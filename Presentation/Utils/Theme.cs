@@ -21,7 +21,7 @@ public static class Theme
     public const int PanelTop = 24;
     public const int PanelCardWidth = 1184;
     public const int PanelMargin = 24;
-    public const int PanelButtonWidth = 220;
+    public const int PanelButtonWidth = 260;
     public const int PanelButtonHeight = 52;
     public const int PanelBackHeight = 22;
     public const int PanelTitleHeight = 34;

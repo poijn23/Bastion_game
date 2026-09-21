@@ -194,7 +194,7 @@ public sealed class GuiRegister : FormScreen
 
     private void GoBackToLogin()
     {
-        Navigator.GoTo(ScreenId.Login);
+        Navigator.GoBack();
     }
 
     protected override void ApplyTexts()

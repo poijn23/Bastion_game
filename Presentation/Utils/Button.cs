@@ -6,6 +6,7 @@ namespace Bastion.Presentation.Utils;
 public sealed class Button : Control
 {
     private const int ContentPadding = 28;
+    private const int TextInset = 12;
     private const int ArrowMargin = 40;
     private const int ArrowHalfWidth = 9;
     private const int ArrowHalfHeight = 7;
@@ -127,6 +128,12 @@ public sealed class Button : Control
         TextStyle titleStyle = IsCompact
             ? TextStyleFactory.CreateSmallBold(canvas.Fonts, titleColor)
             : TextStyleFactory.CreateBoldBody(canvas.Fonts, titleColor);
+        int available = Bounds.Width - (TextInset * 2) - (HasArrow ? ArrowMargin : 0);
+
+        if (canvas.Text.Measure(Title, titleStyle) > available)
+        {
+            titleStyle = TextStyleFactory.CreateSmallBold(canvas.Fonts, titleColor);
+        }
 
         if (string.IsNullOrEmpty(Subtitle))
         {

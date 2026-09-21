@@ -14,7 +14,7 @@ public sealed class GuiEditProfile : FormScreen
     private const int IconRows = 2;
     private const int IconRowGap = 8;
     private const int AvatarGap = 16;
-    private const int SmallButtonWidth = 140;
+    private const int SmallButtonWidth = 170;
     private const int SmallButtonGap = 10;
     private const int HintHeight = 20;
     private const int SectionGap = 18;
@@ -336,13 +336,13 @@ public sealed class GuiEditProfile : FormScreen
             LanguagePicker.Apply(_languageSelector.SelectedIndex);
         }
 
-        Navigator.GoTo(ScreenId.Profile);
+        Navigator.ReturnTo(ScreenId.Profile);
         Navigator.ShowMessage(DialogTone.Success, TextCatalog.EditProfileSavedBody);
     }
 
     private void OnCancelClicked(object? sender, EventArgs e)
     {
-        Navigator.GoTo(ScreenId.Profile);
+        Navigator.GoBack();
     }
 
     private bool Validate()

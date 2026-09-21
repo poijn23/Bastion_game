@@ -21,7 +21,7 @@ public sealed class GuiActiveSessions : FormScreen
     private readonly Button _closeAllButton;
 
     public GuiActiveSessions(INavigator navigator)
-        : base(navigator, NarrowCardWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
     {
         for (int i = 0; i < VisibleRows; i++)
         {
