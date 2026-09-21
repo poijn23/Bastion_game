@@ -726,6 +726,10 @@ public static class TextCatalog
 
     public static string CommonBackButton => GetText(nameof(CommonBackButton));
 
+    public static string MenuSubtitle => GetText(nameof(MenuSubtitle));
+
+    public static string ProfileSubtitle => GetText(nameof(ProfileSubtitle));
+
     private static string GetText(string key)
     {
         return _manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;

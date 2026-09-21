@@ -465,13 +465,13 @@
     <value>&lt; volver</value>
   </data>
   <data name="CommonEditButton" xml:space="preserve">
-    <value>editar</value>
+    <value>EDITAR</value>
   </data>
   <data name="CommonChangeButton" xml:space="preserve">
-    <value>cambiar</value>
+    <value>CAMBIAR</value>
   </data>
   <data name="CommonContinueButton" xml:space="preserve">
-    <value>continuar</value>
+    <value>CONTINUAR</value>
   </data>
   <data name="AvatarPlaceholder" xml:space="preserve">
     <value>foto</value>
@@ -498,10 +498,10 @@
     <value>añadir +</value>
   </data>
   <data name="EditProfileUploadButton" xml:space="preserve">
-    <value>subir imagen</value>
+    <value>SUBIR IMAGEN</value>
   </data>
   <data name="EditProfileIconsButton" xml:space="preserve">
-    <value>iconos</value>
+    <value>ICONOS</value>
   </data>
   <data name="EditProfileIconsHint" xml:space="preserve">
     <value>32 iconos (animales, objetos) o tu jpg/png de máx. 2 MB</value>
@@ -525,7 +525,7 @@
     <value>se revisan antes de publicarse; nada de enlaces de pago ni invitaciones externas</value>
   </data>
   <data name="EditProfileRemoveLinkButton" xml:space="preserve">
-    <value>x</value>
+    <value>X</value>
   </data>
   <data name="Icono.ZORRO" xml:space="preserve">
     <value>zorro</value>
@@ -600,13 +600,13 @@
     <value>código de amigo</value>
   </data>
   <data name="CommonCopyButton" xml:space="preserve">
-    <value>copiar</value>
+    <value>COPIAR</value>
   </data>
   <data name="CommonViewButton" xml:space="preserve">
-    <value>ver</value>
+    <value>VER</value>
   </data>
   <data name="SettingsSignOutButton" xml:space="preserve">
-    <value>cerrar sesión</value>
+    <value>CERRAR SESIÓN</value>
   </data>
   <data name="SettingsSignOutBody" xml:space="preserve">
     <value>¿Quieres cerrar la sesión en este dispositivo?</value>
@@ -636,7 +636,7 @@
     <value>es tu único cambio disponible. tus partidas y tu elo se mantienen; el nombre antiguo queda libre.</value>
   </data>
   <data name="ChangeNicknameConfirmButton" xml:space="preserve">
-    <value>cambiar</value>
+    <value>CAMBIAR</value>
   </data>
   <data name="ChangeNicknameDoneBody" xml:space="preserve">
     <value>Nombre cambiado.</value>
@@ -693,16 +693,16 @@
     <value>revisa {0}. mira también el spam.</value>
   </data>
   <data name="ResetPasswordResendInFormat" xml:space="preserve">
-    <value>reenviar en {0}</value>
+    <value>REENVIAR EN {0}</value>
   </data>
   <data name="ResetPasswordResendButton" xml:space="preserve">
-    <value>reenviar</value>
+    <value>REENVIAR</value>
   </data>
   <data name="ResetPasswordSessionsNote" xml:space="preserve">
     <value>al guardar se cierran las demás sesiones</value>
   </data>
   <data name="ResetPasswordSaveButton" xml:space="preserve">
-    <value>cambiar contraseña</value>
+    <value>CAMBIAR CONTRASEÑA</value>
   </data>
   <data name="ResetPasswordDoneBody" xml:space="preserve">
     <value>Contraseña cambiada. Entra con la nueva.</value>
@@ -1138,5 +1138,11 @@
   </data>
   <data name="CommonBackButton" xml:space="preserve">
     <value>VOLVER</value>
+  </data>
+  <data name="MenuSubtitle" xml:space="preserve">
+    <value>TODAS LAS PANTALLAS</value>
+  </data>
+  <data name="ProfileSubtitle" xml:space="preserve">
+    <value>Tu perfil</value>
   </data>
 </root>

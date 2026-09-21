@@ -130,7 +130,7 @@ public sealed class MessageDialog
 
         float titleHeight = canvas.Text.GetLineHeight(titleStyle);
         float bodyHeight = canvas.Text.MeasureWrapped(Body, GetContentWidth(), bodyStyle);
-        float detailHeight = HasDetail ? canvas.Text.GetLineHeight(detailStyle) : 0f;
+        float detailHeight = HasDetail ? canvas.Text.MeasureWrapped(Detail, GetContentWidth(), detailStyle) : 0f;
 
         float total = Padding + Theme.DialogToneBarHeight + ToneRuleGap;
         total += titleHeight + TitleGap + bodyHeight;
@@ -182,7 +182,8 @@ public sealed class MessageDialog
         }
 
         y += metrics.BodyHeight + DetailGap;
-        canvas.Text.Draw(Detail, new Vector2(card.X + Padding, MathF.Round(y)), metrics.DetailStyle);
+        var detailArea = new Rectangle(card.X + Padding, (int)MathF.Round(y), GetContentWidth(), card.Height);
+        canvas.Text.DrawWrapped(Detail, detailArea, metrics.DetailStyle);
     }
 
     private void DrawButtons(Canvas canvas, Rectangle card)

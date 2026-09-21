@@ -10,12 +10,14 @@ namespace Bastion.Presentation.GUI_EditProfile;
 
 public sealed class GuiEditProfile : FormScreen
 {
-    private const int AvatarSize = 96;
+    private const int AvatarSize = 64;
+    private const int IconRows = 2;
+    private const int IconRowGap = 8;
     private const int AvatarGap = 16;
     private const int SmallButtonWidth = 140;
     private const int SmallButtonGap = 10;
     private const int HintHeight = 20;
-    private const int SectionGap = 22;
+    private const int SectionGap = 18;
     private const int ChangeButtonWidth = 120;
     private const int PreviewHeight = 64;
     private const int PreviewAvatar = 40;
@@ -27,8 +29,9 @@ public sealed class GuiEditProfile : FormScreen
     private const int MaxLinkLength = 254;
     private const int ButtonsGap = 24;
 
-    private const int IconsRowTop = Theme.SmallButtonHeight + 10;
-    private const int IconsHintTop = IconsRowTop + Theme.ChipHeight + 8;
+    private const int IconsRowTop = AvatarSize + 12;
+    private const int IconsRowsHeight = (IconRows * Theme.ChipHeight) + ((IconRows - 1) * IconRowGap);
+    private const int IconsHintTop = IconsRowTop + IconsRowsHeight + 8;
     private const int AvatarBlockHeight = IconsHintTop + HintHeight;
     private const int NameLabelTop = AvatarBlockHeight + SectionGap;
     private const int NameFieldTop = NameLabelTop + LabelSpace;
@@ -84,21 +87,21 @@ public sealed class GuiEditProfile : FormScreen
         int leftX = ContentX;
         int rightX = ContentX + ColumnWidth + Gutter;
         int besideAvatar = leftX + AvatarSize + AvatarGap;
-        int besideWidth = ColumnWidth - AvatarSize - AvatarGap;
         _titleIndex = TestProfile.TitleIndex;
         _iconIndex = TestProfile.IconIndex;
 
         _avatar = new Avatar { Bounds = new Rectangle(leftX, top, AvatarSize, AvatarSize) };
-        _uploadButton = CreateOutlineButton(new Rectangle(besideAvatar, top, SmallButtonWidth, Theme.SmallButtonHeight));
+        int buttonsTop = top + ((AvatarSize - Theme.SmallButtonHeight) / 2);
+        _uploadButton = CreateOutlineButton(new Rectangle(besideAvatar, buttonsTop, SmallButtonWidth, Theme.SmallButtonHeight));
         _uploadButton.IsEnabled = false;
         _iconsButton = CreateOutlineButton(
-            new Rectangle(besideAvatar + SmallButtonWidth + SmallButtonGap, top, SmallButtonWidth, Theme.SmallButtonHeight));
-        _iconChips = new ChipRow { Bounds = new Rectangle(besideAvatar, top + IconsRowTop, besideWidth, Theme.ChipHeight) };
+            new Rectangle(besideAvatar + SmallButtonWidth + SmallButtonGap, buttonsTop, SmallButtonWidth, Theme.SmallButtonHeight));
+        _iconChips = new ChipRow { Bounds = new Rectangle(leftX, top + IconsRowTop, ColumnWidth, IconsRowsHeight) };
         _iconChips.ChipChosen += OnIconChosen;
         _iconsHint = new TextLine
         {
             Style = TextLineStyle.Small,
-            Bounds = new Rectangle(besideAvatar, top + IconsHintTop, besideWidth, HintHeight)
+            Bounds = new Rectangle(leftX, top + IconsHintTop, ColumnWidth, HintHeight)
         };
 
         _nicknameBox = new ValueBox

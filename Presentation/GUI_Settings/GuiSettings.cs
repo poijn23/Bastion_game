@@ -43,7 +43,7 @@ public sealed class GuiSettings : FormScreen
     private readonly SettingRow _sessionsRow;
     private readonly SettingRow _friendCodeRow;
     private readonly Button _signOutButton;
-    private readonly DashedBox _deleteBox;
+    private readonly ActionBox _deleteBox;
 
     private readonly TextLine _languageLabel;
     private readonly RadioRow _spanishRow;
@@ -95,7 +95,7 @@ public sealed class GuiSettings : FormScreen
         _signOutButton = CreateOutlineButton(new Rectangle(panelX, signOutTop, panelWidth, SignOutHeight));
         _signOutButton.Clicked += OnSignOutClicked;
 
-        _deleteBox = new DashedBox { Bounds = new Rectangle(panelX, signOutTop + SignOutHeight + BlockGap, panelWidth, DeleteBoxHeight) };
+        _deleteBox = new ActionBox { Bounds = new Rectangle(panelX, signOutTop + SignOutHeight + BlockGap, panelWidth, DeleteBoxHeight) };
         _deleteBox.Clicked += (_, _) => Navigator.GoTo(ScreenId.DeleteAccount);
 
         _languageLabel = new TextLine { Style = TextLineStyle.Small, Bounds = new Rectangle(panelX, top, panelWidth, LanguageLabelHeight) };
@@ -134,7 +134,7 @@ public sealed class GuiSettings : FormScreen
     {
         base.Draw(canvas);
         int x = ContentX + SidebarWidth + (SidebarGap / 2);
-        canvas.Shapes.DrawRectangle(new Rectangle(x, Card.Y + Theme.CardPadding, 2, Card.Height - (Theme.CardPadding * 2)), Theme.TextDark);
+        canvas.Shapes.DrawRectangle(new Rectangle(x, Card.Y + Theme.CardPadding, 1, Card.Height - (Theme.CardPadding * 2)), Theme.CheckBoxBorder);
     }
 
     protected override void ApplyTexts()

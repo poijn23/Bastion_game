@@ -19,7 +19,8 @@ public static class Theme
     public const int SecondaryButtonHeight = 52;
     public const int CardPadding = 32;
     public const int PanelTop = 24;
-    public const int PanelCardWidth = 1000;
+    public const int PanelCardWidth = 1184;
+    public const int PanelMargin = 24;
     public const int PanelButtonWidth = 220;
     public const int PanelButtonHeight = 52;
     public const int PanelBackHeight = 22;

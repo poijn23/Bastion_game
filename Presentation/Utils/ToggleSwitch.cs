@@ -41,17 +41,17 @@ public sealed class ToggleSwitch : Control
 
         if (IsOn)
         {
-            canvas.Shapes.DrawRoundedRectangle(track, radius, Theme.TextDark);
+            canvas.Shapes.DrawRoundedRectangle(track, radius, Theme.Accent);
         }
         else
         {
-            canvas.Shapes.DrawRoundedRectangle(track, radius, Theme.Card);
-            canvas.Shapes.DrawRoundedBorder(track, BorderStyleFactory.CreateThick(radius, Theme.TextDark));
+            canvas.Shapes.DrawRoundedRectangle(track, radius, Theme.Field);
+            Hairline.DrawBorder(canvas, track, radius, Theme.CheckBoxBorder);
         }
 
         int knobSize = TrackHeight - (KnobInset * 2);
         int knobX = IsOn ? track.Right - KnobInset - knobSize : track.X + KnobInset;
         var knob = new Rectangle(knobX, track.Y + KnobInset, knobSize, knobSize);
-        canvas.Shapes.DrawRoundedRectangle(knob, knobSize / 2, IsOn ? Theme.Card : Theme.TextDark);
+        canvas.Shapes.DrawRoundedRectangle(knob, knobSize / 2, IsOn ? Theme.Card : Theme.Label);
     }
 }

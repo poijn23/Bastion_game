@@ -30,7 +30,7 @@ public sealed class Avatar : Control
 
         int radius = Math.Min(Bounds.Width, Bounds.Height) / 2;
         canvas.Shapes.DrawRoundedRectangle(Bounds, radius, Theme.Field);
-        canvas.Shapes.DrawRoundedBorder(Bounds, BorderStyleFactory.CreateThick(radius, Theme.TextDark));
+        Hairline.DrawBorder(canvas, Bounds, radius, Theme.CheckBoxBorder);
 
         TextStyle style = Bounds.Width >= 64
             ? TextStyleFactory.CreateBody(canvas.Fonts, Theme.Placeholder)

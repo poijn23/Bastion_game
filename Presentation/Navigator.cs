@@ -21,6 +21,7 @@ using Bastion.Presentation.GUI_MatchHistory;
 using Bastion.Presentation.GUI_MessageConfirm;
 using Bastion.Presentation.GUI_MessageError;
 using Bastion.Presentation.GUI_MessageSuccess;
+using Bastion.Presentation.GUI_Menu;
 using Bastion.Presentation.GUI_MessageWarning;
 using Bastion.Presentation.GUI_ModerationQueue;
 using Bastion.Presentation.GUI_PlayerCard;
@@ -55,6 +56,7 @@ public sealed class Navigator : INavigator
             navigator => new GuiForgotPassword(navigator),
         [ScreenId.AccountSettings] = navigator => new GuiSettings(navigator, false),
         [ScreenId.SettingsLanguage] = navigator => new GuiSettings(navigator, true),
+        [ScreenId.Menu] = navigator => new GuiMenu(navigator),
         [ScreenId.ChangePassword] =
             navigator => new GuiChangePassword(navigator),
         [ScreenId.ChangeEmail] =

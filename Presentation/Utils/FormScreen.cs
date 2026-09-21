@@ -65,7 +65,7 @@ public abstract class FormScreen : IScreen
         _backLink = new Button
         {
             Style = ButtonStyle.Link,
-            Bounds = new Rectangle(ContentX, Card.Y + Theme.CardPadding, 200, Theme.PanelBackHeight)
+            Bounds = new Rectangle(Theme.PanelMargin, Theme.PanelMargin, 200, Theme.PanelBackHeight)
         };
         _backLink.Clicked += OnBackLinkClicked;
     }
@@ -143,13 +143,12 @@ public abstract class FormScreen : IScreen
         if (_layout == ScreenLayout.Chrome)
         {
             ScreenChrome.Draw(canvas, GetSubtitle());
+            canvas.Shapes.DrawRoundedRectangle(Card, Theme.CardCornerRadius, Theme.Card);
         }
         else
         {
-            ScreenChrome.DrawOrnaments(canvas);
+            canvas.Shapes.DrawRectangle(new Rectangle(0, 0, Theme.WindowWidth, Theme.WindowHeight), Theme.Card);
         }
-
-        canvas.Shapes.DrawRoundedRectangle(Card, Theme.CardCornerRadius, Theme.Card);
 
         if (_backLink is not null)
         {

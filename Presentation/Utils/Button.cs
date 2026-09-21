@@ -22,6 +22,8 @@ public sealed class Button : Control
 
     public bool HasArrow { get; init; }
 
+    public bool IsCompact { get; init; }
+
     // Lets a dialog give its primary button the tone color instead of always
     // the orange accent.
     public Color Accent { get; init; } = Theme.Accent;
@@ -104,18 +106,12 @@ public sealed class Button : Control
             return;
         }
 
-        Color fill = IsHovered ? Theme.FieldFocused : Theme.Card;
-        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, fill);
-        canvas.Shapes.DrawRoundedBorder(
-            Bounds,
-            BorderStyleFactory.CreateThick(Theme.ButtonCornerRadius, Theme.TextDark));
-        DrawContent(canvas, Theme.TextDark, Theme.Label);
+        DrawSecondary(canvas);
     }
 
     private void DrawDisabled(Canvas canvas)
     {
-        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, Theme.Card);
-        Dashes.DrawBorder(canvas, Bounds, Theme.ButtonCornerRadius, Theme.CheckBoxBorder);
+        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, Theme.Field);
         DrawContent(canvas, Theme.Placeholder, Theme.Placeholder);
     }
 
@@ -128,7 +124,9 @@ public sealed class Button : Control
 
     private void DrawContent(Canvas canvas, Color titleColor, Color subtitleColor)
     {
-        TextStyle titleStyle = TextStyleFactory.CreateBoldBody(canvas.Fonts, titleColor);
+        TextStyle titleStyle = IsCompact
+            ? TextStyleFactory.CreateSmallBold(canvas.Fonts, titleColor)
+            : TextStyleFactory.CreateBoldBody(canvas.Fonts, titleColor);
 
         if (string.IsNullOrEmpty(Subtitle))
         {

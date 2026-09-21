@@ -6,8 +6,8 @@ namespace Bastion.Presentation.Utils;
 
 public sealed class ChipRow : Control
 {
-    private const int TextPadding = 18;
-    private const int ChipGap = 10;
+    private const int TextPadding = 14;
+    private const int ChipGap = 8;
     private const int CornerRadius = 18;
 
     private readonly List<Rectangle> _placed = [];
@@ -73,22 +73,21 @@ public sealed class ChipRow : Control
     {
         if (chip.IsSelected)
         {
-            canvas.Shapes.DrawRoundedRectangle(area, CornerRadius, Theme.TextDark);
+            canvas.Shapes.DrawRoundedRectangle(area, CornerRadius, Theme.Accent);
             canvas.Text.DrawCentered(chip.Text, area, TextStyleFactory.CreateBoldBody(canvas.Fonts, Theme.TextLight));
             return;
         }
 
-        canvas.Shapes.DrawRoundedRectangle(area, CornerRadius, Theme.Card);
-
         if (chip.IsDashed)
         {
-            Dashes.DrawBorder(canvas, area, CornerRadius, Theme.CheckBoxBorder);
+            canvas.Shapes.DrawRoundedRectangle(area, CornerRadius, Theme.Card);
+            Hairline.DrawBorder(canvas, area, CornerRadius, Theme.CheckBoxBorder);
             canvas.Text.DrawCentered(chip.Text, area, TextStyleFactory.CreateBody(canvas.Fonts, Theme.Placeholder));
             return;
         }
 
+        canvas.Shapes.DrawRoundedRectangle(area, CornerRadius, Theme.Field);
         Color color = chip.IsMuted ? Theme.Placeholder : Theme.TextDark;
-        canvas.Shapes.DrawRoundedBorder(area, BorderStyleFactory.CreateThick(CornerRadius, color));
         canvas.Text.DrawCentered(chip.Text, area, TextStyleFactory.CreateBoldBody(canvas.Fonts, color));
     }
 }

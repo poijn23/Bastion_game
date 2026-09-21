@@ -24,15 +24,14 @@ public sealed class PanelBox : Control
             return;
         }
 
-        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.FieldCornerRadius, IsMuted ? Theme.Field : Theme.Card);
-
         if (IsDashed)
         {
-            Dashes.DrawBorder(canvas, Bounds, Theme.FieldCornerRadius, Theme.CheckBoxBorder);
+            canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.FieldCornerRadius, Theme.Card);
+            Hairline.DrawBorder(canvas, Bounds, Theme.FieldCornerRadius, Theme.CheckBoxBorder);
         }
         else
         {
-            canvas.Shapes.DrawRoundedBorder(Bounds, BorderStyleFactory.CreateThick(Theme.FieldCornerRadius, Theme.TextDark));
+            canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.FieldCornerRadius, Theme.Field);
         }
 
         TextStyle small = TextStyleFactory.CreateSmall(canvas.Fonts, Theme.Placeholder);

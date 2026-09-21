@@ -39,12 +39,12 @@ public sealed class RadioRow : Control
 
         if (IsSelected)
         {
-            canvas.Shapes.DrawRoundedRectangle(circle, CircleSize / 2, Theme.TextDark);
+            canvas.Shapes.DrawRoundedRectangle(circle, CircleSize / 2, Theme.Accent);
         }
         else
         {
-            canvas.Shapes.DrawRoundedRectangle(circle, CircleSize / 2, Theme.Card);
-            canvas.Shapes.DrawRoundedBorder(circle, BorderStyleFactory.CreateThick(CircleSize / 2, Theme.TextDark));
+            canvas.Shapes.DrawRoundedRectangle(circle, CircleSize / 2, Theme.Field);
+            Hairline.DrawBorder(canvas, circle, CircleSize / 2, Theme.CheckBoxBorder);
         }
 
         TextStyle style = TextStyleFactory.CreateBody(canvas.Fonts, Theme.TextDark);
@@ -59,6 +59,6 @@ public sealed class RadioRow : Control
             canvas.Text.Draw(Tag, new Vector2(MathF.Round(tagX), MathF.Round(tagY)), tagStyle);
         }
 
-        Dashes.DrawHorizontal(canvas, Bounds.X, Bounds.Bottom - 2, Bounds.Width, Theme.CheckBoxBorder);
+        Hairline.DrawHorizontal(canvas, Bounds.X, Bounds.Bottom - 2, Bounds.Width, Theme.CheckBoxBorder);
     }
 }

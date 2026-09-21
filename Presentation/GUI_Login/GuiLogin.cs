@@ -71,7 +71,7 @@ public sealed class GuiLogin : FormScreen
 
         if (TestAccount.Matches(_identifierField.Text.Trim(), _passwordField.Text))
         {
-            Navigator.GoTo(ScreenId.AccountSettings);
+            Navigator.GoTo(ScreenId.Menu);
             return;
         }
 

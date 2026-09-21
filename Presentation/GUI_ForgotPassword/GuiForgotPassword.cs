@@ -21,7 +21,7 @@ public sealed class GuiForgotPassword : FormScreen
     private readonly TextBlock _body;
     private readonly TextField _emailField;
     private readonly Button _sendButton;
-    private readonly DashedBox _guestBox;
+    private readonly ActionBox _guestBox;
     private bool _hasValidated;
 
     public GuiForgotPassword(INavigator navigator)
@@ -38,7 +38,7 @@ public sealed class GuiForgotPassword : FormScreen
         _sendButton.MoveTo(new Rectangle(ContentX, buttonTop, ContentWidth, Theme.PanelButtonHeight));
         _sendButton.Clicked += OnSendClicked;
 
-        _guestBox = new DashedBox
+        _guestBox = new ActionBox
         {
             IsEnabled = false,
             Bounds = new Rectangle(ContentX, buttonTop + Theme.PanelButtonHeight + ButtonGap, ContentWidth, GuestBoxHeight)

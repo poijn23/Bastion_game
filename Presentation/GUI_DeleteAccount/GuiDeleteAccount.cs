@@ -7,7 +7,7 @@ namespace Bastion.Presentation.GUI_DeleteAccount;
 
 public sealed class GuiDeleteAccount : FormScreen
 {
-    private const int LossBoxHeight = 100;
+    private const int LossBoxHeight = 128;
     private const int LossTextTop = 38;
     private const int BlockGap = 24;
     private const int NoteHeight = 22;
@@ -46,7 +46,7 @@ public sealed class GuiDeleteAccount : FormScreen
             Bounds = new Rectangle(ContentX, fieldTop + Theme.FieldHeight + NoteGap + Theme.WarningSpace, ContentWidth, NoteHeight)
         };
 
-        _primaryButton = CreatePrimaryButton(true);
+        _primaryButton = CreatePrimaryButton(false);
         _cancelButton = CreateSecondaryButton();
         _cancelButton.MoveTo(SecondaryButtonBounds);
         _primaryButton.Clicked += OnPrimaryClicked;

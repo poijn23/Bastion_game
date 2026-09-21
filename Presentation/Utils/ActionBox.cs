@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 
 namespace Bastion.Presentation.Utils;
 
-public sealed class DashedBox : Control
+public sealed class ActionBox : Control
 {
-    private const int Padding = 22;
+    private const int Padding = 24;
     private const int TextGap = 4;
 
     public string Title { get; set; } = string.Empty;
@@ -33,8 +33,8 @@ public sealed class DashedBox : Control
             return;
         }
 
-        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.FieldCornerRadius, IsHovered ? Theme.Field : Theme.Card);
-        Dashes.DrawBorder(canvas, Bounds, Theme.FieldCornerRadius, Theme.CheckBoxBorder);
+        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.FieldCornerRadius, IsHovered && IsEnabled ? Theme.FieldFocused : Theme.Field);
+        canvas.Shapes.DrawRoundedRectangle(new Rectangle(Bounds.X, Bounds.Y, 4, Bounds.Height), 2, IsEnabled ? Theme.Accent : Theme.Label);
 
         TextStyle titleStyle = TextStyleFactory.CreateBoldBody(canvas.Fonts, Theme.TextDark);
         TextStyle hintStyle = TextStyleFactory.CreateSmall(canvas.Fonts, Theme.Placeholder);

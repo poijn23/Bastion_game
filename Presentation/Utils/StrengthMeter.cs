@@ -26,15 +26,7 @@ public sealed class StrengthMeter : Control
         {
             var bar = new Rectangle(Bounds.X + (i * (width + BarGap)), Bounds.Y, width, Bounds.Height);
 
-            if (i < Strength)
-            {
-                canvas.Shapes.DrawRoundedRectangle(bar, radius, Theme.TextDark);
-            }
-            else
-            {
-                canvas.Shapes.DrawRoundedRectangle(bar, radius, Theme.Card);
-                canvas.Shapes.DrawRoundedBorder(bar, BorderStyleFactory.CreateThick(radius, Theme.TextDark));
-            }
+            canvas.Shapes.DrawRoundedRectangle(bar, radius, i < Strength ? Theme.Accent : Theme.Field);
         }
     }
 }

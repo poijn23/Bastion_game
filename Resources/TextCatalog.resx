@@ -598,15 +598,15 @@
     <comment>Link at the top left of every panel screen.</comment>
   </data>
   <data name="CommonEditButton" xml:space="preserve">
-    <value>edit</value>
+    <value>EDIT</value>
     <comment>Small outline button (prototypes 5a, 9f).</comment>
   </data>
   <data name="CommonChangeButton" xml:space="preserve">
-    <value>change</value>
+    <value>CHANGE</value>
     <comment>Small outline button beside a value.</comment>
   </data>
   <data name="CommonContinueButton" xml:space="preserve">
-    <value>continue</value>
+    <value>CONTINUE</value>
     <comment>Primary option of a first step.</comment>
   </data>
   <data name="AvatarPlaceholder" xml:space="preserve">
@@ -642,11 +642,11 @@
     <comment>Dashed chip that opens GUI_EditProfile.</comment>
   </data>
   <data name="EditProfileUploadButton" xml:space="preserve">
-    <value>upload image</value>
+    <value>UPLOAD IMAGE</value>
     <comment>Disabled until image upload exists.</comment>
   </data>
   <data name="EditProfileIconsButton" xml:space="preserve">
-    <value>icons</value>
+    <value>ICONS</value>
     <comment>Selected: the avatar is one of the predefined icons.</comment>
   </data>
   <data name="EditProfileIconsHint" xml:space="preserve">
@@ -678,7 +678,7 @@
     <comment>Hint under the link rows.</comment>
   </data>
   <data name="EditProfileRemoveLinkButton" xml:space="preserve">
-    <value>x</value>
+    <value>X</value>
     <comment>Square button that clears a link row. Not translated.</comment>
   </data>
   <data name="Icono.ZORRO" xml:space="preserve">
@@ -778,15 +778,15 @@
     <comment>Row title (CU-30).</comment>
   </data>
   <data name="CommonCopyButton" xml:space="preserve">
-    <value>copy</value>
+    <value>COPY</value>
     <comment>Disabled until the clipboard is available.</comment>
   </data>
   <data name="CommonViewButton" xml:space="preserve">
-    <value>view</value>
+    <value>VIEW</value>
     <comment>Small outline button that opens a list.</comment>
   </data>
   <data name="SettingsSignOutButton" xml:space="preserve">
-    <value>sign out</value>
+    <value>SIGN OUT</value>
     <comment>Full width outline button and primary option of its confirm (CU-05).</comment>
   </data>
   <data name="SettingsSignOutBody" xml:space="preserve">
@@ -826,7 +826,7 @@
     <comment>Detail line of the confirm dialog (CU-13 RN-01 and RN-03).</comment>
   </data>
   <data name="ChangeNicknameConfirmButton" xml:space="preserve">
-    <value>change</value>
+    <value>CHANGE</value>
     <comment>Primary option of the confirm dialog, as CU-13 names it.</comment>
   </data>
   <data name="ChangeNicknameDoneBody" xml:space="preserve">
@@ -902,11 +902,11 @@
     <comment>{0} is the masked address.</comment>
   </data>
   <data name="ResetPasswordResendInFormat" xml:space="preserve">
-    <value>resend in {0}</value>
+    <value>RESEND IN {0}</value>
     <comment>Disabled button while CU-03 RN-06 forbids a resend. {0} is m:ss.</comment>
   </data>
   <data name="ResetPasswordResendButton" xml:space="preserve">
-    <value>resend</value>
+    <value>RESEND</value>
     <comment>Enabled after five minutes (CU-03 RN-06).</comment>
   </data>
   <data name="ResetPasswordSessionsNote" xml:space="preserve">
@@ -914,7 +914,7 @@
     <comment>CU-03 RN-07, under the strength meter.</comment>
   </data>
   <data name="ResetPasswordSaveButton" xml:space="preserve">
-    <value>change password</value>
+    <value>CHANGE PASSWORD</value>
     <comment>Primary option, as CU-03 step 12 names it.</comment>
   </data>
   <data name="ResetPasswordDoneBody" xml:space="preserve">
@@ -1496,5 +1496,13 @@
   <data name="CommonBackButton" xml:space="preserve">
     <value>BACK</value>
     <comment>Returns to the previous screen from a read only one.</comment>
+  </data>
+  <data name="MenuSubtitle" xml:space="preserve">
+    <value>ALL THE SCREENS</value>
+    <comment>Provisional menu that lists every screen, to review the languages.</comment>
+  </data>
+  <data name="ProfileSubtitle" xml:space="preserve">
+    <value>Your profile</value>
+    <comment>Menu entry for GUI_Profile.</comment>
   </data>
 </root>
