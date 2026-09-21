@@ -62,7 +62,7 @@ public sealed class GuiAddFriend : FormScreen
     }
 
     // Placeholder suggestions: they come from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _searchField.Label = TextCatalog.AddFriendSearchLabel;
         _searchField.Placeholder = TextCatalog.AddFriendSearchPlaceholder;

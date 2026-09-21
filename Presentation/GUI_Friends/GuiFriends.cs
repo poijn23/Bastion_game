@@ -56,7 +56,7 @@ public sealed class GuiFriends : FormScreen
     }
 
     // Placeholder rows: the friend list comes from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         for (int i = 0; i < _rows.Count; i++)
         {

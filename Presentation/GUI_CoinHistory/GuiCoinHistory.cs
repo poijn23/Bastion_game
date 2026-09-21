@@ -57,7 +57,7 @@ public sealed class GuiCoinHistory : FormScreen
     }
 
     // Placeholder rows: the movements come from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _balanceTile.Caption = TextCatalog.CoinHistoryBalanceCaption;
         _balanceTile.Value = TextCatalog.CoinHistoryBalanceSample;

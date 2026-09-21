@@ -62,7 +62,7 @@ public sealed class GuiForgotPassword : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _notice.Text = TextCatalog.ForgotPasswordNotice;
         _emailField.Label = TextCatalog.ForgotPasswordEmailLabel;

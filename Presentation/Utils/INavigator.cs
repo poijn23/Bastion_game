@@ -4,7 +4,7 @@ namespace Bastion.Presentation.Utils;
 // touch the ones that lead to it (rule 10.1).
 public interface INavigator
 {
-    void GoTo(ScreenId screen);
+    void GoTo(ScreenId screen, string? argument = null);
 
     void GoBack();
 

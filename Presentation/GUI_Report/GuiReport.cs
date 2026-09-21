@@ -73,7 +73,7 @@ public sealed class GuiReport : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _reasons.Options = BuildReasons();
         _description.Label = TextCatalog.ReportDescriptionLabel;

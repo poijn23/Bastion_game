@@ -1,103 +1,85 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
 namespace Bastion.Presentation.GUI_Profile;
 
-// CU-15 main flow step 4. Read only: every number comes from the server, so
-// what is here is the layout and the captions.
 public sealed class GuiProfile : FormScreen
 {
-    private const int WideCardWidth = 760;
-    private const int CardHeight = 396;
-    private const int AvatarSize = 96;
+    private const int HeadingHeight = 30;
+    private const int HeaderLineGap = 6;
+    private const int HeaderLineHeight = 22;
+    private const int BarGap = 10;
+    private const int BarHeight = 10;
+    private const int BarWidth = 400;
+    private const int BlockGap = 22;
+    private const int TileHeight = 84;
+    private const int TileGap = 16;
     private const int TileCount = 4;
-    private const int TileGap = 12;
-    private const int TileHeight = 68;
-    private const int ChartHeight = 120;
-    private const int SectionGap = 20;
-    private const int SampleCount = 8;
-    private const int HeaderGap = 20;
-    private const int NameHeight = 28;
-    private const int TitleHeight = 20;
-    private const int LevelHeight = 30;
-    private const int Threshold = 1200;
-    private const float SampleLevelProgress = 0.62f;
+    private const int ModeCount = 3;
 
-    // Crosses the threshold so the marked line is readable.
-    private static readonly int[] _sampleEloSeries = [1120, 1160, 1140, 1190, 1230, 1210, 1260, 1240];
+    private const int HeaderHeight = HeadingHeight + HeaderLineGap + HeaderLineHeight + BarGap + BarHeight;
+    private const int TilesTop = Theme.CardPadding + HeaderHeight + BlockGap;
+    private const int ModesTop = TilesTop + TileHeight + BlockGap + LabelSpace;
+    private const int CardHeight = ModesTop + Theme.FieldHeight + Theme.CardPadding;
 
-    private readonly AvatarBox _avatar;
-    private readonly TextLabel _nickname;
-    private readonly TextLabel _title;
-    private readonly ProgressBar _level;
+    private readonly TextLine _nickname;
+    private readonly TextLine _headerLine;
+    private readonly ProgressBar _experienceBar;
     private readonly StatTile _matchesTile;
-    private readonly StatTile _winRateTile;
+    private readonly StatTile _winsTile;
     private readonly StatTile _streakTile;
-    private readonly StatTile _eloTile;
-    private readonly LineChart _chart;
+    private readonly StatTile _topEloTile;
+    private readonly List<ValueBox> _modeBoxes = [];
     private readonly Button _editButton;
     private readonly Button _backButton;
 
     public GuiProfile(INavigator navigator)
         : base(navigator, WideCardWidth, CardHeight)
     {
-        _avatar = new AvatarBox
+        int y = Card.Y + Theme.CardPadding;
+        _nickname = new TextLine { IsHeading = true, Bounds = new Rectangle(ContentX, y, ContentWidth, HeadingHeight) };
+
+        y += HeadingHeight + HeaderLineGap;
+        _headerLine = new TextLine { Bounds = new Rectangle(ContentX, y, ContentWidth, HeaderLineHeight) };
+
+        y += HeaderLineHeight + BarGap;
+        _experienceBar = new ProgressBar
         {
-            Bounds = new Rectangle(ContentX, Card.Y + Theme.CardPadding, AvatarSize, AvatarSize)
+            Value = TestProfile.Experience / (float)TestProfile.ExperienceToNextLevel,
+            Bounds = new Rectangle(ContentX, y, BarWidth, BarHeight)
         };
 
-        int headerX = _avatar.Bounds.Right + HeaderGap;
-        int headerWidth = Card.Right - Theme.CardPadding - headerX;
+        _matchesTile = CreateTile(0);
+        _winsTile = CreateTile(1);
+        _streakTile = CreateTile(2);
+        _topEloTile = CreateTile(3);
 
-        _nickname = new TextLabel
+        for (int i = 0; i < ModeCount; i++)
         {
-            Role = TextRole.Heading,
-            Bounds = new Rectangle(headerX, _avatar.Bounds.Y, headerWidth, NameHeight)
-        };
-
-        _title = new TextLabel
-        {
-            Role = TextRole.Caption,
-            Bounds = new Rectangle(headerX, _avatar.Bounds.Y + NameHeight, headerWidth, TitleHeight)
-        };
-
-        _level = new ProgressBar
-        {
-            Progress = SampleLevelProgress,
-            Bounds = new Rectangle(
-                headerX,
-                _avatar.Bounds.Bottom - LevelHeight,
-                headerWidth,
-                LevelHeight)
-        };
-
-        int tilesTop = _avatar.Bounds.Bottom + SectionGap;
-        _matchesTile = CreateTile(0, tilesTop);
-        _winRateTile = CreateTile(1, tilesTop);
-        _streakTile = CreateTile(2, tilesTop);
-        _eloTile = CreateTile(3, tilesTop);
-
-        _chart = new LineChart
-        {
-            Bounds = new Rectangle(ContentX, tilesTop + TileHeight + SectionGap, ContentWidth, ChartHeight)
-        };
+            _modeBoxes.Add(new ValueBox { Bounds = GetModeBounds(i) });
+        }
 
         _editButton = CreatePrimaryButton(true);
         _backButton = CreateSecondaryButton();
         _editButton.Clicked += OnEditClicked;
         _backButton.Clicked += OnBackClicked;
 
-        Register(_avatar);
         Register(_nickname);
-        Register(_title);
-        Register(_level);
+        Register(_headerLine);
+        Register(_experienceBar);
         Register(_matchesTile);
-        Register(_winRateTile);
+        Register(_winsTile);
         Register(_streakTile);
-        Register(_eloTile);
-        Register(_chart);
+        Register(_topEloTile);
+
+        foreach (ValueBox box in _modeBoxes)
+        {
+            Register(box);
+        }
+
         Register(_editButton);
         Register(_backButton);
 
@@ -109,6 +91,48 @@ public sealed class GuiProfile : FormScreen
         return TextCatalog.ProfileSubtitle;
     }
 
+    protected override void ApplyTexts()
+    {
+        _nickname.Text = TestAccount.Nickname;
+        _headerLine.Text = string.Format(
+            TextCatalog.ProfileHeaderFormat,
+            GetTitleNames()[TestProfile.TitleIndex],
+            TestProfile.Level,
+            TestProfile.RegisteredOn.ToString("Y"));
+
+        _matchesTile.Value = TestProfile.MatchesPlayed.ToString("N0");
+        _matchesTile.Caption = TextCatalog.ProfileMatchesTile;
+        _winsTile.Value = TestProfile.WinRate.ToString("P0");
+        _winsTile.Caption = TextCatalog.ProfileWinsTile;
+        _streakTile.Value = TestProfile.BestStreak.ToString("N0");
+        _streakTile.Caption = TextCatalog.ProfileStreakTile;
+        _topEloTile.Value = TestProfile.TopElo.ToString("N0");
+        _topEloTile.Caption = TextCatalog.ProfileTopEloTile;
+
+        IReadOnlyList<string> modes = GetModeNames();
+
+        for (int i = 0; i < ModeCount; i++)
+        {
+            (int matches, double winRate) = TestProfile.ModeStats[i];
+            _modeBoxes[i].Label = modes[i];
+            _modeBoxes[i].Value = string.Format(
+                TextCatalog.ProfileModeStatFormat, matches.ToString("N0"), winRate.ToString("P0"));
+        }
+
+        _editButton.Title = TextCatalog.ProfileEditButton;
+        _backButton.Title = TextCatalog.CommonBackButton;
+    }
+
+    public static IReadOnlyList<string> GetModeNames()
+    {
+        return [TextCatalog.ModoClasico, TextCatalog.ModoCuatroJugadores, TextCatalog.ModoRapida];
+    }
+
+    public static IReadOnlyList<string> GetTitleNames()
+    {
+        return [TextCatalog.TituloNovato, TextCatalog.TituloEstratega, TextCatalog.TituloConstructor];
+    }
+
     private void OnEditClicked(object? sender, EventArgs e)
     {
         Navigator.GoTo(ScreenId.EditProfile);
@@ -116,38 +140,22 @@ public sealed class GuiProfile : FormScreen
 
     private void OnBackClicked(object? sender, EventArgs e)
     {
-        Navigator.GoBack();
+        Navigator.GoTo(ScreenId.AccountSettings);
     }
 
-    private void ApplyTexts()
+    private StatTile CreateTile(int index)
     {
-        _avatar.IconLabel = TextCatalog.ProfileAvatarPlaceholder;
-        _nickname.Text = TextCatalog.ProfileNicknameSample;
-        _title.Text = TextCatalog.ProfileTitleSample;
-        _level.Caption = TextCatalog.ProfileLevelSample;
-        _matchesTile.Value = TextCatalog.ProfileMatchesSample;
-        _winRateTile.Value = TextCatalog.ProfileWinRateSample;
-        _streakTile.Value = TextCatalog.ProfileStreakSample;
-        _eloTile.Value = TextCatalog.RankingEloSample;
-        _matchesTile.Caption = TextCatalog.ProfileMatchesCaption;
-        _winRateTile.Caption = TextCatalog.ProfileWinRateCaption;
-        _streakTile.Caption = TextCatalog.ProfileStreakCaption;
-        _eloTile.Caption = TextCatalog.ProfileEloCaption;
-        _editButton.Title = TextCatalog.ProfileEditButton;
-        _backButton.Title = TextCatalog.CommonBackButton;
-
-        _chart.Values = _sampleEloSeries;
-        _chart.Threshold = Threshold;
-    }
-
-    private StatTile CreateTile(int index, int top)
-    {
-        int width = (ContentWidth - (TileGap * (TileCount - 1))) / TileCount;
+        int width = (ContentWidth - ((TileCount - 1) * TileGap)) / TileCount;
         int x = ContentX + (index * (width + TileGap));
 
-        return new StatTile
-        {
-            Bounds = new Rectangle(x, top, width, TileHeight)
-        };
+        return new StatTile { Bounds = new Rectangle(x, Card.Y + TilesTop, width, TileHeight) };
+    }
+
+    private Rectangle GetModeBounds(int index)
+    {
+        int width = (ContentWidth - ((ModeCount - 1) * TileGap)) / ModeCount;
+        int x = ContentX + (index * (width + TileGap));
+
+        return new Rectangle(x, Card.Y + ModesTop, width, Theme.FieldHeight);
     }
 }

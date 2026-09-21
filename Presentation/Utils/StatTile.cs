@@ -3,16 +3,16 @@ using Microsoft.Xna.Framework;
 
 namespace Bastion.Presentation.Utils;
 
-// A single number with its caption, as the profile shows matches, win rate,
-// best streak and elo.
 public sealed class StatTile : Control
 {
-    private const int VerticalPadding = 12;
-    private const int CaptionGap = 4;
-
-    public string Caption { get; set; } = string.Empty;
+    private const int HorizontalPadding = 16;
+    private const int TopPadding = 14;
+    private const int TextGap = 4;
+    private const float ValueScale = 1.5f;
 
     public string Value { get; set; } = string.Empty;
+
+    public string Caption { get; set; } = string.Empty;
 
     public override void Draw(Canvas canvas)
     {
@@ -25,22 +25,14 @@ public sealed class StatTile : Control
 
         canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.FieldCornerRadius, Theme.Field);
 
-        TextStyle valueStyle = TextStyleFactory.CreateBoldBody(canvas.Fonts, Theme.TextDark);
-        TextStyle captionStyle = TextStyleFactory.CreateSmall(canvas.Fonts, Theme.Placeholder);
+        var valueStyle = new TextStyle { Font = canvas.Fonts.Bold, Color = Theme.TextDark, Scale = ValueScale };
+        TextStyle captionStyle = TextStyleFactory.CreateSmall(canvas.Fonts, Theme.Label);
 
-        float total = canvas.Text.GetLineHeight(valueStyle) + CaptionGap + canvas.Text.GetLineHeight(captionStyle);
-        float y = Bounds.Y + ((Bounds.Height - total) / 2f);
+        float x = Bounds.X + HorizontalPadding;
+        float y = Bounds.Y + TopPadding;
+        canvas.Text.Draw(Value, new Vector2(x, y), valueStyle);
 
-        canvas.Text.DrawCentered(Value, GetLineArea(canvas, y, valueStyle), valueStyle);
-
-        y += canvas.Text.GetLineHeight(valueStyle) + CaptionGap;
-        canvas.Text.DrawCentered(Caption, GetLineArea(canvas, y, captionStyle), captionStyle);
-    }
-
-    private Rectangle GetLineArea(Canvas canvas, float top, TextStyle style)
-    {
-        int height = (int)canvas.Text.GetLineHeight(style);
-
-        return new Rectangle(Bounds.X, (int)MathF.Round(top), Bounds.Width, height);
+        y += canvas.Text.GetLineHeight(valueStyle) + TextGap;
+        canvas.Text.Draw(Caption, new Vector2(x, MathF.Round(y)), captionStyle);
     }
 }

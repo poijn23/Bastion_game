@@ -10,7 +10,6 @@ namespace Bastion.Presentation.GUI_ApplySanction;
 // of that player in sight because they decide the severity (CU-44 RN-06).
 public sealed class GuiApplySanction : FormScreen
 {
-    private const int WideCardWidth = 760;
     private const int CardHeight = 400;
     private const int SectionGap = 20;
     private const int HistoryHeight = 54;
@@ -60,6 +59,7 @@ public sealed class GuiApplySanction : FormScreen
 
         _applyButton = CreatePrimaryButton(true);
         _cancelButton = CreateSecondaryButton();
+        LayOutActionsInRow([_applyButton, _cancelButton]);
         _applyButton.Clicked += OnApplyClicked;
         _cancelButton.Clicked += OnCancelClicked;
 
@@ -101,7 +101,7 @@ public sealed class GuiApplySanction : FormScreen
     }
 
     // Placeholder history: the previous sanctions come from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _playerBox.Label = TextCatalog.ApplySanctionPlayerLabel;
         _playerBox.Value = TextCatalog.RankingPlayerSample;

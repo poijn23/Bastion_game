@@ -10,14 +10,13 @@ namespace Bastion.Presentation.GUI_Shop;
 // grid is read against it.
 public sealed class GuiShop : FormScreen
 {
-    private const int WideCardWidth = 760;
     private const int CardHeight = 400;
     private const int BalanceWidth = 180;
     private const int BalanceHeight = 68;
     private const int SectionGap = 20;
     private const int TileColumns = 4;
     private const int TileRows = 2;
-    private const int TileSize = 132;
+    private const int TileHeight = 132;
     private const int TileGap = 14;
 
     private readonly StatTile _balance;
@@ -51,6 +50,7 @@ public sealed class GuiShop : FormScreen
 
         _buyButton = CreatePrimaryButton(true);
         _backButton = CreateSecondaryButton();
+        LayOutActionsInRow([_buyButton, _backButton]);
         _buyButton.Clicked += OnBuyClicked;
         _backButton.Clicked += OnBackClicked;
 
@@ -77,7 +77,7 @@ public sealed class GuiShop : FormScreen
     }
 
     // Placeholder catalogue: the items come from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _balance.Caption = TextCatalog.CoinHistoryBalanceCaption;
         _balance.Value = TextCatalog.CoinHistoryBalanceSample;
@@ -91,13 +91,23 @@ public sealed class GuiShop : FormScreen
         _backButton.Title = TextCatalog.CommonBackButton;
     }
 
+    // Only the width follows the card. The height cannot, because the two rows
+    // have to keep fitting between the balance and the bottom of the card.
+    private int GetTileWidth()
+    {
+        return (ContentWidth - (TileGap * (TileColumns - 1))) / TileColumns;
+    }
+
     private Rectangle GetTileBounds(int index, int top)
     {
+        int width = GetTileWidth();
         int column = index % TileColumns;
         int row = index / TileColumns;
-        int x = ContentX + (column * (TileSize + TileGap));
-        int y = top + (row * (TileSize + TileGap));
 
-        return new Rectangle(x, y, TileSize, TileSize);
+        return new Rectangle(
+            ContentX + (column * (width + TileGap)),
+            top + (row * (TileHeight + TileGap)),
+            width,
+            TileHeight);
     }
 }

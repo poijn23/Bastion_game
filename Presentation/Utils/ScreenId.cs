@@ -14,6 +14,7 @@ public enum ScreenId
     ChangeNickname,
     DeleteAccount,
     ActiveSessions,
+    RegistrationSuccess,
     Profile,
     EditProfile,
     PlayerCard,

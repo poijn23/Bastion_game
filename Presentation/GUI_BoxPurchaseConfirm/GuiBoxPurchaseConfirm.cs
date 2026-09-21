@@ -66,7 +66,7 @@ public sealed class GuiBoxPurchaseConfirm : FormScreen
     }
 
     // Placeholder amounts: the price and the streak come from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _priceBox.Label = TextCatalog.PurchaseConfirmPriceLabel;
         _priceBox.Value = TextCatalog.BoxPurchasePriceSample;

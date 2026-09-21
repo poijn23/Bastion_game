@@ -29,6 +29,7 @@ using Bastion.Presentation.GUI_Profile;
 using Bastion.Presentation.GUI_PurchaseConfirm;
 using Bastion.Presentation.GUI_Ranking;
 using Bastion.Presentation.GUI_Register;
+using Bastion.Presentation.GUI_RegistrationSuccess;
 using Bastion.Presentation.GUI_Report;
 using Bastion.Presentation.GUI_ReportReview;
 using Bastion.Presentation.GUI_ResetPassword;
@@ -43,65 +44,98 @@ namespace Bastion.Presentation;
 public sealed class Navigator : INavigator
 {
     // A lookup instead of a switch: CA1502 counts every case label, and
-    // twenty nine of them put Build far over the limit of ten.
+    // thirty of them put Build far over the limit of ten.
     private static readonly Dictionary<ScreenId, Func<INavigator, IScreen>> _factories = new()
     {
-        [ScreenId.Login] = navigator => new GuiLogin(navigator),
-        [ScreenId.Register] = navigator => new GuiRegister(navigator),
-        [ScreenId.ForgotPassword] = navigator => new GuiForgotPassword(navigator),
-        [ScreenId.ResetPassword] = navigator => new GuiResetPassword(navigator),
-        [ScreenId.AccountSettings] = navigator => new GuiAccountSettings(navigator),
-        [ScreenId.ChangePassword] = navigator => new GuiChangePassword(navigator),
-        [ScreenId.ChangeEmail] = navigator => new GuiChangeEmail(navigator),
-        [ScreenId.ChangeNickname] = navigator => new GuiChangeNickname(navigator),
-        [ScreenId.DeleteAccount] = navigator => new GuiDeleteAccount(navigator),
-        [ScreenId.ActiveSessions] = navigator => new GuiActiveSessions(navigator),
-        [ScreenId.Profile] = navigator => new GuiProfile(navigator),
-        [ScreenId.EditProfile] = navigator => new GuiEditProfile(navigator),
-        [ScreenId.PlayerCard] = navigator => new GuiPlayerCard(navigator),
-        [ScreenId.Friends] = navigator => new GuiFriends(navigator),
-        [ScreenId.AddFriend] = navigator => new GuiAddFriend(navigator),
-        [ScreenId.MatchHistory] = navigator => new GuiMatchHistory(navigator),
-        [ScreenId.CoinHistory] = navigator => new GuiCoinHistory(navigator),
-        [ScreenId.Ranking] = navigator => new GuiRanking(navigator),
-        [ScreenId.Report] = navigator => new GuiReport(navigator),
-        [ScreenId.ModerationQueue] = navigator => new GuiModerationQueue(navigator),
-        [ScreenId.ReportReview] = navigator => new GuiReportReview(navigator),
-        [ScreenId.ApplySanction] = navigator => new GuiApplySanction(navigator),
-        [ScreenId.Appeal] = navigator => new GuiAppeal(navigator),
-        [ScreenId.AdminPanel] = navigator => new GuiAdminPanel(navigator),
-        [ScreenId.Logs] = navigator => new GuiLogs(navigator),
-        [ScreenId.Shop] = navigator => new GuiShop(navigator),
-        [ScreenId.PurchaseConfirm] = navigator => new GuiPurchaseConfirm(navigator),
-        [ScreenId.BoxPurchaseConfirm] = navigator => new GuiBoxPurchaseConfirm(navigator),
-        [ScreenId.Customize] = navigator => new GuiCustomize(navigator),
+        [ScreenId.Login] =
+            navigator => new GuiLogin(navigator),
+        [ScreenId.Register] =
+            navigator => new GuiRegister(navigator),
+        [ScreenId.ForgotPassword] =
+            navigator => new GuiForgotPassword(navigator),
+        [ScreenId.ResetPassword] =
+            navigator => new GuiResetPassword(navigator),
+        [ScreenId.AccountSettings] =
+            navigator => new GuiAccountSettings(navigator),
+        [ScreenId.ChangePassword] =
+            navigator => new GuiChangePassword(navigator),
+        [ScreenId.ChangeEmail] =
+            navigator => new GuiChangeEmail(navigator),
+        [ScreenId.ChangeNickname] =
+            navigator => new GuiChangeNickname(navigator),
+        [ScreenId.DeleteAccount] =
+            navigator => new GuiDeleteAccount(navigator),
+        [ScreenId.ActiveSessions] =
+            navigator => new GuiActiveSessions(navigator),
+        [ScreenId.Profile] =
+            navigator => new GuiProfile(navigator),
+        [ScreenId.EditProfile] =
+            navigator => new GuiEditProfile(navigator),
+        [ScreenId.PlayerCard] =
+            navigator => new GuiPlayerCard(navigator),
+        [ScreenId.Friends] =
+            navigator => new GuiFriends(navigator),
+        [ScreenId.AddFriend] =
+            navigator => new GuiAddFriend(navigator),
+        [ScreenId.MatchHistory] =
+            navigator => new GuiMatchHistory(navigator),
+        [ScreenId.CoinHistory] =
+            navigator => new GuiCoinHistory(navigator),
+        [ScreenId.Ranking] =
+            navigator => new GuiRanking(navigator),
+        [ScreenId.Report] =
+            navigator => new GuiReport(navigator),
+        [ScreenId.ModerationQueue] =
+            navigator => new GuiModerationQueue(navigator),
+        [ScreenId.ReportReview] =
+            navigator => new GuiReportReview(navigator),
+        [ScreenId.ApplySanction] =
+            navigator => new GuiApplySanction(navigator),
+        [ScreenId.Appeal] =
+            navigator => new GuiAppeal(navigator),
+        [ScreenId.AdminPanel] =
+            navigator => new GuiAdminPanel(navigator),
+        [ScreenId.Logs] =
+            navigator => new GuiLogs(navigator),
+        [ScreenId.Shop] =
+            navigator => new GuiShop(navigator),
+        [ScreenId.PurchaseConfirm] =
+            navigator => new GuiPurchaseConfirm(navigator),
+        [ScreenId.BoxPurchaseConfirm] =
+            navigator => new GuiBoxPurchaseConfirm(navigator),
+        [ScreenId.Customize] =
+            navigator => new GuiCustomize(navigator),
     };
 
     private IScreen? _current;
     private IScreen? _dialog;
     private ScreenId _currentId;
     private ScreenId _previousId;
+    private string? _currentArgument;
+    private string? _previousArgument;
     private Action? _pendingConfirm;
 
     public void Start(ScreenId screen)
     {
         _currentId = screen;
         _previousId = screen;
-        _current = Build(screen);
+        _current = Build(screen, null);
         _dialog = null;
     }
 
-    public void GoTo(ScreenId screen)
+    public void GoTo(ScreenId screen, string? argument = null)
     {
         _previousId = _currentId;
+        _previousArgument = _currentArgument;
         _currentId = screen;
-        _current = Build(screen);
+        _currentArgument = argument;
+        _current = Build(screen, argument);
         _dialog = null;
     }
 
     public void GoBack()
     {
-        GoTo(_previousId);
+        GoTo(_previousId, _previousArgument);
     }
 
     public void ShowConfirm(ConfirmRequest request)
@@ -168,8 +202,14 @@ public sealed class Navigator : INavigator
         confirmed?.Invoke();
     }
 
-    private IScreen Build(ScreenId screen)
+    private IScreen Build(ScreenId screen, string? argument)
     {
+        // The only screen that needs what the previous one produced.
+        if (screen == ScreenId.RegistrationSuccess)
+        {
+            return new GuiRegistrationSuccess(this, argument ?? string.Empty);
+        }
+
         return _factories.TryGetValue(screen, out Func<INavigator, IScreen>? factory)
             ? factory(this)
             : new GuiLogin(this);

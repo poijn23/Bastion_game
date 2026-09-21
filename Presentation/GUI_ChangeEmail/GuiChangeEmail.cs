@@ -61,7 +61,7 @@ public sealed class GuiChangeEmail : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _newEmailField.Label = TextCatalog.ChangeEmailNewLabel;
         _newEmailField.Placeholder = TextCatalog.ChangeEmailNewPlaceholder;

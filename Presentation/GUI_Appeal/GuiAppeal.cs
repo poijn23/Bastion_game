@@ -71,7 +71,7 @@ public sealed class GuiAppeal : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _detail.Text = TextCatalog.AppealDetailSample;
         _appealField.Label = TextCatalog.AppealTextLabel;

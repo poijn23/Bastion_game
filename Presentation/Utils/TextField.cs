@@ -10,8 +10,8 @@ public sealed class TextField : Control
     private const char PasswordBullet = '•';
     private const int HorizontalPadding = 16;
     private const int LabelOffset = 22;
-    private const int WarningOffset = 6;
     private const int CaretWidth = 2;
+    private const int CaretGap = 2;
     private const float BlinksPerSecond = 2f;
     private const int DefaultMaxLength = 64;
 
@@ -30,6 +30,14 @@ public sealed class TextField : Control
     public bool IsCentered { get; init; }
 
     public string Text => _text.ToString();
+
+    public void SetText(string value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+
+        _text.Clear();
+        _text.Append(value.Length <= MaxLength ? value : value[..MaxLength]);
+    }
 
     public override void Update(InputState input)
     {
@@ -140,6 +148,10 @@ public sealed class TextField : Control
             Bounds.Width - (HorizontalPadding * 2),
             Bounds.Height);
 
+        // A value longer than the box scrolls instead of spilling over the
+        // card: the end stays visible, which is where the caret is.
+        shown = canvas.Text.FitEnd(shown, area.Width - CaretWidth - CaretGap, style);
+
         float width = canvas.Text.Measure(shown, style);
         float x = IsCentered ? area.X + ((area.Width - width) / 2f) : area.X;
         float y = area.Y + ((area.Height - canvas.Text.GetLineHeight(style)) / 2f);
@@ -173,7 +185,7 @@ public sealed class TextField : Control
         }
 
         TextStyle style = TextStyleFactory.CreateSmall(canvas.Fonts, Theme.Accent);
-        var position = new Vector2(Bounds.X + 2, Bounds.Bottom + WarningOffset);
+        var position = new Vector2(Bounds.X + 2, Bounds.Bottom + Theme.WarningOffset);
         canvas.Text.Draw(Warning ?? string.Empty, position, style);
     }
 }

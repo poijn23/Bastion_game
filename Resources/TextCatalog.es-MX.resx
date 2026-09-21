@@ -92,6 +92,18 @@
   <data name="RegisterSubtitle" xml:space="preserve">
     <value>CREA TU CUENTA</value>
   </data>
+  <data name="RegisterFirstNameLabel" xml:space="preserve">
+    <value>NOMBRE(S)</value>
+  </data>
+  <data name="RegisterFirstNamePlaceholder" xml:space="preserve">
+    <value>hasta 50 caracteres</value>
+  </data>
+  <data name="RegisterLastNameLabel" xml:space="preserve">
+    <value>APELLIDOS</value>
+  </data>
+  <data name="RegisterLastNamePlaceholder" xml:space="preserve">
+    <value>hasta 50 caracteres</value>
+  </data>
   <data name="RegisterNicknameLabel" xml:space="preserve">
     <value>NOMBRE DE JUGADOR</value>
   </data>
@@ -127,9 +139,6 @@
   </data>
   <data name="RegisterYearPlaceholder" xml:space="preserve">
     <value>aaaa</value>
-  </data>
-  <data name="RegisterAccountLanguageLabel" xml:space="preserve">
-    <value>IDIOMA DE LA CUENTA</value>
   </data>
   <data name="RegisterTermsText" xml:space="preserve">
     <value>acepto los términos de uso</value>
@@ -211,6 +220,15 @@
   </data>
   <data name="LoginGuestButton" xml:space="preserve">
     <value>JUGAR COMO INVITADO</value>
+  </data>
+  <data name="LoginIdentifierRequired" xml:space="preserve">
+    <value>escribe tu nombre de jugador o correo</value>
+  </data>
+  <data name="LoginPasswordRequired" xml:space="preserve">
+    <value>escribe tu contraseña</value>
+  </data>
+  <data name="LoginCredentialsRejected" xml:space="preserve">
+    <value>el nombre de jugador o la contraseña no son correctos</value>
   </data>
   <data name="ForgotPasswordSubtitle" xml:space="preserve">
     <value>RECUPERA TU CONTRASEÑA</value>
@@ -380,8 +398,134 @@
   <data name="RegisterKeepEditingButton" xml:space="preserve">
     <value>SEGUIR EDITANDO</value>
   </data>
+  <data name="RegisterFirstNameRequired" xml:space="preserve">
+    <value>escribe tu nombre</value>
+  </data>
+  <data name="RegisterLastNameRequired" xml:space="preserve">
+    <value>escribe tus apellidos</value>
+  </data>
+  <data name="RegisterNicknameLength" xml:space="preserve">
+    <value>usa de 3 a 30 caracteres</value>
+  </data>
+  <data name="RegisterNicknameTaken" xml:space="preserve">
+    <value>ese nombre de jugador ya está ocupado</value>
+  </data>
+  <data name="RegisterEmailInvalid" xml:space="preserve">
+    <value>eso no parece un correo electrónico</value>
+  </data>
+  <data name="RegisterEmailTaken" xml:space="preserve">
+    <value>ya hay una cuenta con ese correo</value>
+  </data>
+  <data name="RegisterPasswordTooShort" xml:space="preserve">
+    <value>usa mínimo 8 caracteres</value>
+  </data>
+  <data name="RegisterConfirmationMismatch" xml:space="preserve">
+    <value>las contraseñas no coinciden</value>
+  </data>
+  <data name="RegisterBirthDateInvalid" xml:space="preserve">
+    <value>esa fecha no existe</value>
+  </data>
+  <data name="RegisterBirthDateFuture" xml:space="preserve">
+    <value>esa fecha todavía no llega</value>
+  </data>
+  <data name="RegisterTermsRequired" xml:space="preserve">
+    <value>tienes que aceptar los términos para continuar</value>
+  </data>
+  <data name="RegistrationSuccessSubtitle" xml:space="preserve">
+    <value>CUENTA CREADA</value>
+  </data>
+  <data name="RegistrationSuccessNotice" xml:space="preserve">
+    <value>Te enviamos un correo de verificación. Ábrelo y sigue el enlace para activar tu cuenta; después inicia sesión.</value>
+  </data>
+  <data name="RegistrationSuccessEmailLabel" xml:space="preserve">
+    <value>ENVIADO A</value>
+  </data>
+  <data name="RegistrationSuccessSignInButton" xml:space="preserve">
+    <value>IR A INICIAR SESIÓN</value>
+  </data>
+  <data name="RegistrationSuccessDetail" xml:space="preserve">
+    <value>puedes cerrar el juego mientras lo revisas</value>
+  </data>
   <data name="ProfileSubtitle" xml:space="preserve">
     <value>TU PERFIL</value>
+  </data>
+  <data name="ProfileHeaderFormat" xml:space="preserve">
+    <value>{0} · Nivel {1} · desde {2}</value>
+  </data>
+  <data name="ProfileMatchesTile" xml:space="preserve">
+    <value>partidas</value>
+  </data>
+  <data name="ProfileWinsTile" xml:space="preserve">
+    <value>victorias</value>
+  </data>
+  <data name="ProfileStreakTile" xml:space="preserve">
+    <value>mejor racha</value>
+  </data>
+  <data name="ProfileTopEloTile" xml:space="preserve">
+    <value>elo máximo</value>
+  </data>
+  <data name="ProfileModeStatFormat" xml:space="preserve">
+    <value>{0} partidas · {1} ganadas</value>
+  </data>
+  <data name="ProfileEditButton" xml:space="preserve">
+    <value>EDITAR PERFIL</value>
+  </data>
+  <data name="EditProfileSubtitle" xml:space="preserve">
+    <value>EDITAR PERFIL</value>
+  </data>
+  <data name="EditProfileNicknameLabel" xml:space="preserve">
+    <value>NOMBRE DE JUGADOR</value>
+  </data>
+  <data name="EditProfileTitleLabel" xml:space="preserve">
+    <value>TÍTULO EQUIPADO</value>
+  </data>
+  <data name="EditProfileLanguageLabel" xml:space="preserve">
+    <value>IDIOMA DE LA CUENTA</value>
+  </data>
+  <data name="EditProfileFirstLinkLabel" xml:space="preserve">
+    <value>ENLACE A TUS REDES</value>
+  </data>
+  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
+    <value>SEGUNDO ENLACE</value>
+  </data>
+  <data name="EditProfileLinkPlaceholder" xml:space="preserve">
+    <value>https://</value>
+  </data>
+  <data name="EditProfileSpectatorsText" xml:space="preserve">
+    <value>permitir que otros vean mis partidas</value>
+  </data>
+  <data name="EditProfileLinkInvalid" xml:space="preserve">
+    <value>debe empezar por https://</value>
+  </data>
+  <data name="EditProfileLinkShortener" xml:space="preserve">
+    <value>no admitimos acortadores: pega la dirección completa</value>
+  </data>
+  <data name="EditProfileSavedBody" xml:space="preserve">
+    <value>Perfil guardado.</value>
+  </data>
+  <data name="AccountSettingsProfileEntry" xml:space="preserve">
+    <value>PERFIL</value>
+  </data>
+  <data name="Modo.CLASICO" xml:space="preserve">
+    <value>Clásico 9×9</value>
+  </data>
+  <data name="Modo.CUATRO_JUGADORES" xml:space="preserve">
+    <value>Cuatro jugadores</value>
+  </data>
+  <data name="Modo.RAPIDA" xml:space="preserve">
+    <value>Rápida 7×7</value>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_NOVATO" xml:space="preserve">
+    <value>Novato</value>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_ESTRATEGA" xml:space="preserve">
+    <value>Estratega</value>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_CONSTRUCTOR" xml:space="preserve">
+    <value>Constructor</value>
+  </data>
+  <data name="RegisterAccountLanguageLabel" xml:space="preserve">
+    <value>IDIOMA DE LA CUENTA</value>
   </data>
   <data name="ProfileAvatarPlaceholder" xml:space="preserve">
     <value>ICONO</value>
@@ -398,23 +542,8 @@
   <data name="ProfileEloCaption" xml:space="preserve">
     <value>ELO</value>
   </data>
-  <data name="ProfileEditButton" xml:space="preserve">
-    <value>EDITAR MI PERFIL</value>
-  </data>
-  <data name="EditProfileSubtitle" xml:space="preserve">
-    <value>EDITA TU PERFIL</value>
-  </data>
-  <data name="EditProfileNicknameLabel" xml:space="preserve">
-    <value>TU NOMBRE DE JUGADOR</value>
-  </data>
   <data name="EditProfileLinkLabel" xml:space="preserve">
     <value>ENLACE</value>
-  </data>
-  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
-    <value>OTRO ENLACE</value>
-  </data>
-  <data name="EditProfileLinkPlaceholder" xml:space="preserve">
-    <value>una dirección que se pueda abrir</value>
   </data>
   <data name="EditProfileSpectatorsLabel" xml:space="preserve">
     <value>dejar que vean mis partidas</value>

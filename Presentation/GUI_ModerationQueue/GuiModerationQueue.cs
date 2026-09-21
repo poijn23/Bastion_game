@@ -10,11 +10,13 @@ namespace Bastion.Presentation.GUI_ModerationQueue;
 // age and how many reports the reported player already carries.
 public sealed class GuiModerationQueue : FormScreen
 {
-    private const int WideCardWidth = 760;
-    private const int CardHeight = 380;
     private const int RowHeight = 62;
     private const int RowGap = 10;
-    private const int VisibleRows = 5;
+    private const int VisibleRows = 4;
+
+    // Derived, so the last row keeps fitting when the card or the rows change.
+    private const int CardHeight =
+        (Theme.CardPadding * 2) + (VisibleRows * RowHeight) + ((VisibleRows - 1) * RowGap);
 
     private readonly List<DataRow> _rows = [];
     private readonly Button _reviewButton;
@@ -57,7 +59,7 @@ public sealed class GuiModerationQueue : FormScreen
     }
 
     // Placeholder rows: the queue comes from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         foreach (DataRow row in _rows)
         {

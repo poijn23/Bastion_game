@@ -10,7 +10,6 @@ namespace Bastion.Presentation.GUI_PlayerCard;
 // score, the last matches together and what can be done about them.
 public sealed class GuiPlayerCard : FormScreen
 {
-    private const int WideCardWidth = 760;
     private const int CardHeight = 392;
     private const int AvatarSize = 88;
     private const int SectionGap = 20;
@@ -46,6 +45,7 @@ public sealed class GuiPlayerCard : FormScreen
 
         _addFriendButton = CreatePrimaryButton(true);
         _backButton = CreateSecondaryButton();
+        LayOutActionsInRow([_addFriendButton, _backButton]);
         _addFriendButton.Clicked += OnAddFriendClicked;
         _backButton.Clicked += OnBackClicked;
 
@@ -73,7 +73,7 @@ public sealed class GuiPlayerCard : FormScreen
     }
 
     // Placeholder rows: the shared matches come from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _avatar.IconLabel = TextCatalog.ProfileAvatarPlaceholder;
         _headToHead.Caption = TextCatalog.PlayerCardHeadToHeadCaption;

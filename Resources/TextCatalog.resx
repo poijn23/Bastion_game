@@ -101,6 +101,22 @@
     <value>CREATE YOUR ACCOUNT</value>
     <comment>CU-02 main flow step 1. Header subtitle.</comment>
   </data>
+  <data name="RegisterFirstNameLabel" xml:space="preserve">
+    <value>FIRST NAME</value>
+    <comment>Label of the given name field.</comment>
+  </data>
+  <data name="RegisterFirstNamePlaceholder" xml:space="preserve">
+    <value>up to 50 characters</value>
+    <comment>Hint text. Provisional bound: the schema does not fix Usuario.nombre yet.</comment>
+  </data>
+  <data name="RegisterLastNameLabel" xml:space="preserve">
+    <value>LAST NAME</value>
+    <comment>Label of the family name field. Plural in es-MX, where two surnames are the norm.</comment>
+  </data>
+  <data name="RegisterLastNamePlaceholder" xml:space="preserve">
+    <value>up to 50 characters</value>
+    <comment>Hint text. Provisional bound: the schema does not fix Usuario.apellidos yet.</comment>
+  </data>
   <data name="RegisterNicknameLabel" xml:space="preserve">
     <value>PLAYER NAME</value>
     <comment>Label of the nickname field.</comment>
@@ -148,10 +164,6 @@
   <data name="RegisterYearPlaceholder" xml:space="preserve">
     <value>yyyy</value>
     <comment>Year hint, in the convention of each language.</comment>
-  </data>
-  <data name="RegisterAccountLanguageLabel" xml:space="preserve">
-    <value>ACCOUNT LANGUAGE</value>
-    <comment>Label of the idioma_preferido picker.</comment>
   </data>
   <data name="RegisterTermsText" xml:space="preserve">
     <value>I accept the terms of use</value>
@@ -260,6 +272,18 @@
   <data name="LoginGuestButton" xml:space="preserve">
     <value>PLAY AS A GUEST</value>
     <comment>Leads to CU-06. As a guest no elo and no items are kept.</comment>
+  </data>
+  <data name="LoginIdentifierRequired" xml:space="preserve">
+    <value>type your player name or email</value>
+    <comment>Under the empty identifier field.</comment>
+  </data>
+  <data name="LoginPasswordRequired" xml:space="preserve">
+    <value>type your password</value>
+    <comment>Under the empty password field.</comment>
+  </data>
+  <data name="LoginCredentialsRejected" xml:space="preserve">
+    <value>that player name or password is wrong</value>
+    <comment>CU-01 alternate flow: one message for both, so the field that failed is not revealed.</comment>
   </data>
   <data name="ForgotPasswordSubtitle" xml:space="preserve">
     <value>RECOVER YOUR PASSWORD</value>
@@ -485,9 +509,177 @@
     <value>KEEP EDITING</value>
     <comment>CU-02 FA-01: stays on the form.</comment>
   </data>
+  <data name="RegisterFirstNameRequired" xml:space="preserve">
+    <value>type your first name</value>
+    <comment>Under the empty given name field.</comment>
+  </data>
+  <data name="RegisterLastNameRequired" xml:space="preserve">
+    <value>type your last name</value>
+    <comment>Under the empty family name field.</comment>
+  </data>
+  <data name="RegisterNicknameLength" xml:space="preserve">
+    <value>use 3 to 30 characters</value>
+    <comment>CU-02 FA-03, RN-01.</comment>
+  </data>
+  <data name="RegisterNicknameTaken" xml:space="preserve">
+    <value>that player name is already taken</value>
+    <comment>CU-02 FA-05: the server reported a duplicate nickname.</comment>
+  </data>
+  <data name="RegisterEmailInvalid" xml:space="preserve">
+    <value>that does not look like an email address</value>
+    <comment>CU-02 FA-04.</comment>
+  </data>
+  <data name="RegisterEmailTaken" xml:space="preserve">
+    <value>there is already an account with that email</value>
+    <comment>CU-02 FA-05: the server reported a duplicate email.</comment>
+  </data>
+  <data name="RegisterPasswordTooShort" xml:space="preserve">
+    <value>use at least 8 characters</value>
+    <comment>CU-02 FA-03, RN-03.</comment>
+  </data>
+  <data name="RegisterConfirmationMismatch" xml:space="preserve">
+    <value>the passwords do not match</value>
+    <comment>CU-02 FA-03.</comment>
+  </data>
+  <data name="RegisterBirthDateInvalid" xml:space="preserve">
+    <value>that date does not exist</value>
+    <comment>Day, month and year do not form a calendar date.</comment>
+  </data>
+  <data name="RegisterBirthDateFuture" xml:space="preserve">
+    <value>that date has not happened yet</value>
+    <comment>The date of birth is later than today.</comment>
+  </data>
+  <data name="RegisterTermsRequired" xml:space="preserve">
+    <value>you have to accept the terms to continue</value>
+    <comment>CU-02 FA-07. Drawn under the checkbox.</comment>
+  </data>
+  <data name="RegistrationSuccessSubtitle" xml:space="preserve">
+    <value>ACCOUNT CREATED</value>
+    <comment>CU-02 main flow step 21. Header subtitle.</comment>
+  </data>
+  <data name="RegistrationSuccessNotice" xml:space="preserve">
+    <value>We sent you a verification email. Open it and follow the link to activate your account, then sign in.</value>
+    <comment>Notice body. Wraps to three lines.</comment>
+  </data>
+  <data name="RegistrationSuccessEmailLabel" xml:space="preserve">
+    <value>SENT TO</value>
+    <comment>Label of the masked address box.</comment>
+  </data>
+  <data name="RegistrationSuccessSignInButton" xml:space="preserve">
+    <value>GO TO SIGN IN</value>
+    <comment>Primary option: returns to GUI_Login.</comment>
+  </data>
+  <data name="RegistrationSuccessDetail" xml:space="preserve">
+    <value>you can close the game while you check it</value>
+    <comment>Second line of the primary button.</comment>
+  </data>
   <data name="ProfileSubtitle" xml:space="preserve">
     <value>YOUR PROFILE</value>
-    <comment>CU-15 main flow step 4.</comment>
+    <comment>CU-15. Header subtitle.</comment>
+  </data>
+  <data name="ProfileHeaderFormat" xml:space="preserve">
+    <value>{0} · Level {1} · since {2}</value>
+    <comment>{0} equipped title, {1} level, {2} registration month formatted by CurrentCulture.</comment>
+  </data>
+  <data name="ProfileMatchesTile" xml:space="preserve">
+    <value>matches</value>
+    <comment>Caption of the first stat tile.</comment>
+  </data>
+  <data name="ProfileWinsTile" xml:space="preserve">
+    <value>wins</value>
+    <comment>Caption of the second stat tile: a percentage.</comment>
+  </data>
+  <data name="ProfileStreakTile" xml:space="preserve">
+    <value>best streak</value>
+    <comment>Caption of the third stat tile.</comment>
+  </data>
+  <data name="ProfileTopEloTile" xml:space="preserve">
+    <value>top elo</value>
+    <comment>Caption of the fourth stat tile.</comment>
+  </data>
+  <data name="ProfileModeStatFormat" xml:space="preserve">
+    <value>{0} matches · {1} won</value>
+    <comment>Per mode row. {0} count, {1} percentage formatted by CurrentCulture.</comment>
+  </data>
+  <data name="ProfileEditButton" xml:space="preserve">
+    <value>EDIT PROFILE</value>
+    <comment>Primary option: opens GUI_EditProfile.</comment>
+  </data>
+  <data name="EditProfileSubtitle" xml:space="preserve">
+    <value>EDIT PROFILE</value>
+    <comment>CU-12. Header subtitle.</comment>
+  </data>
+  <data name="EditProfileNicknameLabel" xml:space="preserve">
+    <value>PLAYER NAME</value>
+    <comment>Read only box: the nickname changes from account settings (CU-13).</comment>
+  </data>
+  <data name="EditProfileTitleLabel" xml:space="preserve">
+    <value>EQUIPPED TITLE</value>
+    <comment>Label of the title selector.</comment>
+  </data>
+  <data name="EditProfileLanguageLabel" xml:space="preserve">
+    <value>ACCOUNT LANGUAGE</value>
+    <comment>Label of the idioma_preferido selector (CU-12 RN-08).</comment>
+  </data>
+  <data name="EditProfileFirstLinkLabel" xml:space="preserve">
+    <value>SOCIAL LINK</value>
+    <comment>Label of the first link field.</comment>
+  </data>
+  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
+    <value>SECOND LINK</value>
+    <comment>Label of the second link field.</comment>
+  </data>
+  <data name="EditProfileLinkPlaceholder" xml:space="preserve">
+    <value>https://</value>
+    <comment>Hint text. Not translated: it is the required prefix.</comment>
+  </data>
+  <data name="EditProfileSpectatorsText" xml:space="preserve">
+    <value>let other players watch my matches</value>
+    <comment>Text of the permite_espectadores checkbox.</comment>
+  </data>
+  <data name="EditProfileLinkInvalid" xml:space="preserve">
+    <value>it has to start with https://</value>
+    <comment>CU-12 FA-02.</comment>
+  </data>
+  <data name="EditProfileLinkShortener" xml:space="preserve">
+    <value>no link shorteners: paste the full address</value>
+    <comment>CU-12 RN-04.</comment>
+  </data>
+  <data name="EditProfileSavedBody" xml:space="preserve">
+    <value>Profile saved.</value>
+    <comment>Success dialog after CU-12 main flow step 16.</comment>
+  </data>
+  <data name="AccountSettingsProfileEntry" xml:space="preserve">
+    <value>PROFILE</value>
+    <comment>Hub entry that opens GUI_Profile.</comment>
+  </data>
+  <data name="Modo.CLASICO" xml:space="preserve">
+    <value>Classic 9×9</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="Modo.CUATRO_JUGADORES" xml:space="preserve">
+    <value>Four players</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="Modo.RAPIDA" xml:space="preserve">
+    <value>Quick 7×7</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_NOVATO" xml:space="preserve">
+    <value>Rookie</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_ESTRATEGA" xml:space="preserve">
+    <value>Strategist</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="ObjetoCosmetico.TITULO_CONSTRUCTOR" xml:space="preserve">
+    <value>Builder</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="RegisterAccountLanguageLabel" xml:space="preserve">
+    <value>ACCOUNT LANGUAGE</value>
+    <comment>Label of the idioma_preferido picker.</comment>
   </data>
   <data name="ProfileAvatarPlaceholder" xml:space="preserve">
     <value>ICON</value>
@@ -509,29 +701,9 @@
     <value>ELO</value>
     <comment>Caption of the current elo tile. Not translated.</comment>
   </data>
-  <data name="ProfileEditButton" xml:space="preserve">
-    <value>EDIT MY PROFILE</value>
-    <comment>Leads to CU-12.</comment>
-  </data>
-  <data name="EditProfileSubtitle" xml:space="preserve">
-    <value>EDIT YOUR PROFILE</value>
-    <comment>CU-12 main flow step 1.</comment>
-  </data>
-  <data name="EditProfileNicknameLabel" xml:space="preserve">
-    <value>YOUR PLAYER NAME</value>
-    <comment>Shown but not editable here: CU-12 RN-01 sends it to its own use case.</comment>
-  </data>
   <data name="EditProfileLinkLabel" xml:space="preserve">
     <value>LINK</value>
     <comment>First of the profile links.</comment>
-  </data>
-  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
-    <value>ANOTHER LINK</value>
-    <comment>Second of the profile links.</comment>
-  </data>
-  <data name="EditProfileLinkPlaceholder" xml:space="preserve">
-    <value>an address people can open</value>
-    <comment>Hint.</comment>
   </data>
   <data name="EditProfileSpectatorsLabel" xml:space="preserve">
     <value>let people watch my matches</value>

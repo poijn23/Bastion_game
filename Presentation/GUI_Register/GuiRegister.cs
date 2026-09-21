@@ -9,22 +9,38 @@ namespace Bastion.Presentation.GUI_Register;
 // not open a connection and does not build the REGISTER_REQUEST.
 public sealed class GuiRegister : FormScreen
 {
+    private const int MaxFirstNameLength = 50;
+    private const int MaxLastNameLength = 50;
     private const int MaxNicknameLength = 30;
     private const int MaxEmailLength = 254;
     private const int MaxDayLength = 2;
     private const int MaxMonthLength = 2;
     private const int MaxYearLength = 4;
 
-    private const int WideCardWidth = 760;
-    private const int WideCardHeight = 378;
-    private const int Gutter = 32;
-    private const int CheckBoxHeight = 24;
-    private const int CheckBoxGap = 28;
+    // A row is its label, its field and the line validation may print under
+    // it, plus a little air. Four of them at the shared FormScreen.RowSpacing
+    // would push the two buttons past the bottom of a 720 pixel window, so
+    // this screen sizes its own rows from what they actually have to hold.
+    private const int RowAir = 4;
+    private const int RegisterRowSpacing = LabelSpace + Theme.FieldHeight + Theme.WarningSpace + RowAir;
+
+    // The last row prints its warnings into the bottom padding, which therefore
+    // cannot be the usual CardPadding.
+    private const int BottomPadding = Theme.WarningSpace + RowAir;
+    private const int WideCardHeight =
+        Theme.CardPadding + LabelSpace + (3 * RegisterRowSpacing) + Theme.FieldHeight + BottomPadding;
+
+    private const int NameRow = 0;
+    private const int AccountRow = 1;
+    private const int PasswordRow = 2;
+    private const int BirthDateRow = 3;
 
     private const int DayWidth = 92;
     private const int MonthWidth = 92;
     private const int DateGap = 12;
 
+    private readonly TextField _firstNameField;
+    private readonly TextField _lastNameField;
     private readonly TextField _nicknameField;
     private readonly TextField _emailField;
     private readonly TextField _passwordField;
@@ -32,65 +48,135 @@ public sealed class GuiRegister : FormScreen
     private readonly TextField _dayField;
     private readonly TextField _monthField;
     private readonly TextField _yearField;
-    private readonly Selector _accountLanguageSelector;
-    private readonly DropDown _interfaceLanguageDropDown;
     private readonly CheckBox _termsCheckBox;
     private readonly Button _createButton;
     private readonly Button _cancelButton;
+    private bool _hasValidated;
 
     public GuiRegister(INavigator navigator)
         : base(navigator, WideCardWidth, WideCardHeight)
     {
-        _nicknameField = CreateLeftField(0, MaxNicknameLength);
-        _emailField = CreateLeftField(1, MaxEmailLength);
-        _passwordField = CreatePasswordField(0);
-        _confirmationField = CreatePasswordField(1);
+        _firstNameField = CreateField(NameRow, false, MaxFirstNameLength);
+        _lastNameField = CreateField(NameRow, true, MaxLastNameLength);
+        _nicknameField = CreateField(AccountRow, false, MaxNicknameLength);
+        _emailField = CreateField(AccountRow, true, MaxEmailLength);
+        _passwordField = CreatePasswordField(false);
+        _confirmationField = CreatePasswordField(true);
         _dayField = CreateDatePart(ContentX, DayWidth, MaxDayLength);
         _monthField = CreateDatePart(ContentX + DayWidth + DateGap, MonthWidth, MaxMonthLength);
         _yearField = CreateDatePart(ContentX + DayWidth + MonthWidth + (DateGap * 2), GetYearWidth(), MaxYearLength);
-        _accountLanguageSelector = CreateAccountLanguageSelector();
-        _interfaceLanguageDropDown = LanguagePicker.Create();
         _termsCheckBox = CreateTermsCheckBox();
         _createButton = CreatePrimaryButton(true);
         _cancelButton = CreateSecondaryButton();
 
         _createButton.Clicked += OnCreateAccountClicked;
         _cancelButton.Clicked += OnCancelClicked;
-        _interfaceLanguageDropDown.SelectionChanged += OnInterfaceLanguageChanged;
 
+        RegisterField(_firstNameField);
+        RegisterField(_lastNameField);
         RegisterField(_nicknameField);
-        RegisterField(_passwordField);
         RegisterField(_emailField);
+        RegisterField(_passwordField);
         RegisterField(_confirmationField);
         RegisterField(_dayField);
         RegisterField(_monthField);
         RegisterField(_yearField);
-        Register(_accountLanguageSelector);
         Register(_termsCheckBox);
         Register(_createButton);
         Register(_cancelButton);
-        Register(_interfaceLanguageDropDown);
 
         ApplyTexts();
         FocusFirstField();
     }
+
+    protected override int RowPitch => RegisterRowSpacing;
 
     protected override string GetSubtitle()
     {
         return TextCatalog.RegisterSubtitle;
     }
 
-    // Reloads the catalog and redraws. What the player typed is kept, because
-    // only labels and hints are touched here (CU-02 FA-02 steps 1 and 2).
-    private void OnInterfaceLanguageChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        LanguagePicker.Apply(e.SelectedIndex);
-        ApplyTexts();
-    }
-
-    // Left empty until validation and the connection exist.
     private void OnCreateAccountClicked(object? sender, EventArgs e)
     {
+        _hasValidated = true;
+
+        if (!Validate())
+        {
+            return;
+        }
+
+        Navigator.GoTo(ScreenId.RegistrationSuccess, _emailField.Text.Trim());
+    }
+
+    // Every field is checked, not only the first bad one, so the player fixes
+    // the whole form in one pass (CU-02 FA-03 to FA-05 and FA-07). The
+    // duplicate checks stand in for the server answer until it exists.
+    private bool Validate()
+    {
+        _firstNameField.Warning = string.IsNullOrWhiteSpace(_firstNameField.Text)
+            ? TextCatalog.RegisterFirstNameRequired
+            : null;
+
+        _lastNameField.Warning = string.IsNullOrWhiteSpace(_lastNameField.Text)
+            ? TextCatalog.RegisterLastNameRequired
+            : null;
+
+        _nicknameField.Warning = GetNicknameWarning(_nicknameField.Text.Trim());
+        _emailField.Warning = GetEmailWarning(_emailField.Text.Trim());
+
+        _passwordField.Warning = InputRules.HasPasswordLength(_passwordField.Text)
+            ? null
+            : TextCatalog.RegisterPasswordTooShort;
+
+        _confirmationField.Warning = _confirmationField.Text == _passwordField.Text
+            ? null
+            : TextCatalog.RegisterConfirmationMismatch;
+
+        // Only the day box carries the text, or it would be drawn three times.
+        _dayField.Warning = GetBirthDateWarning();
+
+        _termsCheckBox.Warning = _termsCheckBox.IsChecked
+            ? null
+            : TextCatalog.RegisterTermsRequired;
+
+        return !_firstNameField.HasWarning
+            && !_lastNameField.HasWarning
+            && !_nicknameField.HasWarning
+            && !_emailField.HasWarning
+            && !_passwordField.HasWarning
+            && !_confirmationField.HasWarning
+            && !_dayField.HasWarning
+            && !_termsCheckBox.HasWarning;
+    }
+
+    private static string? GetNicknameWarning(string nickname)
+    {
+        if (!InputRules.HasNicknameLength(nickname))
+        {
+            return TextCatalog.RegisterNicknameLength;
+        }
+
+        return TestAccount.IsNicknameTaken(nickname) ? TextCatalog.RegisterNicknameTaken : null;
+    }
+
+    private static string? GetEmailWarning(string email)
+    {
+        if (!InputRules.IsEmail(email))
+        {
+            return TextCatalog.RegisterEmailInvalid;
+        }
+
+        return TestAccount.IsEmailTaken(email) ? TextCatalog.RegisterEmailTaken : null;
+    }
+
+    private string? GetBirthDateWarning()
+    {
+        if (!InputRules.TryParseBirthDate(_dayField.Text, _monthField.Text, _yearField.Text, out DateOnly date))
+        {
+            return TextCatalog.RegisterBirthDateInvalid;
+        }
+
+        return InputRules.IsInFuture(date) ? TextCatalog.RegisterBirthDateFuture : null;
     }
 
     // CU-02 FA-01. Discarding also has to clear the two passwords and uncheck
@@ -111,8 +197,14 @@ public sealed class GuiRegister : FormScreen
         Navigator.GoTo(ScreenId.Login);
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
+        _firstNameField.Label = TextCatalog.RegisterFirstNameLabel;
+        _firstNameField.Placeholder = TextCatalog.RegisterFirstNamePlaceholder;
+
+        _lastNameField.Label = TextCatalog.RegisterLastNameLabel;
+        _lastNameField.Placeholder = TextCatalog.RegisterLastNamePlaceholder;
+
         _nicknameField.Label = TextCatalog.RegisterNicknameLabel;
         _nicknameField.Placeholder = TextCatalog.RegisterNicknamePlaceholder;
 
@@ -130,51 +222,39 @@ public sealed class GuiRegister : FormScreen
         _monthField.Placeholder = TextCatalog.RegisterMonthPlaceholder;
         _yearField.Placeholder = TextCatalog.RegisterYearPlaceholder;
 
-        _accountLanguageSelector.Label = TextCatalog.RegisterAccountLanguageLabel;
-        _accountLanguageSelector.Options = LanguagePicker.GetNames();
-        _interfaceLanguageDropDown.Options = LanguagePicker.GetNames();
-
         _termsCheckBox.Text = TextCatalog.RegisterTermsText;
         _termsCheckBox.LinkText = TextCatalog.RegisterTermsLinkText;
 
         _createButton.Title = TextCatalog.RegisterCreateButton;
         _createButton.Subtitle = TextCatalog.RegisterCreateButtonDetail;
         _cancelButton.Title = TextCatalog.RegisterCancelButton;
-    }
 
-    private int GetColumnWidth()
-    {
-        return (ContentWidth - Gutter) / 2;
+        if (_hasValidated)
+        {
+            Validate();
+        }
     }
 
     private int GetYearWidth()
     {
-        return GetColumnWidth() - DayWidth - MonthWidth - (DateGap * 2);
+        return ColumnWidth - DayWidth - MonthWidth - (DateGap * 2);
     }
 
-    private Rectangle GetCell(int row, bool isRightColumn)
-    {
-        int columnWidth = GetColumnWidth();
-        int x = isRightColumn ? ContentX + columnWidth + Gutter : ContentX;
-
-        return new Rectangle(x, FirstRowTop + (row * RowSpacing), columnWidth, Theme.FieldHeight);
-    }
-
-    private TextField CreateLeftField(int row, int maxLength)
+    private TextField CreateField(int row, bool isRightColumn, int maxLength)
     {
         return new TextField
         {
             MaxLength = maxLength,
-            Bounds = GetCell(row, false)
+            Bounds = GetCell(row, isRightColumn)
         };
     }
 
-    private TextField CreatePasswordField(int row)
+    private TextField CreatePasswordField(bool isRightColumn)
     {
         return new TextField
         {
             IsPassword = true,
-            Bounds = GetCell(row, true)
+            Bounds = GetCell(PasswordRow, isRightColumn)
         };
     }
 
@@ -186,32 +266,18 @@ public sealed class GuiRegister : FormScreen
         {
             MaxLength = maxLength,
             IsCentered = true,
-            Bounds = new Rectangle(x, FirstRowTop + (2 * RowSpacing), width, Theme.FieldHeight)
+            Bounds = new Rectangle(x, FirstRowTop + (BirthDateRow * RowPitch), width, Theme.FieldHeight)
         };
     }
 
-    private Selector CreateAccountLanguageSelector()
-    {
-        return new Selector
-        {
-            Options = LanguagePicker.GetNames(),
-            SelectedIndex = GetStartingLanguageIndex(),
-            Bounds = GetCell(2, true)
-        };
-    }
-
+    // Sits in the free cell beside the date of birth; below them it would need
+    // a fifth row the window cannot afford. It takes the whole cell so its box,
+    // its text and its warning line up with those of the date boxes.
     private CheckBox CreateTermsCheckBox()
     {
-        int top = FirstRowTop + (2 * RowSpacing) + Theme.FieldHeight + CheckBoxGap;
-
         return new CheckBox
         {
-            Bounds = new Rectangle(ContentX, top, ContentWidth, CheckBoxHeight)
+            Bounds = GetCell(BirthDateRow, true)
         };
-    }
-
-    private static int GetStartingLanguageIndex()
-    {
-        return Language.IsEnglish ? LanguagePicker.EnglishIndex : LanguagePicker.SpanishIndex;
     }
 }

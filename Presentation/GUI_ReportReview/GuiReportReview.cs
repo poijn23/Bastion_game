@@ -10,7 +10,6 @@ namespace Bastion.Presentation.GUI_ReportReview;
 // reported messages standing out, and the three ways to close the report.
 public sealed class GuiReportReview : FormScreen
 {
-    private const int WideCardWidth = 760;
     private const int CardHeight = 384;
     private const int ReasonHeight = 62;
     private const int SectionGap = 18;
@@ -96,7 +95,7 @@ public sealed class GuiReportReview : FormScreen
     }
 
     // Placeholder content: the report comes from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _reasonBox.Label = TextCatalog.ReportReviewReasonLabel;
         _reasonBox.Value = TextCatalog.ModerationQueueReasonSample;

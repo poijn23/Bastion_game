@@ -51,7 +51,7 @@ public sealed class GuiChangePassword : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _currentField.Label = TextCatalog.ChangePasswordCurrentLabel;
         _currentField.Placeholder = TextCatalog.ChangePasswordCurrentPlaceholder;

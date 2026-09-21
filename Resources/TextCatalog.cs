@@ -26,6 +26,14 @@ public static class TextCatalog
 
     public static string RegisterSubtitle => GetText(nameof(RegisterSubtitle));
 
+    public static string RegisterFirstNameLabel => GetText(nameof(RegisterFirstNameLabel));
+
+    public static string RegisterFirstNamePlaceholder => GetText(nameof(RegisterFirstNamePlaceholder));
+
+    public static string RegisterLastNameLabel => GetText(nameof(RegisterLastNameLabel));
+
+    public static string RegisterLastNamePlaceholder => GetText(nameof(RegisterLastNamePlaceholder));
+
     public static string RegisterNicknameLabel => GetText(nameof(RegisterNicknameLabel));
 
     public static string RegisterNicknamePlaceholder => GetText(nameof(RegisterNicknamePlaceholder));
@@ -49,8 +57,6 @@ public static class TextCatalog
     public static string RegisterMonthPlaceholder => GetText(nameof(RegisterMonthPlaceholder));
 
     public static string RegisterYearPlaceholder => GetText(nameof(RegisterYearPlaceholder));
-
-    public static string RegisterAccountLanguageLabel => GetText(nameof(RegisterAccountLanguageLabel));
 
     public static string RegisterTermsText => GetText(nameof(RegisterTermsText));
 
@@ -105,6 +111,12 @@ public static class TextCatalog
     public static string LoginCreateAccountButton => GetText(nameof(LoginCreateAccountButton));
 
     public static string LoginGuestButton => GetText(nameof(LoginGuestButton));
+
+    public static string LoginIdentifierRequired => GetText(nameof(LoginIdentifierRequired));
+
+    public static string LoginPasswordRequired => GetText(nameof(LoginPasswordRequired));
+
+    public static string LoginCredentialsRejected => GetText(nameof(LoginCredentialsRejected));
 
     public static string ForgotPasswordSubtitle => GetText(nameof(ForgotPasswordSubtitle));
 
@@ -218,7 +230,91 @@ public static class TextCatalog
 
     public static string RegisterKeepEditingButton => GetText(nameof(RegisterKeepEditingButton));
 
+    public static string RegisterFirstNameRequired => GetText(nameof(RegisterFirstNameRequired));
+
+    public static string RegisterLastNameRequired => GetText(nameof(RegisterLastNameRequired));
+
+    public static string RegisterNicknameLength => GetText(nameof(RegisterNicknameLength));
+
+    public static string RegisterNicknameTaken => GetText(nameof(RegisterNicknameTaken));
+
+    public static string RegisterEmailInvalid => GetText(nameof(RegisterEmailInvalid));
+
+    public static string RegisterEmailTaken => GetText(nameof(RegisterEmailTaken));
+
+    public static string RegisterPasswordTooShort => GetText(nameof(RegisterPasswordTooShort));
+
+    public static string RegisterConfirmationMismatch => GetText(nameof(RegisterConfirmationMismatch));
+
+    public static string RegisterBirthDateInvalid => GetText(nameof(RegisterBirthDateInvalid));
+
+    public static string RegisterBirthDateFuture => GetText(nameof(RegisterBirthDateFuture));
+
+    public static string RegisterTermsRequired => GetText(nameof(RegisterTermsRequired));
+
+    public static string RegistrationSuccessSubtitle => GetText(nameof(RegistrationSuccessSubtitle));
+
+    public static string RegistrationSuccessNotice => GetText(nameof(RegistrationSuccessNotice));
+
+    public static string RegistrationSuccessEmailLabel => GetText(nameof(RegistrationSuccessEmailLabel));
+
+    public static string RegistrationSuccessSignInButton => GetText(nameof(RegistrationSuccessSignInButton));
+
+    public static string RegistrationSuccessDetail => GetText(nameof(RegistrationSuccessDetail));
+
     public static string ProfileSubtitle => GetText(nameof(ProfileSubtitle));
+
+    public static string ProfileHeaderFormat => GetText(nameof(ProfileHeaderFormat));
+
+    public static string ProfileMatchesTile => GetText(nameof(ProfileMatchesTile));
+
+    public static string ProfileWinsTile => GetText(nameof(ProfileWinsTile));
+
+    public static string ProfileStreakTile => GetText(nameof(ProfileStreakTile));
+
+    public static string ProfileTopEloTile => GetText(nameof(ProfileTopEloTile));
+
+    public static string ProfileModeStatFormat => GetText(nameof(ProfileModeStatFormat));
+
+    public static string ProfileEditButton => GetText(nameof(ProfileEditButton));
+
+    public static string EditProfileSubtitle => GetText(nameof(EditProfileSubtitle));
+
+    public static string EditProfileNicknameLabel => GetText(nameof(EditProfileNicknameLabel));
+
+    public static string EditProfileTitleLabel => GetText(nameof(EditProfileTitleLabel));
+
+    public static string EditProfileLanguageLabel => GetText(nameof(EditProfileLanguageLabel));
+
+    public static string EditProfileFirstLinkLabel => GetText(nameof(EditProfileFirstLinkLabel));
+
+    public static string EditProfileSecondLinkLabel => GetText(nameof(EditProfileSecondLinkLabel));
+
+    public static string EditProfileLinkPlaceholder => GetText(nameof(EditProfileLinkPlaceholder));
+
+    public static string EditProfileSpectatorsText => GetText(nameof(EditProfileSpectatorsText));
+
+    public static string EditProfileLinkInvalid => GetText(nameof(EditProfileLinkInvalid));
+
+    public static string EditProfileLinkShortener => GetText(nameof(EditProfileLinkShortener));
+
+    public static string EditProfileSavedBody => GetText(nameof(EditProfileSavedBody));
+
+    public static string AccountSettingsProfileEntry => GetText(nameof(AccountSettingsProfileEntry));
+
+    public static string ModoClasico => GetText("Modo.CLASICO");
+
+    public static string ModoCuatroJugadores => GetText("Modo.CUATRO_JUGADORES");
+
+    public static string ModoRapida => GetText("Modo.RAPIDA");
+
+    public static string TituloNovato => GetText("ObjetoCosmetico.TITULO_NOVATO");
+
+    public static string TituloEstratega => GetText("ObjetoCosmetico.TITULO_ESTRATEGA");
+
+    public static string TituloConstructor => GetText("ObjetoCosmetico.TITULO_CONSTRUCTOR");
+
+    public static string RegisterAccountLanguageLabel => GetText(nameof(RegisterAccountLanguageLabel));
 
     public static string ProfileAvatarPlaceholder => GetText(nameof(ProfileAvatarPlaceholder));
 
@@ -230,17 +326,7 @@ public static class TextCatalog
 
     public static string ProfileEloCaption => GetText(nameof(ProfileEloCaption));
 
-    public static string ProfileEditButton => GetText(nameof(ProfileEditButton));
-
-    public static string EditProfileSubtitle => GetText(nameof(EditProfileSubtitle));
-
-    public static string EditProfileNicknameLabel => GetText(nameof(EditProfileNicknameLabel));
-
     public static string EditProfileLinkLabel => GetText(nameof(EditProfileLinkLabel));
-
-    public static string EditProfileSecondLinkLabel => GetText(nameof(EditProfileSecondLinkLabel));
-
-    public static string EditProfileLinkPlaceholder => GetText(nameof(EditProfileLinkPlaceholder));
 
     public static string EditProfileSpectatorsLabel => GetText(nameof(EditProfileSpectatorsLabel));
 

@@ -10,12 +10,14 @@ namespace Bastion.Presentation.GUI_Ranking;
 // pinned at the bottom even when it falls outside the visible page.
 public sealed class GuiRanking : FormScreen
 {
-    private const int WideCardWidth = 760;
-    private const int CardHeight = 440;
     private const int RowHeight = 54;
     private const int RowGap = 8;
-    private const int VisibleRows = 5;
+    private const int VisibleRows = 4;
     private const int PinnedGap = 18;
+
+    // Derived, so the pinned row keeps fitting inside the card.
+    private const int CardHeight = (Theme.CardPadding * 2) + (VisibleRows * RowHeight)
+        + ((VisibleRows - 1) * RowGap) + PinnedGap + RowHeight;
     private const int PodiumSize = 3;
 
     private readonly List<DataRow> _rows = [];
@@ -60,7 +62,7 @@ public sealed class GuiRanking : FormScreen
     }
 
     // Placeholder rows: the table comes from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         for (int i = 0; i < _rows.Count; i++)
         {

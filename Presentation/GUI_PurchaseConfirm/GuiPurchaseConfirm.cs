@@ -61,7 +61,7 @@ public sealed class GuiPurchaseConfirm : FormScreen
     }
 
     // Placeholder amounts: the price and the balance come from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _itemBox.Label = TextCatalog.PurchaseConfirmItemLabel;
         _itemBox.Value = TextCatalog.ShopItemSample;

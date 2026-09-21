@@ -10,12 +10,15 @@ namespace Bastion.Presentation.GUI_Logs;
 // top; the records and their counts below.
 public sealed class GuiLogs : FormScreen
 {
-    private const int WideCardWidth = 760;
-    private const int CardHeight = 412;
     private const int SectionGap = 20;
     private const int RowHeight = 50;
     private const int RowGap = 8;
     private const int VisibleRows = 3;
+
+    // Derived from the filter row plus the result rows, so the card ends where
+    // the list ends instead of leaving the bottom half empty.
+    private const int CardHeight = (Theme.CardPadding * 2) + (LabelSpace * 2) + Theme.FieldHeight
+        + SectionGap + (VisibleRows * RowHeight) + ((VisibleRows - 1) * RowGap);
 
     private readonly Selector _logSelector;
     private readonly TextField _fromField;
@@ -53,6 +56,7 @@ public sealed class GuiLogs : FormScreen
 
         _searchButton = CreatePrimaryButton(true);
         _backButton = CreateSecondaryButton();
+        LayOutActionsInRow([_searchButton, _backButton]);
         _searchButton.Clicked += OnSearchClicked;
         _backButton.Clicked += OnBackClicked;
 
@@ -80,7 +84,7 @@ public sealed class GuiLogs : FormScreen
     }
 
     // Placeholder records: the log comes from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _logSelector.Label = TextCatalog.LogsWhichLabel;
         _logSelector.Options = BuildLogs();

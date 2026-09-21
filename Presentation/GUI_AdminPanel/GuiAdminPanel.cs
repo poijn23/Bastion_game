@@ -10,7 +10,6 @@ namespace Bastion.Presentation.GUI_AdminPanel;
 // granting the role: how long the account has existed and what it carries.
 public sealed class GuiAdminPanel : FormScreen
 {
-    private const int WideCardWidth = 760;
     private const int CardHeight = 392;
     private const int SectionGap = 20;
     private const int RowHeight = 54;
@@ -52,6 +51,7 @@ public sealed class GuiAdminPanel : FormScreen
 
         _grantButton = CreatePrimaryButton(true);
         _backButton = CreateSecondaryButton();
+        LayOutActionsInRow([_grantButton, _backButton]);
         _grantButton.Clicked += OnGrantClicked;
         _backButton.Clicked += OnBackClicked;
 
@@ -92,7 +92,7 @@ public sealed class GuiAdminPanel : FormScreen
     }
 
     // Placeholder file: the candidate comes from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         _nicknameBox.Label = TextCatalog.AdminPanelNicknameLabel;
         _nicknameBox.Value = TextCatalog.RankingPlayerSample;

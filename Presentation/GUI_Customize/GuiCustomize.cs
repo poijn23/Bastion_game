@@ -10,13 +10,13 @@ namespace Bastion.Presentation.GUI_Customize;
 // preview belongs to the game renderer and is not part of this layer yet.
 public sealed class GuiCustomize : FormScreen
 {
-    private const int WideCardWidth = 760;
     private const int CardHeight = 392;
     private const int SlotCount = 6;
     private const int SlotHeight = 46;
     private const int SlotGap = 10;
     private const int SectionGap = 20;
     private const int PreviewWidth = 320;
+    private const int BalanceHeight = 68;
 
     private readonly List<Button> _slots = [];
     private readonly AvatarBox _preview;
@@ -43,16 +43,17 @@ public sealed class GuiCustomize : FormScreen
         }
 
         int previewX = Card.Right - Theme.CardPadding - PreviewWidth;
-        int previewHeight = (SlotCount * (SlotHeight + SlotGap)) - SlotGap - Theme.FieldHeight - SectionGap;
+        int previewHeight = (SlotCount * (SlotHeight + SlotGap)) - SlotGap - BalanceHeight - SectionGap;
 
         _preview = new AvatarBox { Bounds = new Rectangle(previewX, top, PreviewWidth, previewHeight) };
         _balance = new StatTile
         {
-            Bounds = new Rectangle(previewX, top + previewHeight + SectionGap, PreviewWidth, Theme.FieldHeight)
+            Bounds = new Rectangle(previewX, top + previewHeight + SectionGap, PreviewWidth, BalanceHeight)
         };
 
         _equipButton = CreatePrimaryButton(true);
         _backButton = CreateSecondaryButton();
+        LayOutActionsInRow([_equipButton, _backButton]);
         _equipButton.Clicked += OnEquipClicked;
         _backButton.Clicked += OnBackClicked;
 
@@ -78,7 +79,7 @@ public sealed class GuiCustomize : FormScreen
         Navigator.GoBack();
     }
 
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         IReadOnlyList<string> names = BuildSlotNames();
 

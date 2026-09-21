@@ -10,11 +10,13 @@ namespace Bastion.Presentation.GUI_MatchHistory;
 // and the elo change, signed and colored.
 public sealed class GuiMatchHistory : FormScreen
 {
-    private const int WideCardWidth = 760;
-    private const int CardHeight = 380;
     private const int RowHeight = 62;
     private const int RowGap = 10;
     private const int VisibleRows = 5;
+
+    // Derived, so the last row keeps fitting when the card or the rows change.
+    private const int CardHeight =
+        (Theme.CardPadding * 2) + (VisibleRows * RowHeight) + ((VisibleRows - 1) * RowGap);
 
     private readonly List<DataRow> _rows = [];
     private readonly Button _backButton;
@@ -48,7 +50,7 @@ public sealed class GuiMatchHistory : FormScreen
     }
 
     // Placeholder rows: the history comes from the server.
-    private void ApplyTexts()
+    protected override void ApplyTexts()
     {
         for (int i = 0; i < _rows.Count; i++)
         {

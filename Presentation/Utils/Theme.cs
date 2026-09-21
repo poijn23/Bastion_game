@@ -18,6 +18,16 @@ public static class Theme
     public const int PrimaryButtonHeight = 60;
     public const int SecondaryButtonHeight = 52;
     public const int CardPadding = 32;
+
+    // Validation prints at most one line under a field. The space is reserved
+    // whether or not it is used, so showing a warning never pushes the rest of
+    // the form down, and layouts leave at least WarningSpace under any field
+    // that can be rejected.
+    public const int WarningOffset = 5;
+
+    // Measured, not guessed: the small style is 17.25 px tall at Arial 15, so
+    // a warning reaches WarningOffset + 17.25 below its field.
+    public const int WarningSpace = 22;
     public const int DialogWidth = 560;
     public const int DialogButtonHeight = 46;
     public const int DialogToneBarHeight = 6;

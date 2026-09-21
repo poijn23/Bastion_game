@@ -1,91 +1,69 @@
 using System;
-using System.Collections.Generic;
+using System.Globalization;
 using Microsoft.Xna.Framework;
+using Bastion.Presentation.GUI_Profile;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
 namespace Bastion.Presentation.GUI_EditProfile;
 
-// CU-12 main flow step 1. The nickname is shown but not edited here: it has its
-// own use case because the change is unique and irreversible (CU-12 RN-01).
 public sealed class GuiEditProfile : FormScreen
 {
-    private const int WideCardWidth = 760;
-    private const int CardHeight = 452;
-    private const int IconColumns = 8;
-    private const int IconRows = 4;
-    private const int IconSize = 44;
-    private const int IconGap = 8;
-    private const int SectionGap = 22;
-    private const int LinkFieldCount = 2;
-    private const int MaxLinkLength = 120;
-    private const int CheckBoxHeight = 24;
+    private const int MaxLinkLength = 254;
+    private const int RowAir = 4;
+    private const int EditRowSpacing = LabelSpace + Theme.FieldHeight + Theme.WarningSpace + RowAir;
+    private const int BottomPadding = Theme.WarningSpace + RowAir;
+    private const int CardHeight =
+        Theme.CardPadding + LabelSpace + (2 * EditRowSpacing) + Theme.FieldHeight + BottomPadding;
 
-    private readonly List<AvatarBox> _icons = [];
+    private const int NicknameRow = 0;
+    private const int TitleRow = 1;
+    private const int LanguageRow = 2;
+
     private readonly ValueBox _nicknameBox;
-    private readonly List<TextField> _linkFields = [];
+    private readonly Selector _titleSelector;
+    private readonly Selector _languageSelector;
+    private readonly TextField _firstLinkField;
+    private readonly TextField _secondLinkField;
     private readonly CheckBox _spectatorsCheckBox;
     private readonly Button _saveButton;
     private readonly Button _cancelButton;
+    private bool _hasValidated;
 
     public GuiEditProfile(INavigator navigator)
         : base(navigator, WideCardWidth, CardHeight)
     {
-        int gridTop = Card.Y + Theme.CardPadding;
-
-        for (int index = 0; index < IconColumns * IconRows; index++)
+        _nicknameBox = new ValueBox { Bounds = GetCell(NicknameRow, false) };
+        _titleSelector = new Selector
         {
-            var icon = new AvatarBox
-            {
-                IsSelected = index == 0,
-                Bounds = GetIconBounds(index, gridTop)
-            };
-
-            _icons.Add(icon);
-            Register(icon);
-        }
-
-        int gridBottom = gridTop + (IconRows * (IconSize + IconGap)) - IconGap;
-        int column = GetColumnWidth();
-
-        _nicknameBox = new ValueBox
-        {
-            Bounds = new Rectangle(ContentX, gridBottom + SectionGap + LabelSpace, column, Theme.FieldHeight)
+            Options = GuiProfile.GetTitleNames(),
+            SelectedIndex = TestProfile.TitleIndex,
+            Bounds = GetCell(TitleRow, false)
         };
-
-        for (int index = 0; index < LinkFieldCount; index++)
+        _languageSelector = new Selector
         {
-            var field = new TextField
-            {
-                MaxLength = MaxLinkLength,
-                Bounds = new Rectangle(
-                    ContentX + column + SectionGap,
-                    gridBottom + SectionGap + LabelSpace + (index * RowSpacing),
-                    column,
-                    Theme.FieldHeight)
-            };
-
-            _linkFields.Add(field);
-            RegisterField(field);
-        }
-
+            Options = LanguagePicker.GetNames(),
+            SelectedIndex = GetLanguageIndex(TestProfile.PreferredLanguage),
+            Bounds = GetCell(LanguageRow, false)
+        };
+        _firstLinkField = CreateLinkField(NicknameRow, TestProfile.FirstLink);
+        _secondLinkField = CreateLinkField(TitleRow, TestProfile.SecondLink);
         _spectatorsCheckBox = new CheckBox
         {
-            IsChecked = true,
-            Bounds = new Rectangle(
-                ContentX,
-                _nicknameBox.Bounds.Bottom + RowSpacing - Theme.FieldHeight,
-                column,
-                CheckBoxHeight)
+            IsChecked = TestProfile.AllowsSpectators,
+            Bounds = GetCell(LanguageRow, true)
         };
 
         _saveButton = CreatePrimaryButton(true);
         _cancelButton = CreateSecondaryButton();
-        LayOutActionsInRow([_saveButton, _cancelButton]);
         _saveButton.Clicked += OnSaveClicked;
         _cancelButton.Clicked += OnCancelClicked;
 
         Register(_nicknameBox);
+        Register(_titleSelector);
+        Register(_languageSelector);
+        RegisterField(_firstLinkField);
+        RegisterField(_secondLinkField);
         Register(_spectatorsCheckBox);
         Register(_saveButton);
         Register(_cancelButton);
@@ -94,61 +72,103 @@ public sealed class GuiEditProfile : FormScreen
         FocusFirstField();
     }
 
+    protected override int RowPitch => EditRowSpacing;
+
     protected override string GetSubtitle()
     {
         return TextCatalog.EditProfileSubtitle;
     }
 
-    private void OnSaveClicked(object? sender, EventArgs e)
+    protected override void ApplyTexts()
     {
-    }
-
-    // CU-12 FA: leaving with unsaved changes asks before discarding them.
-    private void OnCancelClicked(object? sender, EventArgs e)
-    {
-        Navigator.ShowConfirm(new ConfirmRequest
-        {
-            Body = TextCatalog.EditProfileDiscardBody,
-            PrimaryLabel = TextCatalog.RegisterDiscardButton,
-            SecondaryLabel = TextCatalog.RegisterKeepEditingButton,
-            OnConfirm = GoBack
-        });
-    }
-
-    private void GoBack()
-    {
-        Navigator.GoBack();
-    }
-
-    private void ApplyTexts()
-    {
-        for (int index = 0; index < _icons.Count; index++)
-        {
-            _icons[index].IconLabel = (index + 1).ToString();
-        }
-
         _nicknameBox.Label = TextCatalog.EditProfileNicknameLabel;
-        _linkFields[0].Label = TextCatalog.EditProfileLinkLabel;
-        _linkFields[0].Placeholder = TextCatalog.EditProfileLinkPlaceholder;
-        _linkFields[1].Label = TextCatalog.EditProfileSecondLinkLabel;
-        _linkFields[1].Placeholder = TextCatalog.EditProfileLinkPlaceholder;
-        _spectatorsCheckBox.Text = TextCatalog.EditProfileSpectatorsLabel;
+        _nicknameBox.Value = TestAccount.Nickname;
+        _titleSelector.Label = TextCatalog.EditProfileTitleLabel;
+        _titleSelector.Options = GuiProfile.GetTitleNames();
+        _languageSelector.Label = TextCatalog.EditProfileLanguageLabel;
+        _languageSelector.Options = LanguagePicker.GetNames();
+        _firstLinkField.Label = TextCatalog.EditProfileFirstLinkLabel;
+        _firstLinkField.Placeholder = TextCatalog.EditProfileLinkPlaceholder;
+        _secondLinkField.Label = TextCatalog.EditProfileSecondLinkLabel;
+        _secondLinkField.Placeholder = TextCatalog.EditProfileLinkPlaceholder;
+        _spectatorsCheckBox.Text = TextCatalog.EditProfileSpectatorsText;
         _saveButton.Title = TextCatalog.CommonSaveButton;
         _cancelButton.Title = TextCatalog.CommonCancelButton;
+
+        if (_hasValidated)
+        {
+            Validate();
+        }
     }
 
-    private int GetColumnWidth()
+    private void OnSaveClicked(object? sender, EventArgs e)
     {
-        return (ContentWidth - SectionGap) / 2;
+        _hasValidated = true;
+
+        if (!Validate())
+        {
+            return;
+        }
+
+        TestProfile.TitleIndex = _titleSelector.SelectedIndex;
+        TestProfile.FirstLink = _firstLinkField.Text.Trim();
+        TestProfile.SecondLink = _secondLinkField.Text.Trim();
+        TestProfile.AllowsSpectators = _spectatorsCheckBox.IsChecked;
+
+        CultureInfo chosen = _languageSelector.SelectedIndex == LanguagePicker.EnglishIndex
+            ? Language.English
+            : Language.SpanishMexico;
+
+        if (!chosen.Equals(TestProfile.PreferredLanguage))
+        {
+            TestProfile.PreferredLanguage = chosen;
+            LanguagePicker.Apply(_languageSelector.SelectedIndex);
+        }
+
+        Navigator.GoTo(ScreenId.Profile);
+        Navigator.ShowMessage(DialogTone.Success, TextCatalog.EditProfileSavedBody);
     }
 
-    private Rectangle GetIconBounds(int index, int top)
+    private void OnCancelClicked(object? sender, EventArgs e)
     {
-        int column = index % IconColumns;
-        int row = index / IconColumns;
-        int x = ContentX + (column * (IconSize + IconGap));
-        int y = top + (row * (IconSize + IconGap));
+        Navigator.GoTo(ScreenId.Profile);
+    }
 
-        return new Rectangle(x, y, IconSize, IconSize);
+    private bool Validate()
+    {
+        _firstLinkField.Warning = GetLinkWarning(_firstLinkField.Text.Trim());
+        _secondLinkField.Warning = GetLinkWarning(_secondLinkField.Text.Trim());
+
+        return !_firstLinkField.HasWarning && !_secondLinkField.HasWarning;
+    }
+
+    private static string? GetLinkWarning(string link)
+    {
+        if (link.Length == 0)
+        {
+            return null;
+        }
+
+        if (!InputRules.IsWebAddress(link))
+        {
+            return TextCatalog.EditProfileLinkInvalid;
+        }
+
+        return InputRules.IsShortener(link) ? TextCatalog.EditProfileLinkShortener : null;
+    }
+
+    private static int GetLanguageIndex(CultureInfo culture)
+    {
+        return culture.TwoLetterISOLanguageName == Language.English.TwoLetterISOLanguageName
+            ? LanguagePicker.EnglishIndex
+            : LanguagePicker.SpanishIndex;
+    }
+
+    private TextField CreateLinkField(int row, string value)
+    {
+        var field = new TextField { MaxLength = MaxLinkLength, Bounds = GetCell(row, true) };
+        field.SetText(value);
+
+        return field;
     }
 }
