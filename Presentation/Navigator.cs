@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Bastion.Presentation.GUI_AccountSettings;
 using Bastion.Presentation.GUI_ActiveSessions;
 using Bastion.Presentation.GUI_AddFriend;
 using Bastion.Presentation.GUI_AdminPanel;
@@ -22,6 +21,7 @@ using Bastion.Presentation.GUI_MatchHistory;
 using Bastion.Presentation.GUI_MessageConfirm;
 using Bastion.Presentation.GUI_MessageError;
 using Bastion.Presentation.GUI_MessageSuccess;
+using Bastion.Presentation.GUI_Menu;
 using Bastion.Presentation.GUI_MessageWarning;
 using Bastion.Presentation.GUI_ModerationQueue;
 using Bastion.Presentation.GUI_PlayerCard;
@@ -33,6 +33,7 @@ using Bastion.Presentation.GUI_RegistrationSuccess;
 using Bastion.Presentation.GUI_Report;
 using Bastion.Presentation.GUI_ReportReview;
 using Bastion.Presentation.GUI_ResetPassword;
+using Bastion.Presentation.GUI_Settings;
 using Bastion.Presentation.GUI_Shop;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
@@ -53,10 +54,9 @@ public sealed class Navigator : INavigator
             navigator => new GuiRegister(navigator),
         [ScreenId.ForgotPassword] =
             navigator => new GuiForgotPassword(navigator),
-        [ScreenId.ResetPassword] =
-            navigator => new GuiResetPassword(navigator),
-        [ScreenId.AccountSettings] =
-            navigator => new GuiAccountSettings(navigator),
+        [ScreenId.AccountSettings] = navigator => new GuiSettings(navigator, false),
+        [ScreenId.SettingsLanguage] = navigator => new GuiSettings(navigator, true),
+        [ScreenId.Menu] = navigator => new GuiMenu(navigator),
         [ScreenId.ChangePassword] =
             navigator => new GuiChangePassword(navigator),
         [ScreenId.ChangeEmail] =
@@ -109,33 +109,72 @@ public sealed class Navigator : INavigator
 
     private IScreen? _current;
     private IScreen? _dialog;
+    private readonly List<(ScreenId Id, string? Argument)> _history = [];
     private ScreenId _currentId;
-    private ScreenId _previousId;
     private string? _currentArgument;
-    private string? _previousArgument;
     private Action? _pendingConfirm;
 
     public void Start(ScreenId screen)
     {
-        _currentId = screen;
-        _previousId = screen;
-        _current = Build(screen, null);
-        _dialog = null;
+        Restart(screen);
     }
 
     public void GoTo(ScreenId screen, string? argument = null)
     {
-        _previousId = _currentId;
-        _previousArgument = _currentArgument;
-        _currentId = screen;
-        _currentArgument = argument;
-        _current = Build(screen, argument);
-        _dialog = null;
+        if (_current is not null)
+        {
+            _history.Add((_currentId, _currentArgument));
+        }
+
+        Show(screen, argument);
     }
 
     public void GoBack()
     {
-        GoTo(_previousId, _previousArgument);
+        if (_history.Count == 0)
+        {
+            Show(_currentId, _currentArgument);
+            return;
+        }
+
+        (ScreenId id, string? argument) = _history[^1];
+        _history.RemoveAt(_history.Count - 1);
+        Show(id, argument);
+    }
+
+    public void ReturnTo(ScreenId screen)
+    {
+        int index = _history.FindLastIndex(entry => entry.Id == screen);
+
+        if (index < 0)
+        {
+            if (_currentId != screen)
+            {
+                GoTo(screen);
+                return;
+            }
+
+            Show(screen, _currentArgument);
+            return;
+        }
+
+        (ScreenId id, string? argument) = _history[index];
+        _history.RemoveRange(index, _history.Count - index);
+        Show(id, argument);
+    }
+
+    public void Restart(ScreenId screen)
+    {
+        _history.Clear();
+        Show(screen, null);
+    }
+
+    private void Show(ScreenId screen, string? argument)
+    {
+        _currentId = screen;
+        _currentArgument = argument;
+        _current = Build(screen, argument);
+        _dialog = null;
     }
 
     public void ShowConfirm(ConfirmRequest request)
@@ -144,6 +183,13 @@ public sealed class Navigator : INavigator
 
         var confirm = new GuiMessageConfirm();
         confirm.ShowWithLabels(request.Body, GetPrimaryLabel(request), GetSecondaryLabel(request));
+
+        if (request.Title.Length > 0)
+        {
+            confirm.Dialog.Title = request.Title;
+        }
+
+        confirm.Dialog.Detail = request.Detail;
         confirm.Dialog.PrimaryChosen += OnConfirmAccepted;
         confirm.Dialog.SecondaryChosen += OnDialogDismissed;
 
@@ -208,6 +254,11 @@ public sealed class Navigator : INavigator
         if (screen == ScreenId.RegistrationSuccess)
         {
             return new GuiRegistrationSuccess(this, argument ?? string.Empty);
+        }
+
+        if (screen == ScreenId.ResetPassword)
+        {
+            return new GuiResetPassword(this, argument ?? string.Empty);
         }
 
         return _factories.TryGetValue(screen, out Func<INavigator, IScreen>? factory)

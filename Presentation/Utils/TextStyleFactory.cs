@@ -15,6 +15,16 @@ public static class TextStyleFactory
         };
     }
 
+    public static TextStyle CreateHeading(FontSet fonts, Color color)
+    {
+        return new TextStyle
+        {
+            Font = fonts.Bold,
+            Color = color,
+            Scale = Theme.HeadingScale
+        };
+    }
+
     public static TextStyle CreateLabel(FontSet fonts, Color color)
     {
         return new TextStyle

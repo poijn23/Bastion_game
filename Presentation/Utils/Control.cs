@@ -14,7 +14,7 @@ public abstract class Control
         init { _bounds = value; }
     }
 
-    public bool IsEnabled { get; init; } = true;
+    public bool IsEnabled { get; set; } = true;
 
     private bool _isVisible = true;
 

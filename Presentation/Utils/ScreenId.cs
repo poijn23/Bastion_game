@@ -33,5 +33,7 @@ public enum ScreenId
     Shop,
     PurchaseConfirm,
     BoxPurchaseConfirm,
-    Customize
+    Customize,
+    SettingsLanguage,
+    Menu
 }

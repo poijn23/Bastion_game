@@ -5,35 +5,32 @@ using Bastion.Resources;
 
 namespace Bastion.Presentation.GUI_ChangeEmail;
 
-// CU-09 alternate flow FA-01. The new address starts unverified, so the notice
-// warns that the account goes back to a pending state until it is confirmed.
 public sealed class GuiChangeEmail : FormScreen
 {
-    private const int CardHeight = 300;
-    private const int NoticeHeight = 64;
-    private const int NoticeGap = 24;
     private const int MaxEmailLength = 254;
+    private const int NoticeHeight = 64;
+    private const int NoticeGap = 26;
+    private const int ButtonsGap = 24;
+    private const int CardHeight =
+        Theme.CardPadding + Theme.PanelBackHeight + Theme.PanelGap + Theme.PanelTitleHeight + Theme.PanelGap
+        + LabelSpace + RowSpacing + Theme.FieldHeight + NoticeGap + NoticeHeight
+        + ButtonsGap + Theme.PanelButtonHeight + Theme.CardPadding;
 
     private readonly TextField _newEmailField;
     private readonly TextField _passwordField;
     private readonly NoticeBox _notice;
     private readonly Button _saveButton;
     private readonly Button _cancelButton;
+    private bool _hasValidated;
 
     public GuiChangeEmail(INavigator navigator)
-        : base(navigator, NarrowCardWidth, CardHeight)
+        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
     {
         _newEmailField = new TextField { MaxLength = MaxEmailLength, Bounds = GetRow(0) };
         _passwordField = new TextField { IsPassword = true, Bounds = GetRow(1) };
-
-        int noticeTop = GetRow(1).Bottom + NoticeGap;
-        _notice = new NoticeBox
-        {
-            Bounds = new Rectangle(ContentX, noticeTop, ContentWidth, NoticeHeight)
-        };
-
+        _notice = new NoticeBox { Bounds = new Rectangle(ContentX, GetRow(1).Bottom + NoticeGap, ContentWidth, NoticeHeight) };
         _saveButton = CreatePrimaryButton(true);
-        _cancelButton = CreateSecondaryButton();
+        _cancelButton = CreateOutlineButton(SecondaryButtonBounds);
         _saveButton.Clicked += OnSaveClicked;
         _cancelButton.Clicked += OnCancelClicked;
 
@@ -52,15 +49,6 @@ public sealed class GuiChangeEmail : FormScreen
         return TextCatalog.ChangeEmailSubtitle;
     }
 
-    private void OnSaveClicked(object? sender, EventArgs e)
-    {
-    }
-
-    private void OnCancelClicked(object? sender, EventArgs e)
-    {
-        Navigator.GoBack();
-    }
-
     protected override void ApplyTexts()
     {
         _newEmailField.Label = TextCatalog.ChangeEmailNewLabel;
@@ -70,5 +58,40 @@ public sealed class GuiChangeEmail : FormScreen
         _notice.Text = TextCatalog.ChangeEmailNotice;
         _saveButton.Title = TextCatalog.CommonSaveButton;
         _cancelButton.Title = TextCatalog.CommonCancelButton;
+
+        if (_hasValidated)
+        {
+            Validate();
+        }
+    }
+
+    private void OnSaveClicked(object? sender, EventArgs e)
+    {
+        _hasValidated = true;
+
+        if (!Validate())
+        {
+            return;
+        }
+
+        Navigator.ReturnTo(ScreenId.AccountSettings);
+        Navigator.ShowMessage(DialogTone.Success, TextCatalog.ChangeEmailDoneBody);
+    }
+
+    private void OnCancelClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoBack();
+    }
+
+    private bool Validate()
+    {
+        string email = _newEmailField.Text.Trim();
+        _newEmailField.Warning = !InputRules.IsEmail(email) ? TextCatalog.RegisterEmailInvalid
+            : TestAccount.IsEmailTaken(email) ? TextCatalog.RegisterEmailTaken : null;
+        _passwordField.Warning = string.Equals(_passwordField.Text, TestAccount.Password, StringComparison.Ordinal)
+            ? null
+            : TextCatalog.DeleteAccountWrongPassword;
+
+        return !_newEmailField.HasWarning && !_passwordField.HasWarning;
     }
 }

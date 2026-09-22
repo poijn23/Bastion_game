@@ -74,15 +74,6 @@
   <data name="GameTitle" xml:space="preserve">
     <value>BASTIÓN</value>
   </data>
-  <data name="InterfaceLanguageLabel" xml:space="preserve">
-    <value>IDIOMA</value>
-  </data>
-  <data name="SpanishLanguageCode" xml:space="preserve">
-    <value>ES</value>
-  </data>
-  <data name="EnglishLanguageCode" xml:space="preserve">
-    <value>EN</value>
-  </data>
   <data name="SpanishMexicoLanguageName" xml:space="preserve">
     <value>ESPAÑOL (MX)</value>
   </data>
@@ -188,9 +179,6 @@
   <data name="CommonCancelButton" xml:space="preserve">
     <value>CANCELAR</value>
   </data>
-  <data name="CommonBackButton" xml:space="preserve">
-    <value>VOLVER</value>
-  </data>
   <data name="LoginSubtitle" xml:space="preserve">
     <value>ACCEDE A TU CUENTA</value>
   </data>
@@ -231,22 +219,22 @@
     <value>el nombre de jugador o la contraseña no son correctos</value>
   </data>
   <data name="ForgotPasswordSubtitle" xml:space="preserve">
-    <value>RECUPERA TU CONTRASEÑA</value>
+    <value>Recuperar contraseña</value>
   </data>
   <data name="ForgotPasswordNotice" xml:space="preserve">
     <value>Si esa dirección tiene una cuenta te enviaremos un código. Caduca en una hora.</value>
   </data>
   <data name="ForgotPasswordEmailLabel" xml:space="preserve">
-    <value>CORREO ELECTRÓNICO</value>
+    <value>correo</value>
   </data>
   <data name="ForgotPasswordEmailPlaceholder" xml:space="preserve">
-    <value>el que usaste al registrarte</value>
+    <value>tu@correo.com</value>
   </data>
   <data name="ForgotPasswordSendButton" xml:space="preserve">
     <value>ENVIAR EL CÓDIGO</value>
   </data>
   <data name="ResetPasswordSubtitle" xml:space="preserve">
-    <value>ELIGE UNA CONTRASEÑA NUEVA</value>
+    <value>Nueva contraseña</value>
   </data>
   <data name="ResetPasswordCodeLabel" xml:space="preserve">
     <value>CÓDIGO DEL CORREO</value>
@@ -267,7 +255,7 @@
     <value>escríbela otra vez</value>
   </data>
   <data name="ChangePasswordSubtitle" xml:space="preserve">
-    <value>CAMBIA TU CONTRASEÑA</value>
+    <value>Cambiar tu contraseña</value>
   </data>
   <data name="ChangePasswordCurrentLabel" xml:space="preserve">
     <value>CONTRASEÑA ACTUAL</value>
@@ -288,7 +276,7 @@
     <value>escríbela otra vez</value>
   </data>
   <data name="ChangeEmailSubtitle" xml:space="preserve">
-    <value>CAMBIA TU CORREO</value>
+    <value>Cambiar tu correo</value>
   </data>
   <data name="ChangeEmailNewLabel" xml:space="preserve">
     <value>CORREO NUEVO</value>
@@ -306,7 +294,7 @@
     <value>Tu cuenta vuelve a estar pendiente hasta que abras el enlace que enviemos al correo nuevo.</value>
   </data>
   <data name="ChangeNicknameSubtitle" xml:space="preserve">
-    <value>CAMBIA TU NOMBRE DE JUGADOR</value>
+    <value>Cambiar tu nombre</value>
   </data>
   <data name="ChangeNicknameNotice" xml:space="preserve">
     <value>Solo puedes hacerlo una vez, y no se puede deshacer. Tus amigos verán el nombre nuevo.</value>
@@ -320,14 +308,11 @@
   <data name="ChangeNicknameNewPlaceholder" xml:space="preserve">
     <value>de 3 a 30 caracteres</value>
   </data>
-  <data name="ChangeNicknameSaveButton" xml:space="preserve">
-    <value>CAMBIARLO</value>
-  </data>
   <data name="DeleteAccountSubtitle" xml:space="preserve">
-    <value>BORRA TU CUENTA</value>
+    <value>Borrar tu cuenta</value>
   </data>
   <data name="DeleteAccountNotice" xml:space="preserve">
-    <value>Perderás tu elo, tus monedas, tus objetos, tus amigos y tu lugar en el ranking. Esto es definitivo y no se puede deshacer.</value>
+    <value>esto es definitivo y no se puede deshacer.</value>
   </data>
   <data name="DeleteAccountPasswordLabel" xml:space="preserve">
     <value>CONTRASEÑA ACTUAL</value>
@@ -335,26 +320,11 @@
   <data name="DeleteAccountPasswordPlaceholder" xml:space="preserve">
     <value>la que usas ahora</value>
   </data>
-  <data name="DeleteAccountContinueButton" xml:space="preserve">
-    <value>CONTINUAR</value>
-  </data>
-  <data name="DeleteAccountConfirmSubtitle" xml:space="preserve">
-    <value>¿DE VERDAD ESTÁS SEGURO?</value>
-  </data>
-  <data name="DeleteAccountConfirmNotice" xml:space="preserve">
-    <value>Escribe la palabra que aparece en pantalla para confirmar que quieres borrarlo todo.</value>
-  </data>
-  <data name="DeleteAccountWordLabel" xml:space="preserve">
-    <value>PALABRA DE CONFIRMACIÓN</value>
-  </data>
-  <data name="DeleteAccountWordPlaceholder" xml:space="preserve">
-    <value>escríbela exactamente</value>
-  </data>
   <data name="DeleteAccountDeleteButton" xml:space="preserve">
     <value>BORRAR MI CUENTA</value>
   </data>
   <data name="ActiveSessionsSubtitle" xml:space="preserve">
-    <value>DÓNDE TIENES SESIÓN</value>
+    <value>Sesiones activas</value>
   </data>
   <data name="ActiveSessionsCurrentBadge" xml:space="preserve">
     <value>ESTE DISPOSITIVO</value>
@@ -370,24 +340,6 @@
   </data>
   <data name="ActiveSessionsLastUseSample" xml:space="preserve">
     <value>usado hace un momento</value>
-  </data>
-  <data name="AccountSettingsSubtitle" xml:space="preserve">
-    <value>TU CUENTA</value>
-  </data>
-  <data name="AccountSettingsNicknameEntry" xml:space="preserve">
-    <value>CAMBIAR MI NOMBRE DE JUGADOR</value>
-  </data>
-  <data name="AccountSettingsPasswordEntry" xml:space="preserve">
-    <value>CAMBIAR MI CONTRASEÑA</value>
-  </data>
-  <data name="AccountSettingsEmailEntry" xml:space="preserve">
-    <value>CAMBIAR MI CORREO</value>
-  </data>
-  <data name="AccountSettingsSessionsEntry" xml:space="preserve">
-    <value>DÓNDE TENGO SESIÓN</value>
-  </data>
-  <data name="AccountSettingsDeleteEntry" xml:space="preserve">
-    <value>BORRAR MI CUENTA</value>
   </data>
   <data name="RegisterDiscardBody" xml:space="preserve">
     <value>Si sales ahora pierdes lo que escribiste en el formulario.</value>
@@ -446,11 +398,8 @@
   <data name="RegistrationSuccessDetail" xml:space="preserve">
     <value>puedes cerrar el juego mientras lo revisas</value>
   </data>
-  <data name="ProfileSubtitle" xml:space="preserve">
-    <value>TU PERFIL</value>
-  </data>
   <data name="ProfileHeaderFormat" xml:space="preserve">
-    <value>{0} · Nivel {1} · desde {2}</value>
+    <value>{0} · nivel {1} · desde {2}</value>
   </data>
   <data name="ProfileMatchesTile" xml:space="preserve">
     <value>partidas</value>
@@ -465,31 +414,22 @@
     <value>elo máximo</value>
   </data>
   <data name="ProfileModeStatFormat" xml:space="preserve">
-    <value>{0} partidas · {1} ganadas</value>
-  </data>
-  <data name="ProfileEditButton" xml:space="preserve">
-    <value>EDITAR PERFIL</value>
+    <value>{0} · {1}</value>
   </data>
   <data name="EditProfileSubtitle" xml:space="preserve">
-    <value>EDITAR PERFIL</value>
+    <value>Editar perfil</value>
   </data>
   <data name="EditProfileNicknameLabel" xml:space="preserve">
-    <value>NOMBRE DE JUGADOR</value>
+    <value>nombre</value>
   </data>
   <data name="EditProfileTitleLabel" xml:space="preserve">
-    <value>TÍTULO EQUIPADO</value>
+    <value>título equipado</value>
   </data>
   <data name="EditProfileLanguageLabel" xml:space="preserve">
-    <value>IDIOMA DE LA CUENTA</value>
-  </data>
-  <data name="EditProfileFirstLinkLabel" xml:space="preserve">
-    <value>ENLACE A TUS REDES</value>
-  </data>
-  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
-    <value>SEGUNDO ENLACE</value>
+    <value>idioma de la cuenta</value>
   </data>
   <data name="EditProfileLinkPlaceholder" xml:space="preserve">
-    <value>https://</value>
+    <value>pega una url...</value>
   </data>
   <data name="EditProfileSpectatorsText" xml:space="preserve">
     <value>permitir que otros vean mis partidas</value>
@@ -502,9 +442,6 @@
   </data>
   <data name="EditProfileSavedBody" xml:space="preserve">
     <value>Perfil guardado.</value>
-  </data>
-  <data name="AccountSettingsProfileEntry" xml:space="preserve">
-    <value>PERFIL</value>
   </data>
   <data name="Modo.CLASICO" xml:space="preserve">
     <value>Clásico 9×9</value>
@@ -523,6 +460,255 @@
   </data>
   <data name="ObjetoCosmetico.TITULO_CONSTRUCTOR" xml:space="preserve">
     <value>Constructor</value>
+  </data>
+  <data name="CommonBackLink" xml:space="preserve">
+    <value>&lt; volver</value>
+  </data>
+  <data name="CommonEditButton" xml:space="preserve">
+    <value>EDITAR</value>
+  </data>
+  <data name="CommonChangeButton" xml:space="preserve">
+    <value>CAMBIAR</value>
+  </data>
+  <data name="CommonContinueButton" xml:space="preserve">
+    <value>CONTINUAR</value>
+  </data>
+  <data name="AvatarPlaceholder" xml:space="preserve">
+    <value>foto</value>
+  </data>
+  <data name="ProfileByModeTitle" xml:space="preserve">
+    <value>por modo</value>
+  </data>
+  <data name="ProfileAverageLengthFormat" xml:space="preserve">
+    <value>longitud media {0} jugadas</value>
+  </data>
+  <data name="ProfileTitlesTitle" xml:space="preserve">
+    <value>títulos</value>
+  </data>
+  <data name="ProfileSeeAllLink" xml:space="preserve">
+    <value>ver todos ></value>
+  </data>
+  <data name="ProfileNoTitle" xml:space="preserve">
+    <value>sin título</value>
+  </data>
+  <data name="ProfileLinksTitle" xml:space="preserve">
+    <value>enlaces</value>
+  </data>
+  <data name="ProfileAddLinkChip" xml:space="preserve">
+    <value>añadir +</value>
+  </data>
+  <data name="EditProfileUploadButton" xml:space="preserve">
+    <value>SUBIR IMAGEN</value>
+  </data>
+  <data name="EditProfileIconsButton" xml:space="preserve">
+    <value>ICONOS</value>
+  </data>
+  <data name="EditProfileIconsHint" xml:space="preserve">
+    <value>32 iconos (animales, objetos) o tu jpg/png de máx. 2 MB</value>
+  </data>
+  <data name="EditProfileMoreIconsChip" xml:space="preserve">
+    <value>></value>
+  </data>
+  <data name="EditProfileNicknameHint" xml:space="preserve">
+    <value>solo puedes cambiarlo una vez. después queda fijo.</value>
+  </data>
+  <data name="EditProfilePreviewFormat" xml:space="preserve">
+    <value>{0} · {1}</value>
+  </data>
+  <data name="EditProfilePreviewHint" xml:space="preserve">
+    <value>así te ven los demás</value>
+  </data>
+  <data name="EditProfileLinksLabel" xml:space="preserve">
+    <value>enlaces a tus redes · máx. 4</value>
+  </data>
+  <data name="EditProfileLinksHint" xml:space="preserve">
+    <value>se revisan antes de publicarse; nada de enlaces de pago ni invitaciones externas</value>
+  </data>
+  <data name="EditProfileRemoveLinkButton" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="Icono.ZORRO" xml:space="preserve">
+    <value>zorro</value>
+  </data>
+  <data name="Icono.BUHO" xml:space="preserve">
+    <value>búho</value>
+  </data>
+  <data name="Icono.OSO" xml:space="preserve">
+    <value>oso</value>
+  </data>
+  <data name="Icono.GATO" xml:space="preserve">
+    <value>gato</value>
+  </data>
+  <data name="Icono.MURO" xml:space="preserve">
+    <value>muro</value>
+  </data>
+  <data name="Icono.PEON" xml:space="preserve">
+    <value>peón</value>
+  </data>
+  <data name="Icono.FARO" xml:space="preserve">
+    <value>faro</value>
+  </data>
+  <data name="TipoEnlace.TWITCH" xml:space="preserve">
+    <value>twitch</value>
+  </data>
+  <data name="TipoEnlace.YOUTUBE" xml:space="preserve">
+    <value>youtube</value>
+  </data>
+  <data name="TipoEnlace.DISCORD" xml:space="preserve">
+    <value>discord</value>
+  </data>
+  <data name="TipoEnlace.OTRO" xml:space="preserve">
+    <value>otro</value>
+  </data>
+  <data name="SettingsHeading" xml:space="preserve">
+    <value>ajustes</value>
+  </data>
+  <data name="SettingsBoardEntry" xml:space="preserve">
+    <value>tablero 3D</value>
+  </data>
+  <data name="SettingsAudioEntry" xml:space="preserve">
+    <value>audio</value>
+  </data>
+  <data name="SettingsAccountEntry" xml:space="preserve">
+    <value>cuenta</value>
+  </data>
+  <data name="SettingsLanguageEntry" xml:space="preserve">
+    <value>idioma</value>
+  </data>
+  <data name="SettingsAccessibilityEntry" xml:space="preserve">
+    <value>accesibilidad</value>
+  </data>
+  <data name="SettingsPasswordRow" xml:space="preserve">
+    <value>contraseña</value>
+  </data>
+  <data name="SettingsPasswordChangedFormat" xml:space="preserve">
+    <value>cambiada hace {0} meses</value>
+  </data>
+  <data name="SettingsEmailRow" xml:space="preserve">
+    <value>correo</value>
+  </data>
+  <data name="SettingsEmailVerified" xml:space="preserve">
+    <value>verificado</value>
+  </data>
+  <data name="SettingsSessionsRow" xml:space="preserve">
+    <value>sesiones activas</value>
+  </data>
+  <data name="SettingsSessionsCountFormat" xml:space="preserve">
+    <value>{0} dispositivos</value>
+  </data>
+  <data name="SettingsFriendCodeRow" xml:space="preserve">
+    <value>código de amigo</value>
+  </data>
+  <data name="CommonCopyButton" xml:space="preserve">
+    <value>COPIAR</value>
+  </data>
+  <data name="CommonViewButton" xml:space="preserve">
+    <value>VER</value>
+  </data>
+  <data name="SettingsSignOutButton" xml:space="preserve">
+    <value>CERRAR SESIÓN</value>
+  </data>
+  <data name="SettingsSignOutBody" xml:space="preserve">
+    <value>¿Quieres cerrar la sesión en este dispositivo?</value>
+  </data>
+  <data name="SettingsDeleteTitle" xml:space="preserve">
+    <value>borrar cuenta</value>
+  </data>
+  <data name="SettingsDeleteHint" xml:space="preserve">
+    <value>se van elo, skins y monedas. no hay vuelta atrás.</value>
+  </data>
+  <data name="SettingsInterfaceLanguageLabel" xml:space="preserve">
+    <value>idioma de la interfaz</value>
+  </data>
+  <data name="SettingsCurrentTag" xml:space="preserve">
+    <value>actual</value>
+  </data>
+  <data name="SettingsChatNote" xml:space="preserve">
+    <value>el chat no se traduce</value>
+  </data>
+  <data name="ChangeNicknameConfirmTitle" xml:space="preserve">
+    <value>¿cambiar tu nombre?</value>
+  </data>
+  <data name="ChangeNicknameConfirmFormat" xml:space="preserve">
+    <value>{0} -> {1}</value>
+  </data>
+  <data name="ChangeNicknameConfirmDetail" xml:space="preserve">
+    <value>es tu único cambio disponible. tus partidas y tu elo se mantienen; el nombre antiguo queda libre.</value>
+  </data>
+  <data name="ChangeNicknameConfirmButton" xml:space="preserve">
+    <value>CAMBIAR</value>
+  </data>
+  <data name="ChangeNicknameDoneBody" xml:space="preserve">
+    <value>Nombre cambiado.</value>
+  </data>
+  <data name="DeleteAccountLossTitle" xml:space="preserve">
+    <value>se borra</value>
+  </data>
+  <data name="DeleteAccountLossFormat" xml:space="preserve">
+    <value>elo {0}, {1} partidas, {2} skins y {3} monedas, tus amigos y tu lugar en el ranking. tu nombre queda libre para otros.</value>
+  </data>
+  <data name="DeleteAccountWord" xml:space="preserve">
+    <value>BORRAR</value>
+  </data>
+  <data name="DeleteAccountWordLabelFormat" xml:space="preserve">
+    <value>escribe {0} para confirmar</value>
+  </data>
+  <data name="DeleteAccountWrongPassword" xml:space="preserve">
+    <value>esa no es tu contraseña</value>
+  </data>
+  <data name="DeleteAccountDoneBody" xml:space="preserve">
+    <value>Tu cuenta se eliminó.</value>
+  </data>
+  <data name="ChangePasswordDoneBody" xml:space="preserve">
+    <value>Contraseña cambiada. Se cerraron tus demás sesiones.</value>
+  </data>
+  <data name="PasswordPolicyWarning" xml:space="preserve">
+    <value>mínimo 8 caracteres y tres de: minúsculas, mayúsculas, dígitos, signos</value>
+  </data>
+  <data name="ChangeEmailDoneBody" xml:space="preserve">
+    <value>Enviamos un enlace al correo nuevo. Queda pendiente hasta que lo confirmes.</value>
+  </data>
+  <data name="ActiveSessionsCloseBody" xml:space="preserve">
+    <value>¿Cerrar la sesión de {0}, usada por última vez {1}?</value>
+  </data>
+  <data name="ActiveSessionsCloseAllBody" xml:space="preserve">
+    <value>¿Cerrar todas las demás sesiones?</value>
+  </data>
+  <data name="ActiveSessionsChangePasswordBody" xml:space="preserve">
+    <value>Si alguien las abrió sin permiso, las volverá a abrir con la misma contraseña. ¿La cambias ahora?</value>
+  </data>
+  <data name="ForgotPasswordBackLink" xml:space="preserve">
+    <value>&lt; volver a entrar</value>
+  </data>
+  <data name="ForgotPasswordGuestTitle" xml:space="preserve">
+    <value>¿entraste como invitado?</value>
+  </data>
+  <data name="ForgotPasswordGuestHint" xml:space="preserve">
+    <value>las cuentas de invitado no tienen correo. no se pueden recuperar.</value>
+  </data>
+  <data name="ResetPasswordSentTitle" xml:space="preserve">
+    <value>correo enviado</value>
+  </data>
+  <data name="ResetPasswordSentFormat" xml:space="preserve">
+    <value>revisa {0}. mira también el spam.</value>
+  </data>
+  <data name="ResetPasswordResendInFormat" xml:space="preserve">
+    <value>REENVIAR EN {0}</value>
+  </data>
+  <data name="ResetPasswordResendButton" xml:space="preserve">
+    <value>REENVIAR</value>
+  </data>
+  <data name="ResetPasswordSessionsNote" xml:space="preserve">
+    <value>al guardar se cierran las demás sesiones</value>
+  </data>
+  <data name="ResetPasswordSaveButton" xml:space="preserve">
+    <value>CAMBIAR CONTRASEÑA</value>
+  </data>
+  <data name="ResetPasswordDoneBody" xml:space="preserve">
+    <value>Contraseña cambiada. Entra con la nueva.</value>
+  </data>
+  <data name="ResetPasswordCodeInvalid" xml:space="preserve">
+    <value>escribe el código de 6 caracteres del correo</value>
   </data>
   <data name="RegisterAccountLanguageLabel" xml:space="preserve">
     <value>IDIOMA DE LA CUENTA</value>
@@ -949,5 +1135,14 @@
   </data>
   <data name="ReportReviewOtherAuthorSample" xml:space="preserve">
     <value>el otro jugador</value>
+  </data>
+  <data name="CommonBackButton" xml:space="preserve">
+    <value>VOLVER</value>
+  </data>
+  <data name="MenuSubtitle" xml:space="preserve">
+    <value>TODAS LAS PANTALLAS</value>
+  </data>
+  <data name="ProfileSubtitle" xml:space="preserve">
+    <value>Tu perfil</value>
   </data>
 </root>

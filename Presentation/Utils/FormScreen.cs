@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Bastion.Resources;
 
 namespace Bastion.Presentation.Utils;
 
@@ -10,6 +11,7 @@ public abstract class FormScreen : IScreen
 {
     protected const int NarrowCardWidth = 560;
     protected const int WideCardWidth = 900;
+    protected const int PanelNarrowWidth = 640;
     protected const int RowSpacing = 98;
     protected const int LabelSpace = 22;
     protected const int Gutter = 32;
@@ -22,25 +24,51 @@ public abstract class FormScreen : IScreen
 
     private readonly List<Control> _controls = [];
     private readonly List<TextField> _focusableFields = [];
-    private readonly DropDown _languagePicker;
+    private readonly DropDown? _languagePicker;
+    private readonly Button? _backLink;
+    private readonly ScreenLayout _layout;
 
     protected FormScreen(INavigator navigator, int cardWidth, int cardHeight)
+        : this(navigator, cardWidth, cardHeight, ScreenLayout.Chrome)
+    {
+    }
+
+    protected FormScreen(INavigator navigator, int cardWidth, int cardHeight, ScreenLayout layout)
     {
         ArgumentNullException.ThrowIfNull(navigator);
 
         Navigator = navigator;
+        _layout = layout;
 
         int x = (Theme.WindowWidth - cardWidth) / 2;
-        Card = new Rectangle(x, ScreenChrome.CardTop, cardWidth, cardHeight);
+        int top = layout == ScreenLayout.Chrome ? ScreenChrome.CardTop : Theme.PanelTop;
+        Card = new Rectangle(x, top, cardWidth, cardHeight);
 
-        int primaryTop = Card.Bottom + ButtonGap;
-        PrimaryButtonBounds = new Rectangle(x, primaryTop, cardWidth, Theme.PrimaryButtonHeight);
+        if (layout == ScreenLayout.Chrome)
+        {
+            int primaryTop = Card.Bottom + ButtonGap;
+            PrimaryButtonBounds = new Rectangle(x, primaryTop, cardWidth, Theme.PrimaryButtonHeight);
 
-        int secondaryTop = primaryTop + Theme.PrimaryButtonHeight + ButtonSpacing;
-        SecondaryButtonBounds = new Rectangle(x, secondaryTop, cardWidth, Theme.SecondaryButtonHeight);
+            int secondaryTop = primaryTop + Theme.PrimaryButtonHeight + ButtonSpacing;
+            SecondaryButtonBounds = new Rectangle(x, secondaryTop, cardWidth, Theme.SecondaryButtonHeight);
 
-        _languagePicker = LanguagePicker.Create();
-        _languagePicker.SelectionChanged += OnLanguageSelected;
+            _languagePicker = LanguagePicker.Create();
+            _languagePicker.SelectionChanged += OnLanguageSelected;
+            return;
+        }
+
+        int buttonTop = Card.Bottom - Theme.CardPadding - Theme.PanelButtonHeight;
+        PrimaryButtonBounds = new Rectangle(
+            Card.Right - Theme.CardPadding - Theme.PanelButtonWidth, buttonTop, Theme.PanelButtonWidth, Theme.PanelButtonHeight);
+        SecondaryButtonBounds = new Rectangle(
+            Card.X + Theme.CardPadding, buttonTop, Theme.PanelButtonWidth, Theme.PanelButtonHeight);
+
+        _backLink = new Button
+        {
+            Style = ButtonStyle.Link,
+            Bounds = new Rectangle(Theme.PanelMargin, Theme.PanelMargin, 200, Theme.PanelBackHeight)
+        };
+        _backLink.Clicked += OnBackLinkClicked;
     }
 
     protected INavigator Navigator { get; }
@@ -55,23 +83,43 @@ public abstract class FormScreen : IScreen
 
     protected int ContentWidth => Card.Width - (Theme.CardPadding * 2);
 
-    protected int FirstRowTop => Card.Y + Theme.CardPadding + LabelSpace;
+    protected int ContentTop => _layout == ScreenLayout.Chrome ? Card.Y + Theme.CardPadding : PanelContentTop;
+
+    protected int FirstRowTop => ContentTop + LabelSpace;
+
+    protected int PanelTitleTop => Card.Y + Theme.CardPadding + Theme.PanelBackHeight + Theme.PanelGap;
+
+    protected int PanelContentTop => _layout == ScreenLayout.Panel
+        ? PanelTitleTop + Theme.PanelTitleHeight + Theme.PanelGap
+        : PanelTitleTop;
+
+    protected virtual int TitleLeftInset => 0;
+
+    protected virtual string GetBackLabel()
+    {
+        return TextCatalog.CommonBackLink;
+    }
 
     protected int ColumnWidth => (ContentWidth - Gutter) / 2;
 
     protected virtual int RowPitch => RowSpacing;
 
-    public void Update(InputState input)
+    public virtual void Update(InputState input)
     {
         ArgumentNullException.ThrowIfNull(input);
 
-        bool pickerWasOpen = _languagePicker.IsOpen;
-        _languagePicker.Update(input);
-
-        if (pickerWasOpen && input.HasClicked)
+        if (_languagePicker is not null)
         {
-            return;
+            bool pickerWasOpen = _languagePicker.IsOpen;
+            _languagePicker.Update(input);
+
+            if (pickerWasOpen && input.HasClicked)
+            {
+                return;
+            }
         }
+
+        _backLink?.Update(input);
 
         if (input.HasClicked)
         {
@@ -89,19 +137,38 @@ public abstract class FormScreen : IScreen
         }
     }
 
-    public void Draw(Canvas canvas)
+    public virtual void Draw(Canvas canvas)
     {
         ArgumentNullException.ThrowIfNull(canvas);
 
-        ScreenChrome.Draw(canvas, GetSubtitle());
-        canvas.Shapes.DrawRoundedRectangle(Card, Theme.CardCornerRadius, Theme.Card);
+        if (_layout == ScreenLayout.Chrome)
+        {
+            ScreenChrome.Draw(canvas, GetSubtitle());
+            canvas.Shapes.DrawRoundedRectangle(Card, Theme.CardCornerRadius, Theme.Card);
+        }
+        else
+        {
+            canvas.Shapes.DrawRectangle(new Rectangle(0, 0, Theme.WindowWidth, Theme.WindowHeight), Theme.Card);
+        }
+
+        if (_backLink is not null)
+        {
+            _backLink.Title = GetBackLabel();
+            _backLink.Draw(canvas);
+        }
+
+        if (_layout == ScreenLayout.Panel)
+        {
+            TextStyle heading = TextStyleFactory.CreateHeading(canvas.Fonts, Theme.TextDark);
+            canvas.Text.Draw(GetSubtitle(), new Vector2(ContentX + TitleLeftInset, PanelTitleTop), heading);
+        }
 
         foreach (Control control in _controls)
         {
             control.Draw(canvas);
         }
 
-        _languagePicker.Draw(canvas);
+        _languagePicker?.Draw(canvas);
     }
 
     protected abstract string GetSubtitle();
@@ -199,10 +266,20 @@ public abstract class FormScreen : IScreen
         return new Rectangle(x, FirstRowTop + (row * RowPitch), ColumnWidth, Theme.FieldHeight);
     }
 
+    protected Button CreateOutlineButton(Rectangle bounds)
+    {
+        return new Button { Style = ButtonStyle.Outline, Bounds = bounds };
+    }
+
+    private void OnBackLinkClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoBack();
+    }
+
     private void OnLanguageSelected(object? sender, SelectionChangedEventArgs e)
     {
         LanguagePicker.Apply(e.SelectedIndex);
-        _languagePicker.Options = LanguagePicker.GetNames();
+        _languagePicker!.Options = LanguagePicker.GetNames();
         ApplyTexts();
     }
 

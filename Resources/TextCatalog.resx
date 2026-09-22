@@ -77,18 +77,6 @@
     <value>BASTIÓN</value>
     <comment>Header wordmark. Product name: not translated.</comment>
   </data>
-  <data name="InterfaceLanguageLabel" xml:space="preserve">
-    <value>LANGUAGE</value>
-    <comment>Caption for the interface language picker (CU-02 FA-02).</comment>
-  </data>
-  <data name="SpanishLanguageCode" xml:space="preserve">
-    <value>ES</value>
-    <comment>Short code. Not translated.</comment>
-  </data>
-  <data name="EnglishLanguageCode" xml:space="preserve">
-    <value>EN</value>
-    <comment>Short code. Not translated.</comment>
-  </data>
   <data name="SpanishMexicoLanguageName" xml:space="preserve">
     <value>ESPAÑOL (MX)</value>
     <comment>Language endonym (D-21: es-MX). Not translated.</comment>
@@ -229,10 +217,6 @@
     <value>CANCEL</value>
     <comment>Leaves a form without applying anything.</comment>
   </data>
-  <data name="CommonBackButton" xml:space="preserve">
-    <value>BACK</value>
-    <comment>Returns to the previous screen from a read only one.</comment>
-  </data>
   <data name="LoginSubtitle" xml:space="preserve">
     <value>SIGN IN TO YOUR ACCOUNT</value>
     <comment>CU-01 main flow step 1.</comment>
@@ -286,7 +270,7 @@
     <comment>CU-01 alternate flow: one message for both, so the field that failed is not revealed.</comment>
   </data>
   <data name="ForgotPasswordSubtitle" xml:space="preserve">
-    <value>RECOVER YOUR PASSWORD</value>
+    <value>Recover your password</value>
     <comment>CU-03 main flow step 1.</comment>
   </data>
   <data name="ForgotPasswordNotice" xml:space="preserve">
@@ -294,11 +278,11 @@
     <comment>Worded so it does not reveal whether the address exists (CU-03 RN-01).</comment>
   </data>
   <data name="ForgotPasswordEmailLabel" xml:space="preserve">
-    <value>EMAIL ADDRESS</value>
+    <value>email</value>
     <comment>Label of the email field.</comment>
   </data>
   <data name="ForgotPasswordEmailPlaceholder" xml:space="preserve">
-    <value>the one you signed up with</value>
+    <value>you@email.com</value>
     <comment>Hint.</comment>
   </data>
   <data name="ForgotPasswordSendButton" xml:space="preserve">
@@ -306,7 +290,7 @@
     <comment>Primary action.</comment>
   </data>
   <data name="ResetPasswordSubtitle" xml:space="preserve">
-    <value>SET A NEW PASSWORD</value>
+    <value>New password</value>
     <comment>CU-03 main flow step 8.</comment>
   </data>
   <data name="ResetPasswordCodeLabel" xml:space="preserve">
@@ -334,7 +318,7 @@
     <comment>Hint of the confirmation.</comment>
   </data>
   <data name="ChangePasswordSubtitle" xml:space="preserve">
-    <value>CHANGE YOUR PASSWORD</value>
+    <value>Change your password</value>
     <comment>CU-09 main flow step 1.</comment>
   </data>
   <data name="ChangePasswordCurrentLabel" xml:space="preserve">
@@ -362,7 +346,7 @@
     <comment>Hint of the confirmation.</comment>
   </data>
   <data name="ChangeEmailSubtitle" xml:space="preserve">
-    <value>CHANGE YOUR EMAIL</value>
+    <value>Change your email</value>
     <comment>CU-09 alternate flow FA-01.</comment>
   </data>
   <data name="ChangeEmailNewLabel" xml:space="preserve">
@@ -386,7 +370,7 @@
     <comment>States the consequence before the player commits.</comment>
   </data>
   <data name="ChangeNicknameSubtitle" xml:space="preserve">
-    <value>CHANGE YOUR PLAYER NAME</value>
+    <value>Change your name</value>
     <comment>CU-13 main flow step 1.</comment>
   </data>
   <data name="ChangeNicknameNotice" xml:space="preserve">
@@ -405,16 +389,12 @@
     <value>3 to 30 characters</value>
     <comment>Hint. CU-02 RN-01.</comment>
   </data>
-  <data name="ChangeNicknameSaveButton" xml:space="preserve">
-    <value>CHANGE IT</value>
-    <comment>Primary action of CU-13.</comment>
-  </data>
   <data name="DeleteAccountSubtitle" xml:space="preserve">
-    <value>DELETE YOUR ACCOUNT</value>
+    <value>Delete your account</value>
     <comment>CU-11 main flow step 1.</comment>
   </data>
   <data name="DeleteAccountNotice" xml:space="preserve">
-    <value>You will lose your elo, your coins, your items, your friends and your place in the ranking. This is final and cannot be undone.</value>
+    <value>this is final and cannot be undone.</value>
     <comment>The list of what is lost, required by CU-11 main flow step 1.</comment>
   </data>
   <data name="DeleteAccountPasswordLabel" xml:space="preserve">
@@ -425,32 +405,12 @@
     <value>the one you use now</value>
     <comment>Hint.</comment>
   </data>
-  <data name="DeleteAccountContinueButton" xml:space="preserve">
-    <value>CONTINUE</value>
-    <comment>Moves to the second step.</comment>
-  </data>
-  <data name="DeleteAccountConfirmSubtitle" xml:space="preserve">
-    <value>ARE YOU REALLY SURE?</value>
-    <comment>CU-11 main flow step 2.</comment>
-  </data>
-  <data name="DeleteAccountConfirmNotice" xml:space="preserve">
-    <value>Type the word shown on screen to confirm that you want to delete everything.</value>
-    <comment>CU-11 RN-01: the second step asks for a typed word.</comment>
-  </data>
-  <data name="DeleteAccountWordLabel" xml:space="preserve">
-    <value>CONFIRMATION WORD</value>
-    <comment>Label of the word field.</comment>
-  </data>
-  <data name="DeleteAccountWordPlaceholder" xml:space="preserve">
-    <value>type it exactly</value>
-    <comment>Hint of the word field.</comment>
-  </data>
   <data name="DeleteAccountDeleteButton" xml:space="preserve">
     <value>DELETE MY ACCOUNT</value>
     <comment>Final action of CU-11.</comment>
   </data>
   <data name="ActiveSessionsSubtitle" xml:space="preserve">
-    <value>WHERE YOU ARE SIGNED IN</value>
+    <value>Active sessions</value>
     <comment>CU-10 main flow step 4.</comment>
   </data>
   <data name="ActiveSessionsCurrentBadge" xml:space="preserve">
@@ -472,30 +432,6 @@
   <data name="ActiveSessionsLastUseSample" xml:space="preserve">
     <value>last used a moment ago</value>
     <comment>Placeholder until the list comes from the server.</comment>
-  </data>
-  <data name="AccountSettingsSubtitle" xml:space="preserve">
-    <value>YOUR ACCOUNT</value>
-    <comment>Hub the account use cases return to.</comment>
-  </data>
-  <data name="AccountSettingsNicknameEntry" xml:space="preserve">
-    <value>CHANGE MY PLAYER NAME</value>
-    <comment>Leads to CU-13.</comment>
-  </data>
-  <data name="AccountSettingsPasswordEntry" xml:space="preserve">
-    <value>CHANGE MY PASSWORD</value>
-    <comment>Leads to CU-09.</comment>
-  </data>
-  <data name="AccountSettingsEmailEntry" xml:space="preserve">
-    <value>CHANGE MY EMAIL</value>
-    <comment>Leads to CU-09 FA-01.</comment>
-  </data>
-  <data name="AccountSettingsSessionsEntry" xml:space="preserve">
-    <value>WHERE I AM SIGNED IN</value>
-    <comment>Leads to CU-10.</comment>
-  </data>
-  <data name="AccountSettingsDeleteEntry" xml:space="preserve">
-    <value>DELETE MY ACCOUNT</value>
-    <comment>Leads to CU-11.</comment>
   </data>
   <data name="RegisterDiscardBody" xml:space="preserve">
     <value>If you leave now you lose what you typed in the form.</value>
@@ -573,12 +509,8 @@
     <value>you can close the game while you check it</value>
     <comment>Second line of the primary button.</comment>
   </data>
-  <data name="ProfileSubtitle" xml:space="preserve">
-    <value>YOUR PROFILE</value>
-    <comment>CU-15. Header subtitle.</comment>
-  </data>
   <data name="ProfileHeaderFormat" xml:space="preserve">
-    <value>{0} · Level {1} · since {2}</value>
+    <value>{0} · level {1} · since {2}</value>
     <comment>{0} equipped title, {1} level, {2} registration month formatted by CurrentCulture.</comment>
   </data>
   <data name="ProfileMatchesTile" xml:space="preserve">
@@ -598,39 +530,27 @@
     <comment>Caption of the fourth stat tile.</comment>
   </data>
   <data name="ProfileModeStatFormat" xml:space="preserve">
-    <value>{0} matches · {1} won</value>
+    <value>{0} · {1}</value>
     <comment>Per mode row. {0} count, {1} percentage formatted by CurrentCulture.</comment>
   </data>
-  <data name="ProfileEditButton" xml:space="preserve">
-    <value>EDIT PROFILE</value>
-    <comment>Primary option: opens GUI_EditProfile.</comment>
-  </data>
   <data name="EditProfileSubtitle" xml:space="preserve">
-    <value>EDIT PROFILE</value>
+    <value>Edit profile</value>
     <comment>CU-12. Header subtitle.</comment>
   </data>
   <data name="EditProfileNicknameLabel" xml:space="preserve">
-    <value>PLAYER NAME</value>
+    <value>name</value>
     <comment>Read only box: the nickname changes from account settings (CU-13).</comment>
   </data>
   <data name="EditProfileTitleLabel" xml:space="preserve">
-    <value>EQUIPPED TITLE</value>
+    <value>equipped title</value>
     <comment>Label of the title selector.</comment>
   </data>
   <data name="EditProfileLanguageLabel" xml:space="preserve">
-    <value>ACCOUNT LANGUAGE</value>
+    <value>account language</value>
     <comment>Label of the idioma_preferido selector (CU-12 RN-08).</comment>
   </data>
-  <data name="EditProfileFirstLinkLabel" xml:space="preserve">
-    <value>SOCIAL LINK</value>
-    <comment>Label of the first link field.</comment>
-  </data>
-  <data name="EditProfileSecondLinkLabel" xml:space="preserve">
-    <value>SECOND LINK</value>
-    <comment>Label of the second link field.</comment>
-  </data>
   <data name="EditProfileLinkPlaceholder" xml:space="preserve">
-    <value>https://</value>
+    <value>paste a url...</value>
     <comment>Hint text. Not translated: it is the required prefix.</comment>
   </data>
   <data name="EditProfileSpectatorsText" xml:space="preserve">
@@ -648,10 +568,6 @@
   <data name="EditProfileSavedBody" xml:space="preserve">
     <value>Profile saved.</value>
     <comment>Success dialog after CU-12 main flow step 16.</comment>
-  </data>
-  <data name="AccountSettingsProfileEntry" xml:space="preserve">
-    <value>PROFILE</value>
-    <comment>Hub entry that opens GUI_Profile.</comment>
   </data>
   <data name="Modo.CLASICO" xml:space="preserve">
     <value>Classic 9×9</value>
@@ -676,6 +592,338 @@
   <data name="ObjetoCosmetico.TITULO_CONSTRUCTOR" xml:space="preserve">
     <value>Builder</value>
     <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="CommonBackLink" xml:space="preserve">
+    <value>&lt; back</value>
+    <comment>Link at the top left of every panel screen.</comment>
+  </data>
+  <data name="CommonEditButton" xml:space="preserve">
+    <value>EDIT</value>
+    <comment>Small outline button (prototypes 5a, 9f).</comment>
+  </data>
+  <data name="CommonChangeButton" xml:space="preserve">
+    <value>CHANGE</value>
+    <comment>Small outline button beside a value.</comment>
+  </data>
+  <data name="CommonContinueButton" xml:space="preserve">
+    <value>CONTINUE</value>
+    <comment>Primary option of a first step.</comment>
+  </data>
+  <data name="AvatarPlaceholder" xml:space="preserve">
+    <value>photo</value>
+    <comment>Text inside the avatar circle while there is no image.</comment>
+  </data>
+  <data name="ProfileByModeTitle" xml:space="preserve">
+    <value>by mode</value>
+    <comment>Title of the left panel (prototype 5a).</comment>
+  </data>
+  <data name="ProfileAverageLengthFormat" xml:space="preserve">
+    <value>average length {0} moves</value>
+    <comment>Footer of the by mode panel.</comment>
+  </data>
+  <data name="ProfileTitlesTitle" xml:space="preserve">
+    <value>titles</value>
+    <comment>Title of the right panel.</comment>
+  </data>
+  <data name="ProfileSeeAllLink" xml:space="preserve">
+    <value>see all ></value>
+    <comment>Footer of the titles panel. Leads to GUI_Customize, not built yet.</comment>
+  </data>
+  <data name="ProfileNoTitle" xml:space="preserve">
+    <value>no title</value>
+    <comment>Dashed chip: the player equips no title.</comment>
+  </data>
+  <data name="ProfileLinksTitle" xml:space="preserve">
+    <value>links</value>
+    <comment>Label of the links bar.</comment>
+  </data>
+  <data name="ProfileAddLinkChip" xml:space="preserve">
+    <value>add +</value>
+    <comment>Dashed chip that opens GUI_EditProfile.</comment>
+  </data>
+  <data name="EditProfileUploadButton" xml:space="preserve">
+    <value>UPLOAD IMAGE</value>
+    <comment>Disabled until image upload exists.</comment>
+  </data>
+  <data name="EditProfileIconsButton" xml:space="preserve">
+    <value>ICONS</value>
+    <comment>Selected: the avatar is one of the predefined icons.</comment>
+  </data>
+  <data name="EditProfileIconsHint" xml:space="preserve">
+    <value>32 icons (animals, objects) or your jpg/png, 2 MB max</value>
+    <comment>Hint under the icon chips (prototype 9c).</comment>
+  </data>
+  <data name="EditProfileMoreIconsChip" xml:space="preserve">
+    <value>></value>
+    <comment>Dashed chip after the seven visible icons. Not translated.</comment>
+  </data>
+  <data name="EditProfileNicknameHint" xml:space="preserve">
+    <value>you can only change it once. after that it stays.</value>
+    <comment>CU-13 RN-01.</comment>
+  </data>
+  <data name="EditProfilePreviewFormat" xml:space="preserve">
+    <value>{0} · {1}</value>
+    <comment>Preview line: nickname and title.</comment>
+  </data>
+  <data name="EditProfilePreviewHint" xml:space="preserve">
+    <value>this is how others see you</value>
+    <comment>Second line of the preview box.</comment>
+  </data>
+  <data name="EditProfileLinksLabel" xml:space="preserve">
+    <value>links to your socials · max. 4</value>
+    <comment>CU-12 RN-03.</comment>
+  </data>
+  <data name="EditProfileLinksHint" xml:space="preserve">
+    <value>they are reviewed before publishing; no payment links or outside invitations</value>
+    <comment>Hint under the link rows.</comment>
+  </data>
+  <data name="EditProfileRemoveLinkButton" xml:space="preserve">
+    <value>X</value>
+    <comment>Square button that clears a link row. Not translated.</comment>
+  </data>
+  <data name="Icono.ZORRO" xml:space="preserve">
+    <value>fox</value>
+    <comment>Predefined icon, sample data until the catalog exists.</comment>
+  </data>
+  <data name="Icono.BUHO" xml:space="preserve">
+    <value>owl</value>
+    <comment>Predefined icon, sample data until the catalog exists.</comment>
+  </data>
+  <data name="Icono.OSO" xml:space="preserve">
+    <value>bear</value>
+    <comment>Predefined icon, sample data until the catalog exists.</comment>
+  </data>
+  <data name="Icono.GATO" xml:space="preserve">
+    <value>cat</value>
+    <comment>Predefined icon, sample data until the catalog exists.</comment>
+  </data>
+  <data name="Icono.MURO" xml:space="preserve">
+    <value>wall</value>
+    <comment>Predefined icon, sample data until the catalog exists.</comment>
+  </data>
+  <data name="Icono.PEON" xml:space="preserve">
+    <value>pawn</value>
+    <comment>Predefined icon, sample data until the catalog exists.</comment>
+  </data>
+  <data name="Icono.FARO" xml:space="preserve">
+    <value>lighthouse</value>
+    <comment>Predefined icon, sample data until the catalog exists.</comment>
+  </data>
+  <data name="TipoEnlace.TWITCH" xml:space="preserve">
+    <value>twitch</value>
+    <comment>Link type. Brand name, not translated.</comment>
+  </data>
+  <data name="TipoEnlace.YOUTUBE" xml:space="preserve">
+    <value>youtube</value>
+    <comment>Link type. Brand name, not translated.</comment>
+  </data>
+  <data name="TipoEnlace.DISCORD" xml:space="preserve">
+    <value>discord</value>
+    <comment>Link type. Brand name, not translated.</comment>
+  </data>
+  <data name="TipoEnlace.OTRO" xml:space="preserve">
+    <value>other</value>
+    <comment>Link type for any other site.</comment>
+  </data>
+  <data name="SettingsHeading" xml:space="preserve">
+    <value>settings</value>
+    <comment>Heading of the sidebar (prototypes 9f and 12c).</comment>
+  </data>
+  <data name="SettingsBoardEntry" xml:space="preserve">
+    <value>3D board</value>
+    <comment>Sidebar entry. Disabled: no use case yet.</comment>
+  </data>
+  <data name="SettingsAudioEntry" xml:space="preserve">
+    <value>audio</value>
+    <comment>Sidebar entry. Disabled: no use case yet.</comment>
+  </data>
+  <data name="SettingsAccountEntry" xml:space="preserve">
+    <value>account</value>
+    <comment>Sidebar entry that shows the account panel.</comment>
+  </data>
+  <data name="SettingsLanguageEntry" xml:space="preserve">
+    <value>language</value>
+    <comment>Sidebar entry that shows the interface language panel.</comment>
+  </data>
+  <data name="SettingsAccessibilityEntry" xml:space="preserve">
+    <value>accessibility</value>
+    <comment>Sidebar entry. Disabled: no use case yet.</comment>
+  </data>
+  <data name="SettingsPasswordRow" xml:space="preserve">
+    <value>password</value>
+    <comment>Row title.</comment>
+  </data>
+  <data name="SettingsPasswordChangedFormat" xml:space="preserve">
+    <value>changed {0} months ago</value>
+    <comment>Row subtitle. {0} months since the last change.</comment>
+  </data>
+  <data name="SettingsEmailRow" xml:space="preserve">
+    <value>email</value>
+    <comment>Row title.</comment>
+  </data>
+  <data name="SettingsEmailVerified" xml:space="preserve">
+    <value>verified</value>
+    <comment>Row subtitle when estado_cuenta is ACTIVA.</comment>
+  </data>
+  <data name="SettingsSessionsRow" xml:space="preserve">
+    <value>active sessions</value>
+    <comment>Row title. Opens GUI_ActiveSessions (CU-10).</comment>
+  </data>
+  <data name="SettingsSessionsCountFormat" xml:space="preserve">
+    <value>{0} devices</value>
+    <comment>Row subtitle.</comment>
+  </data>
+  <data name="SettingsFriendCodeRow" xml:space="preserve">
+    <value>friend code</value>
+    <comment>Row title (CU-30).</comment>
+  </data>
+  <data name="CommonCopyButton" xml:space="preserve">
+    <value>COPY</value>
+    <comment>Disabled until the clipboard is available.</comment>
+  </data>
+  <data name="CommonViewButton" xml:space="preserve">
+    <value>VIEW</value>
+    <comment>Small outline button that opens a list.</comment>
+  </data>
+  <data name="SettingsSignOutButton" xml:space="preserve">
+    <value>SIGN OUT</value>
+    <comment>Full width outline button and primary option of its confirm (CU-05).</comment>
+  </data>
+  <data name="SettingsSignOutBody" xml:space="preserve">
+    <value>Do you want to sign out on this device?</value>
+    <comment>CU-05 main flow step 2.</comment>
+  </data>
+  <data name="SettingsDeleteTitle" xml:space="preserve">
+    <value>delete account</value>
+    <comment>Title of the dashed box that opens GUI_DeleteAccount.</comment>
+  </data>
+  <data name="SettingsDeleteHint" xml:space="preserve">
+    <value>elo, skins and coins are gone. there is no way back.</value>
+    <comment>Hint of the dashed box (prototype 9f).</comment>
+  </data>
+  <data name="SettingsInterfaceLanguageLabel" xml:space="preserve">
+    <value>interface language</value>
+    <comment>Label over the language list (prototype 12c).</comment>
+  </data>
+  <data name="SettingsCurrentTag" xml:space="preserve">
+    <value>current</value>
+    <comment>Tag beside the language in use.</comment>
+  </data>
+  <data name="SettingsChatNote" xml:space="preserve">
+    <value>chat is not translated</value>
+    <comment>Note at the bottom of the language panel (D-21, CU-28 RN-12).</comment>
+  </data>
+  <data name="ChangeNicknameConfirmTitle" xml:space="preserve">
+    <value>change your name?</value>
+    <comment>Title of the confirm dialog (CU-13 step 3, prototype 9d).</comment>
+  </data>
+  <data name="ChangeNicknameConfirmFormat" xml:space="preserve">
+    <value>{0} -> {1}</value>
+    <comment>Body of the confirm dialog: old and new nickname. Not translated.</comment>
+  </data>
+  <data name="ChangeNicknameConfirmDetail" xml:space="preserve">
+    <value>it is your only change. your matches and your elo stay; the old name becomes free.</value>
+    <comment>Detail line of the confirm dialog (CU-13 RN-01 and RN-03).</comment>
+  </data>
+  <data name="ChangeNicknameConfirmButton" xml:space="preserve">
+    <value>CHANGE</value>
+    <comment>Primary option of the confirm dialog, as CU-13 names it.</comment>
+  </data>
+  <data name="ChangeNicknameDoneBody" xml:space="preserve">
+    <value>Name changed.</value>
+    <comment>Success dialog after CU-13 step 12.</comment>
+  </data>
+  <data name="DeleteAccountLossTitle" xml:space="preserve">
+    <value>what is lost</value>
+    <comment>Title of the loss box (prototype 9g).</comment>
+  </data>
+  <data name="DeleteAccountLossFormat" xml:space="preserve">
+    <value>elo {0}, {1} matches, {2} skins and {3} coins, your friends and your ranking spot. your name becomes free for others.</value>
+    <comment>Loss box body: the CU-11 list with the real figures, as prototype 9g shows them.</comment>
+  </data>
+  <data name="DeleteAccountWord" xml:space="preserve">
+    <value>DELETE</value>
+    <comment>The word the player must type (CU-11 RN-01). Compared without case.</comment>
+  </data>
+  <data name="DeleteAccountWordLabelFormat" xml:space="preserve">
+    <value>type {0} to confirm</value>
+    <comment>Label of the word field. {0} is DeleteAccountWord.</comment>
+  </data>
+  <data name="DeleteAccountWrongPassword" xml:space="preserve">
+    <value>that is not your password</value>
+    <comment>Under the password field when it does not match.</comment>
+  </data>
+  <data name="DeleteAccountDoneBody" xml:space="preserve">
+    <value>Your account was deleted.</value>
+    <comment>Notice over GUI_Login after CU-11 step 12.</comment>
+  </data>
+  <data name="ChangePasswordDoneBody" xml:space="preserve">
+    <value>Password changed. Your other sessions were closed.</value>
+    <comment>Success dialog. The second sentence is CU-03 RN-07.</comment>
+  </data>
+  <data name="PasswordPolicyWarning" xml:space="preserve">
+    <value>at least 8 characters and three of: lowercase, uppercase, digits, symbols</value>
+    <comment>CU-03 RN-03 policy. One line under the field.</comment>
+  </data>
+  <data name="ChangeEmailDoneBody" xml:space="preserve">
+    <value>We sent a link to the new address. It stays pending until you confirm it.</value>
+    <comment>Success dialog (D-20: the old address stays until the new one is confirmed).</comment>
+  </data>
+  <data name="ActiveSessionsCloseBody" xml:space="preserve">
+    <value>Close the session on {0}, last used {1}?</value>
+    <comment>Confirm body (CU-10 step 6). {0} device, {1} last use.</comment>
+  </data>
+  <data name="ActiveSessionsCloseAllBody" xml:space="preserve">
+    <value>Close all the other sessions?</value>
+    <comment>Confirm body for the close all option.</comment>
+  </data>
+  <data name="ActiveSessionsChangePasswordBody" xml:space="preserve">
+    <value>If someone opened them without permission, they will open them again with the same password. Change it now?</value>
+    <comment>CU-10 RN-05: after closing all the others, propose a password change.</comment>
+  </data>
+  <data name="ForgotPasswordBackLink" xml:space="preserve">
+    <value>&lt; back to sign in</value>
+    <comment>Back link of prototype 9a.</comment>
+  </data>
+  <data name="ForgotPasswordGuestTitle" xml:space="preserve">
+    <value>did you enter as a guest?</value>
+    <comment>Dashed box title (prototype 9a).</comment>
+  </data>
+  <data name="ForgotPasswordGuestHint" xml:space="preserve">
+    <value>guest accounts have no email. they cannot be recovered.</value>
+    <comment>Dashed box hint. Guest accounts have no address (CU-06).</comment>
+  </data>
+  <data name="ResetPasswordSentTitle" xml:space="preserve">
+    <value>email sent</value>
+    <comment>Centered heading (prototype 9b).</comment>
+  </data>
+  <data name="ResetPasswordSentFormat" xml:space="preserve">
+    <value>check {0}. look in spam too.</value>
+    <comment>{0} is the masked address.</comment>
+  </data>
+  <data name="ResetPasswordResendInFormat" xml:space="preserve">
+    <value>RESEND IN {0}</value>
+    <comment>Disabled button while CU-03 RN-06 forbids a resend. {0} is m:ss.</comment>
+  </data>
+  <data name="ResetPasswordResendButton" xml:space="preserve">
+    <value>RESEND</value>
+    <comment>Enabled after five minutes (CU-03 RN-06).</comment>
+  </data>
+  <data name="ResetPasswordSessionsNote" xml:space="preserve">
+    <value>when you save, your other sessions are closed</value>
+    <comment>CU-03 RN-07, under the strength meter.</comment>
+  </data>
+  <data name="ResetPasswordSaveButton" xml:space="preserve">
+    <value>CHANGE PASSWORD</value>
+    <comment>Primary option, as CU-03 step 12 names it.</comment>
+  </data>
+  <data name="ResetPasswordDoneBody" xml:space="preserve">
+    <value>Password changed. Sign in with the new one.</value>
+    <comment>Success dialog over GUI_Login.</comment>
+  </data>
+  <data name="ResetPasswordCodeInvalid" xml:space="preserve">
+    <value>type the 6 character code from the email</value>
+    <comment>Under the code field.</comment>
   </data>
   <data name="RegisterAccountLanguageLabel" xml:space="preserve">
     <value>ACCOUNT LANGUAGE</value>
@@ -1244,5 +1492,17 @@
   <data name="ReportReviewOtherAuthorSample" xml:space="preserve">
     <value>the other player</value>
     <comment>Author of a chat line that is not highlighted.</comment>
+  </data>
+  <data name="CommonBackButton" xml:space="preserve">
+    <value>BACK</value>
+    <comment>Returns to the previous screen from a read only one.</comment>
+  </data>
+  <data name="MenuSubtitle" xml:space="preserve">
+    <value>ALL THE SCREENS</value>
+    <comment>Provisional menu that lists every screen, to review the languages.</comment>
+  </data>
+  <data name="ProfileSubtitle" xml:space="preserve">
+    <value>Your profile</value>
+    <comment>Menu entry for GUI_Profile.</comment>
   </data>
 </root>

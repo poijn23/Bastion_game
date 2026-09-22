@@ -6,6 +6,7 @@ namespace Bastion.Presentation.Utils;
 public sealed class Button : Control
 {
     private const int ContentPadding = 28;
+    private const int TextInset = 12;
     private const int ArrowMargin = 40;
     private const int ArrowHalfWidth = 9;
     private const int ArrowHalfHeight = 7;
@@ -22,6 +23,8 @@ public sealed class Button : Control
 
     public bool HasArrow { get; init; }
 
+    public bool IsCompact { get; init; }
+
     // Lets a dialog give its primary button the tone color instead of always
     // the orange accent.
     public Color Accent { get; init; } = Theme.Accent;
@@ -32,7 +35,7 @@ public sealed class Button : Control
     {
         base.Update(input);
 
-        if (IsHovered && input.HasClicked)
+        if (IsEnabled && IsHovered && input.HasClicked)
         {
             OnClicked();
         }
@@ -57,6 +60,10 @@ public sealed class Button : Control
                 DrawLink(canvas);
                 break;
 
+            case ButtonStyle.Outline:
+                DrawOutline(canvas);
+                break;
+
             case ButtonStyle.Secondary:
             default:
                 DrawSecondary(canvas);
@@ -71,6 +78,12 @@ public sealed class Button : Control
 
     private void DrawPrimary(Canvas canvas)
     {
+        if (!IsEnabled)
+        {
+            DrawDisabled(canvas);
+            return;
+        }
+
         Color fill = IsHovered ? Color.Lerp(Accent, Color.White, HoverLift) : Accent;
         canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, fill);
         DrawContent(canvas, Theme.TextLight, PrimarySubtitle);
@@ -86,6 +99,23 @@ public sealed class Button : Control
         DrawContent(canvas, Theme.TextLight, Theme.TextMuted);
     }
 
+    private void DrawOutline(Canvas canvas)
+    {
+        if (!IsEnabled)
+        {
+            DrawDisabled(canvas);
+            return;
+        }
+
+        DrawSecondary(canvas);
+    }
+
+    private void DrawDisabled(Canvas canvas)
+    {
+        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.ButtonCornerRadius, Theme.Field);
+        DrawContent(canvas, Theme.Placeholder, Theme.Placeholder);
+    }
+
     private void DrawLink(Canvas canvas)
     {
         Color color = IsHovered ? Theme.AccentLight : Theme.Accent;
@@ -95,7 +125,15 @@ public sealed class Button : Control
 
     private void DrawContent(Canvas canvas, Color titleColor, Color subtitleColor)
     {
-        TextStyle titleStyle = TextStyleFactory.CreateBoldBody(canvas.Fonts, titleColor);
+        TextStyle titleStyle = IsCompact
+            ? TextStyleFactory.CreateSmallBold(canvas.Fonts, titleColor)
+            : TextStyleFactory.CreateBoldBody(canvas.Fonts, titleColor);
+        int available = Bounds.Width - (TextInset * 2) - (HasArrow ? ArrowMargin : 0);
+
+        if (canvas.Text.Measure(Title, titleStyle) > available)
+        {
+            titleStyle = TextStyleFactory.CreateSmallBold(canvas.Fonts, titleColor);
+        }
 
         if (string.IsNullOrEmpty(Subtitle))
         {

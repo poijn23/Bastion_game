@@ -5,25 +5,34 @@ namespace Bastion.Presentation.Utils;
 
 public sealed class TextLine : Control
 {
-    private const float HeadingScale = 1.4f;
-
     public string Text { get; set; } = string.Empty;
 
-    public bool IsHeading { get; init; }
+    public TextLineStyle Style { get; init; } = TextLineStyle.Body;
+
+    public bool IsRightAligned { get; init; }
+
+    public bool IsCentered { get; init; }
 
     public override void Draw(Canvas canvas)
     {
         ArgumentNullException.ThrowIfNull(canvas);
 
-        if (!IsVisible)
+        if (!IsVisible || string.IsNullOrEmpty(Text))
         {
             return;
         }
 
-        TextStyle style = IsHeading
-            ? new TextStyle { Font = canvas.Fonts.Bold, Color = Theme.TextDark, Scale = HeadingScale }
-            : TextStyleFactory.CreateBody(canvas.Fonts, Theme.Label);
+        TextStyle style = Style switch
+        {
+            TextLineStyle.Heading => TextStyleFactory.CreateHeading(canvas.Fonts, Theme.TextDark),
+            TextLineStyle.Small => TextStyleFactory.CreateSmall(canvas.Fonts, Theme.Placeholder),
+            TextLineStyle.Label => TextStyleFactory.CreateLabel(canvas.Fonts, Theme.Label),
+            TextLineStyle.Muted => TextStyleFactory.CreateBody(canvas.Fonts, Theme.Placeholder),
+            _ => TextStyleFactory.CreateBody(canvas.Fonts, Theme.TextDark)
+        };
 
-        canvas.Text.Draw(Text, new Vector2(Bounds.X, Bounds.Y), style);
+        float width = canvas.Text.Measure(Text, style);
+        float x = IsRightAligned ? Bounds.Right - width : IsCentered ? Bounds.X + ((Bounds.Width - width) / 2f) : Bounds.X;
+        canvas.Text.Draw(Text, new Vector2(MathF.Round(x), Bounds.Y), style);
     }
 }

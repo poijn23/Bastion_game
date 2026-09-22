@@ -30,8 +30,10 @@ public static class ScreenChrome
         DrawHeader(canvas, subtitle);
     }
 
-    private static void DrawOrnaments(Canvas canvas)
+    public static void DrawOrnaments(Canvas canvas)
     {
+        ArgumentNullException.ThrowIfNull(canvas);
+
         foreach (Point ornament in _ornaments)
         {
             var horizontal = new Rectangle(ornament.X - OrnamentHalf, ornament.Y - 1, OrnamentArm, 2);

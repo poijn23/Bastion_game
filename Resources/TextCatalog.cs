@@ -14,12 +14,6 @@ public static class TextCatalog
 
     public static string GameTitle => GetText(nameof(GameTitle));
 
-    public static string InterfaceLanguageLabel => GetText(nameof(InterfaceLanguageLabel));
-
-    public static string SpanishLanguageCode => GetText(nameof(SpanishLanguageCode));
-
-    public static string EnglishLanguageCode => GetText(nameof(EnglishLanguageCode));
-
     public static string SpanishMexicoLanguageName => GetText(nameof(SpanishMexicoLanguageName));
 
     public static string EnglishLanguageName => GetText(nameof(EnglishLanguageName));
@@ -89,8 +83,6 @@ public static class TextCatalog
     public static string CommonSaveButton => GetText(nameof(CommonSaveButton));
 
     public static string CommonCancelButton => GetText(nameof(CommonCancelButton));
-
-    public static string CommonBackButton => GetText(nameof(CommonBackButton));
 
     public static string LoginSubtitle => GetText(nameof(LoginSubtitle));
 
@@ -178,8 +170,6 @@ public static class TextCatalog
 
     public static string ChangeNicknameNewPlaceholder => GetText(nameof(ChangeNicknameNewPlaceholder));
 
-    public static string ChangeNicknameSaveButton => GetText(nameof(ChangeNicknameSaveButton));
-
     public static string DeleteAccountSubtitle => GetText(nameof(DeleteAccountSubtitle));
 
     public static string DeleteAccountNotice => GetText(nameof(DeleteAccountNotice));
@@ -187,16 +177,6 @@ public static class TextCatalog
     public static string DeleteAccountPasswordLabel => GetText(nameof(DeleteAccountPasswordLabel));
 
     public static string DeleteAccountPasswordPlaceholder => GetText(nameof(DeleteAccountPasswordPlaceholder));
-
-    public static string DeleteAccountContinueButton => GetText(nameof(DeleteAccountContinueButton));
-
-    public static string DeleteAccountConfirmSubtitle => GetText(nameof(DeleteAccountConfirmSubtitle));
-
-    public static string DeleteAccountConfirmNotice => GetText(nameof(DeleteAccountConfirmNotice));
-
-    public static string DeleteAccountWordLabel => GetText(nameof(DeleteAccountWordLabel));
-
-    public static string DeleteAccountWordPlaceholder => GetText(nameof(DeleteAccountWordPlaceholder));
 
     public static string DeleteAccountDeleteButton => GetText(nameof(DeleteAccountDeleteButton));
 
@@ -211,18 +191,6 @@ public static class TextCatalog
     public static string ActiveSessionsDeviceSample => GetText(nameof(ActiveSessionsDeviceSample));
 
     public static string ActiveSessionsLastUseSample => GetText(nameof(ActiveSessionsLastUseSample));
-
-    public static string AccountSettingsSubtitle => GetText(nameof(AccountSettingsSubtitle));
-
-    public static string AccountSettingsNicknameEntry => GetText(nameof(AccountSettingsNicknameEntry));
-
-    public static string AccountSettingsPasswordEntry => GetText(nameof(AccountSettingsPasswordEntry));
-
-    public static string AccountSettingsEmailEntry => GetText(nameof(AccountSettingsEmailEntry));
-
-    public static string AccountSettingsSessionsEntry => GetText(nameof(AccountSettingsSessionsEntry));
-
-    public static string AccountSettingsDeleteEntry => GetText(nameof(AccountSettingsDeleteEntry));
 
     public static string RegisterDiscardBody => GetText(nameof(RegisterDiscardBody));
 
@@ -262,8 +230,6 @@ public static class TextCatalog
 
     public static string RegistrationSuccessDetail => GetText(nameof(RegistrationSuccessDetail));
 
-    public static string ProfileSubtitle => GetText(nameof(ProfileSubtitle));
-
     public static string ProfileHeaderFormat => GetText(nameof(ProfileHeaderFormat));
 
     public static string ProfileMatchesTile => GetText(nameof(ProfileMatchesTile));
@@ -276,8 +242,6 @@ public static class TextCatalog
 
     public static string ProfileModeStatFormat => GetText(nameof(ProfileModeStatFormat));
 
-    public static string ProfileEditButton => GetText(nameof(ProfileEditButton));
-
     public static string EditProfileSubtitle => GetText(nameof(EditProfileSubtitle));
 
     public static string EditProfileNicknameLabel => GetText(nameof(EditProfileNicknameLabel));
@@ -285,10 +249,6 @@ public static class TextCatalog
     public static string EditProfileTitleLabel => GetText(nameof(EditProfileTitleLabel));
 
     public static string EditProfileLanguageLabel => GetText(nameof(EditProfileLanguageLabel));
-
-    public static string EditProfileFirstLinkLabel => GetText(nameof(EditProfileFirstLinkLabel));
-
-    public static string EditProfileSecondLinkLabel => GetText(nameof(EditProfileSecondLinkLabel));
 
     public static string EditProfileLinkPlaceholder => GetText(nameof(EditProfileLinkPlaceholder));
 
@@ -299,8 +259,6 @@ public static class TextCatalog
     public static string EditProfileLinkShortener => GetText(nameof(EditProfileLinkShortener));
 
     public static string EditProfileSavedBody => GetText(nameof(EditProfileSavedBody));
-
-    public static string AccountSettingsProfileEntry => GetText(nameof(AccountSettingsProfileEntry));
 
     public static string ModoClasico => GetText("Modo.CLASICO");
 
@@ -600,6 +558,178 @@ public static class TextCatalog
 
     // Returning the key when it is missing keeps a typo visible on screen
     // instead of throwing while drawing a frame.
+    public static string CommonBackLink => GetText(nameof(CommonBackLink));
+
+    public static string CommonEditButton => GetText(nameof(CommonEditButton));
+
+    public static string CommonChangeButton => GetText(nameof(CommonChangeButton));
+
+    public static string CommonContinueButton => GetText(nameof(CommonContinueButton));
+
+    public static string AvatarPlaceholder => GetText(nameof(AvatarPlaceholder));
+
+    public static string ProfileByModeTitle => GetText(nameof(ProfileByModeTitle));
+
+    public static string ProfileAverageLengthFormat => GetText(nameof(ProfileAverageLengthFormat));
+
+    public static string ProfileTitlesTitle => GetText(nameof(ProfileTitlesTitle));
+
+    public static string ProfileSeeAllLink => GetText(nameof(ProfileSeeAllLink));
+
+    public static string ProfileNoTitle => GetText(nameof(ProfileNoTitle));
+
+    public static string ProfileLinksTitle => GetText(nameof(ProfileLinksTitle));
+
+    public static string ProfileAddLinkChip => GetText(nameof(ProfileAddLinkChip));
+
+    public static string EditProfileUploadButton => GetText(nameof(EditProfileUploadButton));
+
+    public static string EditProfileIconsButton => GetText(nameof(EditProfileIconsButton));
+
+    public static string EditProfileIconsHint => GetText(nameof(EditProfileIconsHint));
+
+    public static string EditProfileMoreIconsChip => GetText(nameof(EditProfileMoreIconsChip));
+
+    public static string EditProfileNicknameHint => GetText(nameof(EditProfileNicknameHint));
+
+    public static string EditProfilePreviewFormat => GetText(nameof(EditProfilePreviewFormat));
+
+    public static string EditProfilePreviewHint => GetText(nameof(EditProfilePreviewHint));
+
+    public static string EditProfileLinksLabel => GetText(nameof(EditProfileLinksLabel));
+
+    public static string EditProfileLinksHint => GetText(nameof(EditProfileLinksHint));
+
+    public static string EditProfileRemoveLinkButton => GetText(nameof(EditProfileRemoveLinkButton));
+
+    public static string IconoZorro => GetText("Icono.ZORRO");
+
+    public static string IconoBuho => GetText("Icono.BUHO");
+
+    public static string IconoOso => GetText("Icono.OSO");
+
+    public static string IconoGato => GetText("Icono.GATO");
+
+    public static string IconoMuro => GetText("Icono.MURO");
+
+    public static string IconoPeon => GetText("Icono.PEON");
+
+    public static string IconoFaro => GetText("Icono.FARO");
+
+    public static string TipoEnlaceTwitch => GetText("TipoEnlace.TWITCH");
+
+    public static string TipoEnlaceYoutube => GetText("TipoEnlace.YOUTUBE");
+
+    public static string TipoEnlaceDiscord => GetText("TipoEnlace.DISCORD");
+
+    public static string TipoEnlaceOtro => GetText("TipoEnlace.OTRO");
+
+    public static string SettingsHeading => GetText(nameof(SettingsHeading));
+
+    public static string SettingsBoardEntry => GetText(nameof(SettingsBoardEntry));
+
+    public static string SettingsAudioEntry => GetText(nameof(SettingsAudioEntry));
+
+    public static string SettingsAccountEntry => GetText(nameof(SettingsAccountEntry));
+
+    public static string SettingsLanguageEntry => GetText(nameof(SettingsLanguageEntry));
+
+    public static string SettingsAccessibilityEntry => GetText(nameof(SettingsAccessibilityEntry));
+
+    public static string SettingsPasswordRow => GetText(nameof(SettingsPasswordRow));
+
+    public static string SettingsPasswordChangedFormat => GetText(nameof(SettingsPasswordChangedFormat));
+
+    public static string SettingsEmailRow => GetText(nameof(SettingsEmailRow));
+
+    public static string SettingsEmailVerified => GetText(nameof(SettingsEmailVerified));
+
+    public static string SettingsSessionsRow => GetText(nameof(SettingsSessionsRow));
+
+    public static string SettingsSessionsCountFormat => GetText(nameof(SettingsSessionsCountFormat));
+
+    public static string SettingsFriendCodeRow => GetText(nameof(SettingsFriendCodeRow));
+
+    public static string CommonCopyButton => GetText(nameof(CommonCopyButton));
+
+    public static string CommonViewButton => GetText(nameof(CommonViewButton));
+
+    public static string SettingsSignOutButton => GetText(nameof(SettingsSignOutButton));
+
+    public static string SettingsSignOutBody => GetText(nameof(SettingsSignOutBody));
+
+    public static string SettingsDeleteTitle => GetText(nameof(SettingsDeleteTitle));
+
+    public static string SettingsDeleteHint => GetText(nameof(SettingsDeleteHint));
+
+    public static string SettingsInterfaceLanguageLabel => GetText(nameof(SettingsInterfaceLanguageLabel));
+
+    public static string SettingsCurrentTag => GetText(nameof(SettingsCurrentTag));
+
+    public static string SettingsChatNote => GetText(nameof(SettingsChatNote));
+
+    public static string ChangeNicknameConfirmTitle => GetText(nameof(ChangeNicknameConfirmTitle));
+
+    public static string ChangeNicknameConfirmFormat => GetText(nameof(ChangeNicknameConfirmFormat));
+
+    public static string ChangeNicknameConfirmDetail => GetText(nameof(ChangeNicknameConfirmDetail));
+
+    public static string ChangeNicknameConfirmButton => GetText(nameof(ChangeNicknameConfirmButton));
+
+    public static string ChangeNicknameDoneBody => GetText(nameof(ChangeNicknameDoneBody));
+
+    public static string DeleteAccountLossTitle => GetText(nameof(DeleteAccountLossTitle));
+
+    public static string DeleteAccountLossFormat => GetText(nameof(DeleteAccountLossFormat));
+
+    public static string DeleteAccountWord => GetText(nameof(DeleteAccountWord));
+
+    public static string DeleteAccountWordLabelFormat => GetText(nameof(DeleteAccountWordLabelFormat));
+
+    public static string DeleteAccountWrongPassword => GetText(nameof(DeleteAccountWrongPassword));
+
+    public static string DeleteAccountDoneBody => GetText(nameof(DeleteAccountDoneBody));
+
+    public static string ChangePasswordDoneBody => GetText(nameof(ChangePasswordDoneBody));
+
+    public static string PasswordPolicyWarning => GetText(nameof(PasswordPolicyWarning));
+
+    public static string ChangeEmailDoneBody => GetText(nameof(ChangeEmailDoneBody));
+
+    public static string ActiveSessionsCloseBody => GetText(nameof(ActiveSessionsCloseBody));
+
+    public static string ActiveSessionsCloseAllBody => GetText(nameof(ActiveSessionsCloseAllBody));
+
+    public static string ActiveSessionsChangePasswordBody => GetText(nameof(ActiveSessionsChangePasswordBody));
+
+    public static string ForgotPasswordBackLink => GetText(nameof(ForgotPasswordBackLink));
+
+    public static string ForgotPasswordGuestTitle => GetText(nameof(ForgotPasswordGuestTitle));
+
+    public static string ForgotPasswordGuestHint => GetText(nameof(ForgotPasswordGuestHint));
+
+    public static string ResetPasswordSentTitle => GetText(nameof(ResetPasswordSentTitle));
+
+    public static string ResetPasswordSentFormat => GetText(nameof(ResetPasswordSentFormat));
+
+    public static string ResetPasswordResendInFormat => GetText(nameof(ResetPasswordResendInFormat));
+
+    public static string ResetPasswordResendButton => GetText(nameof(ResetPasswordResendButton));
+
+    public static string ResetPasswordSessionsNote => GetText(nameof(ResetPasswordSessionsNote));
+
+    public static string ResetPasswordSaveButton => GetText(nameof(ResetPasswordSaveButton));
+
+    public static string ResetPasswordDoneBody => GetText(nameof(ResetPasswordDoneBody));
+
+    public static string ResetPasswordCodeInvalid => GetText(nameof(ResetPasswordCodeInvalid));
+
+    public static string CommonBackButton => GetText(nameof(CommonBackButton));
+
+    public static string MenuSubtitle => GetText(nameof(MenuSubtitle));
+
+    public static string ProfileSubtitle => GetText(nameof(ProfileSubtitle));
+
     private static string GetText(string key)
     {
         return _manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;
