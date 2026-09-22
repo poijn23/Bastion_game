@@ -35,5 +35,31 @@ public enum ScreenId
     BoxPurchaseConfirm,
     Customize,
     SettingsLanguage,
-    Menu
+    Menu,
+
+    // Not reachable yet from Login or from a session: the server that would
+    // trigger them (an unverified account, a sanction, a second factor) does
+    // not exist. Reachable from the review menu, GUI_Menu, until it does.
+    MainScreen,
+    PendingVerification,
+    SecondFactor,
+    BannedAccount,
+    FirstTime,
+    LinkAccount,
+
+    // The home hub and the match flow it opens.
+    MainMenu,
+    SelectMode,
+    Matchmaking,
+    VersusScreen,
+    Match,
+    MatchEnd,
+    OpponentDisconnected,
+    PrivateMatch,
+    WaitingRoom,
+    AIDifficulty,
+    AIMatchEnd,
+    Spectator,
+    Replay,
+    TutorialIndex
 }

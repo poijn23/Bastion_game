@@ -1145,4 +1145,756 @@
   <data name="ProfileSubtitle" xml:space="preserve">
     <value>Tu perfil</value>
   </data>
+  <data name="MainScreenSubtitle" xml:space="preserve">
+    <value>MUROS Y CAMINOS</value>
+    <comment>Tagline under the wordmark on the title screen. Product name: not translated.</comment>
+  </data>
+  <data name="MainScreenIntro" xml:space="preserve">
+    <value>Mueve tu peón hasta el otro lado y pon muros para frenar a tu rival.</value>
+    <comment>Short pitch on the title screen. Wraps inside the card.</comment>
+  </data>
+  <data name="MainMenuSubtitle" xml:space="preserve">
+    <value>MENÚ PRINCIPAL</value>
+    <comment>Subtitle of GUI_MainMenu.</comment>
+  </data>
+  <data name="MainMenuLevelFormat" xml:space="preserve">
+    <value>nivel {0}</value>
+    <comment>{0} is the player level.</comment>
+  </data>
+  <data name="MainMenuEloCaption" xml:space="preserve">
+    <value>ELO</value>
+    <comment>Caption of the elo tile. Proper name: not translated.</comment>
+  </data>
+  <data name="MainMenuStreakCaption" xml:space="preserve">
+    <value>RACHA</value>
+    <comment>Caption of the current streak tile.</comment>
+  </data>
+  <data name="MainMenuCoinsCaption" xml:space="preserve">
+    <value>MONEDAS</value>
+    <comment>Caption of the coin balance tile.</comment>
+  </data>
+  <data name="MainMenuFindMatchButton" xml:space="preserve">
+    <value>BUSCAR PARTIDA</value>
+    <comment>Primary action of the main menu.</comment>
+  </data>
+  <data name="MainMenuFindMatchDetail" xml:space="preserve">
+    <value>contra alguien de tu nivel</value>
+    <comment>Second line of the find match button. Must not wrap.</comment>
+  </data>
+  <data name="MainMenuPrivateButton" xml:space="preserve">
+    <value>PARTIDA PRIVADA</value>
+    <comment>Opens GUI_PrivateMatch.</comment>
+  </data>
+  <data name="MainMenuPrivateDetail" xml:space="preserve">
+    <value>con un código</value>
+    <comment>Second line of the private match button.</comment>
+  </data>
+  <data name="MainMenuVersusAiButton" xml:space="preserve">
+    <value>CONTRA LA IA</value>
+    <comment>Opens GUI_AIDifficulty.</comment>
+  </data>
+  <data name="MainMenuVersusAiDetail" xml:space="preserve">
+    <value>practica a tu ritmo</value>
+    <comment>Second line of the versus AI button.</comment>
+  </data>
+  <data name="MainMenuFriendsButton" xml:space="preserve">
+    <value>AMIGOS</value>
+    <comment>Small button of the main menu.</comment>
+  </data>
+  <data name="MainMenuCustomizeButton" xml:space="preserve">
+    <value>PERSONALIZAR</value>
+    <comment>Small button of the main menu.</comment>
+  </data>
+  <data name="MainMenuShopButton" xml:space="preserve">
+    <value>TIENDA</value>
+    <comment>Small button of the main menu.</comment>
+  </data>
+  <data name="MainMenuRankingButton" xml:space="preserve">
+    <value>RANKING</value>
+    <comment>Small button of the main menu.</comment>
+  </data>
+  <data name="MainMenuHistoryButton" xml:space="preserve">
+    <value>HISTORIAL</value>
+    <comment>Small button of the main menu.</comment>
+  </data>
+  <data name="MainMenuHowToPlayButton" xml:space="preserve">
+    <value>CÓMO JUGAR</value>
+    <comment>Opens the tutorial index.</comment>
+  </data>
+  <data name="MainMenuSettingsButton" xml:space="preserve">
+    <value>AJUSTES</value>
+    <comment>Opens the settings.</comment>
+  </data>
+  <data name="SelectModeSubtitle" xml:space="preserve">
+    <value>ELIGE CÓMO JUGAR</value>
+    <comment>Subtitle of GUI_SelectMode.</comment>
+  </data>
+  <data name="SelectModeModeLabel" xml:space="preserve">
+    <value>MODO</value>
+    <comment>Heading of the mode list.</comment>
+  </data>
+  <data name="SelectModeClockLabel" xml:space="preserve">
+    <value>RELOJ</value>
+    <comment>Heading of the clock list.</comment>
+  </data>
+  <data name="SelectModeClockFormat" xml:space="preserve">
+    <value>{0} minutos</value>
+    <comment>{0} is the clock length in minutes.</comment>
+  </data>
+  <data name="SelectModeSearchButton" xml:space="preserve">
+    <value>BUSCAR</value>
+    <comment>Starts the search for a match.</comment>
+  </data>
+  <data name="MatchmakingSubtitle" xml:space="preserve">
+    <value>BUSCANDO PARTIDA</value>
+    <comment>Subtitle of GUI_Matchmaking.</comment>
+  </data>
+  <data name="MatchmakingTitle" xml:space="preserve">
+    <value>Buscando a tu rival…</value>
+    <comment>Heading of the search panel.</comment>
+  </data>
+  <data name="MatchmakingElapsedFormat" xml:space="preserve">
+    <value>Llevas {0} buscando</value>
+    <comment>{0} is the elapsed time as m:ss.</comment>
+  </data>
+  <data name="MatchmakingBrowseNote" xml:space="preserve">
+    <value>Puedes seguir usando el juego mientras esperas.</value>
+    <comment>Reminder that the search does not block the game (RN-08).</comment>
+  </data>
+  <data name="VersusScreenSubtitle" xml:space="preserve">
+    <value>¡ENCONTRAMOS RIVAL!</value>
+    <comment>Subtitle of GUI_VersusScreen.</comment>
+  </data>
+  <data name="VersusScreenVersusLabel" xml:space="preserve">
+    <value>VS</value>
+    <comment>Separator between the two players.</comment>
+  </data>
+  <data name="VersusScreenEloFormat" xml:space="preserve">
+    <value>ELO {0}</value>
+    <comment>{0} is the elo of the player.</comment>
+  </data>
+  <data name="VersusScreenClockFormat" xml:space="preserve">
+    <value>{0} min</value>
+    <comment>{0} is the clock length in minutes.</comment>
+  </data>
+  <data name="VersusScreenSettingsFormat" xml:space="preserve">
+    <value>{0} · {1}</value>
+    <comment>{0} is the mode name and {1} the clock.</comment>
+  </data>
+  <data name="VersusScreenStartButton" xml:space="preserve">
+    <value>COMENZAR</value>
+    <comment>Opens the match.</comment>
+  </data>
+  <data name="MatchTurnFormat" xml:space="preserve">
+    <value>TURNO {0}</value>
+    <comment>{0} is the turn number.</comment>
+  </data>
+  <data name="MatchWallsFormat" xml:space="preserve">
+    <value>{0} muros</value>
+    <comment>{0} is how many walls a player has left.</comment>
+  </data>
+  <data name="MatchMoveChip" xml:space="preserve">
+    <value>MOVER</value>
+    <comment>Chip that selects the move action.</comment>
+  </data>
+  <data name="MatchWallChip" xml:space="preserve">
+    <value>MURO</value>
+    <comment>Chip that selects the wall action.</comment>
+  </data>
+  <data name="MatchDrawButton" xml:space="preserve">
+    <value>OFRECER TABLAS</value>
+    <comment>Opens the draw confirmation (CU-22).</comment>
+  </data>
+  <data name="MatchResignButton" xml:space="preserve">
+    <value>RENDIRSE</value>
+    <comment>Opens the resign confirmation (CU-23).</comment>
+  </data>
+  <data name="MatchChatTitle" xml:space="preserve">
+    <value>Chat</value>
+    <comment>Heading of the match chat.</comment>
+  </data>
+  <data name="MatchChatPlaceholder" xml:space="preserve">
+    <value>Escribe un mensaje…</value>
+    <comment>Placeholder of the match chat field.</comment>
+  </data>
+  <data name="MatchChatSampleOne" xml:space="preserve">
+    <value>¡Buena jugada!</value>
+    <comment>Placeholder message: chat comes from the server.</comment>
+  </data>
+  <data name="MatchChatSampleTwo" xml:space="preserve">
+    <value>Voy a poner un muro.</value>
+    <comment>Placeholder message: chat comes from the server.</comment>
+  </data>
+  <data name="MatchResignBody" xml:space="preserve">
+    <value>¿Seguro que quieres rendirte? Perderás la partida.</value>
+    <comment>Body of the resign confirmation.</comment>
+  </data>
+  <data name="MatchResignConfirmButton" xml:space="preserve">
+    <value>RENDIRME</value>
+    <comment>Confirm button of the resign dialog.</comment>
+  </data>
+  <data name="MatchDrawBody" xml:space="preserve">
+    <value>¿Quieres ofrecerle tablas a tu rival?</value>
+    <comment>Body of the draw confirmation.</comment>
+  </data>
+  <data name="MatchDrawConfirmButton" xml:space="preserve">
+    <value>OFRECER</value>
+    <comment>Confirm button of the draw dialog.</comment>
+  </data>
+  <data name="MatchDrawSentBody" xml:space="preserve">
+    <value>Oferta enviada. Tu rival puede aceptarla o rechazarla.</value>
+    <comment>Body of the message after a draw offer.</comment>
+  </data>
+  <data name="MatchEndVictoryTitle" xml:space="preserve">
+    <value>¡VICTORIA!</value>
+    <comment>Heading when the player wins.</comment>
+  </data>
+  <data name="MatchEndDefeatTitle" xml:space="preserve">
+    <value>DERROTA</value>
+    <comment>Heading when the player loses.</comment>
+  </data>
+  <data name="MatchEndEloCaption" xml:space="preserve">
+    <value>ELO</value>
+    <comment>Caption of the elo change tile. Proper name: not translated.</comment>
+  </data>
+  <data name="MatchEndExperienceCaption" xml:space="preserve">
+    <value>EXPERIENCIA</value>
+    <comment>Caption of the experience tile.</comment>
+  </data>
+  <data name="MatchEndCoinsCaption" xml:space="preserve">
+    <value>MONEDAS</value>
+    <comment>Caption of the coins tile.</comment>
+  </data>
+  <data name="MatchEndFindAnotherButton" xml:space="preserve">
+    <value>BUSCAR OTRA</value>
+    <comment>Starts another search.</comment>
+  </data>
+  <data name="MatchEndBackMenuButton" xml:space="preserve">
+    <value>VOLVER AL MENÚ</value>
+    <comment>Returns to the main menu.</comment>
+  </data>
+  <data name="MatchEndWatchReplayButton" xml:space="preserve">
+    <value>VER REPETICIÓN</value>
+    <comment>Opens GUI_Replay.</comment>
+  </data>
+  <data name="MatchEndAddOpponentButton" xml:space="preserve">
+    <value>AÑADIR AL RIVAL</value>
+    <comment>Opens the card of the opponent.</comment>
+  </data>
+  <data name="FormaTermino.META" xml:space="preserve">
+    <value>Llegó a la meta</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="FormaTermino.TIEMPO_AGOTADO" xml:space="preserve">
+    <value>Se acabó el tiempo</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="FormaTermino.RENDICION" xml:space="preserve">
+    <value>Rendición</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="FormaTermino.TABLAS" xml:space="preserve">
+    <value>Tablas</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="FormaTermino.ABANDONO" xml:space="preserve">
+    <value>Abandono</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="OpponentDisconnectedTitle" xml:space="preserve">
+    <value>TU RIVAL SE DESCONECTÓ</value>
+    <comment>Heading of the panel over the board.</comment>
+  </data>
+  <data name="OpponentDisconnectedElapsedFormat" xml:space="preserve">
+    <value>Lleva {0} sin conexión</value>
+    <comment>{0} is the elapsed time as m:ss.</comment>
+  </data>
+  <data name="OpponentDisconnectedHint" xml:space="preserve">
+    <value>Si no vuelve, podrás reclamar la victoria a los 60 segundos.</value>
+    <comment>Explains when the claim unlocks (RN-03).</comment>
+  </data>
+  <data name="OpponentDisconnectedClaimButton" xml:space="preserve">
+    <value>RECLAMAR VICTORIA</value>
+    <comment>Enabled after sixty seconds.</comment>
+  </data>
+  <data name="OpponentDisconnectedBackButton" xml:space="preserve">
+    <value>VOLVER A LA PARTIDA</value>
+    <comment>Keeps waiting.</comment>
+  </data>
+  <data name="PrivateMatchSubtitle" xml:space="preserve">
+    <value>PARTIDA PRIVADA</value>
+    <comment>Subtitle of GUI_PrivateMatch.</comment>
+  </data>
+  <data name="PrivateMatchCreateTitle" xml:space="preserve">
+    <value>CREAR SALA</value>
+    <comment>Heading of the create column.</comment>
+  </data>
+  <data name="PrivateMatchCreateHint" xml:space="preserve">
+    <value>Crea una sala y pásale el código a tus amigos.</value>
+    <comment>Explains the create column.</comment>
+  </data>
+  <data name="PrivateMatchCreateButton" xml:space="preserve">
+    <value>CREAR SALA</value>
+    <comment>Opens the waiting room as host.</comment>
+  </data>
+  <data name="PrivateMatchJoinTitle" xml:space="preserve">
+    <value>UNIRSE CON CÓDIGO</value>
+    <comment>Heading of the join column.</comment>
+  </data>
+  <data name="PrivateMatchCodeLabel" xml:space="preserve">
+    <value>CÓDIGO DE LA SALA</value>
+    <comment>Label of the code field.</comment>
+  </data>
+  <data name="PrivateMatchCodePlaceholder" xml:space="preserve">
+    <value>K4M93X</value>
+    <comment>Example code, six characters. Same in both languages.</comment>
+  </data>
+  <data name="PrivateMatchJoinButton" xml:space="preserve">
+    <value>ENTRAR</value>
+    <comment>Opens the waiting room as guest.</comment>
+  </data>
+  <data name="WaitingRoomSubtitle" xml:space="preserve">
+    <value>SALA DE ESPERA</value>
+    <comment>Subtitle of GUI_WaitingRoom.</comment>
+  </data>
+  <data name="WaitingRoomCodeLabel" xml:space="preserve">
+    <value>CÓDIGO DE LA SALA</value>
+    <comment>Caption of the room code.</comment>
+  </data>
+  <data name="WaitingRoomPlayersLabel" xml:space="preserve">
+    <value>JUGADORES</value>
+    <comment>Heading of the seat list.</comment>
+  </data>
+  <data name="WaitingRoomHostTag" xml:space="preserve">
+    <value>Anfitrión</value>
+    <comment>Tag of the room host.</comment>
+  </data>
+  <data name="WaitingRoomYouTag" xml:space="preserve">
+    <value>Tú</value>
+    <comment>Tag of the own seat.</comment>
+  </data>
+  <data name="WaitingRoomFreeSlot" xml:space="preserve">
+    <value>Esperando jugador…</value>
+    <comment>Text of an empty seat.</comment>
+  </data>
+  <data name="WaitingRoomChatPlaceholder" xml:space="preserve">
+    <value>Escribe un mensaje…</value>
+    <comment>Placeholder of the room chat.</comment>
+  </data>
+  <data name="WaitingRoomChatSample" xml:space="preserve">
+    <value>¡Ya casi empezamos!</value>
+    <comment>Placeholder message: chat comes from the server.</comment>
+  </data>
+  <data name="WaitingRoomStartButton" xml:space="preserve">
+    <value>INICIAR PARTIDA</value>
+    <comment>Host action, disabled until all are ready.</comment>
+  </data>
+  <data name="WaitingRoomReadyButton" xml:space="preserve">
+    <value>ESTOY LISTO</value>
+    <comment>Guest action.</comment>
+  </data>
+  <data name="WaitingRoomLeaveButton" xml:space="preserve">
+    <value>SALIR DE LA SALA</value>
+    <comment>Leaves the room.</comment>
+  </data>
+  <data name="WaitingRoomLeaveBody" xml:space="preserve">
+    <value>¿Quieres salir de la sala?</value>
+    <comment>Body of the leave confirmation.</comment>
+  </data>
+  <data name="WaitingRoomHostNote" xml:space="preserve">
+    <value>Podrás iniciar cuando tu rival esté listo.</value>
+    <comment>Explains why the start button is disabled.</comment>
+  </data>
+  <data name="AIDifficultySubtitle" xml:space="preserve">
+    <value>CONTRA LA IA</value>
+    <comment>Subtitle of GUI_AIDifficulty.</comment>
+  </data>
+  <data name="AIDifficultyLevelLabel" xml:space="preserve">
+    <value>NIVEL</value>
+    <comment>Heading of the level list.</comment>
+  </data>
+  <data name="AIDifficultyBoardLabel" xml:space="preserve">
+    <value>TABLERO</value>
+    <comment>Heading of the board size chips.</comment>
+  </data>
+  <data name="AIDifficultyClockLabel" xml:space="preserve">
+    <value>RELOJ</value>
+    <comment>Heading of the clock chips.</comment>
+  </data>
+  <data name="AIDifficultyBoardClassicChip" xml:space="preserve">
+    <value>9×9</value>
+    <comment>Same in both languages.</comment>
+  </data>
+  <data name="AIDifficultyBoardRapidChip" xml:space="preserve">
+    <value>7×7</value>
+    <comment>Same in both languages.</comment>
+  </data>
+  <data name="AIDifficultyClockChipFormat" xml:space="preserve">
+    <value>{0} min</value>
+    <comment>{0} is the clock length in minutes.</comment>
+  </data>
+  <data name="AIDifficultyNoClockChip" xml:space="preserve">
+    <value>Sin reloj</value>
+    <comment>Clock option with no time limit.</comment>
+  </data>
+  <data name="AIDifficultyUndoToggle" xml:space="preserve">
+    <value>Deshacer jugadas</value>
+    <comment>Switch of the undo option.</comment>
+  </data>
+  <data name="AIDifficultyHintToggle" xml:space="preserve">
+    <value>Sugerencias</value>
+    <comment>Switch of the hint option.</comment>
+  </data>
+  <data name="AIDifficultyStrengthFormat" xml:space="preserve">
+    <value>aprox. {0} de Elo</value>
+    <comment>{0} is the approximate strength.</comment>
+  </data>
+  <data name="AIDifficultyPlayButton" xml:space="preserve">
+    <value>JUGAR</value>
+    <comment>Starts the match against the AI.</comment>
+  </data>
+  <data name="NivelIA.APRENDIZ" xml:space="preserve">
+    <value>Aprendiz</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="NivelIA.CONSTRUCTOR" xml:space="preserve">
+    <value>Constructor</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="NivelIA.ARQUITECTO" xml:space="preserve">
+    <value>Arquitecto</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="NivelIA.BASTION" xml:space="preserve">
+    <value>Bastión</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="AIMatchEndSubtitle" xml:space="preserve">
+    <value>PARTIDA TERMINADA</value>
+    <comment>Subtitle of GUI_AIMatchEnd.</comment>
+  </data>
+  <data name="AIMatchEndVictoryTitle" xml:space="preserve">
+    <value>¡GANASTE!</value>
+    <comment>Heading when the player wins.</comment>
+  </data>
+  <data name="AIMatchEndDefeatTitle" xml:space="preserve">
+    <value>PERDISTE</value>
+    <comment>Heading when the player loses.</comment>
+  </data>
+  <data name="AIMatchEndExperienceCaption" xml:space="preserve">
+    <value>EXPERIENCIA</value>
+    <comment>Caption of the experience tile.</comment>
+  </data>
+  <data name="AIMatchEndMovesCaption" xml:space="preserve">
+    <value>JUGADAS</value>
+    <comment>Caption of the move count tile.</comment>
+  </data>
+  <data name="AIMatchEndReviewLabel" xml:space="preserve">
+    <value>REPASO: TRES ERRORES</value>
+    <comment>Heading of the review list.</comment>
+  </data>
+  <data name="AIMatchEndMistakeFormat" xml:space="preserve">
+    <value>Jugada {0}</value>
+    <comment>{0} is the move number of the mistake.</comment>
+  </data>
+  <data name="AIMatchEndMistakeOne" xml:space="preserve">
+    <value>Dejaste un camino muy largo.</value>
+    <comment>Placeholder review: comes from the server.</comment>
+  </data>
+  <data name="AIMatchEndMistakeTwo" xml:space="preserve">
+    <value>Gastaste un muro muy pronto.</value>
+    <comment>Placeholder review: comes from the server.</comment>
+  </data>
+  <data name="AIMatchEndMistakeThree" xml:space="preserve">
+    <value>Podías saltar al rival.</value>
+    <comment>Placeholder review: comes from the server.</comment>
+  </data>
+  <data name="SpectatorLiveTag" xml:space="preserve">
+    <value>EN VIVO</value>
+    <comment>Tag that marks a live match.</comment>
+  </data>
+  <data name="SpectatorDelayFormat" xml:space="preserve">
+    <value>Retraso: {0} s</value>
+    <comment>{0} is the spectator delay in seconds (D-19).</comment>
+  </data>
+  <data name="SpectatorViewersFormat" xml:space="preserve">
+    <value>{0} espectadores</value>
+    <comment>{0} is the viewer count.</comment>
+  </data>
+  <data name="SpectatorMovesTitle" xml:space="preserve">
+    <value>JUGADAS</value>
+    <comment>Heading of the move list.</comment>
+  </data>
+  <data name="SpectatorChatTitle" xml:space="preserve">
+    <value>Chat de espectadores</value>
+    <comment>Heading of the spectator chat.</comment>
+  </data>
+  <data name="SpectatorChatPlaceholder" xml:space="preserve">
+    <value>Escribe un mensaje…</value>
+    <comment>Placeholder of the chat field.</comment>
+  </data>
+  <data name="SpectatorChatSample" xml:space="preserve">
+    <value>¡Qué buena partida!</value>
+    <comment>Placeholder message: chat comes from the server.</comment>
+  </data>
+  <data name="SpectatorLeaveButton" xml:space="preserve">
+    <value>SALIR</value>
+    <comment>Stops watching.</comment>
+  </data>
+  <data name="ReplayTitle" xml:space="preserve">
+    <value>REPETICIÓN</value>
+    <comment>Heading of GUI_Replay.</comment>
+  </data>
+  <data name="ReplayNotationTitle" xml:space="preserve">
+    <value>NOTACIÓN</value>
+    <comment>Heading of the notation panel.</comment>
+  </data>
+  <data name="ReplayMoveFormat" xml:space="preserve">
+    <value>Jugada {0} de {1}</value>
+    <comment>{0} is the current move and {1} the total.</comment>
+  </data>
+  <data name="ReplayResultFormat" xml:space="preserve">
+    <value>Ganó {0}</value>
+    <comment>{0} is the winner nickname.</comment>
+  </data>
+  <data name="ReplayPlayButton" xml:space="preserve">
+    <value>REPRODUCIR</value>
+    <comment>Starts the playback.</comment>
+  </data>
+  <data name="ReplayPauseButton" xml:space="preserve">
+    <value>PAUSAR</value>
+    <comment>Pauses the playback.</comment>
+  </data>
+  <data name="ReplayPreviousButton" xml:space="preserve">
+    <value>ANTERIOR</value>
+    <comment>Goes back one move.</comment>
+  </data>
+  <data name="ReplayNextButton" xml:space="preserve">
+    <value>SIGUIENTE</value>
+    <comment>Goes forward one move.</comment>
+  </data>
+  <data name="ReplayExitButton" xml:space="preserve">
+    <value>SALIR</value>
+    <comment>Leaves the replay.</comment>
+  </data>
+  <data name="TutorialIndexSubtitle" xml:space="preserve">
+    <value>CÓMO JUGAR</value>
+    <comment>Subtitle of GUI_TutorialIndex.</comment>
+  </data>
+  <data name="TutorialIndexProgressFormat" xml:space="preserve">
+    <value>{0} de {1} lecciones</value>
+    <comment>{0} is how many lessons are done and {1} the total.</comment>
+  </data>
+  <data name="TutorialIndexDoneTag" xml:space="preserve">
+    <value>Completada</value>
+    <comment>State of a finished lesson.</comment>
+  </data>
+  <data name="TutorialIndexInProgressTag" xml:space="preserve">
+    <value>En curso</value>
+    <comment>State of the lesson left half done.</comment>
+  </data>
+  <data name="TutorialIndexPracticeButton" xml:space="preserve">
+    <value>PRACTICAR CONTRA LA IA</value>
+    <comment>Opens GUI_AIDifficulty.</comment>
+  </data>
+  <data name="TutorialIndexExitButton" xml:space="preserve">
+    <value>SALIR</value>
+    <comment>Leaves the tutorial.</comment>
+  </data>
+  <data name="Leccion.TABLERO_Y_META" xml:space="preserve">
+    <value>El tablero y la meta</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="Leccion.MOVER_PEON" xml:space="preserve">
+    <value>Mover el peón</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="Leccion.SALTAR_RIVAL" xml:space="preserve">
+    <value>Saltar al rival</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="Leccion.COLOCAR_MUROS" xml:space="preserve">
+    <value>Colocar muros</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="Leccion.MUROS_SIN_ENCIERRO" xml:space="preserve">
+    <value>Muros sin encierro</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="Leccion.RELOJ" xml:space="preserve">
+    <value>El reloj</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="Leccion.PARTIDA_CUATRO" xml:space="preserve">
+    <value>Partida de cuatro</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="FirstTimeSubtitle" xml:space="preserve">
+    <value>TU PRIMERA VEZ</value>
+    <comment>Subtitle of GUI_FirstTime.</comment>
+  </data>
+  <data name="FirstTimePawnLabel" xml:space="preserve">
+    <value>ELIGE TU PEÓN</value>
+    <comment>Heading of the pawn chips.</comment>
+  </data>
+  <data name="FirstTimeIconLabel" xml:space="preserve">
+    <value>ELIGE TU ICONO</value>
+    <comment>Heading of the icon grid.</comment>
+  </data>
+  <data name="FirstTimeNicknameLabel" xml:space="preserve">
+    <value>NOMBRE DE JUGADOR</value>
+    <comment>Label of the read only nickname.</comment>
+  </data>
+  <data name="FirstTimeNotice" xml:space="preserve">
+    <value>Solo podrás cambiar tu peón y tu icono una vez.</value>
+    <comment>Warns that the change is single use (D-13).</comment>
+  </data>
+  <data name="FirstTimeStartButton" xml:space="preserve">
+    <value>EMPEZAR</value>
+    <comment>Saves the choice and opens the main menu.</comment>
+  </data>
+  <data name="FirstTimeSkipButton" xml:space="preserve">
+    <value>OMITIR</value>
+    <comment>Keeps the defaults and opens the main menu.</comment>
+  </data>
+  <data name="ObjetoCosmetico.PEON_CLASICO" xml:space="preserve">
+    <value>Peón clásico</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="ObjetoCosmetico.PEON_PIEDRA" xml:space="preserve">
+    <value>Peón de piedra</value>
+    <comment>Catalog name, key = table.code (D-21).</comment>
+  </data>
+  <data name="LinkAccountSubtitle" xml:space="preserve">
+    <value>VINCULA TU CUENTA</value>
+    <comment>Subtitle of GUI_LinkAccount.</comment>
+  </data>
+  <data name="LinkAccountNotice" xml:space="preserve">
+    <value>Se conserva tu progreso: elo, monedas, objetos y partidas.</value>
+    <comment>States which progress survives the link (CU-07).</comment>
+  </data>
+  <data name="PendingVerificationSubtitle" xml:space="preserve">
+    <value>VERIFICA TU CORREO</value>
+    <comment>Subtitle of GUI_PendingVerification.</comment>
+  </data>
+  <data name="PendingVerificationNoticeFormat" xml:space="preserve">
+    <value>Te enviamos un correo a {0}. Ábrelo para activar tu cuenta.</value>
+    <comment>{0} is the masked email address.</comment>
+  </data>
+  <data name="PendingVerificationResendButton" xml:space="preserve">
+    <value>REENVIAR CORREO DE VERIFICACIÓN</value>
+    <comment>Sends the verification email again.</comment>
+  </data>
+  <data name="PendingVerificationAcceptButton" xml:space="preserve">
+    <value>ACEPTAR</value>
+    <comment>Returns to the sign in.</comment>
+  </data>
+  <data name="PendingVerificationResentBody" xml:space="preserve">
+    <value>Listo, te enviamos otro correo.</value>
+    <comment>Body of the message after resending.</comment>
+  </data>
+  <data name="SecondFactorSubtitle" xml:space="preserve">
+    <value>VERIFICACIÓN DE ACCESO</value>
+    <comment>Subtitle of GUI_SecondFactor.</comment>
+  </data>
+  <data name="SecondFactorHint" xml:space="preserve">
+    <value>Enviamos un código de 6 dígitos a tu correo.</value>
+    <comment>Tells where the code went.</comment>
+  </data>
+  <data name="SecondFactorCodeLabel" xml:space="preserve">
+    <value>CÓDIGO DE VERIFICACIÓN</value>
+    <comment>Label of the code field.</comment>
+  </data>
+  <data name="SecondFactorCodePlaceholder" xml:space="preserve">
+    <value>000000</value>
+    <comment>Example code. Same in both languages.</comment>
+  </data>
+  <data name="SecondFactorExpiresFormat" xml:space="preserve">
+    <value>El código vence en {0}</value>
+    <comment>{0} is the time left as m:ss.</comment>
+  </data>
+  <data name="SecondFactorVerifyButton" xml:space="preserve">
+    <value>VERIFICAR</value>
+    <comment>Checks the code.</comment>
+  </data>
+  <data name="SecondFactorResendButton" xml:space="preserve">
+    <value>REENVIAR CÓDIGO</value>
+    <comment>Requests a new code.</comment>
+  </data>
+  <data name="SecondFactorResentBody" xml:space="preserve">
+    <value>Te enviamos un código nuevo.</value>
+    <comment>Body of the message after resending.</comment>
+  </data>
+  <data name="BannedAccountSubtitle" xml:space="preserve">
+    <value>CUENTA SUSPENDIDA</value>
+    <comment>Subtitle of GUI_BannedAccount.</comment>
+  </data>
+  <data name="BannedAccountNotice" xml:space="preserve">
+    <value>Tu cuenta no puede entrar al juego por ahora.</value>
+    <comment>Explains the block.</comment>
+  </data>
+  <data name="BannedAccountReasonLabel" xml:space="preserve">
+    <value>MOTIVO</value>
+    <comment>Label of the sanction reason.</comment>
+  </data>
+  <data name="BannedAccountReasonSample" xml:space="preserve">
+    <value>Mensajes ofensivos en el chat</value>
+    <comment>Placeholder reason: comes from the server.</comment>
+  </data>
+  <data name="BannedAccountTypeLabel" xml:space="preserve">
+    <value>TIPO</value>
+    <comment>Label of the sanction type.</comment>
+  </data>
+  <data name="BannedAccountEndLabel" xml:space="preserve">
+    <value>TERMINA EL</value>
+    <comment>Label of the sanction end date.</comment>
+  </data>
+  <data name="BannedAccountAppealButton" xml:space="preserve">
+    <value>APELAR</value>
+    <comment>Opens GUI_Appeal.</comment>
+  </data>
+  <data name="BannedAccountExitButton" xml:space="preserve">
+    <value>SALIR</value>
+    <comment>Returns to the sign in.</comment>
+  </data>
+  <data name="BannedAccountEndSample" xml:space="preserve">
+    <value>15 de octubre de 2026</value>
+    <comment>Placeholder end date: comes from the server.</comment>
+  </data>
+  <data name="MatchBoardPlaceholder" xml:space="preserve">
+    <value>ÁREA DE JUEGO</value>
+    <comment>Label of the board area, not drawn yet.</comment>
+  </data>
+  <data name="MatchClockSample" xml:space="preserve">
+    <value>05:00</value>
+    <comment>Placeholder clock reading. Same in both languages.</comment>
+  </data>
+  <data name="MatchWallsSample" xml:space="preserve">
+    <value>6 muros</value>
+    <comment>Placeholder wall count, reused on both player rows.</comment>
+  </data>
+  <data name="MatchEndExperienceSample" xml:space="preserve">
+    <value>+40 XP</value>
+    <comment>Placeholder experience gain. Same in both languages.</comment>
+  </data>
+  <data name="SpectatorMoveSample" xml:space="preserve">
+    <value>Peón a D5</value>
+    <comment>Placeholder move: comes from the server.</comment>
+  </data>
+  <data name="ReplayNotationSample" xml:space="preserve">
+    <value>1. Peón a D2   2. Muro en C4-C5</value>
+    <comment>Placeholder notation: comes from the server.</comment>
+  </data>
+  <data name="MatchSubtitle" xml:space="preserve">
+    <value>PARTIDA EN CURSO</value>
+    <comment>Subtitle of GUI_Match.</comment>
+  </data>
+  <data name="PrivateMatchCodeRequired" xml:space="preserve">
+    <value>escribe el código de seis caracteres</value>
+    <comment>Warning under the room code field when it is too short (CU-19 RN-02).</comment>
+  </data>
+  <data name="SpectatorSubtitle" xml:space="preserve">
+    <value>VIENDO LA PARTIDA</value>
+    <comment>Subtitle of GUI_Spectator.</comment>
+  </data>
 </root>

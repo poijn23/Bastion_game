@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using Bastion.Presentation.GUI_ActiveSessions;
 using Bastion.Presentation.GUI_AddFriend;
 using Bastion.Presentation.GUI_AdminPanel;
+using Bastion.Presentation.GUI_AIDifficulty;
+using Bastion.Presentation.GUI_AIMatchEnd;
 using Bastion.Presentation.GUI_Appeal;
 using Bastion.Presentation.GUI_ApplySanction;
+using Bastion.Presentation.GUI_BannedAccount;
 using Bastion.Presentation.GUI_BoxPurchaseConfirm;
 using Bastion.Presentation.GUI_ChangeEmail;
 using Bastion.Presentation.GUI_ChangeNickname;
@@ -13,28 +16,45 @@ using Bastion.Presentation.GUI_CoinHistory;
 using Bastion.Presentation.GUI_Customize;
 using Bastion.Presentation.GUI_DeleteAccount;
 using Bastion.Presentation.GUI_EditProfile;
+using Bastion.Presentation.GUI_FirstTime;
 using Bastion.Presentation.GUI_ForgotPassword;
 using Bastion.Presentation.GUI_Friends;
+using Bastion.Presentation.GUI_LinkAccount;
 using Bastion.Presentation.GUI_Login;
 using Bastion.Presentation.GUI_Logs;
+using Bastion.Presentation.GUI_MainMenu;
+using Bastion.Presentation.GUI_MainScreen;
+using Bastion.Presentation.GUI_Match;
+using Bastion.Presentation.GUI_MatchEnd;
 using Bastion.Presentation.GUI_MatchHistory;
+using Bastion.Presentation.GUI_Matchmaking;
 using Bastion.Presentation.GUI_MessageConfirm;
 using Bastion.Presentation.GUI_MessageError;
 using Bastion.Presentation.GUI_MessageSuccess;
 using Bastion.Presentation.GUI_Menu;
 using Bastion.Presentation.GUI_MessageWarning;
 using Bastion.Presentation.GUI_ModerationQueue;
+using Bastion.Presentation.GUI_OpponentDisconnected;
+using Bastion.Presentation.GUI_PendingVerification;
 using Bastion.Presentation.GUI_PlayerCard;
+using Bastion.Presentation.GUI_PrivateMatch;
 using Bastion.Presentation.GUI_Profile;
 using Bastion.Presentation.GUI_PurchaseConfirm;
 using Bastion.Presentation.GUI_Ranking;
 using Bastion.Presentation.GUI_Register;
 using Bastion.Presentation.GUI_RegistrationSuccess;
+using Bastion.Presentation.GUI_Replay;
 using Bastion.Presentation.GUI_Report;
 using Bastion.Presentation.GUI_ReportReview;
 using Bastion.Presentation.GUI_ResetPassword;
+using Bastion.Presentation.GUI_SecondFactor;
+using Bastion.Presentation.GUI_SelectMode;
 using Bastion.Presentation.GUI_Settings;
 using Bastion.Presentation.GUI_Shop;
+using Bastion.Presentation.GUI_Spectator;
+using Bastion.Presentation.GUI_TutorialIndex;
+using Bastion.Presentation.GUI_VersusScreen;
+using Bastion.Presentation.GUI_WaitingRoom;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -105,6 +125,46 @@ public sealed class Navigator : INavigator
             navigator => new GuiBoxPurchaseConfirm(navigator),
         [ScreenId.Customize] =
             navigator => new GuiCustomize(navigator),
+
+        // Not reachable yet from Login or from a session (see ScreenId.cs).
+        [ScreenId.MainScreen] =
+            navigator => new GuiMainScreen(navigator),
+        [ScreenId.PendingVerification] =
+            navigator => new GuiPendingVerification(navigator),
+        [ScreenId.SecondFactor] =
+            navigator => new GuiSecondFactor(navigator),
+        [ScreenId.BannedAccount] =
+            navigator => new GuiBannedAccount(navigator),
+        [ScreenId.FirstTime] =
+            navigator => new GuiFirstTime(navigator),
+        [ScreenId.LinkAccount] =
+            navigator => new GuiLinkAccount(navigator),
+
+        // The home hub and the match flow it opens.
+        [ScreenId.MainMenu] =
+            navigator => new GuiMainMenu(navigator),
+        [ScreenId.SelectMode] =
+            navigator => new GuiSelectMode(navigator),
+        [ScreenId.Matchmaking] =
+            navigator => new GuiMatchmaking(navigator),
+        [ScreenId.VersusScreen] =
+            navigator => new GuiVersusScreen(navigator),
+        [ScreenId.Match] =
+            navigator => new GuiMatch(navigator),
+        [ScreenId.OpponentDisconnected] =
+            navigator => new GuiOpponentDisconnected(navigator),
+        [ScreenId.PrivateMatch] =
+            navigator => new GuiPrivateMatch(navigator),
+        [ScreenId.AIDifficulty] =
+            navigator => new GuiAIDifficulty(navigator),
+        [ScreenId.AIMatchEnd] =
+            navigator => new GuiAIMatchEnd(navigator),
+        [ScreenId.Spectator] =
+            navigator => new GuiSpectator(navigator),
+        [ScreenId.Replay] =
+            navigator => new GuiReplay(navigator),
+        [ScreenId.TutorialIndex] =
+            navigator => new GuiTutorialIndex(navigator),
     };
 
     private IScreen? _current;
@@ -259,6 +319,16 @@ public sealed class Navigator : INavigator
         if (screen == ScreenId.ResetPassword)
         {
             return new GuiResetPassword(this, argument ?? string.Empty);
+        }
+
+        if (screen == ScreenId.MatchEnd)
+        {
+            return new GuiMatchEnd(this, argument ?? GuiMatchEnd.DefeatOutcome);
+        }
+
+        if (screen == ScreenId.WaitingRoom)
+        {
+            return new GuiWaitingRoom(this, argument ?? GuiWaitingRoom.HostRole);
         }
 
         return _factories.TryGetValue(screen, out Func<INavigator, IScreen>? factory)

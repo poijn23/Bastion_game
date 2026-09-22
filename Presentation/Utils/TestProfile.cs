@@ -37,6 +37,9 @@ public static class TestProfile
 
     public static int IconIndex { get; set; } = 0;
 
+    // Set once, at GUI_FirstTime (D-13); -1 means the default pawn still applies.
+    public static int PawnIndex { get; set; } = -1;
+
     public static bool HasChangedNickname { get; set; }
 
     public static int PasswordChangedMonthsAgo { get; set; } = 3;
