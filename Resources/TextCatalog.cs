@@ -730,6 +730,382 @@ public static class TextCatalog
 
     public static string ProfileSubtitle => GetText(nameof(ProfileSubtitle));
 
+    public static string MainScreenSubtitle => GetText(nameof(MainScreenSubtitle));
+
+    public static string MainScreenIntro => GetText(nameof(MainScreenIntro));
+
+    public static string MainMenuSubtitle => GetText(nameof(MainMenuSubtitle));
+
+    public static string MainMenuLevelFormat => GetText(nameof(MainMenuLevelFormat));
+
+    public static string MainMenuEloCaption => GetText(nameof(MainMenuEloCaption));
+
+    public static string MainMenuStreakCaption => GetText(nameof(MainMenuStreakCaption));
+
+    public static string MainMenuCoinsCaption => GetText(nameof(MainMenuCoinsCaption));
+
+    public static string MainMenuFindMatchButton => GetText(nameof(MainMenuFindMatchButton));
+
+    public static string MainMenuFindMatchDetail => GetText(nameof(MainMenuFindMatchDetail));
+
+    public static string MainMenuPrivateButton => GetText(nameof(MainMenuPrivateButton));
+
+    public static string MainMenuPrivateDetail => GetText(nameof(MainMenuPrivateDetail));
+
+    public static string MainMenuVersusAiButton => GetText(nameof(MainMenuVersusAiButton));
+
+    public static string MainMenuVersusAiDetail => GetText(nameof(MainMenuVersusAiDetail));
+
+    public static string MainMenuFriendsButton => GetText(nameof(MainMenuFriendsButton));
+
+    public static string MainMenuCustomizeButton => GetText(nameof(MainMenuCustomizeButton));
+
+    public static string MainMenuShopButton => GetText(nameof(MainMenuShopButton));
+
+    public static string MainMenuRankingButton => GetText(nameof(MainMenuRankingButton));
+
+    public static string MainMenuHistoryButton => GetText(nameof(MainMenuHistoryButton));
+
+    public static string MainMenuHowToPlayButton => GetText(nameof(MainMenuHowToPlayButton));
+
+    public static string MainMenuSettingsButton => GetText(nameof(MainMenuSettingsButton));
+
+    public static string SelectModeSubtitle => GetText(nameof(SelectModeSubtitle));
+
+    public static string SelectModeModeLabel => GetText(nameof(SelectModeModeLabel));
+
+    public static string SelectModeClockLabel => GetText(nameof(SelectModeClockLabel));
+
+    public static string SelectModeClockFormat => GetText(nameof(SelectModeClockFormat));
+
+    public static string SelectModeSearchButton => GetText(nameof(SelectModeSearchButton));
+
+    public static string MatchmakingSubtitle => GetText(nameof(MatchmakingSubtitle));
+
+    public static string MatchmakingTitle => GetText(nameof(MatchmakingTitle));
+
+    public static string MatchmakingElapsedFormat => GetText(nameof(MatchmakingElapsedFormat));
+
+    public static string MatchmakingBrowseNote => GetText(nameof(MatchmakingBrowseNote));
+
+    public static string VersusScreenSubtitle => GetText(nameof(VersusScreenSubtitle));
+
+    public static string VersusScreenVersusLabel => GetText(nameof(VersusScreenVersusLabel));
+
+    public static string VersusScreenEloFormat => GetText(nameof(VersusScreenEloFormat));
+
+    public static string VersusScreenClockFormat => GetText(nameof(VersusScreenClockFormat));
+
+    public static string VersusScreenSettingsFormat => GetText(nameof(VersusScreenSettingsFormat));
+
+    public static string VersusScreenStartButton => GetText(nameof(VersusScreenStartButton));
+
+    public static string MatchTurnFormat => GetText(nameof(MatchTurnFormat));
+
+    public static string MatchWallsFormat => GetText(nameof(MatchWallsFormat));
+
+    public static string MatchMoveChip => GetText(nameof(MatchMoveChip));
+
+    public static string MatchWallChip => GetText(nameof(MatchWallChip));
+
+    public static string MatchDrawButton => GetText(nameof(MatchDrawButton));
+
+    public static string MatchResignButton => GetText(nameof(MatchResignButton));
+
+    public static string MatchChatTitle => GetText(nameof(MatchChatTitle));
+
+    public static string MatchChatPlaceholder => GetText(nameof(MatchChatPlaceholder));
+
+    public static string MatchChatSampleOne => GetText(nameof(MatchChatSampleOne));
+
+    public static string MatchChatSampleTwo => GetText(nameof(MatchChatSampleTwo));
+
+    public static string MatchResignBody => GetText(nameof(MatchResignBody));
+
+    public static string MatchResignConfirmButton => GetText(nameof(MatchResignConfirmButton));
+
+    public static string MatchDrawBody => GetText(nameof(MatchDrawBody));
+
+    public static string MatchDrawConfirmButton => GetText(nameof(MatchDrawConfirmButton));
+
+    public static string MatchDrawSentBody => GetText(nameof(MatchDrawSentBody));
+
+    public static string MatchEndVictoryTitle => GetText(nameof(MatchEndVictoryTitle));
+
+    public static string MatchEndDefeatTitle => GetText(nameof(MatchEndDefeatTitle));
+
+    public static string MatchEndEloCaption => GetText(nameof(MatchEndEloCaption));
+
+    public static string MatchEndExperienceCaption => GetText(nameof(MatchEndExperienceCaption));
+
+    public static string MatchEndCoinsCaption => GetText(nameof(MatchEndCoinsCaption));
+
+    public static string MatchEndFindAnotherButton => GetText(nameof(MatchEndFindAnotherButton));
+
+    public static string MatchEndBackMenuButton => GetText(nameof(MatchEndBackMenuButton));
+
+    public static string MatchEndWatchReplayButton => GetText(nameof(MatchEndWatchReplayButton));
+
+    public static string MatchEndAddOpponentButton => GetText(nameof(MatchEndAddOpponentButton));
+
+    public static string EndReasonGoal => GetText("FormaTermino.META");
+
+    public static string EndReasonTimeout => GetText("FormaTermino.TIEMPO_AGOTADO");
+
+    public static string EndReasonResignation => GetText("FormaTermino.RENDICION");
+
+    public static string EndReasonDraw => GetText("FormaTermino.TABLAS");
+
+    public static string EndReasonAbandoned => GetText("FormaTermino.ABANDONO");
+
+    public static string OpponentDisconnectedTitle => GetText(nameof(OpponentDisconnectedTitle));
+
+    public static string OpponentDisconnectedElapsedFormat => GetText(nameof(OpponentDisconnectedElapsedFormat));
+
+    public static string OpponentDisconnectedHint => GetText(nameof(OpponentDisconnectedHint));
+
+    public static string OpponentDisconnectedClaimButton => GetText(nameof(OpponentDisconnectedClaimButton));
+
+    public static string OpponentDisconnectedBackButton => GetText(nameof(OpponentDisconnectedBackButton));
+
+    public static string PrivateMatchSubtitle => GetText(nameof(PrivateMatchSubtitle));
+
+    public static string PrivateMatchCreateTitle => GetText(nameof(PrivateMatchCreateTitle));
+
+    public static string PrivateMatchCreateHint => GetText(nameof(PrivateMatchCreateHint));
+
+    public static string PrivateMatchCreateButton => GetText(nameof(PrivateMatchCreateButton));
+
+    public static string PrivateMatchJoinTitle => GetText(nameof(PrivateMatchJoinTitle));
+
+    public static string PrivateMatchCodeLabel => GetText(nameof(PrivateMatchCodeLabel));
+
+    public static string PrivateMatchCodePlaceholder => GetText(nameof(PrivateMatchCodePlaceholder));
+
+    public static string PrivateMatchJoinButton => GetText(nameof(PrivateMatchJoinButton));
+
+    public static string WaitingRoomSubtitle => GetText(nameof(WaitingRoomSubtitle));
+
+    public static string WaitingRoomCodeLabel => GetText(nameof(WaitingRoomCodeLabel));
+
+    public static string WaitingRoomPlayersLabel => GetText(nameof(WaitingRoomPlayersLabel));
+
+    public static string WaitingRoomHostTag => GetText(nameof(WaitingRoomHostTag));
+
+    public static string WaitingRoomYouTag => GetText(nameof(WaitingRoomYouTag));
+
+    public static string WaitingRoomFreeSlot => GetText(nameof(WaitingRoomFreeSlot));
+
+    public static string WaitingRoomChatPlaceholder => GetText(nameof(WaitingRoomChatPlaceholder));
+
+    public static string WaitingRoomChatSample => GetText(nameof(WaitingRoomChatSample));
+
+    public static string WaitingRoomStartButton => GetText(nameof(WaitingRoomStartButton));
+
+    public static string WaitingRoomReadyButton => GetText(nameof(WaitingRoomReadyButton));
+
+    public static string WaitingRoomLeaveButton => GetText(nameof(WaitingRoomLeaveButton));
+
+    public static string WaitingRoomLeaveBody => GetText(nameof(WaitingRoomLeaveBody));
+
+    public static string WaitingRoomHostNote => GetText(nameof(WaitingRoomHostNote));
+
+    public static string AIDifficultySubtitle => GetText(nameof(AIDifficultySubtitle));
+
+    public static string AIDifficultyLevelLabel => GetText(nameof(AIDifficultyLevelLabel));
+
+    public static string AIDifficultyBoardLabel => GetText(nameof(AIDifficultyBoardLabel));
+
+    public static string AIDifficultyClockLabel => GetText(nameof(AIDifficultyClockLabel));
+
+    public static string AIDifficultyBoardClassicChip => GetText(nameof(AIDifficultyBoardClassicChip));
+
+    public static string AIDifficultyBoardRapidChip => GetText(nameof(AIDifficultyBoardRapidChip));
+
+    public static string AIDifficultyClockChipFormat => GetText(nameof(AIDifficultyClockChipFormat));
+
+    public static string AIDifficultyNoClockChip => GetText(nameof(AIDifficultyNoClockChip));
+
+    public static string AIDifficultyUndoToggle => GetText(nameof(AIDifficultyUndoToggle));
+
+    public static string AIDifficultyHintToggle => GetText(nameof(AIDifficultyHintToggle));
+
+    public static string AIDifficultyStrengthFormat => GetText(nameof(AIDifficultyStrengthFormat));
+
+    public static string AIDifficultyPlayButton => GetText(nameof(AIDifficultyPlayButton));
+
+    public static string AiLevelApprentice => GetText("NivelIA.APRENDIZ");
+
+    public static string AiLevelBuilder => GetText("NivelIA.CONSTRUCTOR");
+
+    public static string AiLevelArchitect => GetText("NivelIA.ARQUITECTO");
+
+    public static string AiLevelBastion => GetText("NivelIA.BASTION");
+
+    public static string AIMatchEndSubtitle => GetText(nameof(AIMatchEndSubtitle));
+
+    public static string AIMatchEndVictoryTitle => GetText(nameof(AIMatchEndVictoryTitle));
+
+    public static string AIMatchEndDefeatTitle => GetText(nameof(AIMatchEndDefeatTitle));
+
+    public static string AIMatchEndExperienceCaption => GetText(nameof(AIMatchEndExperienceCaption));
+
+    public static string AIMatchEndMovesCaption => GetText(nameof(AIMatchEndMovesCaption));
+
+    public static string AIMatchEndReviewLabel => GetText(nameof(AIMatchEndReviewLabel));
+
+    public static string AIMatchEndMistakeFormat => GetText(nameof(AIMatchEndMistakeFormat));
+
+    public static string AIMatchEndMistakeOne => GetText(nameof(AIMatchEndMistakeOne));
+
+    public static string AIMatchEndMistakeTwo => GetText(nameof(AIMatchEndMistakeTwo));
+
+    public static string AIMatchEndMistakeThree => GetText(nameof(AIMatchEndMistakeThree));
+
+    public static string SpectatorLiveTag => GetText(nameof(SpectatorLiveTag));
+
+    public static string SpectatorDelayFormat => GetText(nameof(SpectatorDelayFormat));
+
+    public static string SpectatorViewersFormat => GetText(nameof(SpectatorViewersFormat));
+
+    public static string SpectatorMovesTitle => GetText(nameof(SpectatorMovesTitle));
+
+    public static string SpectatorChatTitle => GetText(nameof(SpectatorChatTitle));
+
+    public static string SpectatorChatPlaceholder => GetText(nameof(SpectatorChatPlaceholder));
+
+    public static string SpectatorChatSample => GetText(nameof(SpectatorChatSample));
+
+    public static string SpectatorLeaveButton => GetText(nameof(SpectatorLeaveButton));
+
+    public static string ReplayTitle => GetText(nameof(ReplayTitle));
+
+    public static string ReplayNotationTitle => GetText(nameof(ReplayNotationTitle));
+
+    public static string ReplayMoveFormat => GetText(nameof(ReplayMoveFormat));
+
+    public static string ReplayResultFormat => GetText(nameof(ReplayResultFormat));
+
+    public static string ReplayPlayButton => GetText(nameof(ReplayPlayButton));
+
+    public static string ReplayPauseButton => GetText(nameof(ReplayPauseButton));
+
+    public static string ReplayPreviousButton => GetText(nameof(ReplayPreviousButton));
+
+    public static string ReplayNextButton => GetText(nameof(ReplayNextButton));
+
+    public static string ReplayExitButton => GetText(nameof(ReplayExitButton));
+
+    public static string TutorialIndexSubtitle => GetText(nameof(TutorialIndexSubtitle));
+
+    public static string TutorialIndexProgressFormat => GetText(nameof(TutorialIndexProgressFormat));
+
+    public static string TutorialIndexDoneTag => GetText(nameof(TutorialIndexDoneTag));
+
+    public static string TutorialIndexInProgressTag => GetText(nameof(TutorialIndexInProgressTag));
+
+    public static string TutorialIndexPracticeButton => GetText(nameof(TutorialIndexPracticeButton));
+
+    public static string TutorialIndexExitButton => GetText(nameof(TutorialIndexExitButton));
+
+    public static string LessonBoardAndGoal => GetText("Leccion.TABLERO_Y_META");
+
+    public static string LessonMovePawn => GetText("Leccion.MOVER_PEON");
+
+    public static string LessonJumpOpponent => GetText("Leccion.SALTAR_RIVAL");
+
+    public static string LessonPlaceWalls => GetText("Leccion.COLOCAR_MUROS");
+
+    public static string LessonWallsNoTrap => GetText("Leccion.MUROS_SIN_ENCIERRO");
+
+    public static string LessonClock => GetText("Leccion.RELOJ");
+
+    public static string LessonFourPlayers => GetText("Leccion.PARTIDA_CUATRO");
+
+    public static string FirstTimeSubtitle => GetText(nameof(FirstTimeSubtitle));
+
+    public static string FirstTimePawnLabel => GetText(nameof(FirstTimePawnLabel));
+
+    public static string FirstTimeIconLabel => GetText(nameof(FirstTimeIconLabel));
+
+    public static string FirstTimeNicknameLabel => GetText(nameof(FirstTimeNicknameLabel));
+
+    public static string FirstTimeNotice => GetText(nameof(FirstTimeNotice));
+
+    public static string FirstTimeStartButton => GetText(nameof(FirstTimeStartButton));
+
+    public static string FirstTimeSkipButton => GetText(nameof(FirstTimeSkipButton));
+
+    public static string PawnClassic => GetText("ObjetoCosmetico.PEON_CLASICO");
+
+    public static string PawnStone => GetText("ObjetoCosmetico.PEON_PIEDRA");
+
+    public static string LinkAccountSubtitle => GetText(nameof(LinkAccountSubtitle));
+
+    public static string LinkAccountNotice => GetText(nameof(LinkAccountNotice));
+
+    public static string PendingVerificationSubtitle => GetText(nameof(PendingVerificationSubtitle));
+
+    public static string PendingVerificationNoticeFormat => GetText(nameof(PendingVerificationNoticeFormat));
+
+    public static string PendingVerificationResendButton => GetText(nameof(PendingVerificationResendButton));
+
+    public static string PendingVerificationAcceptButton => GetText(nameof(PendingVerificationAcceptButton));
+
+    public static string PendingVerificationResentBody => GetText(nameof(PendingVerificationResentBody));
+
+    public static string SecondFactorSubtitle => GetText(nameof(SecondFactorSubtitle));
+
+    public static string SecondFactorHint => GetText(nameof(SecondFactorHint));
+
+    public static string SecondFactorCodeLabel => GetText(nameof(SecondFactorCodeLabel));
+
+    public static string SecondFactorCodePlaceholder => GetText(nameof(SecondFactorCodePlaceholder));
+
+    public static string SecondFactorExpiresFormat => GetText(nameof(SecondFactorExpiresFormat));
+
+    public static string SecondFactorVerifyButton => GetText(nameof(SecondFactorVerifyButton));
+
+    public static string SecondFactorResendButton => GetText(nameof(SecondFactorResendButton));
+
+    public static string SecondFactorResentBody => GetText(nameof(SecondFactorResentBody));
+
+    public static string BannedAccountSubtitle => GetText(nameof(BannedAccountSubtitle));
+
+    public static string BannedAccountNotice => GetText(nameof(BannedAccountNotice));
+
+    public static string BannedAccountReasonLabel => GetText(nameof(BannedAccountReasonLabel));
+
+    public static string BannedAccountReasonSample => GetText(nameof(BannedAccountReasonSample));
+
+    public static string BannedAccountTypeLabel => GetText(nameof(BannedAccountTypeLabel));
+
+    public static string BannedAccountEndLabel => GetText(nameof(BannedAccountEndLabel));
+
+    public static string BannedAccountAppealButton => GetText(nameof(BannedAccountAppealButton));
+
+    public static string BannedAccountExitButton => GetText(nameof(BannedAccountExitButton));
+
+    public static string BannedAccountEndSample => GetText(nameof(BannedAccountEndSample));
+
+    public static string MatchBoardPlaceholder => GetText(nameof(MatchBoardPlaceholder));
+
+    public static string MatchClockSample => GetText(nameof(MatchClockSample));
+
+    public static string MatchWallsSample => GetText(nameof(MatchWallsSample));
+
+    public static string MatchEndExperienceSample => GetText(nameof(MatchEndExperienceSample));
+
+    public static string SpectatorMoveSample => GetText(nameof(SpectatorMoveSample));
+
+    public static string ReplayNotationSample => GetText(nameof(ReplayNotationSample));
+
+    public static string MatchSubtitle => GetText(nameof(MatchSubtitle));
+
+    public static string PrivateMatchCodeRequired => GetText(nameof(PrivateMatchCodeRequired));
+
+    public static string SpectatorSubtitle => GetText(nameof(SpectatorSubtitle));
+
     private static string GetText(string key)
     {
         return _manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;

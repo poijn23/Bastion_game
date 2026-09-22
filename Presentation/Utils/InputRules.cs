@@ -116,4 +116,14 @@ public static class InputRules
     {
         return date > DateOnly.FromDateTime(DateTime.Today);
     }
+
+    // Whole years only: a birth date is never off by a fraction of a year for
+    // the minimum-age check (CON-12, CU-02 RN-05, CU-07 RN-05).
+    public static bool IsAtLeastYearsOld(DateOnly birthDate, int years)
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+        DateOnly threshold = birthDate.AddYears(years);
+
+        return threshold <= today;
+    }
 }

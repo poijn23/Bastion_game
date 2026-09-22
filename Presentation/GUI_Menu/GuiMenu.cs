@@ -12,7 +12,7 @@ public sealed class GuiMenu : FormScreen
     private const int Columns = 3;
     private const int EntryHeight = 52;
     private const int EntryGap = 12;
-    private const int EntryCount = 16;
+    private const int EntryCount = 36;
     private const int Rows = (EntryCount + Columns - 1) / Columns;
     private const int CardHeight = Theme.CardPadding + (Rows * (EntryHeight + EntryGap)) - EntryGap + Theme.CardPadding;
 
@@ -33,6 +33,33 @@ public sealed class GuiMenu : FormScreen
             (() => TextCatalog.PlayerCardSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.PlayerCard))),
             (() => TextCatalog.LogsSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.Logs))),
             (() => TextCatalog.BoxPurchaseSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.BoxPurchaseConfirm))),
+
+            // Not reachable yet from Login or from a session (see ScreenId.cs).
+            (() => TextCatalog.MainScreenSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.MainScreen))),
+            (() => TextCatalog.PendingVerificationSubtitle,
+                (Action<INavigator>)(n => n.GoTo(ScreenId.PendingVerification))),
+            (() => TextCatalog.SecondFactorSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.SecondFactor))),
+            (() => TextCatalog.BannedAccountSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.BannedAccount))),
+            (() => TextCatalog.FirstTimeSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.FirstTime))),
+            (() => TextCatalog.LinkAccountSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.LinkAccount))),
+
+            // The home hub and the match flow it opens.
+            (() => TextCatalog.MainMenuSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.MainMenu))),
+            (() => TextCatalog.SelectModeSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.SelectMode))),
+            (() => TextCatalog.MatchmakingSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.Matchmaking))),
+            (() => TextCatalog.VersusScreenSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.VersusScreen))),
+            (() => TextCatalog.MatchSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.Match))),
+            (() => TextCatalog.MatchEndDefeatTitle, (Action<INavigator>)(n => n.GoTo(ScreenId.MatchEnd))),
+            (() => TextCatalog.OpponentDisconnectedTitle,
+                (Action<INavigator>)(n => n.GoTo(ScreenId.OpponentDisconnected))),
+            (() => TextCatalog.PrivateMatchSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.PrivateMatch))),
+            (() => TextCatalog.WaitingRoomSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.WaitingRoom))),
+            (() => TextCatalog.AIDifficultySubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.AIDifficulty))),
+            (() => TextCatalog.AIMatchEndSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.AIMatchEnd))),
+            (() => TextCatalog.SpectatorSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.Spectator))),
+            (() => TextCatalog.ReplayTitle, (Action<INavigator>)(n => n.GoTo(ScreenId.Replay))),
+            (() => TextCatalog.TutorialIndexSubtitle, (Action<INavigator>)(n => n.GoTo(ScreenId.TutorialIndex))),
+
             (() => TextCatalog.SettingsSignOutButton, (Action<INavigator>)(n => n.Restart(ScreenId.Login)))
     ];
 
