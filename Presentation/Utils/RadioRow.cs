@@ -44,7 +44,8 @@ public sealed class RadioRow : Control
         else
         {
             canvas.Shapes.DrawRoundedRectangle(circle, CircleSize / 2, Theme.Field);
-            Hairline.DrawBorder(canvas, circle, CircleSize / 2, Theme.CheckBoxBorder);
+            Hairline.DrawBorder(
+                canvas, circle, BorderStyleFactory.CreateHairline(CircleSize / 2, Theme.CheckBoxBorder));
         }
 
         TextStyle style = TextStyleFactory.CreateBody(canvas.Fonts, Theme.TextDark);
@@ -59,6 +60,7 @@ public sealed class RadioRow : Control
             canvas.Text.Draw(Tag, new Vector2(MathF.Round(tagX), MathF.Round(tagY)), tagStyle);
         }
 
-        Hairline.DrawHorizontal(canvas, Bounds.X, Bounds.Bottom - 2, Bounds.Width, Theme.CheckBoxBorder);
+        Hairline.DrawHorizontal(
+            canvas, new Rectangle(Bounds.X, Bounds.Bottom - 2, Bounds.Width, 1), Theme.CheckBoxBorder);
     }
 }

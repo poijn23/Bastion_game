@@ -24,11 +24,19 @@ public sealed class GuiChangeEmail : FormScreen
     private bool _hasValidated;
 
     public GuiChangeEmail(INavigator navigator)
-        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, new CardShape
+        {
+            Width = PanelNarrowWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.Panel
+        })
     {
         _newEmailField = new TextField { MaxLength = MaxEmailLength, Bounds = GetRow(0) };
         _passwordField = new TextField { IsPassword = true, Bounds = GetRow(1) };
-        _notice = new NoticeBox { Bounds = new Rectangle(ContentX, GetRow(1).Bottom + NoticeGap, ContentWidth, NoticeHeight) };
+        _notice = new NoticeBox
+        {
+            Bounds = new Rectangle(ContentX, GetRow(1).Bottom + NoticeGap, ContentWidth, NoticeHeight)
+        };
         _saveButton = CreatePrimaryButton(true);
         _cancelButton = CreateOutlineButton(SecondaryButtonBounds);
         _saveButton.Clicked += OnSaveClicked;

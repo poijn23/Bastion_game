@@ -32,7 +32,9 @@ public sealed class TextLine : Control
         };
 
         float width = canvas.Text.Measure(Text, style);
-        float x = IsRightAligned ? Bounds.Right - width : IsCentered ? Bounds.X + ((Bounds.Width - width) / 2f) : Bounds.X;
+        float x = IsRightAligned
+            ? Bounds.Right - width
+            : IsCentered ? Bounds.X + ((Bounds.Width - width) / 2f) : Bounds.X;
         canvas.Text.Draw(Text, new Vector2(MathF.Round(x), Bounds.Y), style);
     }
 }

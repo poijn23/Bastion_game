@@ -53,10 +53,14 @@ public sealed class SettingRow : Control
         _button.Title = ButtonLabel;
         _button.IsEnabled = IsButtonEnabled;
         _button.MoveTo(new Rectangle(
-            Bounds.Right - ButtonWidth, Bounds.Y + ((Bounds.Height - Theme.SmallButtonHeight) / 2), ButtonWidth, Theme.SmallButtonHeight));
+            Bounds.Right - ButtonWidth,
+            Bounds.Y + ((Bounds.Height - Theme.SmallButtonHeight) / 2),
+            ButtonWidth,
+            Theme.SmallButtonHeight));
         _button.Draw(canvas);
 
-        Hairline.DrawHorizontal(canvas, Bounds.X, Bounds.Bottom - 2, Bounds.Width, Theme.CheckBoxBorder);
+        Hairline.DrawHorizontal(
+            canvas, new Rectangle(Bounds.X, Bounds.Bottom - 2, Bounds.Width, 1), Theme.CheckBoxBorder);
     }
 
     private void OnButtonClicked(object? sender, EventArgs e)

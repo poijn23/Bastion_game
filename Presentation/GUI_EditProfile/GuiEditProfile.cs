@@ -81,7 +81,12 @@ public sealed class GuiEditProfile : FormScreen
     private bool _hasValidated;
 
     public GuiEditProfile(INavigator navigator)
-        : base(navigator, Theme.PanelCardWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, new CardShape
+        {
+            Width = Theme.PanelCardWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.Panel
+        })
     {
         int top = PanelContentTop;
         int leftX = ContentX;
@@ -92,10 +97,15 @@ public sealed class GuiEditProfile : FormScreen
 
         _avatar = new Avatar { Bounds = new Rectangle(leftX, top, AvatarSize, AvatarSize) };
         int buttonsTop = top + ((AvatarSize - Theme.SmallButtonHeight) / 2);
-        _uploadButton = CreateOutlineButton(new Rectangle(besideAvatar, buttonsTop, SmallButtonWidth, Theme.SmallButtonHeight));
+        _uploadButton = CreateOutlineButton(
+            new Rectangle(besideAvatar, buttonsTop, SmallButtonWidth, Theme.SmallButtonHeight));
         _uploadButton.IsEnabled = false;
         _iconsButton = CreateOutlineButton(
-            new Rectangle(besideAvatar + SmallButtonWidth + SmallButtonGap, buttonsTop, SmallButtonWidth, Theme.SmallButtonHeight));
+            new Rectangle(
+                besideAvatar + SmallButtonWidth + SmallButtonGap,
+                buttonsTop,
+                SmallButtonWidth,
+                Theme.SmallButtonHeight));
         _iconChips = new ChipRow { Bounds = new Rectangle(leftX, top + IconsRowTop, ColumnWidth, IconsRowsHeight) };
         _iconChips.ChipChosen += OnIconChosen;
         _iconsHint = new TextLine
@@ -106,10 +116,18 @@ public sealed class GuiEditProfile : FormScreen
 
         _nicknameBox = new ValueBox
         {
-            Bounds = new Rectangle(leftX, top + NameFieldTop, ColumnWidth - ChangeButtonWidth - SmallButtonGap, Theme.FieldHeight)
+            Bounds = new Rectangle(
+                leftX,
+                top + NameFieldTop,
+                ColumnWidth - ChangeButtonWidth - SmallButtonGap,
+                Theme.FieldHeight)
         };
         _changeNicknameButton = CreateOutlineButton(
-            new Rectangle(leftX + ColumnWidth - ChangeButtonWidth, top + NameFieldTop, ChangeButtonWidth, Theme.FieldHeight));
+            new Rectangle(
+                leftX + ColumnWidth - ChangeButtonWidth,
+                top + NameFieldTop,
+                ChangeButtonWidth,
+                Theme.FieldHeight));
         _changeNicknameButton.IsEnabled = !TestProfile.HasChangedNickname;
         _changeNicknameButton.Clicked += OnChangeNicknameClicked;
         _nicknameHint = new TextLine
@@ -130,7 +148,11 @@ public sealed class GuiEditProfile : FormScreen
         _previewBox = new PanelBox { Bounds = previewArea };
         _previewAvatar = new Avatar
         {
-            Bounds = new Rectangle(previewArea.X + 14, previewArea.Y + ((PreviewHeight - PreviewAvatar) / 2), PreviewAvatar, PreviewAvatar)
+            Bounds = new Rectangle(
+                previewArea.X + 14,
+                previewArea.Y + ((PreviewHeight - PreviewAvatar) / 2),
+                PreviewAvatar,
+                PreviewAvatar)
         };
         _previewLine = new TextLine
         {
@@ -170,8 +192,13 @@ public sealed class GuiEditProfile : FormScreen
                 Options = GuiProfile.GetLinkTypeNames(),
                 Bounds = new Rectangle(rightX, rowTop, LinkTypeWidth, LinkRowHeight)
             };
-            var field = new TextField { MaxLength = MaxLinkLength, Bounds = new Rectangle(fieldX, rowTop, fieldWidth, LinkRowHeight) };
-            Button remove = CreateOutlineButton(new Rectangle(fieldX + fieldWidth + SmallButtonGap, rowTop, LinkRemoveWidth, LinkRowHeight));
+            var field = new TextField
+            {
+                MaxLength = MaxLinkLength,
+                Bounds = new Rectangle(fieldX, rowTop, fieldWidth, LinkRowHeight)
+            };
+            Button remove = CreateOutlineButton(
+                new Rectangle(fieldX + fieldWidth + SmallButtonGap, rowTop, LinkRemoveWidth, LinkRowHeight));
             int index = i;
             remove.Clicked += (_, _) => RemoveLink(index);
 
@@ -385,7 +412,9 @@ public sealed class GuiEditProfile : FormScreen
         for (int i = 0; i < TestProfile.MaxLinks; i++)
         {
             bool has = i < TestProfile.Links.Count;
-            _linkTypes[i].SelectedIndex = has ? TestProfile.Links[i].TypeIndex : GuiProfile.GetLinkTypeNames().Count - 1;
+            _linkTypes[i].SelectedIndex = has
+                ? TestProfile.Links[i].TypeIndex
+                : GuiProfile.GetLinkTypeNames().Count - 1;
             _linkFields[i].SetText(has ? TestProfile.Links[i].Url : string.Empty);
             SetLinkRowVisible(i, has);
         }
@@ -485,13 +514,20 @@ public sealed class GuiEditProfile : FormScreen
             _titleChips.Items.Add(new Chip { Text = titles[i], IsSelected = i == _titleIndex });
         }
 
-        _titleChips.Items.Add(new Chip { Text = TextCatalog.ProfileNoTitle, IsDashed = _titleIndex >= 0, IsSelected = _titleIndex < 0 });
+        _titleChips.Items.Add(new Chip
+        {
+            Text = TextCatalog.ProfileNoTitle,
+            IsDashed = _titleIndex >= 0,
+            IsSelected = _titleIndex < 0
+        });
     }
 
     private void RefreshPreview()
     {
         IReadOnlyList<string> titles = GuiProfile.GetTitleNames();
-        string title = _titleIndex >= 0 && _titleIndex < titles.Count ? titles[_titleIndex] : TextCatalog.ProfileNoTitle;
+        string title = _titleIndex >= 0 && _titleIndex < titles.Count
+            ? titles[_titleIndex]
+            : TextCatalog.ProfileNoTitle;
         _previewLine.Text = string.Format(TextCatalog.EditProfilePreviewFormat, TestAccount.Nickname, title);
     }
 }

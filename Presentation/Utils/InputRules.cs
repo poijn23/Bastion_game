@@ -42,11 +42,13 @@ public static class InputRules
             && !address.Host.EndsWith('.');
     }
 
-    public static bool TryParseBirthDate(string day, string month, string year, out DateOnly date)
+    public static bool TryParseBirthDate(BirthDateFields fields, out DateOnly date)
     {
         date = default;
 
-        if (!int.TryParse(day, out int d) || !int.TryParse(month, out int m) || !int.TryParse(year, out int y))
+        if (!int.TryParse(fields.Day, out int d)
+            || !int.TryParse(fields.Month, out int m)
+            || !int.TryParse(fields.Year, out int y))
         {
             return false;
         }

@@ -36,7 +36,11 @@ public sealed class ToggleSwitch : Control
         float textY = Bounds.Y + ((Bounds.Height - canvas.Text.GetLineHeight(style)) / 2f);
         canvas.Text.Draw(Text, new Vector2(Bounds.X, MathF.Round(textY)), style);
 
-        var track = new Rectangle(Bounds.Right - TrackWidth, Bounds.Y + ((Bounds.Height - TrackHeight) / 2), TrackWidth, TrackHeight);
+        var track = new Rectangle(
+            Bounds.Right - TrackWidth,
+            Bounds.Y + ((Bounds.Height - TrackHeight) / 2),
+            TrackWidth,
+            TrackHeight);
         int radius = TrackHeight / 2;
 
         if (IsOn)
@@ -46,7 +50,8 @@ public sealed class ToggleSwitch : Control
         else
         {
             canvas.Shapes.DrawRoundedRectangle(track, radius, Theme.Field);
-            Hairline.DrawBorder(canvas, track, radius, Theme.CheckBoxBorder);
+            Hairline.DrawBorder(
+                canvas, track, BorderStyleFactory.CreateHairline(radius, Theme.CheckBoxBorder));
         }
 
         int knobSize = TrackHeight - (KnobInset * 2);

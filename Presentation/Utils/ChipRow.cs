@@ -81,7 +81,8 @@ public sealed class ChipRow : Control
         if (chip.IsDashed)
         {
             canvas.Shapes.DrawRoundedRectangle(area, CornerRadius, Theme.Card);
-            Hairline.DrawBorder(canvas, area, CornerRadius, Theme.CheckBoxBorder);
+            Hairline.DrawBorder(
+                canvas, area, BorderStyleFactory.CreateHairline(CornerRadius, Theme.CheckBoxBorder));
             canvas.Text.DrawCentered(chip.Text, area, TextStyleFactory.CreateBody(canvas.Fonts, Theme.Placeholder));
             return;
         }

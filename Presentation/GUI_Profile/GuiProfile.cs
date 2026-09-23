@@ -53,7 +53,12 @@ public sealed class GuiProfile : FormScreen
     private readonly ChipRow _linkChips;
 
     public GuiProfile(INavigator navigator)
-        : base(navigator, Theme.PanelCardWidth, CardHeight, ScreenLayout.PanelBare)
+        : base(navigator, new CardShape
+        {
+            Width = Theme.PanelCardWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.PanelBare
+        })
     {
         int top = PanelContentTop;
 
@@ -74,7 +79,11 @@ public sealed class GuiProfile : FormScreen
             Bounds = new Rectangle(ContentX + HeaderTextInset, top + BarTop, BarWidth, BarHeight)
         };
         _editButton = CreateOutlineButton(
-            new Rectangle(Card.Right - Theme.CardPadding - EditButtonWidth, top, EditButtonWidth, Theme.SmallButtonHeight));
+            new Rectangle(
+                Card.Right - Theme.CardPadding - EditButtonWidth,
+                top,
+                EditButtonWidth,
+                Theme.SmallButtonHeight));
         _editButton.Clicked += OnEditClicked;
 
         _matchesTile = CreateTile(0, top);
@@ -115,12 +124,17 @@ public sealed class GuiProfile : FormScreen
         _linksLabel = new TextLine
         {
             Style = TextLineStyle.Muted,
-            Bounds = new Rectangle(linksArea.X + PanelBox.Padding, linksArea.Y + (LinksBarHeight - 22) / 2, LinksLabelWidth, 22)
+            Bounds = new Rectangle(
+                linksArea.X + PanelBox.Padding,
+                linksArea.Y + (LinksBarHeight - 22) / 2,
+                LinksLabelWidth,
+                22)
         };
         _linkChips = new ChipRow
         {
             Bounds = new Rectangle(
-                linksArea.X + PanelBox.Padding + LinksLabelWidth, linksArea.Y + ((LinksBarHeight - Theme.ChipHeight) / 2),
+                linksArea.X + PanelBox.Padding + LinksLabelWidth,
+                linksArea.Y + ((LinksBarHeight - Theme.ChipHeight) / 2),
                 linksArea.Width - (PanelBox.Padding * 2) - LinksLabelWidth, Theme.ChipHeight)
         };
         _linkChips.ChipChosen += OnLinkChipChosen;
@@ -169,7 +183,13 @@ public sealed class GuiProfile : FormScreen
 
     public static IReadOnlyList<string> GetLinkTypeNames()
     {
-        return [TextCatalog.TipoEnlaceTwitch, TextCatalog.TipoEnlaceYoutube, TextCatalog.TipoEnlaceDiscord, TextCatalog.TipoEnlaceOtro];
+        return
+        [
+            TextCatalog.TipoEnlaceTwitch,
+            TextCatalog.TipoEnlaceYoutube,
+            TextCatalog.TipoEnlaceDiscord,
+            TextCatalog.TipoEnlaceOtro
+        ];
     }
 
     public static string GetEquippedTitle()
@@ -214,7 +234,10 @@ public sealed class GuiProfile : FormScreen
         {
             (int matches, double winRate) = TestProfile.ModeStats[i];
             _modeNames[i].Text = modes[i];
-            _modeStats[i].Text = string.Format(TextCatalog.ProfileModeStatFormat, matches.ToString("N0"), winRate.ToString("P0"));
+            _modeStats[i].Text = string.Format(
+                TextCatalog.ProfileModeStatFormat,
+                matches.ToString("N0"),
+                winRate.ToString("P0"));
         }
 
         _titlesPanel.Title = TextCatalog.ProfileTitlesTitle;

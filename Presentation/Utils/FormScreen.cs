@@ -29,28 +29,34 @@ public abstract class FormScreen : IScreen
     private readonly ScreenLayout _layout;
 
     protected FormScreen(INavigator navigator, int cardWidth, int cardHeight)
-        : this(navigator, cardWidth, cardHeight, ScreenLayout.Chrome)
+        : this(navigator, new CardShape
+        {
+            Width = cardWidth,
+            Height = cardHeight,
+            Layout = ScreenLayout.Chrome
+        })
     {
     }
 
-    protected FormScreen(INavigator navigator, int cardWidth, int cardHeight, ScreenLayout layout)
+    protected FormScreen(INavigator navigator, CardShape card)
     {
         ArgumentNullException.ThrowIfNull(navigator);
+        ArgumentNullException.ThrowIfNull(card);
 
         Navigator = navigator;
-        _layout = layout;
+        _layout = card.Layout;
 
-        int x = (Theme.WindowWidth - cardWidth) / 2;
-        int top = layout == ScreenLayout.Chrome ? ScreenChrome.CardTop : Theme.PanelTop;
-        Card = new Rectangle(x, top, cardWidth, cardHeight);
+        int x = (Theme.WindowWidth - card.Width) / 2;
+        int top = card.Layout == ScreenLayout.Chrome ? ScreenChrome.CardTop : Theme.PanelTop;
+        Card = new Rectangle(x, top, card.Width, card.Height);
 
-        if (layout == ScreenLayout.Chrome)
+        if (card.Layout == ScreenLayout.Chrome)
         {
             int primaryTop = Card.Bottom + ButtonGap;
-            PrimaryButtonBounds = new Rectangle(x, primaryTop, cardWidth, Theme.PrimaryButtonHeight);
+            PrimaryButtonBounds = new Rectangle(x, primaryTop, card.Width, Theme.PrimaryButtonHeight);
 
             int secondaryTop = primaryTop + Theme.PrimaryButtonHeight + ButtonSpacing;
-            SecondaryButtonBounds = new Rectangle(x, secondaryTop, cardWidth, Theme.SecondaryButtonHeight);
+            SecondaryButtonBounds = new Rectangle(x, secondaryTop, card.Width, Theme.SecondaryButtonHeight);
 
             _languagePicker = LanguagePicker.Create();
             _languagePicker.SelectionChanged += OnLanguageSelected;
@@ -59,7 +65,10 @@ public abstract class FormScreen : IScreen
 
         int buttonTop = Card.Bottom - Theme.CardPadding - Theme.PanelButtonHeight;
         PrimaryButtonBounds = new Rectangle(
-            Card.Right - Theme.CardPadding - Theme.PanelButtonWidth, buttonTop, Theme.PanelButtonWidth, Theme.PanelButtonHeight);
+            Card.Right - Theme.CardPadding - Theme.PanelButtonWidth,
+            buttonTop,
+            Theme.PanelButtonWidth,
+            Theme.PanelButtonHeight);
         SecondaryButtonBounds = new Rectangle(
             Card.X + Theme.CardPadding, buttonTop, Theme.PanelButtonWidth, Theme.PanelButtonHeight);
 

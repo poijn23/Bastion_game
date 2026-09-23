@@ -56,17 +56,20 @@ public sealed class GuiLinkAccount : FormScreen
 
         _notice = new TextBlock { IsSmall = true, Bounds = new Rectangle(ContentX, top, ContentWidth, NoticeHeight) };
 
-        _nicknameField = CreateField(rowsTop, AccountRow, ContentX, MaxNicknameLength);
-        _emailField = CreateField(rowsTop, AccountRow, rightX, MaxEmailLength);
+        _nicknameField = CreateField(rowsTop, ContentX, MaxNicknameLength);
+        _emailField = CreateField(rowsTop, rightX, MaxEmailLength);
         _passwordField = CreatePasswordField(rowsTop, ContentX);
         _confirmationField = CreatePasswordField(rowsTop, rightX);
 
         int dateRowTop = rowsTop + (BirthDateRow * FieldRowSpacing);
         int monthX = ContentX + DayWidth + DateGap;
         int yearX = ContentX + DayWidth + MonthWidth + (DateGap * 2);
-        _dayField = CreateDatePart(dateRowTop, ContentX, DayWidth, MaxDayLength);
-        _monthField = CreateDatePart(dateRowTop, monthX, MonthWidth, MaxMonthLength);
-        _yearField = CreateDatePart(dateRowTop, yearX, GetYearWidth(), MaxYearLength);
+        _dayField = CreateDatePart(
+            new Rectangle(ContentX, dateRowTop, DayWidth, Theme.FieldHeight), MaxDayLength);
+        _monthField = CreateDatePart(
+            new Rectangle(monthX, dateRowTop, MonthWidth, Theme.FieldHeight), MaxMonthLength);
+        _yearField = CreateDatePart(
+            new Rectangle(yearX, dateRowTop, GetYearWidth(), Theme.FieldHeight), MaxYearLength);
         _termsCheckBox = new CheckBox { Bounds = new Rectangle(rightX, dateRowTop, ColumnWidth, Theme.FieldHeight) };
 
         _createButton = CreatePrimaryButton(true);
@@ -141,7 +144,14 @@ public sealed class GuiLinkAccount : FormScreen
 
     private string? GetBirthDateWarning()
     {
-        if (!InputRules.TryParseBirthDate(_dayField.Text, _monthField.Text, _yearField.Text, out DateOnly date))
+        var birthDate = new BirthDateFields
+        {
+            Day = _dayField.Text,
+            Month = _monthField.Text,
+            Year = _yearField.Text
+        };
+
+        if (!InputRules.TryParseBirthDate(birthDate, out DateOnly date))
         {
             return TextCatalog.RegisterBirthDateInvalid;
         }
@@ -190,9 +200,9 @@ public sealed class GuiLinkAccount : FormScreen
         return ColumnWidth - DayWidth - MonthWidth - (DateGap * 2);
     }
 
-    private TextField CreateField(int rowsTop, int row, int x, int maxLength)
+    private TextField CreateField(int rowsTop, int x, int maxLength)
     {
-        int y = rowsTop + (row * FieldRowSpacing);
+        int y = rowsTop + (AccountRow * FieldRowSpacing);
 
         return new TextField { MaxLength = maxLength, Bounds = new Rectangle(x, y, ColumnWidth, Theme.FieldHeight) };
     }
@@ -206,13 +216,13 @@ public sealed class GuiLinkAccount : FormScreen
         };
     }
 
-    private static TextField CreateDatePart(int rowTop, int x, int width, int maxLength)
+    private static TextField CreateDatePart(Rectangle bounds, int maxLength)
     {
         return new TextField
         {
             MaxLength = maxLength,
             IsCentered = true,
-            Bounds = new Rectangle(x, rowTop, width, Theme.FieldHeight)
+            Bounds = bounds
         };
     }
 }

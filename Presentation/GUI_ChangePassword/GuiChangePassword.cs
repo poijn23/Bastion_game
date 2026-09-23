@@ -21,7 +21,12 @@ public sealed class GuiChangePassword : FormScreen
     private bool _hasValidated;
 
     public GuiChangePassword(INavigator navigator)
-        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, new CardShape
+        {
+            Width = PanelNarrowWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.Panel
+        })
     {
         _currentField = new TextField { IsPassword = true, Bounds = GetRow(0) };
         _newField = new TextField { IsPassword = true, Bounds = GetRow(1) };
@@ -87,7 +92,9 @@ public sealed class GuiChangePassword : FormScreen
             ? null
             : TextCatalog.DeleteAccountWrongPassword;
         _newField.Warning = InputRules.MeetsPasswordPolicy(_newField.Text) ? null : TextCatalog.PasswordPolicyWarning;
-        _confirmationField.Warning = _confirmationField.Text == _newField.Text ? null : TextCatalog.RegisterConfirmationMismatch;
+        _confirmationField.Warning = _confirmationField.Text == _newField.Text
+            ? null
+            : TextCatalog.RegisterConfirmationMismatch;
 
         return !_currentField.HasWarning && !_newField.HasWarning && !_confirmationField.HasWarning;
     }

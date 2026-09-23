@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Xna.Framework;
 
 namespace Bastion.Presentation.Utils;
 
@@ -10,7 +11,8 @@ public sealed class Rule : Control
 
         if (IsVisible)
         {
-            Hairline.DrawHorizontal(canvas, Bounds.X, Bounds.Y, Bounds.Width, Theme.CheckBoxBorder);
+            Hairline.DrawHorizontal(
+                canvas, new Rectangle(Bounds.X, Bounds.Y, Bounds.Width, 1), Theme.CheckBoxBorder);
         }
     }
 }
