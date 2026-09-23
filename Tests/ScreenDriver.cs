@@ -43,6 +43,71 @@ public static class ScreenDriver
         return GetControls<Control>(screen).Where(control => GetPressEvent(control) is not null).ToList();
     }
 
+    // The screen the navigator has open. It answers with a guard instead of
+    // letting a test silence the nullable warning at every press.
+    public static IScreen ScreenOf(Navigator navigator)
+    {
+        ArgumentNullException.ThrowIfNull(navigator);
+
+        return navigator.Current
+            ?? throw new InvalidOperationException("The navigator has no screen open.");
+    }
+
+    public static IReadOnlyList<Button> GetButtons(Navigator navigator)
+    {
+        return GetButtons(ScreenOf(navigator));
+    }
+
+    public static IReadOnlyList<Control> GetClickables(Navigator navigator)
+    {
+        return GetClickables(ScreenOf(navigator));
+    }
+
+    public static IReadOnlyList<SidebarMenu> GetMenus(Navigator navigator)
+    {
+        return GetMenus(ScreenOf(navigator));
+    }
+
+    public static void Click(Navigator navigator, string title)
+    {
+        Click(ScreenOf(navigator), title);
+    }
+
+    public static void ClickAt(Navigator navigator, int index)
+    {
+        ClickAt(ScreenOf(navigator), index);
+    }
+
+    public static void ClickRow(Navigator navigator, int index)
+    {
+        ClickRow(ScreenOf(navigator), index);
+    }
+
+    public static void ClickMenuItem(Navigator navigator, int index)
+    {
+        ClickMenuItem(ScreenOf(navigator), index);
+    }
+
+    public static void Type(Navigator navigator, int index, string text)
+    {
+        Type(ScreenOf(navigator), index, text);
+    }
+
+    public static void TickEveryBox(Navigator navigator)
+    {
+        TickEveryBox(ScreenOf(navigator));
+    }
+
+    public static void ConfirmDialog(Navigator navigator)
+    {
+        ConfirmDialog(ScreenOf(navigator));
+    }
+
+    public static void DismissDialog(Navigator navigator)
+    {
+        DismissDialog(ScreenOf(navigator));
+    }
+
     // The label is what the person reads, so tests name the button by it
     // instead of by the private field behind it.
     public static Button FindButton(object screen, string title)
@@ -62,8 +127,14 @@ public static class ScreenDriver
     public static void ClickAt(object screen, int index)
     {
         Control control = GetClickables(screen)[index];
+        EventInfo? press = GetPressEvent(control);
 
-        Raise(control, GetPressEvent(control)!.Name);
+        if (press is null)
+        {
+            throw new InvalidOperationException($"{control.GetType().Name} cannot be pressed.");
+        }
+
+        Raise(control, press.Name);
     }
 
     public static void ClickRow(object screen, int index)
@@ -136,7 +207,7 @@ public static class ScreenDriver
 
     // A control that declares an event answers for itself, so the search stops
     // there instead of reaching whatever it draws inside.
-    private static bool RespondsByItself(Control control)
+    private static bool IsRespondingByItself(Control control)
     {
         return GetOwnEvents(control).Length > 0;
     }
@@ -181,7 +252,7 @@ public static class ScreenDriver
 
         if (value is Control nested)
         {
-            if (!RespondsByItself(nested) || value is T)
+            if (!IsRespondingByItself(nested) || value is T)
             {
                 Collect(nested, found, seen);
             }

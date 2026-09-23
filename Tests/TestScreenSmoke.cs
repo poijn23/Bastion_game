@@ -52,10 +52,11 @@ public sealed class TestScreenSmoke
     public void Start_EveryScreen_LeavesNoButtonWithoutALabel(ScreenId screen)
     {
         var navigator = new Navigator();
+
         navigator.Start(screen);
 
         string untitled = Join(ScreenDriver
-            .GetButtons(navigator.Current!)
+            .GetButtons(navigator)
             .Select((button, index) => (button, index))
             .Where(pair => string.IsNullOrWhiteSpace(pair.button.Title))
             .Select(pair => $"{screen} button {pair.index}"));
@@ -70,10 +71,11 @@ public sealed class TestScreenSmoke
     public void Start_EveryScreen_ShowsNoRawCatalogKey(ScreenId screen)
     {
         var navigator = new Navigator();
+
         navigator.Start(screen);
 
         string raw = Join(ScreenDriver
-            .GetButtons(navigator.Current!)
+            .GetButtons(navigator)
             .Select(button => button.Title)
             .Where(LooksLikeAKey));
 

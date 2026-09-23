@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
@@ -113,40 +115,59 @@ public sealed class GuiRegister : FormScreen
     // duplicate checks stand in for the server answer until it exists.
     private bool Validate()
     {
-        _firstNameField.Warning = string.IsNullOrWhiteSpace(_firstNameField.Text)
-            ? TextCatalog.RegisterFirstNameRequired
-            : null;
-
-        _lastNameField.Warning = string.IsNullOrWhiteSpace(_lastNameField.Text)
-            ? TextCatalog.RegisterLastNameRequired
-            : null;
-
+        _firstNameField.Warning = GetEmptyWarning(_firstNameField.Text, TextCatalog.RegisterFirstNameRequired);
+        _lastNameField.Warning = GetEmptyWarning(_lastNameField.Text, TextCatalog.RegisterLastNameRequired);
         _nicknameField.Warning = GetNicknameWarning(_nicknameField.Text.Trim());
         _emailField.Warning = GetEmailWarning(_emailField.Text.Trim());
-
-        _passwordField.Warning = InputRules.HasPasswordLength(_passwordField.Text)
-            ? null
-            : TextCatalog.RegisterPasswordTooShort;
-
-        _confirmationField.Warning = _confirmationField.Text == _passwordField.Text
-            ? null
-            : TextCatalog.RegisterConfirmationMismatch;
+        _passwordField.Warning = GetPasswordWarning();
+        _confirmationField.Warning = GetConfirmationWarning();
 
         // Only the day box carries the text, or it would be drawn three times.
         _dayField.Warning = GetBirthDateWarning();
+        _termsCheckBox.Warning = GetTermsWarning();
 
-        _termsCheckBox.Warning = _termsCheckBox.IsChecked
+        return !GetCheckedControls().Any(control => control.HasWarning);
+    }
+
+    // The order is the reading order of the form, so a warning is answered
+    // where the eye already is.
+    private IEnumerable<Control> GetCheckedControls()
+    {
+        return
+        [
+            _firstNameField,
+            _lastNameField,
+            _nicknameField,
+            _emailField,
+            _passwordField,
+            _confirmationField,
+            _dayField,
+            _termsCheckBox
+        ];
+    }
+
+    private static string? GetEmptyWarning(string text, string warning)
+    {
+        return string.IsNullOrWhiteSpace(text) ? warning : null;
+    }
+
+    private string? GetPasswordWarning()
+    {
+        return InputRules.HasPasswordLength(_passwordField.Text)
             ? null
-            : TextCatalog.RegisterTermsRequired;
+            : TextCatalog.RegisterPasswordTooShort;
+    }
 
-        return !_firstNameField.HasWarning
-            && !_lastNameField.HasWarning
-            && !_nicknameField.HasWarning
-            && !_emailField.HasWarning
-            && !_passwordField.HasWarning
-            && !_confirmationField.HasWarning
-            && !_dayField.HasWarning
-            && !_termsCheckBox.HasWarning;
+    private string? GetConfirmationWarning()
+    {
+        return _confirmationField.Text == _passwordField.Text
+            ? null
+            : TextCatalog.RegisterConfirmationMismatch;
+    }
+
+    private string? GetTermsWarning()
+    {
+        return _termsCheckBox.IsChecked ? null : TextCatalog.RegisterTermsRequired;
     }
 
     private static string? GetNicknameWarning(string nickname)

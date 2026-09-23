@@ -14,7 +14,7 @@ public static class InputRules
     private const int MinPasswordLength = 8;
     private const int EarliestBirthYear = 1900;
 
-    private static readonly string[] Shorteners =
+    private static readonly string[] _shorteners =
         ["bit.ly", "tinyurl.com", "t.co", "goo.gl", "cutt.ly", "rb.gy", "is.gd", "ow.ly"];
 
     public static bool HasNicknameLength(string nickname)
@@ -111,7 +111,7 @@ public static class InputRules
         ArgumentNullException.ThrowIfNull(url);
 
         return Uri.TryCreate(url, UriKind.Absolute, out Uri? address)
-            && Shorteners.Contains(address.Host, StringComparer.OrdinalIgnoreCase);
+            && _shorteners.Contains(address.Host, StringComparer.OrdinalIgnoreCase);
     }
 
     public static bool IsInFuture(DateOnly date)

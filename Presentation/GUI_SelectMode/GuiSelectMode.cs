@@ -15,7 +15,7 @@ public sealed class GuiSelectMode : FormScreen
     private const int ClockChipsTop = ClockLabelTop + LabelSpace;
     private const int CardHeight = Theme.CardPadding + ClockChipsTop + Theme.ChipHeight + Theme.CardPadding;
 
-    private static readonly int[] ClockMinutes = [3, 5, 10];
+    private static readonly int[] _clockMinutes = [3, 5, 10];
 
     private readonly TextLine _modeLabel;
     private readonly ChipRow _modeChips;
@@ -120,9 +120,9 @@ public sealed class GuiSelectMode : FormScreen
     {
         _clockChips.Items.Clear();
 
-        for (int i = 0; i < ClockMinutes.Length; i++)
+        for (int i = 0; i < _clockMinutes.Length; i++)
         {
-            string text = string.Format(TextCatalog.SelectModeClockFormat, ClockMinutes[i]);
+            string text = string.Format(TextCatalog.SelectModeClockFormat, _clockMinutes[i]);
             _clockChips.Items.Add(new Chip { Text = text, IsSelected = i == _clockIndex });
         }
     }

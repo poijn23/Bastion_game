@@ -287,8 +287,15 @@ public abstract class FormScreen : IScreen
 
     private void OnLanguageSelected(object? sender, SelectionChangedEventArgs e)
     {
+        // Only a screen that draws the picker subscribes to it, so this guard
+        // says the invariant out loud instead of silencing the warning.
+        if (_languagePicker is null)
+        {
+            return;
+        }
+
         LanguagePicker.Apply(e.SelectedIndex);
-        _languagePicker!.Options = LanguagePicker.GetNames();
+        _languagePicker.Options = LanguagePicker.GetNames();
         ApplyTexts();
     }
 

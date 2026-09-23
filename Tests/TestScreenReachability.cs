@@ -31,7 +31,7 @@ public sealed class TestScreenReachability
             [ScreenId.ForgotPassword] = [[TestAccount.Email]],
             [ScreenId.Register] =
             [
-                ["Ana", "Reyes", "nueva", "nueva@bastion.test", "Contrasena1", "Contrasena1", "01", "01", "2000"]
+                ["Ada", "Stone", "newcomer", "newcomer@bastion.test", "Password1", "Password1", "01", "01", "2000"]
             ]
         };
 
@@ -109,10 +109,10 @@ public sealed class TestScreenReachability
     {
         var found = new List<ScreenId>();
         Navigator opened = Open(visit);
-        object screen = opened.Current!;
 
-        int pressable = ScreenDriver.GetClickables(screen).Count;
-        int entries = ScreenDriver.GetMenus(screen).Count == 0 ? 0 : ScreenDriver.GetMenus(screen)[0].Items.Count;
+        int pressable = ScreenDriver.GetClickables(opened).Count;
+        IReadOnlyList<SidebarMenu> menus = ScreenDriver.GetMenus(opened);
+        int entries = menus.Count == 0 ? 0 : menus[0].Items.Count;
 
         for (int index = 0; index < pressable; index++)
         {
@@ -151,10 +151,10 @@ public sealed class TestScreenReachability
 
         for (int index = 0; index < values.Length; index++)
         {
-            ScreenDriver.Type(navigator.Current!, index, values[index]);
+            ScreenDriver.Type(navigator, index, values[index]);
         }
 
-        ScreenDriver.TickEveryBox(navigator.Current!);
+        ScreenDriver.TickEveryBox(navigator);
 
         return navigator;
     }
@@ -164,16 +164,15 @@ public sealed class TestScreenReachability
     private static ScreenId Press(Visit visit, int index, Gesture gesture)
     {
         Navigator navigator = Open(visit);
-        object screen = navigator.Current!;
 
         switch (gesture)
         {
             case Gesture.MenuEntry:
-                ScreenDriver.ClickMenuItem(screen, index);
+                ScreenDriver.ClickMenuItem(navigator, index);
                 break;
             case Gesture.Control:
             default:
-                ScreenDriver.ClickAt(screen, index);
+                ScreenDriver.ClickAt(navigator, index);
                 break;
         }
 
@@ -181,7 +180,7 @@ public sealed class TestScreenReachability
         // where saying yes leads.
         if (ScreenDriver.IsShowingADialog(navigator.Current))
         {
-            ScreenDriver.ConfirmDialog(navigator.Current!);
+            ScreenDriver.ConfirmDialog(navigator);
         }
 
         return navigator.CurrentId;

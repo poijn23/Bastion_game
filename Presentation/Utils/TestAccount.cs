@@ -14,8 +14,8 @@ public static class TestAccount
 
     // Two more stand in accounts, so the branches CU-01 describes can be
     // walked without a server deciding them.
-    public const string PendingIdentifier = "pendiente";
-    public const string BannedIdentifier = "sancionado";
+    public const string PendingIdentifier = "pending";
+    public const string BannedIdentifier = "banned";
 
     public static string Nickname { get; set; } = "prueba";
 
