@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Bastion.Presentation.GUI_Match;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -142,7 +143,7 @@ public sealed class GuiAIDifficulty : FormScreen
 
     private void OnPlayClicked(object? sender, EventArgs e)
     {
-        Navigator.GoTo(ScreenId.Match);
+        Navigator.GoTo(ScreenId.Match, GuiMatch.AiOpponent);
     }
 
     private void OnBackClicked(object? sender, EventArgs e)

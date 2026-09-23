@@ -121,6 +121,7 @@ public sealed class GuiWaitingRoom : FormScreen
     {
         if (_isHost)
         {
+            Navigator.GoTo(ScreenId.VersusScreen);
             return;
         }
 

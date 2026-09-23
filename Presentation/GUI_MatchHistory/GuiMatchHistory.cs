@@ -25,6 +25,7 @@ public sealed class GuiMatchHistory : FormScreen
         for (int i = 0; i < VisibleRows; i++)
         {
             var row = new DataRow { Bounds = GetRowBounds(i) };
+            row.Clicked += OnRowClicked;
             _rows.Add(row);
             Register(row);
         }
@@ -40,6 +41,11 @@ public sealed class GuiMatchHistory : FormScreen
     protected override string GetSubtitle()
     {
         return TextCatalog.MatchHistorySubtitle;
+    }
+
+    private void OnRowClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.Replay);
     }
 
     private void OnBackClicked(object? sender, EventArgs e)

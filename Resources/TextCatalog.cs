@@ -1106,6 +1106,20 @@ public static class TextCatalog
 
     public static string SpectatorSubtitle => GetText(nameof(SpectatorSubtitle));
 
+    public static string MainMenuModerationButton => GetText(nameof(MainMenuModerationButton));
+
+    public static string AdminPanelQueueButton => GetText(nameof(AdminPanelQueueButton));
+
+    public static string AdminPanelLogsButton => GetText(nameof(AdminPanelLogsButton));
+
+    public static string PlayerCardReportButton => GetText(nameof(PlayerCardReportButton));
+
+    public static string PlayerCardWatchButton => GetText(nameof(PlayerCardWatchButton));
+
+    public static string ShopBoxButton => GetText(nameof(ShopBoxButton));
+
+    public static string MainScreenIndexButton => GetText(nameof(MainScreenIndexButton));
+
     private static string GetText(string key)
     {
         return _manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;

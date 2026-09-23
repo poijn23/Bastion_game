@@ -69,9 +69,25 @@ public sealed class GuiLogin : FormScreen
             return;
         }
 
-        if (TestAccount.Matches(_identifierField.Text.Trim(), _passwordField.Text))
+        string identifier = _identifierField.Text.Trim();
+
+        if (TestAccount.IsBanned(identifier))
         {
-            Navigator.Restart(ScreenId.Menu);
+            Navigator.Restart(ScreenId.BannedAccount);
+            return;
+        }
+
+        if (TestAccount.IsPending(identifier))
+        {
+            Navigator.Restart(ScreenId.PendingVerification);
+            return;
+        }
+
+        if (TestAccount.Matches(identifier, _passwordField.Text))
+        {
+            // ESC-03 asks for the second factor on every new device, and
+            // without a device registry every sign in counts as new.
+            Navigator.Restart(ScreenId.SecondFactor);
             return;
         }
 
@@ -103,6 +119,7 @@ public sealed class GuiLogin : FormScreen
 
     private void OnGuestClicked(object? sender, EventArgs e)
     {
+        Navigator.Restart(ScreenId.FirstTime);
     }
 
     protected override void ApplyTexts()

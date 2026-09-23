@@ -66,6 +66,7 @@ public sealed class GuiReport : FormScreen
 
     private void OnSendClicked(object? sender, EventArgs e)
     {
+        Navigator.GoBack();
     }
 
     private void OnCancelClicked(object? sender, EventArgs e)

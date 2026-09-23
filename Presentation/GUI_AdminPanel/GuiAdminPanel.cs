@@ -22,6 +22,8 @@ public sealed class GuiAdminPanel : FormScreen
     private readonly ValueBox _typeBox;
     private readonly List<DataRow> _history = [];
     private readonly Button _grantButton;
+    private readonly Button _queueButton;
+    private readonly Button _logsButton;
     private readonly Button _backButton;
 
     public GuiAdminPanel(INavigator navigator)
@@ -49,10 +51,14 @@ public sealed class GuiAdminPanel : FormScreen
             Register(row);
         }
 
-        _grantButton = CreatePrimaryButton(true);
+        _grantButton = CreatePrimaryButton(false);
+        _queueButton = CreateSecondaryButton();
+        _logsButton = CreateSecondaryButton();
         _backButton = CreateSecondaryButton();
-        LayOutActionsInRow([_grantButton, _backButton]);
+        LayOutActionsInRow([_grantButton, _queueButton, _logsButton, _backButton]);
         _grantButton.Clicked += OnGrantClicked;
+        _queueButton.Clicked += OnQueueClicked;
+        _logsButton.Clicked += OnLogsClicked;
         _backButton.Clicked += OnBackClicked;
 
         Register(_nicknameBox);
@@ -60,6 +66,8 @@ public sealed class GuiAdminPanel : FormScreen
         Register(_stateBox);
         Register(_typeBox);
         Register(_grantButton);
+        Register(_queueButton);
+        Register(_logsButton);
         Register(_backButton);
 
         ApplyTexts();
@@ -79,6 +87,16 @@ public sealed class GuiAdminPanel : FormScreen
             SecondaryLabel = TextCatalog.CommonCancelButton,
             OnConfirm = GoBack
         });
+    }
+
+    private void OnQueueClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.ModerationQueue);
+    }
+
+    private void OnLogsClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.Logs);
     }
 
     private void OnBackClicked(object? sender, EventArgs e)
@@ -110,6 +128,8 @@ public sealed class GuiAdminPanel : FormScreen
         }
 
         _grantButton.Title = TextCatalog.AdminPanelGrantButton;
+        _queueButton.Title = TextCatalog.AdminPanelQueueButton;
+        _logsButton.Title = TextCatalog.AdminPanelLogsButton;
         _backButton.Title = TextCatalog.CommonBackButton;
     }
 }

@@ -59,7 +59,7 @@ public sealed class BastionGame : Game
         };
 
         _navigator = new Navigator();
-        _navigator.Start(ScreenId.Login);
+        _navigator.Start(ScreenId.MainScreen);
     }
 
     protected override void Update(GameTime gameTime)

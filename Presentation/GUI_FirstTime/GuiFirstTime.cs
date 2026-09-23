@@ -115,7 +115,7 @@ public sealed class GuiFirstTime : FormScreen
 
     private void OnSkipClicked(object? sender, EventArgs e)
     {
-        Navigator.Restart(ScreenId.MainMenu);
+        Navigator.GoTo(ScreenId.LinkAccount);
     }
 
     protected override void ApplyTexts()

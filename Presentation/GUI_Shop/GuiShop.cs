@@ -22,6 +22,7 @@ public sealed class GuiShop : FormScreen
     private readonly StatTile _balance;
     private readonly List<AvatarBox> _items = [];
     private readonly Button _buyButton;
+    private readonly Button _boxButton;
     private readonly Button _backButton;
 
     public GuiShop(INavigator navigator)
@@ -49,13 +50,16 @@ public sealed class GuiShop : FormScreen
         }
 
         _buyButton = CreatePrimaryButton(true);
+        _boxButton = CreateSecondaryButton();
         _backButton = CreateSecondaryButton();
-        LayOutActionsInRow([_buyButton, _backButton]);
+        LayOutActionsInRow([_buyButton, _boxButton, _backButton]);
         _buyButton.Clicked += OnBuyClicked;
+        _boxButton.Clicked += OnBoxClicked;
         _backButton.Clicked += OnBackClicked;
 
         Register(_balance);
         Register(_buyButton);
+        Register(_boxButton);
         Register(_backButton);
 
         ApplyTexts();
@@ -69,6 +73,11 @@ public sealed class GuiShop : FormScreen
     private void OnBuyClicked(object? sender, EventArgs e)
     {
         Navigator.GoTo(ScreenId.PurchaseConfirm);
+    }
+
+    private void OnBoxClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.BoxPurchaseConfirm);
     }
 
     private void OnBackClicked(object? sender, EventArgs e)
@@ -88,6 +97,7 @@ public sealed class GuiShop : FormScreen
         }
 
         _buyButton.Title = TextCatalog.ShopBuyButton;
+        _boxButton.Title = TextCatalog.ShopBoxButton;
         _backButton.Title = TextCatalog.CommonBackButton;
     }
 

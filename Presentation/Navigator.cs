@@ -149,8 +149,6 @@ public sealed class Navigator : INavigator
             navigator => new GuiMatchmaking(navigator),
         [ScreenId.VersusScreen] =
             navigator => new GuiVersusScreen(navigator),
-        [ScreenId.Match] =
-            navigator => new GuiMatch(navigator),
         [ScreenId.OpponentDisconnected] =
             navigator => new GuiOpponentDisconnected(navigator),
         [ScreenId.PrivateMatch] =
@@ -319,6 +317,11 @@ public sealed class Navigator : INavigator
         if (screen == ScreenId.ResetPassword)
         {
             return new GuiResetPassword(this, argument ?? string.Empty);
+        }
+
+        if (screen == ScreenId.Match)
+        {
+            return new GuiMatch(this, argument);
         }
 
         if (screen == ScreenId.MatchEnd)

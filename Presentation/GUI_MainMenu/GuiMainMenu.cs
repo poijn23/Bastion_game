@@ -21,6 +21,7 @@ public sealed class GuiMainMenu : FormScreen
     private const int SmallButtonGap = 12;
     private const int SmallButtonCount = 5;
     private const int FooterGap = 12;
+    private const int FooterCount = 3;
 
     private const int TilesTop = HeaderHeight + 8;
     private const int ActionsTop = TilesTop + TileHeight + SectionGap;
@@ -43,6 +44,7 @@ public sealed class GuiMainMenu : FormScreen
     private readonly Button _historyButton;
     private readonly Button _howToPlayButton;
     private readonly Button _settingsButton;
+    private readonly Button _moderationButton;
 
     public GuiMainMenu(INavigator navigator)
         : base(navigator, WideCardWidth, CardHeight)
@@ -86,13 +88,17 @@ public sealed class GuiMainMenu : FormScreen
         _rankingButton.Clicked += OnRankingClicked;
         _historyButton.Clicked += OnHistoryClicked;
 
-        int footerWidth = (ContentWidth - FooterGap) / 2;
+        int footerWidth = (ContentWidth - (FooterGap * (FooterCount - 1))) / FooterCount;
         _howToPlayButton = CreateOutlineButton(
             new Rectangle(ContentX, top + FooterTop, footerWidth, Theme.SecondaryButtonHeight));
-        int settingsX = ContentX + footerWidth + FooterGap;
+        int moderationX = ContentX + footerWidth + FooterGap;
+        _moderationButton = CreateOutlineButton(
+            new Rectangle(moderationX, top + FooterTop, footerWidth, Theme.SecondaryButtonHeight));
+        int settingsX = moderationX + footerWidth + FooterGap;
         _settingsButton = CreateOutlineButton(
             new Rectangle(settingsX, top + FooterTop, footerWidth, Theme.SecondaryButtonHeight));
         _howToPlayButton.Clicked += OnHowToPlayClicked;
+        _moderationButton.Clicked += OnModerationClicked;
         _settingsButton.Clicked += OnSettingsClicked;
 
         Register(_header);
@@ -109,6 +115,7 @@ public sealed class GuiMainMenu : FormScreen
         Register(_rankingButton);
         Register(_historyButton);
         Register(_howToPlayButton);
+        Register(_moderationButton);
         Register(_settingsButton);
 
         ApplyTexts();
@@ -169,6 +176,12 @@ public sealed class GuiMainMenu : FormScreen
         Navigator.GoTo(ScreenId.AccountSettings);
     }
 
+    // Who may open it is the server's call; the entry is always drawn.
+    private void OnModerationClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.AdminPanel);
+    }
+
     // Placeholder numbers: the player state comes from the server.
     protected override void ApplyTexts()
     {
@@ -196,6 +209,7 @@ public sealed class GuiMainMenu : FormScreen
         _historyButton.Title = TextCatalog.MainMenuHistoryButton;
 
         _howToPlayButton.Title = TextCatalog.MainMenuHowToPlayButton;
+        _moderationButton.Title = TextCatalog.MainMenuModerationButton;
         _settingsButton.Title = TextCatalog.MainMenuSettingsButton;
     }
 

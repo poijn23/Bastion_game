@@ -2257,4 +2257,32 @@
     <value>WATCHING THE MATCH</value>
     <comment>Subtitle of GUI_Spectator.</comment>
   </data>
+  <data name="MainMenuModerationButton" xml:space="preserve">
+    <value>MODERATION</value>
+    <comment>Entry to the moderation tools from the home hub.</comment>
+  </data>
+  <data name="AdminPanelQueueButton" xml:space="preserve">
+    <value>REPORT QUEUE</value>
+    <comment>CU-43 entry from the moderation panel.</comment>
+  </data>
+  <data name="AdminPanelLogsButton" xml:space="preserve">
+    <value>LOGS</value>
+    <comment>CU-48 entry from the moderation panel.</comment>
+  </data>
+  <data name="PlayerCardReportButton" xml:space="preserve">
+    <value>REPORT</value>
+    <comment>CU-42 entry from another player's card.</comment>
+  </data>
+  <data name="PlayerCardWatchButton" xml:space="preserve">
+    <value>WATCH</value>
+    <comment>CU-40 entry from another player's card.</comment>
+  </data>
+  <data name="ShopBoxButton" xml:space="preserve">
+    <value>BUY A BOX</value>
+    <comment>CU-39 entry from the shop.</comment>
+  </data>
+  <data name="MainScreenIndexButton" xml:space="preserve">
+    <value>ALL SCREENS</value>
+    <comment>Provisional entry to GUI_Menu, the index of every screen.</comment>
+  </data>
 </root>

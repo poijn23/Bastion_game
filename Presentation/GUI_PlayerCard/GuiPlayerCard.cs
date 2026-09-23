@@ -23,6 +23,8 @@ public sealed class GuiPlayerCard : FormScreen
     private readonly StatTile _headToHead;
     private readonly List<DataRow> _rows = [];
     private readonly Button _addFriendButton;
+    private readonly Button _watchButton;
+    private readonly Button _reportButton;
     private readonly Button _backButton;
 
     public GuiPlayerCard(INavigator navigator)
@@ -43,15 +45,21 @@ public sealed class GuiPlayerCard : FormScreen
             Register(row);
         }
 
-        _addFriendButton = CreatePrimaryButton(true);
+        _addFriendButton = CreatePrimaryButton(false);
+        _watchButton = CreateSecondaryButton();
+        _reportButton = CreateSecondaryButton();
         _backButton = CreateSecondaryButton();
-        LayOutActionsInRow([_addFriendButton, _backButton]);
+        LayOutActionsInRow([_addFriendButton, _watchButton, _reportButton, _backButton]);
         _addFriendButton.Clicked += OnAddFriendClicked;
+        _watchButton.Clicked += OnWatchClicked;
+        _reportButton.Clicked += OnReportClicked;
         _backButton.Clicked += OnBackClicked;
 
         Register(_avatar);
         Register(_headToHead);
         Register(_addFriendButton);
+        Register(_watchButton);
+        Register(_reportButton);
         Register(_backButton);
 
         ApplyTexts();
@@ -65,6 +73,16 @@ public sealed class GuiPlayerCard : FormScreen
     private void OnAddFriendClicked(object? sender, EventArgs e)
     {
         Navigator.GoTo(ScreenId.AddFriend);
+    }
+
+    private void OnWatchClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.Spectator);
+    }
+
+    private void OnReportClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.Report);
     }
 
     private void OnBackClicked(object? sender, EventArgs e)
@@ -86,6 +104,8 @@ public sealed class GuiPlayerCard : FormScreen
         }
 
         _addFriendButton.Title = TextCatalog.PlayerCardAddFriendButton;
+        _watchButton.Title = TextCatalog.PlayerCardWatchButton;
+        _reportButton.Title = TextCatalog.PlayerCardReportButton;
         _backButton.Title = TextCatalog.CommonBackButton;
     }
 

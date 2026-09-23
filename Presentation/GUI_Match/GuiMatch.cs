@@ -12,6 +12,10 @@ namespace Bastion.Presentation.GUI_Match;
 // wall (CU-22, CU-23), and the match chat.
 public sealed class GuiMatch : FormScreen
 {
+    // Told by whoever opens the match, because the end of an AI match is a
+    // different screen than the end of an online one.
+    public const string AiOpponent = "ai";
+
     private const int SampleTurn = 3;
 
     private const int HeaderHeight = 22;
@@ -41,11 +45,15 @@ public sealed class GuiMatch : FormScreen
     private readonly TextField _chatField;
     private readonly Button _drawButton;
     private readonly Button _resignButton;
+    private readonly bool _isAgainstAi;
+
     private int _actionIndex;
 
-    public GuiMatch(INavigator navigator)
+    public GuiMatch(INavigator navigator, string? opponent)
         : base(navigator, WideCardWidth, CardHeight)
     {
+        _isAgainstAi = opponent == AiOpponent;
+
         int top = Card.Y + Theme.CardPadding;
 
         _turnLabel = new TextLine
@@ -142,9 +150,11 @@ public sealed class GuiMatch : FormScreen
         });
     }
 
+    // The offer waits for the rival. Until the server is there to answer it,
+    // the wait resolves the way D-15 describes: the rival stopped answering.
     private void OnDrawOffered()
     {
-        Navigator.ShowMessage(DialogTone.Confirm, TextCatalog.MatchDrawSentBody);
+        Navigator.GoTo(ScreenId.OpponentDisconnected);
     }
 
     private void OnResignClicked(object? sender, EventArgs e)
@@ -160,6 +170,12 @@ public sealed class GuiMatch : FormScreen
 
     private void OnResignConfirmed()
     {
+        if (_isAgainstAi)
+        {
+            Navigator.GoTo(ScreenId.AIMatchEnd);
+            return;
+        }
+
         Navigator.GoTo(ScreenId.MatchEnd, GuiMatchEnd.DefeatOutcome);
     }
 

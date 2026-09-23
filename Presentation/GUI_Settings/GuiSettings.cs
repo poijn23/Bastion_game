@@ -239,7 +239,11 @@ public sealed class GuiSettings : FormScreen
 
     private void OnSidebarChosen(object? sender, SelectionChangedEventArgs e)
     {
-        ShowPanel(e.SelectedIndex == LanguageIndex);
+        bool wantsLanguage = e.SelectedIndex == LanguageIndex;
+
+        // Each panel is its own destination, so the back link and the
+        // history treat them as the two screens the use cases describe.
+        Navigator.GoTo(wantsLanguage ? ScreenId.SettingsLanguage : ScreenId.AccountSettings);
     }
 
     private void OnEditClicked(object? sender, EventArgs e)

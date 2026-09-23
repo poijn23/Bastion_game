@@ -12,6 +12,11 @@ public static class TestAccount
     public const string Password = "prueba123";
     public const string FriendCode = "AV-4K92";
 
+    // Two more stand in accounts, so the branches CU-01 describes can be
+    // walked without a server deciding them.
+    public const string PendingIdentifier = "pendiente";
+    public const string BannedIdentifier = "sancionado";
+
     public static string Nickname { get; set; } = "prueba";
 
     public static bool IsNicknameTaken(string nickname)
@@ -22,6 +27,16 @@ public static class TestAccount
     public static bool IsEmailTaken(string email)
     {
         return string.Equals(email, Email, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public static bool IsPending(string identifier)
+    {
+        return string.Equals(identifier, PendingIdentifier, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public static bool IsBanned(string identifier)
+    {
+        return string.Equals(identifier, BannedIdentifier, StringComparison.OrdinalIgnoreCase);
     }
 
     // The identifier is the nickname or the email, as CU-01 allows both.

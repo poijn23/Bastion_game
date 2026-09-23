@@ -25,6 +25,7 @@ public sealed class GuiFriends : FormScreen
         for (int i = 0; i < VisibleRows; i++)
         {
             var row = new DataRow { Bounds = GetRowBounds(i) };
+            row.Clicked += OnRowClicked;
             _rows.Add(row);
             Register(row);
         }
@@ -43,6 +44,11 @@ public sealed class GuiFriends : FormScreen
     protected override string GetSubtitle()
     {
         return TextCatalog.FriendsSubtitle;
+    }
+
+    private void OnRowClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.PlayerCard);
     }
 
     private void OnAddClicked(object? sender, EventArgs e)
