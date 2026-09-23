@@ -172,6 +172,12 @@ public sealed class Navigator : INavigator
     private string? _currentArgument;
     private Action? _pendingConfirm;
 
+    // What is on screen right now, dialog included. Read only: the way to
+    // change it is GoTo, GoBack or one of the dialog calls.
+    public IScreen? Current => _dialog ?? _current;
+
+    public ScreenId CurrentId => _currentId;
+
     public void Start(ScreenId screen)
     {
         Restart(screen);

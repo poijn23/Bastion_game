@@ -136,12 +136,17 @@ public sealed class GuiResetPassword : FormScreen
 
         _secondsLeft = MathF.Max(0f, ResendSeconds - (input.ElapsedSeconds - _resendStartedAt));
         _resendButton.IsEnabled = _secondsLeft <= 0f;
+        ApplyResendLabel();
+        _meter.Strength = InputRules.PasswordStrength(_newPasswordField.Text);
+    }
+
+    private void ApplyResendLabel()
+    {
         _resendButton.Title = _secondsLeft <= 0f
             ? TextCatalog.ResetPasswordResendButton
             : string.Format(
                 TextCatalog.ResetPasswordResendInFormat,
                 TimeSpan.FromSeconds(_secondsLeft).ToString(@"m\:ss"));
-        _meter.Strength = InputRules.PasswordStrength(_newPasswordField.Text);
     }
 
     protected override void ApplyTexts()
@@ -156,6 +161,7 @@ public sealed class GuiResetPassword : FormScreen
         _confirmationField.Label = TextCatalog.ResetPasswordConfirmLabel;
         _confirmationField.Placeholder = TextCatalog.ResetPasswordConfirmPlaceholder;
         _saveButton.Title = TextCatalog.ResetPasswordSaveButton;
+        ApplyResendLabel();
 
         if (_hasValidated)
         {

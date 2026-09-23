@@ -25,6 +25,7 @@ Cliente MonoGame (este repo), TCP con protocolo propio (sin WebSockets), servido
 - `Presentation/`: cliente MonoGame DesktopGL, `net10.0`, `WinExe`. Una pantalla por carpeta, `GUI_<Nombre>/Gui<Nombre>.cs`. `Utils/` guarda los controles y las clases base (`FormScreen`, `MessageScreen`, `Control`, `Theme`, `Canvas`). `Navigator` y `ScreenId` resuelven la navegación.
 - `Resources/`: `TextCatalog.cs` (una propiedad por clave), `TextCatalog.resx` (inglés, neutro) y `TextCatalog.es-MX.resx`, siempre con las mismas claves. `Language.cs` aplica la cultura.
 - `Contracts/`, `DataAccess/`, `Domain/`, `Service/`: vacías (`.gitkeep`). Todavía no hay motor de reglas, protocolo, servidor ni acceso a datos.
+- `Tests/`: pruebas de la capa de presentación (MSTest). Ver la sección Pruebas.
 
 Patrones ya establecidos:
 
@@ -55,6 +56,25 @@ dotnet run --project Presentation/Bastion.Presentation.csproj
 ```
 
 `dotnet tool restore` instala `dotnet-mgcb`, que compila las fuentes de `Presentation/Content`. Regla del proyecto: DesktopGL, nunca WindowsDX; no activar `PublishTrimmed` ni `PublishAot`.
+
+## Pruebas
+
+`Tests/Bastion.Presentation.Tests.csproj` (MSTest). Se ejecutan con:
+
+```
+dotnet test Tests/Bastion.Presentation.Tests.csproj
+```
+
+No abren ventana: construyen pantallas y pulsan controles en memoria. Dibujar necesita un `GraphicsDevice`, así que **lo visual no está cubierto** y sigue comprobándose a ojo.
+
+- `TestScreenSmoke`: cada `ScreenId` se construye en los dos idiomas, ningún botón queda sin rótulo y ninguno muestra una clave del catálogo en crudo.
+- `TestNavigationFlow`: los caminos de los casos de uso, pulsando botón por botón (entrar, registrarse, recuperar contraseña, partida privada, tienda, amigos, moderación, volver atrás).
+- `TestScreenReachability`: recorre el juego desde la portada pulsando todo lo pulsable. Falla si alguna pantalla queda sin forma de abrirse. Es la red que impide volver a dejar GUIs huérfanas.
+- `TestTextCatalog`: toda propiedad del catálogo responde con texto en los dos idiomas, y ninguna devuelve su propia clave.
+
+`ScreenDriver` es el ayudante: encuentra los controles de una pantalla por reflexión y levanta su evento, porque un control solo se dispara desde dentro. Un control que declara su propio evento (`SettingRow`, `SessionRow`, `DataRow`) responde por sí mismo y el buscador no entra en lo que dibuja dentro.
+
+Si una pantalla nueva necesita datos escritos para avanzar, se añade su variante a `_typing` en `TestScreenReachability`; si cambia de sentido según quién la abre, a `_arguments`.
 
 ## Convenciones de código (Estándar de Codificación v2.1)
 
