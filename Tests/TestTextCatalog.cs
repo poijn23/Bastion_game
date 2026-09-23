@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Bastion.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Bastion.Resources;
 
 namespace Bastion.Presentation.Tests;
 
@@ -13,6 +13,8 @@ namespace Bastion.Presentation.Tests;
 [TestClass]
 public sealed class TestTextCatalog
 {
+    private const int ExpectedReadings = 2;
+
     private static IEnumerable<PropertyInfo> EveryEntry =>
         typeof(TextCatalog)
             .GetProperties(BindingFlags.Public | BindingFlags.Static)
@@ -23,11 +25,9 @@ public sealed class TestTextCatalog
     {
         Language.Apply(Language.English);
 
-        IEnumerable<string> empty = EveryEntry
-            .Where(entry => string.IsNullOrWhiteSpace((string?)entry.GetValue(null)))
-            .Select(entry => entry.Name);
+        string empty = NameTheOnesThat(text => string.IsNullOrWhiteSpace(text));
 
-        Assert.IsFalse(empty.Any(), $"Empty in English: {string.Join(", ", empty)}.");
+        Assert.AreEqual(string.Empty, empty);
     }
 
     [TestMethod]
@@ -35,46 +35,42 @@ public sealed class TestTextCatalog
     {
         Language.Apply(Language.SpanishMexico);
 
-        IEnumerable<string> empty = EveryEntry
-            .Where(entry => string.IsNullOrWhiteSpace((string?)entry.GetValue(null)))
-            .Select(entry => entry.Name);
+        string empty = NameTheOnesThat(text => string.IsNullOrWhiteSpace(text));
 
-        Assert.IsFalse(empty.Any(), $"Empty in es-MX: {string.Join(", ", empty)}.");
+        Assert.AreEqual(string.Empty, empty);
     }
 
     [TestMethod]
-    public void Read_EveryEntryInSpanish_AnswersWithSomethingOtherThanTheKey()
-    {
-        Language.Apply(Language.SpanishMexico);
-
-        IEnumerable<string> missing = EveryEntry
-            .Where(entry => string.Equals((string?)entry.GetValue(null), entry.Name, StringComparison.Ordinal))
-            .Select(entry => entry.Name);
-
-        Assert.IsFalse(missing.Any(), $"Missing from the es-MX catalog: {string.Join(", ", missing)}.");
-    }
-
-    [TestMethod]
-    public void Read_EveryEntryInEnglish_AnswersWithSomethingOtherThanTheKey()
+    public void Read_EveryEntryInEnglish_AnswersSomethingOtherThanItsKey()
     {
         Language.Apply(Language.English);
 
-        IEnumerable<string> missing = EveryEntry
-            .Where(entry => string.Equals((string?)entry.GetValue(null), entry.Name, StringComparison.Ordinal))
-            .Select(entry => entry.Name);
+        string missing = NameTheOnesNamedAfterThemselves();
 
-        Assert.IsFalse(missing.Any(), $"Missing from the English catalog: {string.Join(", ", missing)}.");
+        Assert.AreEqual(string.Empty, missing);
     }
 
     [TestMethod]
-    public void Apply_SwitchingTheLanguage_ChangesWhatTheCatalogAnswers()
+    public void Read_EveryEntryInSpanish_AnswersSomethingOtherThanItsKey()
+    {
+        Language.Apply(Language.SpanishMexico);
+
+        string missing = NameTheOnesNamedAfterThemselves();
+
+        Assert.AreEqual(string.Empty, missing);
+    }
+
+    // Two readings of the same key that land in one bucket would mean the
+    // language never changed anything.
+    [TestMethod]
+    public void Apply_ReadingOneKeyInBothLanguages_AnswersTwoDifferentTexts()
     {
         Language.Apply(Language.English);
         string english = TextCatalog.LoginSignInButton;
 
         Language.Apply(Language.SpanishMexico);
 
-        Assert.AreNotEqual(english, TextCatalog.LoginSignInButton);
+        Assert.AreEqual(ExpectedReadings, CountDistinct(english, TextCatalog.LoginSignInButton));
     }
 
     [TestMethod]
@@ -90,8 +86,27 @@ public sealed class TestTextCatalog
     }
 
     [TestCleanup]
-    public void LeaveTheCatalogInEnglish()
+    public void LeaveTheCatalogInTheDefaultLanguage()
     {
         Language.Apply(Language.Default);
+    }
+
+    private static int CountDistinct(string first, string second)
+    {
+        return new HashSet<string>(StringComparer.Ordinal) { first, second }.Count;
+    }
+
+    private static string NameTheOnesThat(Func<string?, bool> isWrong)
+    {
+        return string.Join(", ", EveryEntry
+            .Where(entry => isWrong((string?)entry.GetValue(null)))
+            .Select(entry => entry.Name));
+    }
+
+    private static string NameTheOnesNamedAfterThemselves()
+    {
+        return string.Join(", ", EveryEntry
+            .Where(entry => string.Equals((string?)entry.GetValue(null), entry.Name, StringComparison.Ordinal))
+            .Select(entry => entry.Name));
     }
 }

@@ -1,7 +1,7 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bastion.Presentation.GUI_WaitingRoom;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Bastion.Presentation.Tests;
 
@@ -29,7 +29,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.LoginSignInButton);
 
-        Assert.AreEqual(ScreenId.SecondFactor, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.SecondFactor), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -37,7 +37,7 @@ public sealed class TestNavigationFlow
     {
         GoToTheMainMenu();
 
-        Assert.AreEqual(ScreenId.MainMenu, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.MainMenu), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -49,7 +49,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.LoginSignInButton);
 
-        Assert.AreEqual(ScreenId.BannedAccount, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.BannedAccount), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -61,7 +61,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.LoginSignInButton);
 
-        Assert.AreEqual(ScreenId.PendingVerification, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.PendingVerification), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -73,7 +73,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.LoginSignInButton);
 
-        Assert.AreEqual(ScreenId.Login, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.Login), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -83,7 +83,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.LoginCreateAccountButton);
 
-        Assert.AreEqual(ScreenId.Register, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.Register), Destination.Of(_navigator));
     }
 
     // CU-02 FA-08: leaving the form asks before throwing the typing away.
@@ -94,7 +94,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.RegisterCancelButton);
 
-        Assert.IsTrue(ScreenDriver.IsShowingADialog(_navigator.Current));
+        Assert.AreEqual(Destination.Asking(ScreenId.Register), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -105,7 +105,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.ConfirmDialog(_navigator.Current!);
 
-        Assert.AreEqual(ScreenId.Login, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.Login), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -116,7 +116,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.DismissDialog(_navigator.Current!);
 
-        Assert.AreEqual(ScreenId.Register, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.Register), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -128,7 +128,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.ForgotPasswordSendButton);
 
-        Assert.AreEqual(ScreenId.ResetPassword, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.ResetPassword), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -138,7 +138,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.LoginGuestButton);
 
-        Assert.AreEqual(ScreenId.FirstTime, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.FirstTime), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -148,7 +148,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.MainMenuFindMatchButton);
 
-        Assert.AreEqual(ScreenId.SelectMode, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.SelectMode), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -159,7 +159,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.PrivateMatchCreateButton);
 
-        Assert.AreEqual(ScreenId.WaitingRoom, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.WaitingRoom), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -169,7 +169,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.WaitingRoomStartButton);
 
-        Assert.AreEqual(ScreenId.VersusScreen, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.VersusScreen), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -180,7 +180,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.ShopBoxButton);
 
-        Assert.AreEqual(ScreenId.BoxPurchaseConfirm, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.BoxPurchaseConfirm), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -191,7 +191,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.ClickRow(_navigator.Current!, 0);
 
-        Assert.AreEqual(ScreenId.PlayerCard, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.PlayerCard), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -201,7 +201,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.PlayerCardReportButton);
 
-        Assert.AreEqual(ScreenId.Report, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.Report), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -212,7 +212,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.ClickRow(_navigator.Current!, 0);
 
-        Assert.AreEqual(ScreenId.PlayerCard, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.PlayerCard), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -223,7 +223,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.ClickRow(_navigator.Current!, 0);
 
-        Assert.AreEqual(ScreenId.Replay, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.Replay), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -234,7 +234,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.AdminPanelQueueButton);
 
-        Assert.AreEqual(ScreenId.ModerationQueue, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.ModerationQueue), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -244,7 +244,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator.Current!, TextCatalog.MainMenuSettingsButton);
 
-        Assert.AreEqual(ScreenId.AccountSettings, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.AccountSettings), Destination.Of(_navigator));
     }
 
     [TestMethod]
@@ -255,7 +255,7 @@ public sealed class TestNavigationFlow
 
         _navigator.GoBack();
 
-        Assert.AreEqual(ScreenId.MainMenu, _navigator.CurrentId);
+        Assert.AreEqual(Destination.On(ScreenId.MainMenu), Destination.Of(_navigator));
     }
 
     private void GoToTheRegistrationForm()

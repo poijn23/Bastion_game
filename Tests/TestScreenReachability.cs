@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bastion.Presentation.GUI_Match;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Bastion.Presentation.Tests;
 
@@ -47,9 +47,9 @@ public sealed class TestScreenReachability
     {
         IReadOnlySet<ScreenId> reached = Crawl();
 
-        IEnumerable<ScreenId> orphans = Enum.GetValues<ScreenId>().Where(screen => !reached.Contains(screen));
+        string orphans = Name(Enum.GetValues<ScreenId>().Where(screen => !reached.Contains(screen)));
 
-        Assert.IsFalse(orphans.Any(), $"No way to open: {string.Join(", ", orphans)}.");
+        Assert.AreEqual(string.Empty, orphans);
     }
 
     [TestMethod]
@@ -57,10 +57,15 @@ public sealed class TestScreenReachability
     {
         IReadOnlySet<ScreenId> reached = Crawl(ScreenId.Menu);
 
-        IEnumerable<ScreenId> orphans = Enum.GetValues<ScreenId>()
-            .Where(screen => screen != ScreenId.Menu && !reached.Contains(screen));
+        string orphans = Name(Enum.GetValues<ScreenId>()
+            .Where(screen => screen != ScreenId.Menu && !reached.Contains(screen)));
 
-        Assert.IsFalse(orphans.Any(), $"Only the provisional index can open: {string.Join(", ", orphans)}.");
+        Assert.AreEqual(string.Empty, orphans);
+    }
+
+    private static string Name(IEnumerable<ScreenId> screens)
+    {
+        return string.Join(", ", screens);
     }
 
     private static IReadOnlySet<ScreenId> Crawl(ScreenId? closed = null)

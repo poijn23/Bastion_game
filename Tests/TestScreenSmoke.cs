@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Bastion.Presentation.Tests;
 
@@ -13,6 +13,8 @@ namespace Bastion.Presentation.Tests;
 [TestClass]
 public sealed class TestScreenSmoke
 {
+    private const int ShortestKeyLength = 12;
+
     public static IEnumerable<object[]> EveryScreen =>
         Enum.GetValues<ScreenId>().Select(screen => new object[] { screen });
 
@@ -24,63 +26,70 @@ public sealed class TestScreenSmoke
 
     [DataTestMethod]
     [DynamicData(nameof(EveryScreen))]
-    public void GoTo_EveryScreen_BuildsIt(ScreenId screen)
+    public void Start_EveryScreen_LandsOnIt(ScreenId screen)
     {
         var navigator = new Navigator();
 
         navigator.Start(screen);
 
-        Assert.IsNotNull(navigator.Current, $"{screen} did not build.");
+        Assert.AreEqual(Destination.On(screen), Destination.Of(navigator));
     }
 
     [DataTestMethod]
     [DynamicData(nameof(EveryScreen))]
-    public void GoTo_EveryScreenInSpanish_BuildsIt(ScreenId screen)
+    public void Start_EveryScreenInSpanish_LandsOnIt(ScreenId screen)
     {
         Language.Apply(Language.SpanishMexico);
         var navigator = new Navigator();
 
         navigator.Start(screen);
 
-        Assert.IsNotNull(navigator.Current, $"{screen} did not build in es-MX.");
+        Assert.AreEqual(Destination.On(screen), Destination.Of(navigator));
     }
 
     [DataTestMethod]
     [DynamicData(nameof(EveryScreen))]
-    public void Build_EveryScreen_LeavesNoButtonWithoutALabel(ScreenId screen)
+    public void Start_EveryScreen_LeavesNoButtonWithoutALabel(ScreenId screen)
     {
         var navigator = new Navigator();
         navigator.Start(screen);
 
-        IEnumerable<Button> untitled = ScreenDriver
+        string untitled = Join(ScreenDriver
             .GetButtons(navigator.Current!)
-            .Where(button => string.IsNullOrWhiteSpace(button.Title));
+            .Select((button, index) => (button, index))
+            .Where(pair => string.IsNullOrWhiteSpace(pair.button.Title))
+            .Select(pair => $"{screen} button {pair.index}"));
 
-        Assert.IsFalse(untitled.Any(), $"{screen} draws a button with no label.");
+        Assert.AreEqual(string.Empty, untitled);
     }
 
     // A key that is missing from the catalog comes back as its own name, so a
     // label that reads like an identifier means the resx lost an entry.
     [DataTestMethod]
     [DynamicData(nameof(EveryScreen))]
-    public void Build_EveryScreen_ShowsNoRawCatalogKey(ScreenId screen)
+    public void Start_EveryScreen_ShowsNoRawCatalogKey(ScreenId screen)
     {
         var navigator = new Navigator();
         navigator.Start(screen);
 
-        IEnumerable<string> raw = ScreenDriver
+        string raw = Join(ScreenDriver
             .GetButtons(navigator.Current!)
             .Select(button => button.Title)
-            .Where(LooksLikeAKey);
+            .Where(LooksLikeAKey));
 
-        Assert.IsFalse(raw.Any(), $"{screen} shows the raw key {string.Join(", ", raw)}.");
+        Assert.AreEqual(string.Empty, raw);
+    }
+
+    private static string Join(IEnumerable<string> names)
+    {
+        return string.Join(", ", names);
     }
 
     private static bool LooksLikeAKey(string title)
     {
         return !string.IsNullOrEmpty(title)
             && !title.Contains(' ', StringComparison.Ordinal)
-            && title.Length > 12
+            && title.Length > ShortestKeyLength
             && title.Any(char.IsUpper)
             && title.Any(char.IsLower);
     }
