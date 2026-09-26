@@ -25,8 +25,8 @@ public sealed class GuiAIDifficulty : FormScreen
     private const int ContentHeight = TogglesTop + (ToggleHeight * 2) + ToggleGap;
     private const int CardHeight = Theme.CardPadding + ContentHeight + Theme.CardPadding;
 
-    private static readonly int[] ClockMinutes = [3, 5, 10];
-    private static readonly int[] LevelStrengths = [800, 1200, 1600, 2000];
+    private static readonly int[] _clockMinutes = [3, 5, 10];
+    private static readonly int[] _levelStrengths = [800, 1200, 1600, 2000];
 
     private readonly TextLine _levelLabel;
     private readonly ChipRow _levelChips;
@@ -183,7 +183,7 @@ public sealed class GuiAIDifficulty : FormScreen
             _levelChips.Items.Add(new Chip { Text = levels[i], IsSelected = i == _levelIndex });
         }
 
-        _strengthLine.Text = string.Format(TextCatalog.AIDifficultyStrengthFormat, LevelStrengths[_levelIndex]);
+        _strengthLine.Text = string.Format(TextCatalog.AIDifficultyStrengthFormat, _levelStrengths[_levelIndex]);
     }
 
     private void RefreshBoardChips()
@@ -201,16 +201,16 @@ public sealed class GuiAIDifficulty : FormScreen
     {
         _clockChips.Items.Clear();
 
-        for (int i = 0; i < ClockMinutes.Length; i++)
+        for (int i = 0; i < _clockMinutes.Length; i++)
         {
-            string text = string.Format(TextCatalog.AIDifficultyClockChipFormat, ClockMinutes[i]);
+            string text = string.Format(TextCatalog.AIDifficultyClockChipFormat, _clockMinutes[i]);
             _clockChips.Items.Add(new Chip { Text = text, IsSelected = i == _clockIndex });
         }
 
         _clockChips.Items.Add(new Chip
         {
             Text = TextCatalog.AIDifficultyNoClockChip,
-            IsSelected = _clockIndex == ClockMinutes.Length
+            IsSelected = _clockIndex == _clockMinutes.Length
         });
     }
 }
