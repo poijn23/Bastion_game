@@ -9,8 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Misma version que System.ServiceModel.NetTcp del lado cliente (STACK.md, tabla
-         del stack): si no coinciden, el canal no negocia. -->
     <PackageReference Include="System.ServiceModel.Primitives" Version="10.0.652802" />
   </ItemGroup>
 
