@@ -5,7 +5,7 @@ namespace Bastion.Contracts;
 [ServiceContract(CallbackContract = typeof(IMatchCallback), SessionMode
 = SessionMode.Required)]
 
-public interface ImatchService
+public interface IMatchService
 {
     [OperationContract]
     Task<LoginResult> LogInAsync(string identifier, string password);
