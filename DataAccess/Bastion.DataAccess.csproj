@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Capa de datos. Unico proyecto que abre conexiones a SQL Server, y lo unico
+    que hay aqui son las peticiones: quien decide es Managers, que declara el
+    puerto que este implementa.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Bastion.DataAccess</RootNamespace>
+    <AssemblyName>Bastion.DataAccess</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Managers\Bastion.Managers.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -141,7 +141,14 @@ public sealed class GuiLinkAccount : FormScreen
 
     private string? GetBirthDateWarning()
     {
-        if (!InputRules.TryParseBirthDate(_dayField.Text, _monthField.Text, _yearField.Text, out DateOnly date))
+        var birthDate = new BirthDateFields
+        {
+            Day = _dayField.Text,
+            Month = _monthField.Text,
+            Year = _yearField.Text
+        };
+
+        if (!InputRules.TryParseBirthDate(birthDate, out DateOnly date))
         {
             return TextCatalog.RegisterBirthDateInvalid;
         }

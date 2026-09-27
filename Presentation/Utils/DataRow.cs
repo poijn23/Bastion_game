@@ -27,6 +27,20 @@ public sealed class DataRow : Control
     // The first three places, which CU-35 asks to stand out.
     public bool IsPodium { get; init; }
 
+    // A row that stands for something the player can open, such as a person or
+    // a match. Rows nobody subscribes to stay inert.
+    public event EventHandler? Clicked;
+
+    public override void Update(InputState input)
+    {
+        base.Update(input);
+
+        if (IsEnabled && IsHovered && input.HasClicked)
+        {
+            Clicked?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
     public override void Draw(Canvas canvas)
     {
         ArgumentNullException.ThrowIfNull(canvas);

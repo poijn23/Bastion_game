@@ -27,7 +27,10 @@ public sealed class PanelBox : Control
         if (IsDashed)
         {
             canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.FieldCornerRadius, Theme.Card);
-            Hairline.DrawBorder(canvas, Bounds, Theme.FieldCornerRadius, Theme.CheckBoxBorder);
+            Hairline.DrawBorder(
+                canvas,
+                Bounds,
+                BorderStyleFactory.CreateHairline(Theme.FieldCornerRadius, Theme.CheckBoxBorder));
         }
         else
         {

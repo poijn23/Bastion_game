@@ -72,6 +72,7 @@ public sealed class GuiCustomize : FormScreen
 
     private void OnEquipClicked(object? sender, EventArgs e)
     {
+        Navigator.GoBack();
     }
 
     private void OnBackClicked(object? sender, EventArgs e)

@@ -30,6 +30,7 @@ public sealed class GuiRanking : FormScreen
         for (int i = 0; i < VisibleRows; i++)
         {
             var row = new DataRow { IsPodium = i < PodiumSize, Bounds = GetRowBounds(i) };
+            row.Clicked += OnRowClicked;
             _rows.Add(row);
             Register(row);
         }
@@ -54,6 +55,11 @@ public sealed class GuiRanking : FormScreen
     protected override string GetSubtitle()
     {
         return TextCatalog.RankingSubtitle;
+    }
+
+    private void OnRowClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.PlayerCard);
     }
 
     private void OnBackClicked(object? sender, EventArgs e)

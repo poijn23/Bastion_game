@@ -18,6 +18,10 @@ public sealed class GuiMatchmaking : FormScreen
     private const int NoteHeight = 40;
     private const int CardHeight = Theme.CardPadding + NoteTop + NoteHeight + Theme.CardPadding;
 
+    // Stands in for the server answering with a rival. The wait is what the
+    // player sees; the number goes away with the matchmaking request.
+    private const float SearchSeconds = 4f;
+
     private readonly TextLine _title;
     private readonly TextLine _elapsed;
     private readonly TextBlock _note;
@@ -75,6 +79,11 @@ public sealed class GuiMatchmaking : FormScreen
         float elapsed = input.ElapsedSeconds - _startedAt;
         string clock = TimeSpan.FromSeconds(elapsed).ToString(@"m\:ss");
         _elapsed.Text = string.Format(TextCatalog.MatchmakingElapsedFormat, clock);
+
+        if (elapsed >= SearchSeconds)
+        {
+            Navigator.GoTo(ScreenId.VersusScreen);
+        }
     }
 
     private void OnCancelClicked(object? sender, EventArgs e)

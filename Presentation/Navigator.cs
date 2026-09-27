@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Bastion.Presentation.GUI_AIDifficulty;
+using Bastion.Presentation.GUI_AIMatchEnd;
 using Bastion.Presentation.GUI_ActiveSessions;
 using Bastion.Presentation.GUI_AddFriend;
 using Bastion.Presentation.GUI_AdminPanel;
-using Bastion.Presentation.GUI_AIDifficulty;
-using Bastion.Presentation.GUI_AIMatchEnd;
 using Bastion.Presentation.GUI_Appeal;
 using Bastion.Presentation.GUI_ApplySanction;
 using Bastion.Presentation.GUI_BannedAccount;
@@ -28,10 +28,10 @@ using Bastion.Presentation.GUI_Match;
 using Bastion.Presentation.GUI_MatchEnd;
 using Bastion.Presentation.GUI_MatchHistory;
 using Bastion.Presentation.GUI_Matchmaking;
+using Bastion.Presentation.GUI_Menu;
 using Bastion.Presentation.GUI_MessageConfirm;
 using Bastion.Presentation.GUI_MessageError;
 using Bastion.Presentation.GUI_MessageSuccess;
-using Bastion.Presentation.GUI_Menu;
 using Bastion.Presentation.GUI_MessageWarning;
 using Bastion.Presentation.GUI_ModerationQueue;
 using Bastion.Presentation.GUI_OpponentDisconnected;
@@ -55,6 +55,8 @@ using Bastion.Presentation.GUI_Spectator;
 using Bastion.Presentation.GUI_TutorialIndex;
 using Bastion.Presentation.GUI_VersusScreen;
 using Bastion.Presentation.GUI_WaitingRoom;
+using Bastion.Controllers;
+using Bastion.Managers;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -70,8 +72,6 @@ public sealed class Navigator : INavigator
     {
         [ScreenId.Login] =
             navigator => new GuiLogin(navigator),
-        [ScreenId.Register] =
-            navigator => new GuiRegister(navigator),
         [ScreenId.ForgotPassword] =
             navigator => new GuiForgotPassword(navigator),
         [ScreenId.AccountSettings] = navigator => new GuiSettings(navigator, false),
@@ -149,8 +149,6 @@ public sealed class Navigator : INavigator
             navigator => new GuiMatchmaking(navigator),
         [ScreenId.VersusScreen] =
             navigator => new GuiVersusScreen(navigator),
-        [ScreenId.Match] =
-            navigator => new GuiMatch(navigator),
         [ScreenId.OpponentDisconnected] =
             navigator => new GuiOpponentDisconnected(navigator),
         [ScreenId.PrivateMatch] =
@@ -167,12 +165,34 @@ public sealed class Navigator : INavigator
             navigator => new GuiTutorialIndex(navigator),
     };
 
+    private readonly AccountController _accounts;
+
     private IScreen? _current;
     private IScreen? _dialog;
     private readonly List<(ScreenId Id, string? Argument)> _history = [];
     private ScreenId _currentId;
     private string? _currentArgument;
     private Action? _pendingConfirm;
+
+    // Without a server the client answers from the stand in account, which
+    // is what lets the game and the tests run with nothing listening.
+    public Navigator()
+        : this(new AccountController(new OfflineAccountManager()))
+    {
+    }
+
+    public Navigator(AccountController accounts)
+    {
+        ArgumentNullException.ThrowIfNull(accounts);
+
+        _accounts = accounts;
+    }
+
+    // What is on screen right now, dialog included. Read only: the way to
+    // change it is GoTo, GoBack or one of the dialog calls.
+    public IScreen? Current => _dialog ?? _current;
+
+    public ScreenId CurrentId => _currentId;
 
     public void Start(ScreenId screen)
     {
@@ -311,6 +331,11 @@ public sealed class Navigator : INavigator
     private IScreen Build(ScreenId screen, string? argument)
     {
         // The only screen that needs what the previous one produced.
+        if (screen == ScreenId.Register)
+        {
+            return new GuiRegister(this, _accounts);
+        }
+
         if (screen == ScreenId.RegistrationSuccess)
         {
             return new GuiRegistrationSuccess(this, argument ?? string.Empty);
@@ -319,6 +344,11 @@ public sealed class Navigator : INavigator
         if (screen == ScreenId.ResetPassword)
         {
             return new GuiResetPassword(this, argument ?? string.Empty);
+        }
+
+        if (screen == ScreenId.Match)
+        {
+            return new GuiMatch(this, argument);
         }
 
         if (screen == ScreenId.MatchEnd)

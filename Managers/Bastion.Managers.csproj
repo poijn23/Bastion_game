@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Capa de logica. Guarda los DTO, decide lo que se puede hacer y le pide a
+    un DAO que lo escriba. No conoce SQL ni el transporte: declara el puerto
+    IAccountDao y DataAccess lo implementa, asi el cliente puede referenciar
+    esta capa sin arrastrar el cliente de SQL Server (DRV-01).
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Bastion.Managers</RootNamespace>
+    <AssemblyName>Bastion.Managers</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Bastion.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -46,26 +46,60 @@ public sealed class GuiResetPassword : FormScreen
     private bool _hasValidated;
 
     public GuiResetPassword(INavigator navigator, string email)
-        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, new CardShape
+        {
+            Width = PanelNarrowWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.Panel
+        })
     {
         ArgumentNullException.ThrowIfNull(email);
 
         _email = email;
         int top = PanelContentTop;
 
-        _sentTitle = new TextLine { Style = TextLineStyle.Heading, IsCentered = true, Bounds = new Rectangle(ContentX, top, ContentWidth, SentTitleHeight) };
-        _sentLine = new TextLine { Style = TextLineStyle.Muted, IsCentered = true, Bounds = new Rectangle(ContentX, top + SentLineTop, ContentWidth, SentLineHeight) };
+        _sentTitle = new TextLine
+        {
+            Style = TextLineStyle.Heading,
+            IsCentered = true,
+            Bounds = new Rectangle(ContentX, top, ContentWidth, SentTitleHeight)
+        };
+        _sentLine = new TextLine
+        {
+            Style = TextLineStyle.Muted,
+            IsCentered = true,
+            Bounds = new Rectangle(ContentX, top + SentLineTop, ContentWidth, SentLineHeight)
+        };
         _resendButton = CreateOutlineButton(new Rectangle(
-            ContentX + ((ContentWidth - Theme.PanelButtonWidth) / 2), top + ResendTop, Theme.PanelButtonWidth, Theme.SmallButtonHeight));
+            ContentX + ((ContentWidth - Theme.PanelButtonWidth) / 2),
+            top + ResendTop,
+            Theme.PanelButtonWidth,
+            Theme.SmallButtonHeight));
         _resendButton.IsEnabled = false;
         _resendButton.Clicked += OnResendClicked;
         _divider = new Rule { Bounds = new Rectangle(ContentX, top + DividerTop, ContentWidth, 2) };
 
-        _codeField = new TextField { MaxLength = CodeLength, Bounds = new Rectangle(ContentX, top + CodeFieldTop, ContentWidth, Theme.FieldHeight) };
-        _newPasswordField = new TextField { IsPassword = true, Bounds = new Rectangle(ContentX, top + NewFieldTop, ContentWidth, Theme.FieldHeight) };
+        _codeField = new TextField
+        {
+            MaxLength = CodeLength,
+            Bounds = new Rectangle(ContentX, top + CodeFieldTop, ContentWidth, Theme.FieldHeight)
+        };
+        _newPasswordField = new TextField
+        {
+            IsPassword = true,
+            Bounds = new Rectangle(ContentX, top + NewFieldTop, ContentWidth, Theme.FieldHeight)
+        };
         _meter = new StrengthMeter { Bounds = new Rectangle(ContentX, top + MeterTop, ContentWidth, MeterHeight) };
-        _note = new TextLine { Style = TextLineStyle.Small, Bounds = new Rectangle(ContentX, top + NoteTop, ContentWidth, NoteHeight) };
-        _confirmationField = new TextField { IsPassword = true, Bounds = new Rectangle(ContentX, top + ConfirmFieldTop, ContentWidth, Theme.FieldHeight) };
+        _note = new TextLine
+        {
+            Style = TextLineStyle.Small,
+            Bounds = new Rectangle(ContentX, top + NoteTop, ContentWidth, NoteHeight)
+        };
+        _confirmationField = new TextField
+        {
+            IsPassword = true,
+            Bounds = new Rectangle(ContentX, top + ConfirmFieldTop, ContentWidth, Theme.FieldHeight)
+        };
 
         _saveButton = CreatePrimaryButton(true);
         _saveButton.MoveTo(new Rectangle(ContentX, top + ButtonTop, ContentWidth, Theme.PanelButtonHeight));
@@ -102,10 +136,17 @@ public sealed class GuiResetPassword : FormScreen
 
         _secondsLeft = MathF.Max(0f, ResendSeconds - (input.ElapsedSeconds - _resendStartedAt));
         _resendButton.IsEnabled = _secondsLeft <= 0f;
+        ApplyResendLabel();
+        _meter.Strength = InputRules.PasswordStrength(_newPasswordField.Text);
+    }
+
+    private void ApplyResendLabel()
+    {
         _resendButton.Title = _secondsLeft <= 0f
             ? TextCatalog.ResetPasswordResendButton
-            : string.Format(TextCatalog.ResetPasswordResendInFormat, TimeSpan.FromSeconds(_secondsLeft).ToString(@"m\:ss"));
-        _meter.Strength = InputRules.PasswordStrength(_newPasswordField.Text);
+            : string.Format(
+                TextCatalog.ResetPasswordResendInFormat,
+                TimeSpan.FromSeconds(_secondsLeft).ToString(@"m\:ss"));
     }
 
     protected override void ApplyTexts()
@@ -120,6 +161,7 @@ public sealed class GuiResetPassword : FormScreen
         _confirmationField.Label = TextCatalog.ResetPasswordConfirmLabel;
         _confirmationField.Placeholder = TextCatalog.ResetPasswordConfirmPlaceholder;
         _saveButton.Title = TextCatalog.ResetPasswordSaveButton;
+        ApplyResendLabel();
 
         if (_hasValidated)
         {
@@ -149,8 +191,12 @@ public sealed class GuiResetPassword : FormScreen
     private bool Validate()
     {
         _codeField.Warning = _codeField.Text.Trim().Length == CodeLength ? null : TextCatalog.ResetPasswordCodeInvalid;
-        _newPasswordField.Warning = InputRules.MeetsPasswordPolicy(_newPasswordField.Text) ? null : TextCatalog.PasswordPolicyWarning;
-        _confirmationField.Warning = _confirmationField.Text == _newPasswordField.Text ? null : TextCatalog.RegisterConfirmationMismatch;
+        _newPasswordField.Warning = InputRules.MeetsPasswordPolicy(_newPasswordField.Text)
+            ? null
+            : TextCatalog.PasswordPolicyWarning;
+        _confirmationField.Warning = _confirmationField.Text == _newPasswordField.Text
+            ? null
+            : TextCatalog.RegisterConfirmationMismatch;
 
         return !_codeField.HasWarning && !_newPasswordField.HasWarning && !_confirmationField.HasWarning;
     }

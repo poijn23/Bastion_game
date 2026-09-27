@@ -33,8 +33,14 @@ public sealed class ActionBox : Control
             return;
         }
 
-        canvas.Shapes.DrawRoundedRectangle(Bounds, Theme.FieldCornerRadius, IsHovered && IsEnabled ? Theme.FieldFocused : Theme.Field);
-        canvas.Shapes.DrawRoundedRectangle(new Rectangle(Bounds.X, Bounds.Y, 4, Bounds.Height), 2, IsEnabled ? Theme.Accent : Theme.Label);
+        canvas.Shapes.DrawRoundedRectangle(
+            Bounds,
+            Theme.FieldCornerRadius,
+            IsHovered && IsEnabled ? Theme.FieldFocused : Theme.Field);
+        canvas.Shapes.DrawRoundedRectangle(
+            new Rectangle(Bounds.X, Bounds.Y, 4, Bounds.Height),
+            2,
+            IsEnabled ? Theme.Accent : Theme.Label);
 
         TextStyle titleStyle = TextStyleFactory.CreateBoldBody(canvas.Fonts, Theme.TextDark);
         TextStyle hintStyle = TextStyleFactory.CreateSmall(canvas.Fonts, Theme.Placeholder);

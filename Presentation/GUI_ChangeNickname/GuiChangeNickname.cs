@@ -11,7 +11,9 @@ public sealed class GuiChangeNickname : FormScreen
     private const int FieldGap = 26;
     private const int NoticeHeight = 76;
     private const int ButtonsGap = 24;
-    private const int ContentHeight = LabelSpace + Theme.FieldHeight + FieldGap + LabelSpace + Theme.FieldHeight + FieldGap + NoticeHeight;
+    private const int ContentHeight =
+        LabelSpace + Theme.FieldHeight + FieldGap
+        + LabelSpace + Theme.FieldHeight + FieldGap + NoticeHeight;
     private const int CardHeight =
         Theme.CardPadding + Theme.PanelBackHeight + Theme.PanelGap + Theme.PanelTitleHeight + Theme.PanelGap
         + ContentHeight + ButtonsGap + Theme.PanelButtonHeight + Theme.CardPadding;
@@ -24,16 +26,29 @@ public sealed class GuiChangeNickname : FormScreen
     private bool _hasValidated;
 
     public GuiChangeNickname(INavigator navigator)
-        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, new CardShape
+        {
+            Width = PanelNarrowWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.Panel
+        })
     {
         int top = PanelContentTop + LabelSpace;
         _currentBox = new ValueBox { Bounds = new Rectangle(ContentX, top, ContentWidth, Theme.FieldHeight) };
 
         int newTop = top + Theme.FieldHeight + FieldGap + LabelSpace;
-        _newField = new TextField { MaxLength = MaxNicknameLength, Bounds = new Rectangle(ContentX, newTop, ContentWidth, Theme.FieldHeight) };
+        _newField = new TextField
+        {
+            MaxLength = MaxNicknameLength,
+            Bounds = new Rectangle(ContentX, newTop, ContentWidth, Theme.FieldHeight)
+        };
 
         int noticeTop = newTop + Theme.FieldHeight + FieldGap;
-        _notice = new NoticeBox { IsCritical = true, Bounds = new Rectangle(ContentX, noticeTop, ContentWidth, NoticeHeight) };
+        _notice = new NoticeBox
+        {
+            IsCritical = true,
+            Bounds = new Rectangle(ContentX, noticeTop, ContentWidth, NoticeHeight)
+        };
 
         _continueButton = CreatePrimaryButton(true);
         _cancelButton = CreateOutlineButton(SecondaryButtonBounds);

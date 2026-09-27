@@ -1106,6 +1106,36 @@ public static class TextCatalog
 
     public static string SpectatorSubtitle => GetText(nameof(SpectatorSubtitle));
 
+    public static string MainMenuModerationButton => GetText(nameof(MainMenuModerationButton));
+
+    public static string AdminPanelQueueButton => GetText(nameof(AdminPanelQueueButton));
+
+    public static string AdminPanelLogsButton => GetText(nameof(AdminPanelLogsButton));
+
+    public static string PlayerCardReportButton => GetText(nameof(PlayerCardReportButton));
+
+    public static string PlayerCardWatchButton => GetText(nameof(PlayerCardWatchButton));
+
+    public static string ShopBoxButton => GetText(nameof(ShopBoxButton));
+
+    public static string MainScreenIndexButton => GetText(nameof(MainScreenIndexButton));
+
+    public static string RegisterUnderage => GetText(nameof(RegisterUnderage));
+
+    public static string RegisterServerUnreachable => GetText(nameof(RegisterServerUnreachable));
+
+    public static string RegisterRejected => GetText(nameof(RegisterRejected));
+
+    public static string RegisterFirstNameInvalid => GetText(nameof(RegisterFirstNameInvalid));
+
+    public static string RegisterLastNameInvalid => GetText(nameof(RegisterLastNameInvalid));
+
+    public static string RegisterNicknameInvalid => GetText(nameof(RegisterNicknameInvalid));
+
+    public static string RegisterPasswordPolicy => GetText(nameof(RegisterPasswordPolicy));
+
+    public static string RegisterCheckTheForm => GetText(nameof(RegisterCheckTheForm));
+
     private static string GetText(string key)
     {
         return _manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;

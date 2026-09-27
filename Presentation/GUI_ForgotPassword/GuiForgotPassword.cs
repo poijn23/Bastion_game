@@ -13,7 +13,8 @@ public sealed class GuiForgotPassword : FormScreen
     private const int ButtonGap = 40;
     private const int GuestBoxHeight = 76;
     private const int ContentHeight =
-        BodyHeight + BlockGap + LabelSpace + Theme.FieldHeight + BlockGap + Theme.PanelButtonHeight + ButtonGap + GuestBoxHeight;
+        BodyHeight + BlockGap + LabelSpace + Theme.FieldHeight
+        + BlockGap + Theme.PanelButtonHeight + ButtonGap + GuestBoxHeight;
     private const int CardHeight =
         Theme.CardPadding + Theme.PanelBackHeight + Theme.PanelGap + Theme.PanelTitleHeight + Theme.PanelGap
         + ContentHeight + Theme.CardPadding;
@@ -25,13 +26,22 @@ public sealed class GuiForgotPassword : FormScreen
     private bool _hasValidated;
 
     public GuiForgotPassword(INavigator navigator)
-        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, new CardShape
+        {
+            Width = PanelNarrowWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.Panel
+        })
     {
         int top = PanelContentTop;
         _body = new TextBlock { Bounds = new Rectangle(ContentX, top, ContentWidth, BodyHeight) };
 
         int fieldTop = top + BodyHeight + BlockGap + LabelSpace;
-        _emailField = new TextField { MaxLength = MaxEmailLength, Bounds = new Rectangle(ContentX, fieldTop, ContentWidth, Theme.FieldHeight) };
+        _emailField = new TextField
+        {
+            MaxLength = MaxEmailLength,
+            Bounds = new Rectangle(ContentX, fieldTop, ContentWidth, Theme.FieldHeight)
+        };
 
         int buttonTop = fieldTop + Theme.FieldHeight + BlockGap;
         _sendButton = CreatePrimaryButton(true);
@@ -41,7 +51,11 @@ public sealed class GuiForgotPassword : FormScreen
         _guestBox = new ActionBox
         {
             IsEnabled = false,
-            Bounds = new Rectangle(ContentX, buttonTop + Theme.PanelButtonHeight + ButtonGap, ContentWidth, GuestBoxHeight)
+            Bounds = new Rectangle(
+                ContentX,
+                buttonTop + Theme.PanelButtonHeight + ButtonGap,
+                ContentWidth,
+                GuestBoxHeight)
         };
 
         Register(_body);

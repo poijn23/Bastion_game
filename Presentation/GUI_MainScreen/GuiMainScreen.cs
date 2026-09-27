@@ -14,6 +14,7 @@ public sealed class GuiMainScreen : FormScreen
 
     private readonly TextBlock _intro;
     private readonly Button _signInButton;
+    private readonly Button _indexButton;
 
     public GuiMainScreen(INavigator navigator)
         : base(navigator, NarrowCardWidth, CardHeight)
@@ -24,10 +25,15 @@ public sealed class GuiMainScreen : FormScreen
         };
 
         _signInButton = CreatePrimaryButton(true);
+        // The provisional index of every screen. It goes away with the
+        // release; until then it is the only way into GUI_Menu.
+        _indexButton = CreateSecondaryButton();
         _signInButton.Clicked += OnSignInClicked;
+        _indexButton.Clicked += OnIndexClicked;
 
         Register(_intro);
         Register(_signInButton);
+        Register(_indexButton);
 
         ApplyTexts();
     }
@@ -42,9 +48,15 @@ public sealed class GuiMainScreen : FormScreen
         Navigator.GoTo(ScreenId.Login);
     }
 
+    private void OnIndexClicked(object? sender, EventArgs e)
+    {
+        Navigator.GoTo(ScreenId.Menu);
+    }
+
     protected override void ApplyTexts()
     {
         _intro.Text = TextCatalog.MainScreenIntro;
         _signInButton.Title = TextCatalog.LoginSignInButton;
+        _indexButton.Title = TextCatalog.MainScreenIndexButton;
     }
 }

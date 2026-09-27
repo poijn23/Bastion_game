@@ -27,23 +27,44 @@ public sealed class GuiDeleteAccount : FormScreen
     private bool _hasValidated;
 
     public GuiDeleteAccount(INavigator navigator)
-        : base(navigator, PanelNarrowWidth, CardHeight, ScreenLayout.Panel)
+        : base(navigator, new CardShape
+        {
+            Width = PanelNarrowWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.Panel
+        })
     {
         int top = PanelContentTop;
         var lossArea = new Rectangle(ContentX, top, ContentWidth, LossBoxHeight);
         _lossBox = new PanelBox { Bounds = lossArea };
         _lossText = new TextBlock
         {
-            Bounds = new Rectangle(lossArea.X + PanelBox.Padding, lossArea.Y + LossTextTop, lossArea.Width - (PanelBox.Padding * 2), LossBoxHeight - LossTextTop)
+            Bounds = new Rectangle(
+                lossArea.X + PanelBox.Padding,
+                lossArea.Y + LossTextTop,
+                lossArea.Width - (PanelBox.Padding * 2),
+                LossBoxHeight - LossTextTop)
         };
 
         int fieldTop = lossArea.Bottom + BlockGap + LabelSpace;
-        _passwordField = new TextField { IsPassword = true, Bounds = new Rectangle(ContentX, fieldTop, ContentWidth, Theme.FieldHeight) };
-        _wordField = new TextField { IsVisible = false, Bounds = new Rectangle(ContentX, fieldTop, ContentWidth, Theme.FieldHeight) };
+        _passwordField = new TextField
+        {
+            IsPassword = true,
+            Bounds = new Rectangle(ContentX, fieldTop, ContentWidth, Theme.FieldHeight)
+        };
+        _wordField = new TextField
+        {
+            IsVisible = false,
+            Bounds = new Rectangle(ContentX, fieldTop, ContentWidth, Theme.FieldHeight)
+        };
         _note = new TextLine
         {
             Style = TextLineStyle.Small,
-            Bounds = new Rectangle(ContentX, fieldTop + Theme.FieldHeight + NoteGap + Theme.WarningSpace, ContentWidth, NoteHeight)
+            Bounds = new Rectangle(
+                ContentX,
+                fieldTop + Theme.FieldHeight + NoteGap + Theme.WarningSpace,
+                ContentWidth,
+                NoteHeight)
         };
 
         _primaryButton = CreatePrimaryButton(false);
@@ -77,7 +98,10 @@ public sealed class GuiDeleteAccount : FormScreen
 
         if (IsConfirmStep)
         {
-            _primaryButton.IsEnabled = string.Equals(_wordField.Text.Trim(), TextCatalog.DeleteAccountWord, StringComparison.OrdinalIgnoreCase);
+            _primaryButton.IsEnabled = string.Equals(
+                _wordField.Text.Trim(),
+                TextCatalog.DeleteAccountWord,
+                StringComparison.OrdinalIgnoreCase);
         }
     }
 

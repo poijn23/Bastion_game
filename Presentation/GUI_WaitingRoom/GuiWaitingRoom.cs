@@ -7,7 +7,7 @@ using Bastion.Resources;
 namespace Bastion.Presentation.GUI_WaitingRoom;
 
 // CU-18 main flow step 4 (host) and CU-19 main flow step 3 (guest). One class
-// for both roles: the host waits with "Iniciar partida" disabled until the
+// for both roles: the host waits with the start button disabled until the
 // rest are ready, the guest gets "Estoy listo" instead.
 public sealed class GuiWaitingRoom : FormScreen
 {
@@ -121,6 +121,7 @@ public sealed class GuiWaitingRoom : FormScreen
     {
         if (_isHost)
         {
+            Navigator.GoTo(ScreenId.VersusScreen);
             return;
         }
 

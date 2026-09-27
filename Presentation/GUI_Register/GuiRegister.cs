@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
+using Bastion.Controllers;
+using Bastion.Managers;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -21,6 +25,8 @@ public sealed class GuiRegister : FormScreen
     // it, plus a little air. Four of them at the shared FormScreen.RowSpacing
     // would push the two buttons past the bottom of a 720 pixel window, so
     // this screen sizes its own rows from what they actually have to hold.
+    private const int MinimumAge = 8;
+
     private const int RowAir = 4;
     private const int RegisterRowSpacing = LabelSpace + Theme.FieldHeight + Theme.WarningSpace + RowAir;
 
@@ -51,11 +57,17 @@ public sealed class GuiRegister : FormScreen
     private readonly CheckBox _termsCheckBox;
     private readonly Button _createButton;
     private readonly Button _cancelButton;
+    private readonly AccountController _accounts;
+
     private bool _hasValidated;
 
-    public GuiRegister(INavigator navigator)
+    public GuiRegister(INavigator navigator, AccountController accounts)
         : base(navigator, WideCardWidth, WideCardHeight)
     {
+        ArgumentNullException.ThrowIfNull(accounts);
+
+        _accounts = accounts;
+
         _firstNameField = CreateField(NameRow, false, MaxFirstNameLength);
         _lastNameField = CreateField(NameRow, true, MaxLastNameLength);
         _nicknameField = CreateField(AccountRow, false, MaxNicknameLength);
@@ -102,10 +114,82 @@ public sealed class GuiRegister : FormScreen
 
         if (!Validate())
         {
+            Popup.ShowAlert(Navigator, TextCatalog.RegisterCheckTheForm);
             return;
         }
 
-        Navigator.GoTo(ScreenId.RegistrationSuccess, _emailField.Text.Trim());
+        // The form checked what it can see; the server decides. A nickname
+        // free a second ago may be taken by the time the message lands.
+        Answer(_accounts.Register(Describe()).Outcome);
+    }
+
+    // CU-02 asks for the birth date in three boxes; Validate already proved
+    // they parse, so this reads them again without doubting them.
+    private AccountRegistration Describe()
+    {
+        InputRules.TryParseBirthDate(ReadBirthDate(), out DateOnly birthDate);
+
+        return new AccountRegistration
+        {
+            FirstName = _firstNameField.Text.Trim(),
+            Surnames = _lastNameField.Text.Trim(),
+            Nickname = _nicknameField.Text.Trim(),
+            Email = _emailField.Text.Trim(),
+            Password = _passwordField.Text,
+            BirthDate = birthDate,
+            Language = Resources.Language.Current.Name,
+            AcceptsTerms = _termsCheckBox.IsChecked
+        };
+    }
+
+    private BirthDateFields ReadBirthDate()
+    {
+        return new BirthDateFields
+        {
+            Day = _dayField.Text,
+            Month = _monthField.Text,
+            Year = _yearField.Text
+        };
+    }
+
+    private void Answer(RegistrationOutcome answer)
+    {
+        if (answer == RegistrationOutcome.Registered)
+        {
+            Navigator.GoTo(ScreenId.RegistrationSuccess, _emailField.Text.Trim());
+            return;
+        }
+
+        if (ShowOnTheField(answer))
+        {
+            return;
+        }
+
+        Popup.ShowError(Navigator, answer == RegistrationOutcome.Unreachable
+            ? TextCatalog.RegisterServerUnreachable
+            : TextCatalog.RegisterRejected);
+    }
+
+    // What the person can fix is said next to the box that holds it.
+    private bool ShowOnTheField(RegistrationOutcome answer)
+    {
+        switch (answer)
+        {
+            case RegistrationOutcome.NicknameTaken:
+                _nicknameField.Warning = TextCatalog.RegisterNicknameTaken;
+                return true;
+            case RegistrationOutcome.EmailTaken:
+                _emailField.Warning = TextCatalog.RegisterEmailTaken;
+                return true;
+            case RegistrationOutcome.UnderageRejected:
+                _dayField.Warning = TextCatalog.RegisterUnderage;
+                return true;
+            case RegistrationOutcome.TermsNotAccepted:
+                _termsCheckBox.Warning = TextCatalog.RegisterTermsRequired;
+                return true;
+            default:
+                return false;
+        }
     }
 
     // Every field is checked, not only the first bad one, so the player fixes
@@ -113,77 +197,121 @@ public sealed class GuiRegister : FormScreen
     // duplicate checks stand in for the server answer until it exists.
     private bool Validate()
     {
-        _firstNameField.Warning = string.IsNullOrWhiteSpace(_firstNameField.Text)
-            ? TextCatalog.RegisterFirstNameRequired
-            : null;
-
-        _lastNameField.Warning = string.IsNullOrWhiteSpace(_lastNameField.Text)
-            ? TextCatalog.RegisterLastNameRequired
-            : null;
-
+        _firstNameField.Warning = GetNameWarning(
+            _firstNameField.Text, TextCatalog.RegisterFirstNameRequired, TextCatalog.RegisterFirstNameInvalid);
+        _lastNameField.Warning = GetNameWarning(
+            _lastNameField.Text, TextCatalog.RegisterLastNameRequired, TextCatalog.RegisterLastNameInvalid);
         _nicknameField.Warning = GetNicknameWarning(_nicknameField.Text.Trim());
         _emailField.Warning = GetEmailWarning(_emailField.Text.Trim());
-
-        _passwordField.Warning = InputRules.HasPasswordLength(_passwordField.Text)
-            ? null
-            : TextCatalog.RegisterPasswordTooShort;
-
-        _confirmationField.Warning = _confirmationField.Text == _passwordField.Text
-            ? null
-            : TextCatalog.RegisterConfirmationMismatch;
+        _passwordField.Warning = GetPasswordWarning();
+        _confirmationField.Warning = GetConfirmationWarning();
 
         // Only the day box carries the text, or it would be drawn three times.
         _dayField.Warning = GetBirthDateWarning();
+        _termsCheckBox.Warning = GetTermsWarning();
 
-        _termsCheckBox.Warning = _termsCheckBox.IsChecked
-            ? null
-            : TextCatalog.RegisterTermsRequired;
-
-        return !_firstNameField.HasWarning
-            && !_lastNameField.HasWarning
-            && !_nicknameField.HasWarning
-            && !_emailField.HasWarning
-            && !_passwordField.HasWarning
-            && !_confirmationField.HasWarning
-            && !_dayField.HasWarning
-            && !_termsCheckBox.HasWarning;
+        return !GetCheckedControls().Any(control => control.HasWarning);
     }
 
-    private static string? GetNicknameWarning(string nickname)
+    // The order is the reading order of the form, so a warning is answered
+    // where the eye already is.
+    private IEnumerable<Control> GetCheckedControls()
+    {
+        return
+        [
+            _firstNameField,
+            _lastNameField,
+            _nicknameField,
+            _emailField,
+            _passwordField,
+            _confirmationField,
+            _dayField,
+            _termsCheckBox
+        ];
+    }
+
+    // Two answers for one box: it is empty, or what it holds is not a name.
+    private static string? GetNameWarning(string text, string whenEmpty, string whenMalformed)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return whenEmpty;
+        }
+
+        return InputRules.IsPersonName(text) ? null : whenMalformed;
+    }
+
+    // CU-02 RN-03 asks for length and for three of the four character
+    // groups, and says which one is missing rather than both at once.
+    private string? GetPasswordWarning()
+    {
+        if (!InputRules.HasPasswordLength(_passwordField.Text))
+        {
+            return TextCatalog.RegisterPasswordTooShort;
+        }
+
+        return InputRules.MeetsPasswordPolicy(_passwordField.Text) ? null : TextCatalog.RegisterPasswordPolicy;
+    }
+
+    private string? GetConfirmationWarning()
+    {
+        return _confirmationField.Text == _passwordField.Text
+            ? null
+            : TextCatalog.RegisterConfirmationMismatch;
+    }
+
+    private string? GetTermsWarning()
+    {
+        return _termsCheckBox.IsChecked ? null : TextCatalog.RegisterTermsRequired;
+    }
+
+    private string? GetNicknameWarning(string nickname)
     {
         if (!InputRules.HasNicknameLength(nickname))
         {
             return TextCatalog.RegisterNicknameLength;
         }
 
-        return TestAccount.IsNicknameTaken(nickname) ? TextCatalog.RegisterNicknameTaken : null;
+        if (!InputRules.IsNickname(nickname))
+        {
+            return TextCatalog.RegisterNicknameInvalid;
+        }
+
+        return _accounts.IsNicknameTaken(nickname) ? TextCatalog.RegisterNicknameTaken : null;
     }
 
-    private static string? GetEmailWarning(string email)
+    private string? GetEmailWarning(string email)
     {
         if (!InputRules.IsEmail(email))
         {
             return TextCatalog.RegisterEmailInvalid;
         }
 
-        return TestAccount.IsEmailTaken(email) ? TextCatalog.RegisterEmailTaken : null;
+        return _accounts.IsEmailTaken(email) ? TextCatalog.RegisterEmailTaken : null;
     }
 
     private string? GetBirthDateWarning()
     {
-        if (!InputRules.TryParseBirthDate(_dayField.Text, _monthField.Text, _yearField.Text, out DateOnly date))
+        if (!InputRules.TryParseBirthDate(ReadBirthDate(), out DateOnly date))
         {
             return TextCatalog.RegisterBirthDateInvalid;
         }
 
-        return InputRules.IsInFuture(date) ? TextCatalog.RegisterBirthDateFuture : null;
+        if (InputRules.IsInFuture(date))
+        {
+            return TextCatalog.RegisterBirthDateFuture;
+        }
+
+        // D-06 and CU-02 RN-05. The server checks it again: this only saves
+        // the round trip.
+        return InputRules.IsAtLeastYearsOld(date, MinimumAge) ? null : TextCatalog.RegisterUnderage;
     }
 
     // CU-02 FA-01. Discarding also has to clear the two passwords and uncheck
     // the terms, which belongs to validation and is still pending.
     private void OnCancelClicked(object? sender, EventArgs e)
     {
-        Navigator.ShowConfirm(new ConfirmRequest
+        Popup.Ask(Navigator, new ConfirmRequest
         {
             Body = TextCatalog.RegisterDiscardBody,
             PrimaryLabel = TextCatalog.RegisterDiscardButton,

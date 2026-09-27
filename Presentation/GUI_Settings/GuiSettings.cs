@@ -17,6 +17,10 @@ public sealed class GuiSettings : FormScreen
     private const int TopBoxAvatar = 56;
     private const int EditButtonWidth = 100;
     private const int BlockGap = 16;
+    private const int PasswordRowIndex = 0;
+    private const int EmailRowIndex = 1;
+    private const int SessionsRowIndex = 2;
+    private const int FriendCodeRowIndex = 3;
     private const int RowHeight = 70;
     private const int SignOutHeight = 56;
     private const int SignOutGap = 24;
@@ -51,17 +55,30 @@ public sealed class GuiSettings : FormScreen
     private readonly TextLine _chatNote;
 
     public GuiSettings(INavigator navigator, bool showsLanguage)
-        : base(navigator, Theme.PanelCardWidth, CardHeight, ScreenLayout.PanelBare)
+        : base(navigator, new CardShape
+        {
+            Width = Theme.PanelCardWidth,
+            Height = CardHeight,
+            Layout = ScreenLayout.PanelBare
+        })
     {
         int top = PanelContentTop;
         int panelX = ContentX + SidebarWidth + SidebarGap;
         int panelWidth = ContentWidth - SidebarWidth - SidebarGap;
 
-        _heading = new TextLine { Style = TextLineStyle.Heading, Bounds = new Rectangle(ContentX, top, SidebarWidth, HeadingHeight) };
+        _heading = new TextLine
+        {
+            Style = TextLineStyle.Heading,
+            Bounds = new Rectangle(ContentX, top, SidebarWidth, HeadingHeight)
+        };
         _sidebar = new SidebarMenu
         {
             SelectedIndex = showsLanguage ? LanguageIndex : AccountIndex,
-            Bounds = new Rectangle(ContentX, top + HeadingHeight + HeadingGap, SidebarWidth, 5 * (SidebarMenu.ItemHeight + 4))
+            Bounds = new Rectangle(
+                ContentX,
+                top + HeadingHeight + HeadingGap,
+                SidebarWidth,
+                5 * (SidebarMenu.ItemHeight + 4))
         };
         _sidebar.Items.Add(new SidebarItem { IsEnabled = false });
         _sidebar.Items.Add(new SidebarItem { IsEnabled = false });
@@ -72,20 +89,35 @@ public sealed class GuiSettings : FormScreen
 
         var topArea = new Rectangle(panelX, top, panelWidth, TopBoxHeight);
         _topBox = new PanelBox { Bounds = topArea };
-        _avatar = new Avatar { Bounds = new Rectangle(topArea.X + PanelBox.Padding, topArea.Y + ((TopBoxHeight - TopBoxAvatar) / 2), TopBoxAvatar, TopBoxAvatar) };
+        _avatar = new Avatar
+        {
+            Bounds = new Rectangle(
+                topArea.X + PanelBox.Padding,
+                topArea.Y + ((TopBoxHeight - TopBoxAvatar) / 2),
+                TopBoxAvatar,
+                TopBoxAvatar)
+        };
         int textX = topArea.X + PanelBox.Padding + TopBoxAvatar + 18;
         _nickname = new TextLine { Bounds = new Rectangle(textX, topArea.Y + 24, panelWidth, 24) };
-        _email = new TextLine { Style = TextLineStyle.Small, Bounds = new Rectangle(textX, topArea.Y + 52, panelWidth, 20) };
+        _email = new TextLine
+        {
+            Style = TextLineStyle.Small,
+            Bounds = new Rectangle(textX, topArea.Y + 52, panelWidth, 20)
+        };
         _editButton = CreateOutlineButton(new Rectangle(
-            topArea.Right - PanelBox.Padding - EditButtonWidth, topArea.Y + ((TopBoxHeight - Theme.SmallButtonHeight) / 2), EditButtonWidth, Theme.SmallButtonHeight));
+            topArea.Right - PanelBox.Padding - EditButtonWidth,
+            topArea.Y + ((TopBoxHeight - Theme.SmallButtonHeight) / 2),
+            EditButtonWidth,
+            Theme.SmallButtonHeight));
         _editButton.Clicked += OnEditClicked;
         _avatar.Clicked += (_, _) => Navigator.GoTo(ScreenId.Profile);
 
         int rowsTop = topArea.Bottom + BlockGap;
-        _passwordRow = CreateRow(panelX, rowsTop, panelWidth, 0);
-        _emailRow = CreateRow(panelX, rowsTop, panelWidth, 1);
-        _sessionsRow = CreateRow(panelX, rowsTop, panelWidth, 2);
-        _friendCodeRow = CreateRow(panelX, rowsTop, panelWidth, 3);
+        var rowArea = new Rectangle(panelX, rowsTop, panelWidth, RowHeight);
+        _passwordRow = CreateRow(rowArea, PasswordRowIndex);
+        _emailRow = CreateRow(rowArea, EmailRowIndex);
+        _sessionsRow = CreateRow(rowArea, SessionsRowIndex);
+        _friendCodeRow = CreateRow(rowArea, FriendCodeRowIndex);
         _friendCodeRow.IsButtonEnabled = false;
         _passwordRow.Clicked += (_, _) => Navigator.GoTo(ScreenId.ChangePassword);
         _emailRow.Clicked += (_, _) => Navigator.GoTo(ScreenId.ChangeEmail);
@@ -95,21 +127,45 @@ public sealed class GuiSettings : FormScreen
         _signOutButton = CreateOutlineButton(new Rectangle(panelX, signOutTop, panelWidth, SignOutHeight));
         _signOutButton.Clicked += OnSignOutClicked;
 
-        _deleteBox = new ActionBox { Bounds = new Rectangle(panelX, signOutTop + SignOutHeight + BlockGap, panelWidth, DeleteBoxHeight) };
+        _deleteBox = new ActionBox
+        {
+            Bounds = new Rectangle(panelX, signOutTop + SignOutHeight + BlockGap, panelWidth, DeleteBoxHeight)
+        };
         _deleteBox.Clicked += (_, _) => Navigator.GoTo(ScreenId.DeleteAccount);
 
-        _languageLabel = new TextLine { Style = TextLineStyle.Small, Bounds = new Rectangle(panelX, top, panelWidth, LanguageLabelHeight) };
+        _languageLabel = new TextLine
+        {
+            Style = TextLineStyle.Small,
+            Bounds = new Rectangle(panelX, top, panelWidth, LanguageLabelHeight)
+        };
         int rowTop = top + LanguageLabelHeight + LanguageRowsGap;
         _spanishRow = new RadioRow { Bounds = new Rectangle(panelX, rowTop, panelWidth, LanguageRowHeight) };
-        _englishRow = new RadioRow { Bounds = new Rectangle(panelX, rowTop + LanguageRowHeight, panelWidth, LanguageRowHeight) };
+        _englishRow = new RadioRow
+        {
+            Bounds = new Rectangle(panelX, rowTop + LanguageRowHeight, panelWidth, LanguageRowHeight)
+        };
         _spanishRow.Chosen += (_, _) => ChooseLanguage(LanguagePicker.SpanishIndex);
         _englishRow.Chosen += (_, _) => ChooseLanguage(LanguagePicker.EnglishIndex);
-        _chatNote = new TextLine { Style = TextLineStyle.Small, Bounds = new Rectangle(panelX, Card.Bottom - Theme.CardPadding - LanguageLabelHeight, panelWidth, LanguageLabelHeight) };
+        _chatNote = new TextLine
+        {
+            Style = TextLineStyle.Small,
+            Bounds = new Rectangle(
+                panelX,
+                Card.Bottom - Theme.CardPadding - LanguageLabelHeight,
+                panelWidth,
+                LanguageLabelHeight)
+        };
 
         Register(_heading);
         Register(_sidebar);
 
-        foreach (Control control in new Control[] { _topBox, _avatar, _nickname, _email, _editButton, _passwordRow, _emailRow, _sessionsRow, _friendCodeRow, _signOutButton, _deleteBox })
+        Control[] accountControls =
+        [
+            _topBox, _avatar, _nickname, _email, _editButton, _passwordRow,
+            _emailRow, _sessionsRow, _friendCodeRow, _signOutButton, _deleteBox
+        ];
+
+        foreach (Control control in accountControls)
         {
             _accountControls.Add(control);
             Register(control);
@@ -134,7 +190,9 @@ public sealed class GuiSettings : FormScreen
     {
         base.Draw(canvas);
         int x = ContentX + SidebarWidth + (SidebarGap / 2);
-        canvas.Shapes.DrawRectangle(new Rectangle(x, Card.Y + Theme.CardPadding, 1, Card.Height - (Theme.CardPadding * 2)), Theme.CheckBoxBorder);
+        canvas.Shapes.DrawRectangle(
+            new Rectangle(x, Card.Y + Theme.CardPadding, 1, Card.Height - (Theme.CardPadding * 2)),
+            Theme.CheckBoxBorder);
     }
 
     protected override void ApplyTexts()
@@ -152,7 +210,9 @@ public sealed class GuiSettings : FormScreen
         _editButton.Title = TextCatalog.CommonEditButton;
 
         _passwordRow.Title = TextCatalog.SettingsPasswordRow;
-        _passwordRow.Subtitle = string.Format(TextCatalog.SettingsPasswordChangedFormat, TestProfile.PasswordChangedMonthsAgo);
+        _passwordRow.Subtitle = string.Format(
+            TextCatalog.SettingsPasswordChangedFormat,
+            TestProfile.PasswordChangedMonthsAgo);
         _passwordRow.ButtonLabel = TextCatalog.CommonChangeButton;
         _emailRow.Title = TextCatalog.SettingsEmailRow;
         _emailRow.Subtitle = TextCatalog.SettingsEmailVerified;
@@ -179,7 +239,11 @@ public sealed class GuiSettings : FormScreen
 
     private void OnSidebarChosen(object? sender, SelectionChangedEventArgs e)
     {
-        ShowPanel(e.SelectedIndex == LanguageIndex);
+        bool wantsLanguage = e.SelectedIndex == LanguageIndex;
+
+        // Each panel is its own destination, so the back link and the
+        // history treat them as the two screens the use cases describe.
+        Navigator.GoTo(wantsLanguage ? ScreenId.SettingsLanguage : ScreenId.AccountSettings);
     }
 
     private void OnEditClicked(object? sender, EventArgs e)
@@ -229,8 +293,11 @@ public sealed class GuiSettings : FormScreen
         }
     }
 
-    private SettingRow CreateRow(int x, int top, int width, int index)
+    private static SettingRow CreateRow(Rectangle area, int index)
     {
-        return new SettingRow { Bounds = new Rectangle(x, top + (index * RowHeight), width, RowHeight) };
+        return new SettingRow
+        {
+            Bounds = new Rectangle(area.X, area.Y + (index * RowHeight), area.Width, RowHeight)
+        };
     }
 }

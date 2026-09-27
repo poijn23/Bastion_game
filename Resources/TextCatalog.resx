@@ -2257,4 +2257,64 @@
     <value>WATCHING THE MATCH</value>
     <comment>Subtitle of GUI_Spectator.</comment>
   </data>
+  <data name="MainMenuModerationButton" xml:space="preserve">
+    <value>MODERATION</value>
+    <comment>Entry to the moderation tools from the home hub.</comment>
+  </data>
+  <data name="AdminPanelQueueButton" xml:space="preserve">
+    <value>REPORT QUEUE</value>
+    <comment>CU-43 entry from the moderation panel.</comment>
+  </data>
+  <data name="AdminPanelLogsButton" xml:space="preserve">
+    <value>LOGS</value>
+    <comment>CU-48 entry from the moderation panel.</comment>
+  </data>
+  <data name="PlayerCardReportButton" xml:space="preserve">
+    <value>REPORT</value>
+    <comment>CU-42 entry from another player's card.</comment>
+  </data>
+  <data name="PlayerCardWatchButton" xml:space="preserve">
+    <value>WATCH</value>
+    <comment>CU-40 entry from another player's card.</comment>
+  </data>
+  <data name="ShopBoxButton" xml:space="preserve">
+    <value>BUY A BOX</value>
+    <comment>CU-39 entry from the shop.</comment>
+  </data>
+  <data name="MainScreenIndexButton" xml:space="preserve">
+    <value>ALL SCREENS</value>
+    <comment>Provisional entry to GUI_Menu, the index of every screen.</comment>
+  </data>
+  <data name="RegisterUnderage" xml:space="preserve">
+    <value>you must be at least 8 years old</value>
+    <comment>CU-02 RN-05 and D-06.</comment>
+  </data>
+  <data name="RegisterServerUnreachable" xml:space="preserve">
+    <value>We could not reach the server. Try again in a moment.</value>
+    <comment>CU-02 alternate flow: no answer.</comment>
+  </data>
+  <data name="RegisterRejected" xml:space="preserve">
+    <value>The account could not be created. Try again.</value>
+    <comment>CU-02 alternate flow: the server refused.</comment>
+  </data>
+  <data name="RegisterFirstNameInvalid" xml:space="preserve">
+    <value>only letters, spaces and hyphens</value>
+    <comment>CU-02 FA-03: the shape of a name.</comment>
+  </data>
+  <data name="RegisterLastNameInvalid" xml:space="preserve">
+    <value>only letters, spaces and hyphens</value>
+    <comment>CU-02 FA-03: the shape of a surname.</comment>
+  </data>
+  <data name="RegisterNicknameInvalid" xml:space="preserve">
+    <value>only letters, digits and underscore</value>
+    <comment>CU-02 RN-04: the shape of a nickname.</comment>
+  </data>
+  <data name="RegisterPasswordPolicy" xml:space="preserve">
+    <value>mix upper case, lower case, digits or symbols: at least three of the four</value>
+    <comment>CU-02 RN-03: three character groups.</comment>
+  </data>
+  <data name="RegisterCheckTheForm" xml:space="preserve">
+    <value>Some fields need a look before we can create the account.</value>
+    <comment>Alert shown when the form is sent with errors.</comment>
+  </data>
 </root>

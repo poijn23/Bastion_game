@@ -58,6 +58,7 @@ public sealed class GuiBoxPurchaseConfirm : FormScreen
 
     private void OnConfirmClicked(object? sender, EventArgs e)
     {
+        Navigator.GoTo(ScreenId.CoinHistory);
     }
 
     private void OnCancelClicked(object? sender, EventArgs e)

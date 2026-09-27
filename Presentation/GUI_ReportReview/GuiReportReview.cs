@@ -87,6 +87,7 @@ public sealed class GuiReportReview : FormScreen
 
     private void OnDismissClicked(object? sender, EventArgs e)
     {
+        Navigator.GoBack();
     }
 
     private void OnBackClicked(object? sender, EventArgs e)
