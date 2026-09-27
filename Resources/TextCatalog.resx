@@ -2297,4 +2297,24 @@
     <value>The account could not be created. Try again.</value>
     <comment>CU-02 alternate flow: the server refused.</comment>
   </data>
+  <data name="RegisterFirstNameInvalid" xml:space="preserve">
+    <value>only letters, spaces and hyphens</value>
+    <comment>CU-02 FA-03: the shape of a name.</comment>
+  </data>
+  <data name="RegisterLastNameInvalid" xml:space="preserve">
+    <value>only letters, spaces and hyphens</value>
+    <comment>CU-02 FA-03: the shape of a surname.</comment>
+  </data>
+  <data name="RegisterNicknameInvalid" xml:space="preserve">
+    <value>only letters, digits and underscore</value>
+    <comment>CU-02 RN-04: the shape of a nickname.</comment>
+  </data>
+  <data name="RegisterPasswordPolicy" xml:space="preserve">
+    <value>mix upper case, lower case, digits or symbols: at least three of the four</value>
+    <comment>CU-02 RN-03: three character groups.</comment>
+  </data>
+  <data name="RegisterCheckTheForm" xml:space="preserve">
+    <value>Some fields need a look before we can create the account.</value>
+    <comment>Alert shown when the form is sent with errors.</comment>
+  </data>
 </root>

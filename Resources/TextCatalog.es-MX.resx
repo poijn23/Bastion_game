@@ -1937,4 +1937,24 @@
     <value>No se pudo crear la cuenta. Intenta de nuevo.</value>
     <comment>CU-02 alternate flow: the server refused.</comment>
   </data>
+  <data name="RegisterFirstNameInvalid" xml:space="preserve">
+    <value>solo letras, espacios y guiones</value>
+    <comment>CU-02 FA-03: the shape of a name.</comment>
+  </data>
+  <data name="RegisterLastNameInvalid" xml:space="preserve">
+    <value>solo letras, espacios y guiones</value>
+    <comment>CU-02 FA-03: the shape of a surname.</comment>
+  </data>
+  <data name="RegisterNicknameInvalid" xml:space="preserve">
+    <value>solo letras, numeros y guion bajo</value>
+    <comment>CU-02 RN-04: the shape of a nickname.</comment>
+  </data>
+  <data name="RegisterPasswordPolicy" xml:space="preserve">
+    <value>combina mayusculas, minusculas, numeros o simbolos: al menos tres de los cuatro</value>
+    <comment>CU-02 RN-03: three character groups.</comment>
+  </data>
+  <data name="RegisterCheckTheForm" xml:space="preserve">
+    <value>Revisa los campos marcados antes de crear la cuenta.</value>
+    <comment>Alert shown when the form is sent with errors.</comment>
+  </data>
 </root>

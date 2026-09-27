@@ -4,23 +4,23 @@ using Bastion.Presentation.Utils;
 namespace Bastion.Presentation.Tests;
 
 // What a test cares about once a press has landed: which screen the game is
-// showing and whether it is asking something before going on. Being a record,
-// two destinations are equal when those two answers match and nothing else is
-// compared, so a whole flow can end in a single AreEqual.
+// showing and whether a dialog is standing over it, asking or telling. Being
+// a record, two destinations are equal when those two answers match and
+// nothing else is compared, so a whole flow ends in a single AreEqual.
 public sealed record Destination
 {
     public required ScreenId Screen { get; init; }
 
-    public required bool IsAsking { get; init; }
+    public required bool HasDialog { get; init; }
 
     public static Destination On(ScreenId screen)
     {
-        return new Destination { Screen = screen, IsAsking = false };
+        return new Destination { Screen = screen, HasDialog = false };
     }
 
-    public static Destination Asking(ScreenId screen)
+    public static Destination WithDialog(ScreenId screen)
     {
-        return new Destination { Screen = screen, IsAsking = true };
+        return new Destination { Screen = screen, HasDialog = true };
     }
 
     public static Destination Of(Navigator navigator)
@@ -30,7 +30,7 @@ public sealed record Destination
         return new Destination
         {
             Screen = navigator.CurrentId,
-            IsAsking = ScreenDriver.IsShowingADialog(navigator.Current)
+            HasDialog = ScreenDriver.IsShowingADialog(navigator.Current)
         };
     }
 }

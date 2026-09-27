@@ -23,6 +23,8 @@ public sealed class GuiRegister : FormScreen
     // it, plus a little air. Four of them at the shared FormScreen.RowSpacing
     // would push the two buttons past the bottom of a 720 pixel window, so
     // this screen sizes its own rows from what they actually have to hold.
+    private const int MinimumAge = 8;
+
     private const int RowAir = 4;
     private const int RegisterRowSpacing = LabelSpace + Theme.FieldHeight + Theme.WarningSpace + RowAir;
 
@@ -110,6 +112,7 @@ public sealed class GuiRegister : FormScreen
 
         if (!Validate())
         {
+            Popup.ShowAlert(Navigator, TextCatalog.RegisterCheckTheForm);
             return;
         }
 
@@ -157,7 +160,7 @@ public sealed class GuiRegister : FormScreen
             return;
         }
 
-        Navigator.ShowMessage(DialogTone.Error, answer == RegistrationAnswer.Unreachable
+        Popup.ShowError(Navigator, answer == RegistrationAnswer.Unreachable
             ? TextCatalog.RegisterServerUnreachable
             : TextCatalog.RegisterRejected);
     }
@@ -189,8 +192,10 @@ public sealed class GuiRegister : FormScreen
     // duplicate checks stand in for the server answer until it exists.
     private bool Validate()
     {
-        _firstNameField.Warning = GetEmptyWarning(_firstNameField.Text, TextCatalog.RegisterFirstNameRequired);
-        _lastNameField.Warning = GetEmptyWarning(_lastNameField.Text, TextCatalog.RegisterLastNameRequired);
+        _firstNameField.Warning = GetNameWarning(
+            _firstNameField.Text, TextCatalog.RegisterFirstNameRequired, TextCatalog.RegisterFirstNameInvalid);
+        _lastNameField.Warning = GetNameWarning(
+            _lastNameField.Text, TextCatalog.RegisterLastNameRequired, TextCatalog.RegisterLastNameInvalid);
         _nicknameField.Warning = GetNicknameWarning(_nicknameField.Text.Trim());
         _emailField.Warning = GetEmailWarning(_emailField.Text.Trim());
         _passwordField.Warning = GetPasswordWarning();
@@ -220,16 +225,27 @@ public sealed class GuiRegister : FormScreen
         ];
     }
 
-    private static string? GetEmptyWarning(string text, string warning)
+    // Two answers for one box: it is empty, or what it holds is not a name.
+    private static string? GetNameWarning(string text, string whenEmpty, string whenMalformed)
     {
-        return string.IsNullOrWhiteSpace(text) ? warning : null;
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return whenEmpty;
+        }
+
+        return InputRules.IsPersonName(text) ? null : whenMalformed;
     }
 
+    // CU-02 RN-03 asks for length and for three of the four character
+    // groups, and says which one is missing rather than both at once.
     private string? GetPasswordWarning()
     {
-        return InputRules.HasPasswordLength(_passwordField.Text)
-            ? null
-            : TextCatalog.RegisterPasswordTooShort;
+        if (!InputRules.HasPasswordLength(_passwordField.Text))
+        {
+            return TextCatalog.RegisterPasswordTooShort;
+        }
+
+        return InputRules.MeetsPasswordPolicy(_passwordField.Text) ? null : TextCatalog.RegisterPasswordPolicy;
     }
 
     private string? GetConfirmationWarning()
@@ -249,6 +265,11 @@ public sealed class GuiRegister : FormScreen
         if (!InputRules.HasNicknameLength(nickname))
         {
             return TextCatalog.RegisterNicknameLength;
+        }
+
+        if (!InputRules.IsNickname(nickname))
+        {
+            return TextCatalog.RegisterNicknameInvalid;
         }
 
         return _accounts.IsNicknameTaken(nickname) ? TextCatalog.RegisterNicknameTaken : null;
@@ -271,14 +292,21 @@ public sealed class GuiRegister : FormScreen
             return TextCatalog.RegisterBirthDateInvalid;
         }
 
-        return InputRules.IsInFuture(date) ? TextCatalog.RegisterBirthDateFuture : null;
+        if (InputRules.IsInFuture(date))
+        {
+            return TextCatalog.RegisterBirthDateFuture;
+        }
+
+        // D-06 and CU-02 RN-05. The server checks it again: this only saves
+        // the round trip.
+        return InputRules.IsAtLeastYearsOld(date, MinimumAge) ? null : TextCatalog.RegisterUnderage;
     }
 
     // CU-02 FA-01. Discarding also has to clear the two passwords and uncheck
     // the terms, which belongs to validation and is still pending.
     private void OnCancelClicked(object? sender, EventArgs e)
     {
-        Navigator.ShowConfirm(new ConfirmRequest
+        Popup.Ask(Navigator, new ConfirmRequest
         {
             Body = TextCatalog.RegisterDiscardBody,
             PrimaryLabel = TextCatalog.RegisterDiscardButton,

@@ -94,7 +94,7 @@ public sealed class TestNavigationFlow
 
         ScreenDriver.Click(_navigator, TextCatalog.RegisterCancelButton);
 
-        Assert.AreEqual(Destination.Asking(ScreenId.Register), Destination.Of(_navigator));
+        Assert.AreEqual(Destination.WithDialog(ScreenId.Register), Destination.Of(_navigator));
     }
 
     [TestMethod]

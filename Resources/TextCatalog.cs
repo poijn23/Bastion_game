@@ -1126,6 +1126,16 @@ public static class TextCatalog
 
     public static string RegisterRejected => GetText(nameof(RegisterRejected));
 
+    public static string RegisterFirstNameInvalid => GetText(nameof(RegisterFirstNameInvalid));
+
+    public static string RegisterLastNameInvalid => GetText(nameof(RegisterLastNameInvalid));
+
+    public static string RegisterNicknameInvalid => GetText(nameof(RegisterNicknameInvalid));
+
+    public static string RegisterPasswordPolicy => GetText(nameof(RegisterPasswordPolicy));
+
+    public static string RegisterCheckTheForm => GetText(nameof(RegisterCheckTheForm));
+
     private static string GetText(string key)
     {
         return _manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;

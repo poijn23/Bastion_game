@@ -36,6 +36,16 @@ public static class ScreenDriver
         return GetControls<SidebarMenu>(screen);
     }
 
+    public static IReadOnlyList<CheckBox> GetCheckBoxes(object screen)
+    {
+        return GetControls<CheckBox>(screen);
+    }
+
+    public static IReadOnlyList<CheckBox> GetCheckBoxes(Navigator navigator)
+    {
+        return GetCheckBoxes(ScreenOf(navigator));
+    }
+
     // Everything a person can press: buttons, list rows, setting rows and any
     // other control that answers with a plain event of its own.
     public static IReadOnlyList<Control> GetClickables(object screen)
