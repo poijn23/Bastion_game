@@ -10,7 +10,7 @@ namespace Bastion.Presentation.GUI_AIMatchEnd;
 // meant to open its board position once a board exists to open it on.
 public sealed class GuiAIMatchEnd : FormScreen
 {
-    private const bool SampleIsVictory = true;
+    private const bool IsSampleVictory = true;
     private const int MistakeCount = 3;
 
     private const int ResultHeight = 20;
@@ -95,7 +95,7 @@ public sealed class GuiAIMatchEnd : FormScreen
     // Placeholder result: the outcome and the review come from the server.
     protected override void ApplyTexts()
     {
-        _result.Text = SampleIsVictory ? TextCatalog.AIMatchEndVictoryTitle : TextCatalog.AIMatchEndDefeatTitle;
+        _result.Text = IsSampleVictory ? TextCatalog.AIMatchEndVictoryTitle : TextCatalog.AIMatchEndDefeatTitle;
 
         _experienceTile.Value = TextCatalog.MatchEndExperienceSample;
         _experienceTile.Caption = TextCatalog.AIMatchEndExperienceCaption;
