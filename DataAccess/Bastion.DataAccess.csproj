@@ -1,8 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <!--
-    Unico proyecto que habla con SQL Server. Solo el servidor lo referencia:
-    el cliente pide por el contrato y nunca abre una conexion (DRV-01).
+    Capa de datos. Unico proyecto que abre conexiones a SQL Server, y lo unico
+    que hay aqui son las peticiones: quien decide es Managers, que declara el
+    puerto que este implementa.
   -->
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -17,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Bastion.Domain.csproj" />
+    <ProjectReference Include="..\Managers\Bastion.Managers.csproj" />
   </ItemGroup>
 
 </Project>

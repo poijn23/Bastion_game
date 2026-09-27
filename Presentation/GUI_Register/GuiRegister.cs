@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Bastion.Controllers;
+using Bastion.Managers;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -55,11 +57,11 @@ public sealed class GuiRegister : FormScreen
     private readonly CheckBox _termsCheckBox;
     private readonly Button _createButton;
     private readonly Button _cancelButton;
-    private readonly IAccountGateway _accounts;
+    private readonly AccountController _accounts;
 
     private bool _hasValidated;
 
-    public GuiRegister(INavigator navigator, IAccountGateway accounts)
+    public GuiRegister(INavigator navigator, AccountController accounts)
         : base(navigator, WideCardWidth, WideCardHeight)
     {
         ArgumentNullException.ThrowIfNull(accounts);
@@ -118,21 +120,24 @@ public sealed class GuiRegister : FormScreen
 
         // The form checked what it can see; the server decides. A nickname
         // free a second ago may be taken by the time the message lands.
-        Answer(_accounts.Register(Describe()));
+        Answer(_accounts.Register(Describe()).Outcome);
     }
 
     // CU-02 asks for the birth date in three boxes; Validate already proved
     // they parse, so this reads them again without doubting them.
-    private NewAccountRequest Describe()
+    private AccountRegistration Describe()
     {
         InputRules.TryParseBirthDate(ReadBirthDate(), out DateOnly birthDate);
 
-        return new NewAccountRequest
+        return new AccountRegistration
         {
+            FirstName = _firstNameField.Text.Trim(),
+            Surnames = _lastNameField.Text.Trim(),
             Nickname = _nicknameField.Text.Trim(),
             Email = _emailField.Text.Trim(),
             Password = _passwordField.Text,
             BirthDate = birthDate,
+            Language = Resources.Language.Current.Name,
             AcceptsTerms = _termsCheckBox.IsChecked
         };
     }
@@ -147,9 +152,9 @@ public sealed class GuiRegister : FormScreen
         };
     }
 
-    private void Answer(RegistrationAnswer answer)
+    private void Answer(RegistrationOutcome answer)
     {
-        if (answer == RegistrationAnswer.Registered)
+        if (answer == RegistrationOutcome.Registered)
         {
             Navigator.GoTo(ScreenId.RegistrationSuccess, _emailField.Text.Trim());
             return;
@@ -160,26 +165,26 @@ public sealed class GuiRegister : FormScreen
             return;
         }
 
-        Popup.ShowError(Navigator, answer == RegistrationAnswer.Unreachable
+        Popup.ShowError(Navigator, answer == RegistrationOutcome.Unreachable
             ? TextCatalog.RegisterServerUnreachable
             : TextCatalog.RegisterRejected);
     }
 
     // What the person can fix is said next to the box that holds it.
-    private bool ShowOnTheField(RegistrationAnswer answer)
+    private bool ShowOnTheField(RegistrationOutcome answer)
     {
         switch (answer)
         {
-            case RegistrationAnswer.NicknameTaken:
+            case RegistrationOutcome.NicknameTaken:
                 _nicknameField.Warning = TextCatalog.RegisterNicknameTaken;
                 return true;
-            case RegistrationAnswer.EmailTaken:
+            case RegistrationOutcome.EmailTaken:
                 _emailField.Warning = TextCatalog.RegisterEmailTaken;
                 return true;
-            case RegistrationAnswer.Underage:
+            case RegistrationOutcome.UnderageRejected:
                 _dayField.Warning = TextCatalog.RegisterUnderage;
                 return true;
-            case RegistrationAnswer.TermsNotAccepted:
+            case RegistrationOutcome.TermsNotAccepted:
                 _termsCheckBox.Warning = TextCatalog.RegisterTermsRequired;
                 return true;
             default:

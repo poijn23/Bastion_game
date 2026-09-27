@@ -24,11 +24,23 @@ Cliente MonoGame (este repo), TCP con protocolo propio (sin WebSockets), servido
 
 - `Presentation/`: cliente MonoGame DesktopGL, `net10.0`, `WinExe`. Una pantalla por carpeta, `GUI_<Nombre>/Gui<Nombre>.cs`. `Utils/` guarda los controles y las clases base (`FormScreen`, `MessageScreen`, `Control`, `Theme`, `Canvas`). `Navigator` y `ScreenId` resuelven la navegación.
 - `Resources/`: `TextCatalog.cs` (una propiedad por clave), `TextCatalog.resx` (inglés, neutro) y `TextCatalog.es-MX.resx`, siempre con las mismas claves. `Language.cs` aplica la cultura.
-- `Contracts/`: contratos CoreWCF compartidos por cliente y servidor (`IAccountService`, `IMatchService`, sus DTO y `ServiceEndpoints`, que fija la dirección net.tcp).
+- `Controllers/`: puntos de entrada de las GUI. **No llevan lógica**: reciben lo que la pantalla reunió y se lo pasan al manager. Lo único suyo es esperar la respuesta, porque el bucle de la interfaz es síncrono.
+- `Managers/`: capa de lógica. Guarda **los DTO**, decide lo que se puede hacer y le pide a un DAO que lo escriba. Declara el puerto `IAccountDao` en vez de depender de `DataAccess`, para que el cliente pueda referenciar esta capa sin arrastrar el cliente de SQL Server.
+- `DataAccess/`: capa de datos, patrón DAO. Único proyecto que abre conexiones a SQL Server y **lo único que tiene son las peticiones**: `AccountDao` escribe lo que le dan y traduce lo que la base contesta, sin decidir nada. En `Scripts/` van las migraciones.
 - `Domain/`: reglas que no dependen ni de la base ni del transporte. Hoy: `PasswordHasher` (PBKDF2-SHA512, 64 bytes de hash y 32 de sal, que es justo lo que declaran `contrasena_hash` y `contrasena_sal`) y `FriendCode`.
-- `DataAccess/`: único proyecto que abre conexiones a SQL Server. `IAccountRepository` y `SqlAccountRepository`.
-- `Service/`: servidor CoreWCF sobre net.tcp. `AccountService` sirve el CU-02. Es el único proceso que referencia `DataAccess` (DRV-01).
+- `Contracts/`: contratos CoreWCF compartidos por cliente y servidor. `IAccountService` es la cara remota de `IAccountManager` y viaja con los DTO de `Managers`, que no se duplican.
+- `Service/`: servidor CoreWCF sobre net.tcp. `AccountService` es el punto de entrada remoto y delega en el manager. Es el único proceso que referencia `DataAccess` (DRV-01).
 - `Tests/`: pruebas de la capa de presentación (MSTest). Ver la sección Pruebas.
+
+### Las capas y quién conoce a quién
+
+```
+Presentation -> Controllers -> Managers -> (IAccountDao) -> DataAccess -> SQL Server
+```
+
+En tiempo de compilación la última flecha va al revés: `DataAccess` referencia a `Managers`, porque el puerto lo declara quien lo necesita. Eso no es un adorno: es lo que impide que el cliente pueda abrir una conexión a la base, que es justo lo que exige DRV-01. Comprobado: `Microsoft.Data.SqlClient` no aparece en la salida de `Presentation`.
+
+En el cliente, `IAccountManager` lo implementa `ServiceAccountManager`, que alcanza al manager real por net.tcp, o `OfflineAccountManager`, que contesta desde `TestAccount` cuando no hay servidor.
 
 Todavía no hay motor de reglas ni protocolo de partida.
 
@@ -72,7 +84,13 @@ dotnet run --project Service/Bastion.Service.csproj
 
 Escucha en `net.tcp://localhost:8089/AccountService` y lee la cadena de conexión de `Service/appsettings.json` (por omisión `Server=localhost;Database=Bastion`). Con la base `Bastion` ya creada a partir de los scripts de los casos de uso.
 
-Sin servidor levantado el cliente no se rompe: la pantalla de registro dice que no pudo comunicarse. Las pruebas no lo necesitan, porque `Navigator` sin argumentos usa `OfflineAccountGateway`, que responde desde `TestAccount`.
+Sin servidor levantado el cliente no se rompe: la pantalla de registro dice que no pudo comunicarse. Las pruebas no lo necesitan, porque `Navigator` sin argumentos usa `OfflineAccountManager`, que responde desde `TestAccount`.
+
+Las migraciones de la base viven en `DataAccess/Scripts/` y son idempotentes:
+
+```
+sqlcmd -S localhost -d Bastion -C -i DataAccess/Scripts/001_Usuario_nombre_apellidos.sql
+```
 
 Un alta escribe tres filas en una sola transacción, como pide el CU-02: `Usuario` en estado `PENDIENTE`, la fila de `AceptacionTerminos` con la versión y el idioma aceptados, y el token de `TokenVerificacionCorreo` con propósito `ALTA` y 24 horas de vigencia. Del token solo se guarda el hash.
 
@@ -135,7 +153,7 @@ Viven fuera del repo, como PDF exportados de proyectos LaTeX del equipo. Los `.t
 
 ## Desajustes conocidos entre los documentos y el código
 
-- `GuiRegister` pide nombre y apellidos (contra D-06) y no aplica la edad mínima de 8 años ni la política de contraseña de 3 grupos de caracteres (CU-02 RN-03, RN-05). En la v3, `InputRules.MeetsPasswordPolicy` ya existe y solo la usan el cambio y la recuperación de contraseña.
+- `GuiRegister` pide nombre y apellidos, que D-06 no contempla: llegaron como requisito posterior y `Usuario` no los tenía. La migración `001` añadió `nombre` y `apellidos`, así que ya se guardan. D-06 sigue sin recogerlo por escrito.
 - El código declara `NeutralLanguage=en` y `Language.Default` es inglés; D-21 fija es-MX.
 - `Language.cs` y la restricción de la base fijan exactamente dos idiomas; el escenario ESC-11 del Hito 1 pide agregar un tercero sin tocar código.
 - ESC-03 exige segundo factor en cada equipo nuevo; CU-01 lo hace opcional por cuenta.

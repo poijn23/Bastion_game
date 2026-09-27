@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Capa de controladores. Son los puntos de entrada que usan las GUI y no
+    llevan logica: reciben lo que la pantalla reunio y se lo pasan al manager.
+    Conoce a Managers y nada mas.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Bastion.Controllers</RootNamespace>
+    <AssemblyName>Bastion.Controllers</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Managers\Bastion.Managers.csproj" />
+  </ItemGroup>
+
+</Project>

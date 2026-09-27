@@ -2,6 +2,7 @@ using CoreWCF;
 using CoreWCF.Configuration;
 using Bastion.Contracts;
 using Bastion.DataAccess;
+using Bastion.Managers;
 using Bastion.Service;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,8 @@ int port = builder.Configuration.GetValue("Endpoint:NetTcpPort", ServiceEndpoint
 builder.WebHost.UseNetTcp(port);
 builder.Services.AddServiceModelServices();
 builder.Services.AddSingleton<ISqlConnectionFactory>(new SqlConnectionFactory(connectionString));
-builder.Services.AddSingleton<IAccountRepository, SqlAccountRepository>();
+builder.Services.AddSingleton<IAccountDao, AccountDao>();
+builder.Services.AddSingleton<IAccountManager, AccountManager>();
 
 // PerCall: CoreWCF asks the container for one service per message.
 builder.Services.AddTransient<AccountService>();

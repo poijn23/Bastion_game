@@ -55,6 +55,8 @@ using Bastion.Presentation.GUI_Spectator;
 using Bastion.Presentation.GUI_TutorialIndex;
 using Bastion.Presentation.GUI_VersusScreen;
 using Bastion.Presentation.GUI_WaitingRoom;
+using Bastion.Controllers;
+using Bastion.Managers;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -163,7 +165,7 @@ public sealed class Navigator : INavigator
             navigator => new GuiTutorialIndex(navigator),
     };
 
-    private readonly IAccountGateway _accounts;
+    private readonly AccountController _accounts;
 
     private IScreen? _current;
     private IScreen? _dialog;
@@ -175,11 +177,11 @@ public sealed class Navigator : INavigator
     // Without a server the client answers from the stand in account, which
     // is what lets the game and the tests run with nothing listening.
     public Navigator()
-        : this(new OfflineAccountGateway())
+        : this(new AccountController(new OfflineAccountManager()))
     {
     }
 
-    public Navigator(IAccountGateway accounts)
+    public Navigator(AccountController accounts)
     {
         ArgumentNullException.ThrowIfNull(accounts);
 
