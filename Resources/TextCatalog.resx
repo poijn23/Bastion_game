@@ -2285,4 +2285,16 @@
     <value>ALL SCREENS</value>
     <comment>Provisional entry to GUI_Menu, the index of every screen.</comment>
   </data>
+  <data name="RegisterUnderage" xml:space="preserve">
+    <value>you must be at least 8 years old</value>
+    <comment>CU-02 RN-05 and D-06.</comment>
+  </data>
+  <data name="RegisterServerUnreachable" xml:space="preserve">
+    <value>We could not reach the server. Try again in a moment.</value>
+    <comment>CU-02 alternate flow: no answer.</comment>
+  </data>
+  <data name="RegisterRejected" xml:space="preserve">
+    <value>The account could not be created. Try again.</value>
+    <comment>CU-02 alternate flow: the server refused.</comment>
+  </data>
 </root>

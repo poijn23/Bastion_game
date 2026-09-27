@@ -1120,6 +1120,12 @@ public static class TextCatalog
 
     public static string MainScreenIndexButton => GetText(nameof(MainScreenIndexButton));
 
+    public static string RegisterUnderage => GetText(nameof(RegisterUnderage));
+
+    public static string RegisterServerUnreachable => GetText(nameof(RegisterServerUnreachable));
+
+    public static string RegisterRejected => GetText(nameof(RegisterRejected));
+
     private static string GetText(string key)
     {
         return _manager.GetString(key, CultureInfo.CurrentUICulture) ?? key;

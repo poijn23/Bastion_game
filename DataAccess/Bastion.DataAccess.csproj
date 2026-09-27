@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Unico proyecto que habla con SQL Server. Solo el servidor lo referencia:
+    el cliente pide por el contrato y nunca abre una conexion (DRV-01).
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Bastion.DataAccess</RootNamespace>
+    <AssemblyName>Bastion.DataAccess</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Bastion.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

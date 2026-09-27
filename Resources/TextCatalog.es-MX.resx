@@ -1925,4 +1925,16 @@
     <value>TODAS LAS PANTALLAS</value>
     <comment>Provisional entry to GUI_Menu, the index of every screen.</comment>
   </data>
+  <data name="RegisterUnderage" xml:space="preserve">
+    <value>debes tener al menos 8 anios</value>
+    <comment>CU-02 RN-05 and D-06.</comment>
+  </data>
+  <data name="RegisterServerUnreachable" xml:space="preserve">
+    <value>No pudimos comunicarnos con el servidor. Intenta de nuevo en un momento.</value>
+    <comment>CU-02 alternate flow: no answer.</comment>
+  </data>
+  <data name="RegisterRejected" xml:space="preserve">
+    <value>No se pudo crear la cuenta. Intenta de nuevo.</value>
+    <comment>CU-02 alternate flow: the server refused.</comment>
+  </data>
 </root>

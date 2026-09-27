@@ -53,11 +53,17 @@ public sealed class GuiRegister : FormScreen
     private readonly CheckBox _termsCheckBox;
     private readonly Button _createButton;
     private readonly Button _cancelButton;
+    private readonly IAccountGateway _accounts;
+
     private bool _hasValidated;
 
-    public GuiRegister(INavigator navigator)
+    public GuiRegister(INavigator navigator, IAccountGateway accounts)
         : base(navigator, WideCardWidth, WideCardHeight)
     {
+        ArgumentNullException.ThrowIfNull(accounts);
+
+        _accounts = accounts;
+
         _firstNameField = CreateField(NameRow, false, MaxFirstNameLength);
         _lastNameField = CreateField(NameRow, true, MaxLastNameLength);
         _nicknameField = CreateField(AccountRow, false, MaxNicknameLength);
@@ -107,7 +113,75 @@ public sealed class GuiRegister : FormScreen
             return;
         }
 
-        Navigator.GoTo(ScreenId.RegistrationSuccess, _emailField.Text.Trim());
+        // The form checked what it can see; the server decides. A nickname
+        // free a second ago may be taken by the time the message lands.
+        Answer(_accounts.Register(Describe()));
+    }
+
+    // CU-02 asks for the birth date in three boxes; Validate already proved
+    // they parse, so this reads them again without doubting them.
+    private NewAccountRequest Describe()
+    {
+        InputRules.TryParseBirthDate(ReadBirthDate(), out DateOnly birthDate);
+
+        return new NewAccountRequest
+        {
+            Nickname = _nicknameField.Text.Trim(),
+            Email = _emailField.Text.Trim(),
+            Password = _passwordField.Text,
+            BirthDate = birthDate,
+            AcceptsTerms = _termsCheckBox.IsChecked
+        };
+    }
+
+    private BirthDateFields ReadBirthDate()
+    {
+        return new BirthDateFields
+        {
+            Day = _dayField.Text,
+            Month = _monthField.Text,
+            Year = _yearField.Text
+        };
+    }
+
+    private void Answer(RegistrationAnswer answer)
+    {
+        if (answer == RegistrationAnswer.Registered)
+        {
+            Navigator.GoTo(ScreenId.RegistrationSuccess, _emailField.Text.Trim());
+            return;
+        }
+
+        if (ShowOnTheField(answer))
+        {
+            return;
+        }
+
+        Navigator.ShowMessage(DialogTone.Error, answer == RegistrationAnswer.Unreachable
+            ? TextCatalog.RegisterServerUnreachable
+            : TextCatalog.RegisterRejected);
+    }
+
+    // What the person can fix is said next to the box that holds it.
+    private bool ShowOnTheField(RegistrationAnswer answer)
+    {
+        switch (answer)
+        {
+            case RegistrationAnswer.NicknameTaken:
+                _nicknameField.Warning = TextCatalog.RegisterNicknameTaken;
+                return true;
+            case RegistrationAnswer.EmailTaken:
+                _emailField.Warning = TextCatalog.RegisterEmailTaken;
+                return true;
+            case RegistrationAnswer.Underage:
+                _dayField.Warning = TextCatalog.RegisterUnderage;
+                return true;
+            case RegistrationAnswer.TermsNotAccepted:
+                _termsCheckBox.Warning = TextCatalog.RegisterTermsRequired;
+                return true;
+            default:
+                return false;
+        }
     }
 
     // Every field is checked, not only the first bad one, so the player fixes
@@ -170,36 +244,29 @@ public sealed class GuiRegister : FormScreen
         return _termsCheckBox.IsChecked ? null : TextCatalog.RegisterTermsRequired;
     }
 
-    private static string? GetNicknameWarning(string nickname)
+    private string? GetNicknameWarning(string nickname)
     {
         if (!InputRules.HasNicknameLength(nickname))
         {
             return TextCatalog.RegisterNicknameLength;
         }
 
-        return TestAccount.IsNicknameTaken(nickname) ? TextCatalog.RegisterNicknameTaken : null;
+        return _accounts.IsNicknameTaken(nickname) ? TextCatalog.RegisterNicknameTaken : null;
     }
 
-    private static string? GetEmailWarning(string email)
+    private string? GetEmailWarning(string email)
     {
         if (!InputRules.IsEmail(email))
         {
             return TextCatalog.RegisterEmailInvalid;
         }
 
-        return TestAccount.IsEmailTaken(email) ? TextCatalog.RegisterEmailTaken : null;
+        return _accounts.IsEmailTaken(email) ? TextCatalog.RegisterEmailTaken : null;
     }
 
     private string? GetBirthDateWarning()
     {
-        var birthDate = new BirthDateFields
-        {
-            Day = _dayField.Text,
-            Month = _monthField.Text,
-            Year = _yearField.Text
-        };
-
-        if (!InputRules.TryParseBirthDate(birthDate, out DateOnly date))
+        if (!InputRules.TryParseBirthDate(ReadBirthDate(), out DateOnly date))
         {
             return TextCatalog.RegisterBirthDateInvalid;
         }

@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Bastion.Contracts;
 using Bastion.Presentation.Utils;
 using Bastion.Resources;
 
@@ -58,7 +59,9 @@ public sealed class BastionGame : Game
             }
         };
 
-        _navigator = new Navigator();
+        // The real client talks to the account server. With nothing
+        // listening the registration says so instead of pretending.
+        _navigator = new Navigator(new ServiceAccountGateway(ServiceEndpoints.GetAccountAddress()));
         _navigator.Start(ScreenId.MainScreen);
     }
 

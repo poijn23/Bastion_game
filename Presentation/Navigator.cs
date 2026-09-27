@@ -70,8 +70,6 @@ public sealed class Navigator : INavigator
     {
         [ScreenId.Login] =
             navigator => new GuiLogin(navigator),
-        [ScreenId.Register] =
-            navigator => new GuiRegister(navigator),
         [ScreenId.ForgotPassword] =
             navigator => new GuiForgotPassword(navigator),
         [ScreenId.AccountSettings] = navigator => new GuiSettings(navigator, false),
@@ -165,12 +163,28 @@ public sealed class Navigator : INavigator
             navigator => new GuiTutorialIndex(navigator),
     };
 
+    private readonly IAccountGateway _accounts;
+
     private IScreen? _current;
     private IScreen? _dialog;
     private readonly List<(ScreenId Id, string? Argument)> _history = [];
     private ScreenId _currentId;
     private string? _currentArgument;
     private Action? _pendingConfirm;
+
+    // Without a server the client answers from the stand in account, which
+    // is what lets the game and the tests run with nothing listening.
+    public Navigator()
+        : this(new OfflineAccountGateway())
+    {
+    }
+
+    public Navigator(IAccountGateway accounts)
+    {
+        ArgumentNullException.ThrowIfNull(accounts);
+
+        _accounts = accounts;
+    }
 
     // What is on screen right now, dialog included. Read only: the way to
     // change it is GoTo, GoBack or one of the dialog calls.
@@ -315,6 +329,11 @@ public sealed class Navigator : INavigator
     private IScreen Build(ScreenId screen, string? argument)
     {
         // The only screen that needs what the previous one produced.
+        if (screen == ScreenId.Register)
+        {
+            return new GuiRegister(this, _accounts);
+        }
+
         if (screen == ScreenId.RegistrationSuccess)
         {
             return new GuiRegistrationSuccess(this, argument ?? string.Empty);

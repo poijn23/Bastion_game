@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Reglas que no dependen ni de la base ni del transporte: como se guarda una
+    contrasena y como se forma un codigo de amigo. El servidor las usa; el
+    cliente no las necesita.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Bastion.Domain</RootNamespace>
+    <AssemblyName>Bastion.Domain</AssemblyName>
+  </PropertyGroup>
+
+</Project>
